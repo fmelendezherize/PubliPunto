@@ -1,0 +1,26 @@
+﻿<Window x:Name="PubliPuntoMainWindow" x:Class="Decktra.PubliPuntoEstacion.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
+        Title="PubliPunto Estacion"
+        Style="{ StaticResource PubliPuntoWindowStyle}">
+    <Grid>
+        <ScrollViewer Style="{StaticResource ScrollViewerMainStyle}">
+            <Grid Style="{StaticResource PubliPuntoGridStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="460" />
+                    <RowDefinition Height="1148" />
+                    <RowDefinition Height="280" />
+                </Grid.RowDefinitions>
+                <ItemsControl x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
+                              prism:RegionManager.RegionName="HeaderRegion"/>
+                <ItemsControl x:Name="WorkAreaRegion" Grid.Row="1" Style="{StaticResource WorkAreaStyle}"
+                              prism:RegionManager.RegionName="WorkAreaRegion">
+                </ItemsControl>
+                <ItemsControl x:Name="FooterRegion" Grid.Row="3" Style="{StaticResource FooterAreaStyle}"
+                              prism:RegionManager.RegionName="FooterRegion">
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
