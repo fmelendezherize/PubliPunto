@@ -1,7 +1,12 @@
 ﻿<Application x:Class="Decktra.PubliPuntoEstacion.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="clr-namespace:Decktra.PubliPuntoEstacion.Interfaces;assembly=Decktra.PubliPuntoEstacion.Library">
     <Application.Resources>
-        <ResourceDictionary Source="ResourcesDictionary\PubliPuntoDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Decktra.PubliPuntoEstacion.Library;component/ResourcesDictionary/PubliPuntoDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -75,6 +75,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -116,10 +117,6 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ResourcesDictionary\PubliPuntoDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -175,10 +172,13 @@
       <Project>{ac688132-04ab-496d-86cc-3067a379dd06}</Project>
       <Name>MainControlsModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PubliPuntoEstacion.Interfaces\PubliPuntoEstacion.Interfaces.csproj">
-      <Project>{0ac366f4-0cea-4c71-8ecc-849bc476b54e}</Project>
-      <Name>PubliPuntoEstacion.Interfaces</Name>
+    <ProjectReference Include="..\PubliPuntoEstacion.Library\PubliPuntoEstacion.Library.csproj">
+      <Project>{5b6385be-21c5-455f-9b02-cd858618a415}</Project>
+      <Name>PubliPuntoEstacion.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\firefox.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

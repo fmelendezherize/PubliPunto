@@ -13,6 +13,7 @@
                     <RowDefinition Height="280" />
                 </Grid.RowDefinitions>
                 <ItemsControl x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
+                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                               prism:RegionManager.RegionName="HeaderRegion"/>
                 <ItemsControl x:Name="WorkAreaRegion" Grid.Row="1" Style="{StaticResource WorkAreaStyle}"
                               prism:RegionManager.RegionName="WorkAreaRegion">

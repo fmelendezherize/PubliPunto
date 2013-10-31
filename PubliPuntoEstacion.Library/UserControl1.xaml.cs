@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Decktra.PubliPuntoEstacion.HeaderModule
+namespace PubliPuntoEstacion.Library
 {
     /// <summary>
-    /// Interaction logic for HeaderUserControl.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class HeaderView : UserControl
+    public partial class UserControl1 : UserControl
     {
-        public HeaderView()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hola");
         }
     }
 }

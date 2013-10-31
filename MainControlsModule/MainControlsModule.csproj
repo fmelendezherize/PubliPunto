@@ -99,9 +99,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PubliPuntoEstacion.Interfaces\PubliPuntoEstacion.Interfaces.csproj">
-      <Project>{0ac366f4-0cea-4c71-8ecc-849bc476b54e}</Project>
-      <Name>PubliPuntoEstacion.Interfaces</Name>
+    <ProjectReference Include="..\PubliPuntoEstacion.Library\PubliPuntoEstacion.Library.csproj">
+      <Project>{5b6385be-21c5-455f-9b02-cd858618a415}</Project>
+      <Name>PubliPuntoEstacion.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
