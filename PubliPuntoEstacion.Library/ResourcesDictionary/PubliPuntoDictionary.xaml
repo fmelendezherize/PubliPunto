@@ -34,4 +34,65 @@
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
     </Style>
+
+    <!--<Style x:Key="HeaderButton" TargetType="Button">
+        <Setter Property="Height" Value="124"/>
+        <Setter Property="Width" Value="474"/>
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Background="{TemplateBinding Button.Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition Width="4.5*" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{TemplateBinding Button.BorderBrush}" Grid.Column="0"></Rectangle>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35,0">
+                            <ContentPresenter Content="{TemplateBinding Button.Content}"/>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter> 
+    </Style>-->
+
+    <Style x:Key="HeaderButton" TargetType="Button">
+        <Setter Property="Height" Value="124"/>
+        <Setter Property="Width" Value="474"/>
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                        <StackPanel.Background>
+                            <DrawingBrush>
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,1,1" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="1,0,3,1" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </StackPanel.Background>
+                        <ContentPresenter Content="{TemplateBinding Button.Content}"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
