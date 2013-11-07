@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Decktra.PubliPuntoEstacion.MainControlsModule
 {
     /// <summary>
-    /// Interaction logic for NuestrosClientesControl.xaml
+    /// Interaction logic for NuestrosClientesView.xaml
     /// </summary>
-    public partial class NuestrosClientesControl : UserControl
+    public partial class NuestrosClientesView : UserControl
     {
-        public NuestrosClientesControl()
+        public NuestrosClientesView()
         {
             InitializeComponent();
         }

@@ -1,11 +1,15 @@
-﻿<UserControl x:Class="Decktra.PubliPuntoEstacion.HeaderModule.HeaderView"
+﻿<UserControl x:Class="Decktra.PubliPuntoEstacion.HeaderModule.Views.HeaderView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.HeaderModule.ViewModels"
              mc:Ignorable="d" 
              Width="960" Height="406">
-    <Grid Background="{DynamicResource BackgroundColor}">
+    <UserControl.Resources>
+        <viewModels:HeaderViewModel x:Key="HeaderViewModelDataSource" />
+    </UserControl.Resources>
+    <Grid Background="{DynamicResource BackgroundColorBrush}" DataContext="{Binding Source={StaticResource HeaderViewModelDataSource}}">
         <!--<Border BorderBrush="Black" BorderThickness="0">-->
         <StackPanel>
             <Canvas Height="282">
@@ -18,20 +22,22 @@
                                    VerticalAlignment="Stretch">¿Como Usar?</TextBlock>
                 </DockPanel>
                 <Button Width="110" Height="110" Canvas.Right="170" Content="Home" Background="#404767"
-                        Foreground="White">
+                        Foreground="White" Command="{Binding GoToHomeCommand}">
                 </Button>
             </Canvas>
             <WrapPanel Height="124">
-                <Button Style="{DynamicResource HeaderButton}" Background="#00ab9e"  BorderBrush="#3bd1c6"
-                        Click="Button_Click">
+                <Button Style="{DynamicResource HeaderButton}" Click="Button_Click" 
+				BorderBrush="{DynamicResource CategoryPrimaryColorBrush}" 
+				Background="{DynamicResource CategorySecundaryColorBrush}">
                     <Button.Content>
                         <TextBlock TextWrapping="Wrap" TextAlignment="Left"
                                    Margin="150,20,40,0">búsqueda por categoría</TextBlock>
                     </Button.Content>
                 </Button>
-                <Button Margin="11,0,0,0" Style="{DynamicResource HeaderButton}"
-                        Background="#26a1ca"  BorderBrush="#0dc9ed"
-                        Click="Button_Click">
+                <Button Margin="11,0,0,0" Style="{DynamicResource HeaderButton}" 
+						BorderBrush="{DynamicResource BusquedaTecladoPrimaryColorBrush}" 
+						Background="{DynamicResource BusquedaTecladoSecundaryColorBrush}"
+						Click="Button_Click">
                     <Button.Content>
                         <TextBlock TextWrapping="Wrap" TextAlignment="Left"
                                    Margin="150,20,40,0">búsqueda por teclado</TextBlock>

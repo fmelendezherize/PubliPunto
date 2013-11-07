@@ -20,7 +20,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
 
         public void Initialize()
         {
-            regionManager.RegisterViewWithRegion(RegionNames.REGION_WORK_AREA, typeof(NuestrosClientesControl));
+            
+            regionManager.RegisterViewWithRegion(RegionNames.REGION_WORK_AREA, typeof(BusquedaCategoriaView));
         }
     }
 }

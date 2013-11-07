@@ -20,7 +20,7 @@ namespace Decktra.PubliPuntoEstacion.FooterModule
 
         public void Initialize()
         {
-            regionManager.RegisterViewWithRegion(RegionNames.REGION_FOOTER_AREA, typeof(FooterControl));
+            regionManager.RegisterViewWithRegion(RegionNames.REGION_FOOTER_AREA, typeof(AreaPublicidad));
         }
     }
 }

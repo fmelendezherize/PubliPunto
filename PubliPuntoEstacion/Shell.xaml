@@ -3,24 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         Title="PubliPunto Estacion"
-        Style="{ StaticResource PubliPuntoWindowStyle}">
+        Style="{StaticResource PubliPuntoWindowStyle}">
     <Grid>
         <ScrollViewer Style="{StaticResource ScrollViewerMainStyle}">
             <Grid Style="{StaticResource PubliPuntoGridStyle}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="460" />
                     <RowDefinition Height="1148" />
-                    <RowDefinition Height="280" />
+                    <RowDefinition Height="225" />
+					<RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <ItemsControl x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
+                <ContentControl  x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
                               VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                               prism:RegionManager.RegionName="HeaderRegion"/>
-                <ItemsControl x:Name="WorkAreaRegion" Grid.Row="1" Style="{StaticResource WorkAreaStyle}"
+                <ContentControl  x:Name="WorkAreaRegion" Grid.Row="1" Style="{StaticResource WorkAreaRegionStyle}"
                               prism:RegionManager.RegionName="WorkAreaRegion">
-                </ItemsControl>
-                <ItemsControl x:Name="FooterRegion" Grid.Row="3" Style="{StaticResource FooterAreaStyle}"
+                </ContentControl>
+                <ContentControl  x:Name="FooterRegion" Grid.Row="2" Style="{StaticResource FooterRegionStyle}"
                               prism:RegionManager.RegionName="FooterRegion">
-                </ItemsControl>
+                </ContentControl>
+                <StackPanel Orientation="Vertical" Grid.Row="3">
+					<TextBlock HorizontalAlignment="Right" FontSize="24" TextAlignment="Right" Margin="0,0,60,0">
+						<TextBlock.Foreground>
+							<SolidColorBrush Color="{DynamicResource ColorHeader}"/>
+						</TextBlock.Foreground><Run Text="SIESCOM C.A. www.publipunto.com"/></TextBlock>
+                </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>

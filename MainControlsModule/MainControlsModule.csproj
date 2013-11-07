@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,11 +64,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainControlsModule.cs" />
+    <Compile Include="ViewModels\OfertasViewModel.cs" />
+    <Compile Include="Views\BusquedaCategoriaView.xaml.cs">
+      <DependentUpon>BusquedaCategoriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BusquedaTecladoView.xaml.cs">
+      <DependentUpon>BusquedaTecladoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeControlsView.xaml.cs">
+      <DependentUpon>HomeControlsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NuestrosClientesView.xaml.cs">
+      <DependentUpon>NuestrosClientesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OfertasView.xaml.cs">
+      <DependentUpon>OfertasView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NuestrosClientesControl.xaml.cs">
-      <DependentUpon>NuestrosClientesControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,9 +107,25 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="NuestrosClientesControl.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\BusquedaCategoriaView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BusquedaTecladoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HomeControlsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NuestrosClientesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OfertasView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
