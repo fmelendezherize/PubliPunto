@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
+using Decktra.PubliPuntoEstacion.Library;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
@@ -10,18 +11,9 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule.ViewModels
 {
     class HeaderViewModel : INotifyPropertyChanged
     {
-        public ICommand GoToHomeCommand { get; set; }
-
         public HeaderViewModel() 
         {
             Debug.Print("Iniciando");
-           
-            this.GoToHomeCommand = new DelegateCommand<Object>(this.GoToHome);
-        }
-
-        private void GoToHome(object obj)
-        {
- 	        Debug.Print("Llendo a Home");
         }
 
         #region INotifyPropertyChanged

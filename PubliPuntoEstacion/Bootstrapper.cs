@@ -1,7 +1,11 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
 using System.Windows;
+using Decktra.PubliPuntoEstacion.Library;
+using Microsoft.Practices.Prism.Commands;
+using System;
 
 namespace Decktra.PubliPuntoEstacion
 {

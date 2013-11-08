@@ -70,8 +70,6 @@
     <Style x:Key="HeaderButton" TargetType="Button">
         <Setter Property="Height" Value="124"/>
         <Setter Property="Width" Value="474"/>
-        <Setter Property="Foreground" Value="white"/>
-        <Setter Property="FontSize" Value="30"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

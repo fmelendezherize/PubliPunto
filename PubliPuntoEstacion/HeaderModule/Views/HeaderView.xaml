@@ -17,30 +17,30 @@
                            Stretch="UniformToFill"></Image>
                 <DockPanel Width="155" Height="110" Canvas.Right="0" Canvas.Top="0">
                     <Rectangle Width="155" Height="80" Fill="#3bd1c6" DockPanel.Dock="Top"></Rectangle>
-                    <TextBlock DockPanel.Dock="Bottom" Background="#404767" Foreground="White" 
-                                   TextAlignment="Center" HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch">¿Como Usar?</TextBlock>
+                    <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" Padding="5" FontSize="15"
+                               Style="{DynamicResource PubliPuntoContentHeaderText}" 
+                               Background="{DynamicResource ColorHeaderBrush}">¿Como Usar?</TextBlock>
                 </DockPanel>
-                <Button Width="110" Height="110" Canvas.Right="170" Content="Home" Background="#404767"
-                        Foreground="White" Command="{Binding GoToHomeCommand}">
+                <Button x:Name="ButtonHome" Width="110" Height="110" Canvas.Right="170"
+                        Foreground="White" Click="ButtonHome_Click" Background="{DynamicResource ColorHeaderBrush}">
+                    <TextBlock Style="{DynamicResource PubliPuntoContentHeaderText}">Home</TextBlock>
                 </Button>
             </Canvas>
             <WrapPanel Height="124">
-                <Button Style="{DynamicResource HeaderButton}" Click="Button_Click" 
+                <Button x:Name="ButtonBusquedaCategoria" Style="{DynamicResource HeaderButton}" 
 				BorderBrush="{DynamicResource CategoryPrimaryColorBrush}" 
-				Background="{DynamicResource CategorySecundaryColorBrush}">
+				Background="{DynamicResource CategorySecundaryColorBrush}" Click="ButtonBusquedaCategoria_Click">
                     <Button.Content>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Left"
-                                   Margin="150,20,40,0">búsqueda por categoría</TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="34"
+                                   Margin="150,20,40,0" Style="{DynamicResource PubliPuntoContentHeaderText}">búsqueda por categoría</TextBlock>
                     </Button.Content>
                 </Button>
-                <Button Margin="11,0,0,0" Style="{DynamicResource HeaderButton}" 
+                <Button x:Name="ButtonBusquedaTeclado" Margin="11,0,0,0" Style="{DynamicResource HeaderButton}" 
 						BorderBrush="{DynamicResource BusquedaTecladoPrimaryColorBrush}" 
-						Background="{DynamicResource BusquedaTecladoSecundaryColorBrush}"
-						Click="Button_Click">
+						Background="{DynamicResource BusquedaTecladoSecundaryColorBrush}" Click="ButtonBusquedaTeclado_Click">
                     <Button.Content>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Left"
-                                   Margin="150,20,40,0">búsqueda por teclado</TextBlock>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="34"
+                                   Margin="150,20,40,0" Style="{DynamicResource PubliPuntoContentHeaderText}">búsqueda por teclado</TextBlock>
                     </Button.Content>
                 </Button>
             </WrapPanel>

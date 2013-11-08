@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Controls.CategoryItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="960">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
+                <TextBlock Margin="60,5,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">A</TextBlock>
+            </StackPanel>
+            <StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">
+                <ListView MinHeight="50" Background="Violet">
+                    <ListViewItem>Elemento 1</ListViewItem>
+                </ListView>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>
