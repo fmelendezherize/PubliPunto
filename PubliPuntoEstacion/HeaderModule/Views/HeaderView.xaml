@@ -8,6 +8,41 @@
              Width="960" Height="406">
     <UserControl.Resources>
         <viewModels:HeaderViewModel x:Key="HeaderViewModelDataSource" />
+        <Style x:Key="HeaderButton" TargetType="Button">
+            <Setter Property="Height" Value="124"/>
+            <Setter Property="Width" Value="474"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <StackPanel.Background>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
+                                                        <RectangleGeometry Rect="0,0,1,1" />
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+                                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}">
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
+                                                        <RectangleGeometry Rect="1,0,3,1" />
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </StackPanel.Background>
+                            <ContentPresenter Content="{TemplateBinding Button.Content}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid Background="{DynamicResource BackgroundColorBrush}" DataContext="{Binding Source={StaticResource HeaderViewModelDataSource}}">
         <!--<Border BorderBrush="Black" BorderThickness="0">-->

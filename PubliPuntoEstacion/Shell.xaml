@@ -5,6 +5,24 @@
         Title="PubliPunto Estacion"
         Style="{StaticResource PubliPuntoWindowStyle}">
     <Grid>
+        <Grid.Resources>
+            <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">
+                <Setter Property="Margin" Value="60,27,60,27"/>
+            </Style>
+
+            <Style x:Key="WorkAreaRegionStyle" TargetType="ContentControl">
+                <Setter Property="Margin" Value="60,27,60,27"/>
+            </Style>
+
+            <Style x:Key="FooterRegionStyle" TargetType="ContentControl">
+                <Setter Property="Margin" Value="60,27,60,27"/>
+            </Style>
+
+            <Style x:Key="ScrollViewerMainStyle" TargetType="ScrollViewer">
+                <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            </Style>
+        </Grid.Resources>
         <ScrollViewer Style="{StaticResource ScrollViewerMainStyle}">
             <Grid Style="{StaticResource PubliPuntoGridStyle}">
                 <Grid.RowDefinitions>

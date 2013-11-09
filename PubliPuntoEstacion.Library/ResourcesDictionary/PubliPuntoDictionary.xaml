@@ -27,21 +27,10 @@
         <Setter Property="Background" Value="{StaticResource BackgroundColorBrush}"/>
     </Style>
 
-    <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">
-        <Setter Property="Margin" Value="60,27,60,27"/>
-    </Style>
-
-    <Style x:Key="WorkAreaRegionStyle" TargetType="ContentControl">
-        <Setter Property="Margin" Value="60,27,60,27"/>
-    </Style>
-
-    <Style x:Key="FooterRegionStyle" TargetType="ContentControl">
-        <Setter Property="Margin" Value="60,27,60,27"/>
-    </Style>
-
-    <Style x:Key="ScrollViewerMainStyle" TargetType="ScrollViewer">
-        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+    <Style x:Key="HomeControlStyle" TargetType="Grid">
+        <Setter Property="Height" Value="1094"/>
+        <Setter Property="Width" Value="970"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundColorBrush}"/>
     </Style>
 
     <!--<Style x:Key="HeaderButton" TargetType="Button">
@@ -67,48 +56,6 @@
         </Setter> 
     </Style>-->
 
-    <Style x:Key="HeaderButton" TargetType="Button">
-        <Setter Property="Height" Value="124"/>
-        <Setter Property="Width" Value="474"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <StackPanel.Background>
-                            <DrawingBrush>
-                                <DrawingBrush.Drawing>
-                                    <DrawingGroup>
-                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
-                                            <GeometryDrawing.Geometry>
-                                                <GeometryGroup>
-                                                    <RectangleGeometry Rect="0,0,1,1" />
-                                                </GeometryGroup>
-                                            </GeometryDrawing.Geometry>
-                                        </GeometryDrawing>
-                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}">
-                                            <GeometryDrawing.Geometry>
-                                                <GeometryGroup>
-                                                    <RectangleGeometry Rect="1,0,3,1" />
-                                                </GeometryGroup>
-                                            </GeometryDrawing.Geometry>
-                                        </GeometryDrawing>
-                                    </DrawingGroup>
-                                </DrawingBrush.Drawing>
-                            </DrawingBrush>
-                        </StackPanel.Background>
-                        <ContentPresenter Content="{TemplateBinding Button.Content}"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-	<Style x:Key="HomeControlStyle" TargetType="Grid">
-		<Setter Property="Height" Value="1094"/>
-		<Setter Property="Width" Value="970"/>
-		<Setter Property="Background" Value="{StaticResource BackgroundColorBrush}"/>
-	</Style>
-
 	<Style x:Key="PubliPuntoContentHeader" TargetType="StackPanel">
 		<Setter Property="Height" Value="47"/>
         <Setter Property="Background" Value="{StaticResource ColorHeaderBrush}"/>
@@ -119,60 +66,4 @@
 		<Setter Property="FontSize" Value="28" />
 		<Setter Property="Foreground" Value="White" />
 	</Style>
-
-    <Style x:Key="PubliPuntoContentHeaderBusquedaCategoria" TargetType="StackPanel">
-        <Setter Property="Height" Value="47"/>
-        <Setter Property="Background">
-            <Setter.Value>
-				<DrawingBrush>
-					<DrawingBrush.Drawing>
-						<DrawingGroup>
-							<GeometryDrawing Brush="{StaticResource CategoryPrimaryColorBrush}">
-								<GeometryDrawing.Geometry>
-									<GeometryGroup>
-										<RectangleGeometry Rect="0,0,1,1" />
-                                     </GeometryGroup>
-                                 </GeometryDrawing.Geometry>
-                             </GeometryDrawing>
-                             <GeometryDrawing Brush="{StaticResource CategorySecundaryColorBrush}">
-								<GeometryDrawing.Geometry>
-									<GeometryGroup>
-										<RectangleGeometry Rect="1,0,20,1" />
-                                    </GeometryGroup>
-								</GeometryDrawing.Geometry>
-                             </GeometryDrawing>
-                        </DrawingGroup>
-					</DrawingBrush.Drawing>
-				</DrawingBrush>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-	    <Style x:Key="PubliPuntoContentHeaderBusquedaTeclado" TargetType="StackPanel">
-        <Setter Property="Height" Value="47"/>
-        <Setter Property="Background">
-            <Setter.Value>
-				<DrawingBrush>
-					<DrawingBrush.Drawing>
-						<DrawingGroup>
-							<GeometryDrawing Brush="{StaticResource BusquedaTecladoPrimaryColorBrush}">
-								<GeometryDrawing.Geometry>
-									<GeometryGroup>
-										<RectangleGeometry Rect="0,0,1,1" />
-                                     </GeometryGroup>
-                                 </GeometryDrawing.Geometry>
-                             </GeometryDrawing>
-                             <GeometryDrawing Brush="{StaticResource BusquedaTecladoSecundaryColorBrush}">
-								<GeometryDrawing.Geometry>
-									<GeometryGroup>
-										<RectangleGeometry Rect="1,0,20,1" />
-                                    </GeometryGroup>
-								</GeometryDrawing.Geometry>
-                             </GeometryDrawing>
-                        </DrawingGroup>
-					</DrawingBrush.Drawing>
-				</DrawingBrush>
-            </Setter.Value>
-        </Setter>
-    </Style>
 </ResourceDictionary>

@@ -20,9 +20,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
     /// </summary>
     public partial class CategoryItemControl : UserControl
     {
+        public static readonly DependencyProperty HeaderTextProperty =
+            DependencyProperty.Register("HeaderText", typeof(string), typeof(CategoryItemControl));
+
         public CategoryItemControl()
         {
             InitializeComponent();
+        }
+
+        public string HeaderText
+        {
+            get { return (string)GetValue(HeaderTextProperty); }
+            set { SetValue(HeaderTextProperty, value); }
         }
     }
 }
