@@ -8,40 +8,34 @@
              d:DesignWidth="960">
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
-                <TextBlock Margin="60,5,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}"
+            <StackPanel DockPanel.Dock="Top" Style="{Binding ElementName=UserControl, Path=HeaderStyle}">
+                <TextBlock Margin="15,5,0,0" Style="{Binding ElementName=UserControl, Path=HeaderTextStyle}"
                            Text="{Binding ElementName=UserControl, Path=HeaderText}"/>
             </StackPanel>
             <StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">
-                <ListView MinHeight="50" Background="White">
-                    <ListView.Resources>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="34,34" HorizontalAlignment="Stretch">
-                                            <Border BorderThickness="1" BorderBrush="Black">
-                                                <Image Height="95" Width="280"></Image>
-                                            </Border>
-                                            <TextBlock VerticalAlignment="Center" Padding="34" 
-                                                       FontFamily="Calibri" FontSize="34" 
-                                                       Text="{TemplateBinding ListViewItem.Content}"/>
-                                        </StackPanel>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListView.Resources>
-                    <ListViewItem>
-                        Ariana Pizza
-                    </ListViewItem>
-                    <ListViewItem>
-                        Alfredo Comida
-                    </ListViewItem>
-                    <ListViewItem>
-                        Andrea Restaurant
-                    </ListViewItem>
-                </ListView>
+            	<ListView MinHeight="50" Background="White" BorderBrush="White">
+            		<ListView.Resources>
+            			<Style TargetType="{x:Type ListViewItem}">
+            				<Setter Property="Template">
+            					<Setter.Value>
+            						<ControlTemplate>
+            							<StackPanel Orientation="Horizontal" Margin="34,34" HorizontalAlignment="Stretch">
+            								<Border BorderThickness="1" BorderBrush="Black">
+            									<Image Height="95" Width="280"/>
+            								</Border>
+            								<TextBlock VerticalAlignment="Center" Padding="34" 
+            									FontFamily="Calibri" FontSize="34" 
+            									Text="{TemplateBinding ContentControl.Content}"/>
+            							</StackPanel>
+            						</ControlTemplate>
+            					</Setter.Value>
+            				</Setter>
+            			</Style>
+            		</ListView.Resources>
+            		<ListViewItem Content="Cliente Comercial 1"/>
+            		<ListViewItem Content="Cliente Comercial 2"/>
+            		<ListViewItem Content="Cliente Comercial 3"/>
+            	</ListView>
             </StackPanel>
         </DockPanel>
     </Grid>
