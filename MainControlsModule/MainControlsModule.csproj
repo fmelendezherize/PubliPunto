@@ -160,6 +160,19 @@
       <Name>PubliPuntoEstacion.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arroba.png" />
+    <Resource Include="Resources\bot_busq_cat.png" />
+    <Resource Include="Resources\bot_busq_teclado.png" />
+    <Resource Include="Resources\del.png" />
+    <Resource Include="Resources\enter.png" />
+    <Resource Include="Resources\espacio.png" />
+    <Resource Include="Resources\guion.png" />
+    <Resource Include="Resources\ico_barra_busqueda.png" />
+    <Resource Include="Resources\piso.png" />
+    <Resource Include="Resources\punto.png" />
+    <Resource Include="Resources\Shift.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

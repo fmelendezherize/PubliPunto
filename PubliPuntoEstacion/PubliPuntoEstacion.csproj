@@ -188,9 +188,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\firefox.jpg" />
+    <Resource Include="Resources\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\bot_busq_cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bot_busq_teclado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bot_inicio.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

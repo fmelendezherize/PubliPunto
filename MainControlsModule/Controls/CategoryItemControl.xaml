@@ -6,6 +6,14 @@
              x:Name="UserControl"
              mc:Ignorable="d" 
              d:DesignWidth="960">
+	<UserControl.Resources>
+		<Style x:Key="CategoryText" TargetType="TextBlock">
+			<Setter Property="FontFamily" Value="Calibri" />
+			<Setter Property="FontSize" Value="34" />
+			<Setter Property="Padding" Value="34" />
+			<Setter Property="Foreground" Value="#464646" />
+		</Style>
+	</UserControl.Resources>
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Style="{Binding ElementName=UserControl, Path=HeaderStyle}">
@@ -19,14 +27,16 @@
             				<Setter Property="Template">
             					<Setter.Value>
             						<ControlTemplate>
-            							<StackPanel Orientation="Horizontal" Margin="34,34" HorizontalAlignment="Stretch">
-            								<Border BorderThickness="1" BorderBrush="Black">
-            									<Image Height="95" Width="280"/>
-            								</Border>
-            								<TextBlock VerticalAlignment="Center" Padding="34" 
-            									FontFamily="Calibri" FontSize="34" 
-            									Text="{TemplateBinding ContentControl.Content}"/>
-            							</StackPanel>
+            							<StackPanel Margin="34,34" Orientation="Vertical">
+            								<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            									<Border BorderThickness="1" BorderBrush="Black">
+            										<Image Height="95" Width="280"/>
+            									</Border>
+            									<TextBlock VerticalAlignment="Center" Text="{TemplateBinding ContentControl.Content}"
+														   Style="{StaticResource CategoryText}"/>
+            								</StackPanel>
+											<Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="820"/>
+										</StackPanel>
             						</ControlTemplate>
             					</Setter.Value>
             				</Setter>

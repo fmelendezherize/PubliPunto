@@ -9,9 +9,10 @@
 	d:DesignWidth="640" d:DesignHeight="480" Width="960" Height="171">
 
     <Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
-        <StackPanel Background="{DynamicResource ColorHeaderBrush}">
-			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="32" Margin="0,55,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">
-                <Run Language="es-ve" Text="PUBLICIDAD AQUI"/></TextBlock>
+        <StackPanel>
+        	<StackPanel.Background>
+        		<ImageBrush ImageSource="Resources/como_pub_footer.jpg"/>
+        	</StackPanel.Background>
 		</StackPanel>
 	</Grid>
 </UserControl>
