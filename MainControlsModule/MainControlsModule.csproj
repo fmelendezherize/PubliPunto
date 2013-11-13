@@ -82,12 +82,16 @@
       <DependentUpon>TouchKeyboardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainControlsModule.cs" />
+    <Compile Include="ViewModels\DatosClienteViewModel.cs" />
     <Compile Include="ViewModels\OfertasViewModel.cs" />
     <Compile Include="Views\BusquedaCategoriaView.xaml.cs">
       <DependentUpon>BusquedaCategoriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BusquedaTecladoView.xaml.cs">
       <DependentUpon>BusquedaTecladoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatosClienteView.xaml.cs">
+      <DependentUpon>DatosClienteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeControlsView.xaml.cs">
       <DependentUpon>HomeControlsView.xaml</DependentUpon>
@@ -123,6 +127,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Content Include="Resources\CaviarDreams.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CategoryItemControl.xaml">
@@ -138,6 +145,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BusquedaTecladoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DatosClienteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -164,11 +175,14 @@
     <Resource Include="Resources\arroba.png" />
     <Resource Include="Resources\bot_busq_cat.png" />
     <Resource Include="Resources\bot_busq_teclado.png" />
+    <Resource Include="Resources\bot_cupon.png" />
     <Resource Include="Resources\del.png" />
+    <Resource Include="Resources\ejemp_pizzahut.jpg" />
     <Resource Include="Resources\enter.png" />
     <Resource Include="Resources\espacio.png" />
     <Resource Include="Resources\guion.png" />
     <Resource Include="Resources\ico_barra_busqueda.png" />
+    <Resource Include="Resources\logo_pizzahut.jpg" />
     <Resource Include="Resources\piso.png" />
     <Resource Include="Resources\punto.png" />
     <Resource Include="Resources\Shift.png" />

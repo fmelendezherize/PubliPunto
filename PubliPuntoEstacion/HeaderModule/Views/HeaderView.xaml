@@ -8,41 +8,6 @@
              Width="960" Height="406">
     <UserControl.Resources>
         <viewModels:HeaderViewModel x:Key="HeaderViewModelDataSource" />
-        <Style x:Key="HeaderButton" TargetType="Button">
-            <Setter Property="Height" Value="124"/>
-            <Setter Property="Width" Value="474"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <StackPanel.Background>
-                                <DrawingBrush>
-                                    <DrawingBrush.Drawing>
-                                        <DrawingGroup>
-                                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
-                                                <GeometryDrawing.Geometry>
-                                                    <GeometryGroup>
-                                                        <RectangleGeometry Rect="0,0,1,1" />
-                                                    </GeometryGroup>
-                                                </GeometryDrawing.Geometry>
-                                            </GeometryDrawing>
-                                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}">
-                                                <GeometryDrawing.Geometry>
-                                                    <GeometryGroup>
-                                                        <RectangleGeometry Rect="1,0,3,1" />
-                                                    </GeometryGroup>
-                                                </GeometryDrawing.Geometry>
-                                            </GeometryDrawing>
-                                        </DrawingGroup>
-                                    </DrawingBrush.Drawing>
-                                </DrawingBrush>
-                            </StackPanel.Background>
-                            <ContentPresenter Content="{TemplateBinding Button.Content}"/>
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </UserControl.Resources>
     <Grid Background="{DynamicResource BackgroundColorBrush}" DataContext="{Binding Source={StaticResource HeaderViewModelDataSource}}">
         <!--<Border BorderBrush="Black" BorderThickness="0">-->
@@ -51,9 +16,9 @@
                 <Image Width="229" Height="229" Canvas.Left="0" Canvas.Top="0" Source="pack://application:,,,/Resources/logo.png" Stretch="UniformToFill"/>
                 <DockPanel Width="155" Height="110" Canvas.Right="0" Canvas.Top="0">
                     <Rectangle Width="155" Height="80" Fill="#3bd1c6" DockPanel.Dock="Top"></Rectangle>
-                    <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" Padding="5" FontSize="15"
+                    <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" Padding="5" FontSize="20"
                                Style="{DynamicResource PubliPuntoContentHeaderText}" 
-                               Background="{DynamicResource ColorHeaderBrush}">¿Como Usar?</TextBlock>
+                               Background="{DynamicResource ColorHeaderBrush}" VerticalAlignment="Center">¿Como Usar?</TextBlock>
                 </DockPanel>
                 <Button x:Name="ButtonHome" Width="110" Height="110" Canvas.Right="170"
                         Foreground="White" Click="ButtonHome_Click" Background="{DynamicResource ColorHeaderBrush}">
@@ -61,25 +26,25 @@
                 </Button>
             </Canvas>
             <WrapPanel Height="124">
-                <Button x:Name="ButtonBusquedaCategoria" Style="{DynamicResource HeaderButton}" 
+                <Button x:Name="ButtonBusquedaCategoria" Style="{DynamicResource TwoColorButton}" 
 				BorderBrush="{DynamicResource CategoryPrimaryColorBrush}" 
 				Background="{DynamicResource CategorySecundaryColorBrush}" Click="ButtonBusquedaCategoria_Click">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,20,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,25,0,0">
                             <Image Source="/PubliPuntoEstacion;component/Resources/bot_busq_cat.png" Width="70" Height="70" Stretch="UniformToFill"/>
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="34"
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="31"
                         		       Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Margin="31,0,0,0" Width="290" Text="búsqueda por categoría"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button x:Name="ButtonBusquedaTeclado" Margin="11,0,0,0" Style="{DynamicResource HeaderButton}" 
+                <Button x:Name="ButtonBusquedaTeclado" Margin="11,0,0,0" Style="{DynamicResource TwoColorButton}" 
 						BorderBrush="{DynamicResource BusquedaTecladoPrimaryColorBrush}" 
 						Background="{DynamicResource BusquedaTecladoSecundaryColorBrush}" Click="ButtonBusquedaTeclado_Click">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="25,20,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="25,25,0,0">
                             <Image Source="/PubliPuntoEstacion;component/Resources/bot_busq_teclado.png" Width="70" Height="70" Stretch="UniformToFill"/>
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="34"
-                        		       Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Margin="31,0,0,0" Width="290"><Run Text="búsqueda por teclado"/></TextBlock>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="31"
+                        		       Style="{DynamicResource PubliPuntoContentHeaderText}" Margin="31,0,0,0" Width="290" VerticalAlignment="Center"><Run Text="búsqueda por teclado"/></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>

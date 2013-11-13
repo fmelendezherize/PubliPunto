@@ -8,16 +8,16 @@
              d:DesignWidth="960">
 	<UserControl.Resources>
 		<Style x:Key="CategoryText" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="Calibri" />
-			<Setter Property="FontSize" Value="34" />
-			<Setter Property="Padding" Value="34" />
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+			<Setter Property="FontSize" Value="26" />
+			<Setter Property="Padding" Value="34,34,0,0" />
 			<Setter Property="Foreground" Value="#464646" />
 		</Style>
 	</UserControl.Resources>
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Style="{Binding ElementName=UserControl, Path=HeaderStyle}">
-                <TextBlock Margin="15,5,0,0" Style="{Binding ElementName=UserControl, Path=HeaderTextStyle}"
+                <TextBlock Margin="15,10,0,0" Style="{Binding ElementName=UserControl, Path=HeaderTextStyle}"
                            Text="{Binding ElementName=UserControl, Path=HeaderText}"/>
             </StackPanel>
             <StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">

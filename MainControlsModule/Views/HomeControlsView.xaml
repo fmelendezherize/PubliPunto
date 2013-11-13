@@ -4,13 +4,14 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule"
+	xmlns:views="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	mc:Ignorable="d"
-	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.HomeControlsView"
+	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.HomeControlsView"
 	x:Name="UserControl">
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<StackPanel>
-			<local:NuestrosClientesView />
-			<local:OfertasView Margin="0,54,0,0" />
+			<views:NuestrosClientesView />
+			<views:OfertasView Margin="0,54,0,0" />
 		</StackPanel>
 	</Grid>
 </UserControl>

@@ -6,7 +6,7 @@
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule"
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
 	mc:Ignorable="d"
-	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.BusquedaTecladoView"
+	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.BusquedaTecladoView"
 	x:Name="UserControl">
     <UserControl.Resources>
         <Style x:Key="PubliPuntoContentHeaderBusquedaTeclado" TargetType="{x:Type StackPanel}">
@@ -52,7 +52,7 @@
 			<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaTeclado}">
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_teclado.png" Height="35" Margin="6">
 				</Image>
-                <TextBlock Margin="10,5,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="búsqueda por teclado"/>
+                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="búsqueda por teclado"/>
 			</StackPanel>
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" Height="Auto"
 						HorizontalAlignment="Left">

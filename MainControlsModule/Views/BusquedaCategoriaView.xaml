@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
 	mc:Ignorable="d"
-	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.BusquedaCategoriaView"
+	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.BusquedaCategoriaView"
 	x:Name="UserControl">
     <UserControl.Resources>
         <Style x:Key="PubliPuntoContentHeaderBusquedaCategoria" TargetType="StackPanel">
@@ -53,7 +53,7 @@
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6">
 				</Image>
-                <TextBlock Margin="10,5,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Búsqueda por categoría</TextBlock>
+                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Búsqueda por categoría</TextBlock>
             </StackPanel>
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal">
 				<ScrollViewer Height="1045" Width="920">

@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule"
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
-	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.OfertasView"
+	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.OfertasView"
 	d:DesignWidth="640" d:DesignHeight="480"
 	Width="970" Height="294">
 	<UserControl.Resources>
@@ -51,7 +51,7 @@
 										<SolidColorBrush Color="Black" Opacity=".5"/>
 									</StackPanel.Background>
 									<TextBlock TextWrapping="Wrap" Text="Nombre Cliente" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
-										FontSize="25" FontFamily="Calibri" Margin="8"/>
+										FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
 								</StackPanel>
 							</Grid>
 						</Border>
@@ -76,10 +76,10 @@
 	<Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
 		<DockPanel Background="White">
             <StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
-                <TextBlock Margin="60,5,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Ofertas</TextBlock>
+                <TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Ofertas</TextBlock>
             </StackPanel>
             <StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{DynamicResource ClienteButtonStyle}" Width="291" Height="171" Margin="5,0,5,0"/>
+                <Button Style="{DynamicResource ClienteButtonStyle}" Width="291" Height="171" Margin="5,0,5,0" Click="ButtonBase_OnClick"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" Width="291" Height="171" Margin="5,0,5,0"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" Width="291" Height="171" Margin="5,0,5,0"/>
             </StackPanel>
