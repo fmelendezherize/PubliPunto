@@ -21,31 +21,29 @@
                            Text="{Binding ElementName=UserControl, Path=HeaderText}"/>
             </StackPanel>
             <StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">
-            	<ListView MinHeight="50" Background="White" BorderBrush="White">
-            		<ListView.Resources>
-            			<Style TargetType="{x:Type ListViewItem}">
-            				<Setter Property="Template">
-            					<Setter.Value>
-            						<ControlTemplate>
-            							<StackPanel Margin="34,34" Orientation="Vertical">
-            								<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            									<Border BorderThickness="1" BorderBrush="Black">
-            										<Image Height="95" Width="280"/>
-            									</Border>
-            									<TextBlock VerticalAlignment="Center" Text="{TemplateBinding ContentControl.Content}"
+                <ListView MinHeight="50" Background="White" BorderBrush="White" ItemsSource="{Binding ListCategorias}">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel Margin="34,34" Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Border BorderThickness="1" BorderBrush="Black">
+                                                    <Image Height="95" Width="280"/>
+                                                </Border>
+                                                <TextBlock VerticalAlignment="Center" 
+                                                           Text="{Binding Nombre}"
 														   Style="{StaticResource CategoryText}"/>
-            								</StackPanel>
-											<Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="820"/>
-										</StackPanel>
-            						</ControlTemplate>
-            					</Setter.Value>
-            				</Setter>
-            			</Style>
-            		</ListView.Resources>
-            		<ListViewItem Content="Cliente Comercial 1"/>
-            		<ListViewItem Content="Cliente Comercial 2"/>
-            		<ListViewItem Content="Cliente Comercial 3"/>
-            	</ListView>
+                                            </StackPanel>
+                                            <Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="820"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
             </StackPanel>
         </DockPanel>
     </Grid>

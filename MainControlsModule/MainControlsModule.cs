@@ -23,7 +23,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
         public void Initialize()
         {
             this._container.RegisterType<Object, HomeControlsView>("HomeControlsView");
-            this._container.RegisterType<Object, BusquedaCategoriaView>("BusquedaCategoriaView");
+            this._container.RegisterType<Object, BusquedaCategoriaView>("BusquedaCategoriaView", 
+                new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, BusquedaTecladoView>("BusquedaTecladoView");
             this._container.RegisterType<Object, DatosClienteView>("DatosClienteView");
 

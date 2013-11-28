@@ -40,6 +40,7 @@
             <Setter Property="Background" Value="{DynamicResource CategoryPrimaryColorBrush}"/>
         </Style>
         <Style x:Key="IndiceButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}"></Setter>
 			<Setter Property="Width" Value="38"/>
 			<Setter Property="Height" Value="38"/>
 			<Setter Property="Margin" Value="1, 1"/>
@@ -57,14 +58,15 @@
             </StackPanel>
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal">
 				<ScrollViewer Height="1045" Width="920">
-            		<ListView HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-							  Padding="-7" BorderBrush="white" Background="white">
-            			<controls:CategoryItemControl HeaderText="A" HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
-            				HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"/>
-            			<controls:CategoryItemControl HeaderText="B" HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
-            				HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"/>
-            			<controls:CategoryItemControl HeaderText="C" HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
-            				HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"/>
+            		<ListView x:Name="ListViewCategorias" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                              Padding="-7" BorderBrush="white" Background="white" MouseLeftButtonUp="OnListViewItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
+                                                              HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
+                                                              HeaderText="{Binding NombreCategoria}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
             		</ListView>
             	</ScrollViewer>
             	<WrapPanel Orientation="Vertical">

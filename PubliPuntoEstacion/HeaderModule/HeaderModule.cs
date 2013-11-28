@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Decktra.PubliPuntoEstacion.HeaderModule.Views;
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.Library;
+using Decktra.PubliPuntoEstacion.MainControlsModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;

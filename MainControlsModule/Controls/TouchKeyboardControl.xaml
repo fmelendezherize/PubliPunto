@@ -115,73 +115,73 @@
 	<Grid x:Name="LayoutRoot" Width="960">
 		<StackPanel Margin="0" Orientation="Vertical" Background="{StaticResource BackgroundColor}">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="1" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="2" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="3" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="4" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="5" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="6" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="7" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="8" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="9" Style="{DynamicResource KeyNumericButtonStyle}"/>
-				<Button Content="0" Style="{DynamicResource KeyNumericButtonStyle}"/>
+				<Button Content="1" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="2" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="3" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="4" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="5" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="6" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="7" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="8" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="9" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="0" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="q" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="w" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="e" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="r" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="t" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="y" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="u" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="i" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="o" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="p" Style="{DynamicResource KeyAlfaButtonStyle}"/>
+                <Button Content="q" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="w" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="e" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="r" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="t" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="y" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="u" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="i" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="o" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="p" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="a" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="s" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="f" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="g" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="h" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="i" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="j" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="k" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="l" Style="{DynamicResource KeyAlfaButtonStyle}"/>
+                <Button Content="a" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="s" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="f" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="g" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="h" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="i" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="j" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="k" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="l" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonShift_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/Shift.png" Stretch="None"/>
 				</Button>
-				<Button Content="z" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="x" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="c" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="v" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="b" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="n" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="m" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Content="ñ" Style="{DynamicResource KeyAlfaButtonStyle}"/>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#ec7073">
+                <Button Content="z" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="x" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="c" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="v" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="b" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="n" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="m" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="ñ" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#ec7073" Click="ButtonDelete_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/del.png" Stretch="None"/>
 				</Button>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Width="137" Background="#3e728c">
-					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/arroba.png" Stretch="None"/>
+                <Button Style="{DynamicResource KeyAlfaButtonStyle}" Width="137" Background="#3e728c" Click="ButtonArroba_Click">
+                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/arroba.png" Stretch="None"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonPunto_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/punto.png" Stretch="None"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Width="379">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Width="379" Click="ButtonEspacio_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/espacio.png" Stretch="None"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonGuion_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/guion.png" Stretch="None"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonPiso_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/piso.png" Stretch="None" Margin="0,34,0,0"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#a1d174" Width="137">
+				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#a1d174" Width="137" Click="ButtonEnter_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/enter.png" Stretch="None"/>
 				</Button>
 			</StackPanel>

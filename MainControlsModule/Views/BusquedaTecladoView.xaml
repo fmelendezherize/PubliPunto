@@ -59,19 +59,24 @@
 				<DockPanel>
 					<StackPanel DockPanel.Dock="Top" Height="565">
 						<WrapPanel Height="70">
-							<TextBox Width="890" Style="{DynamicResource SearchText}"></TextBox>
-							<StackPanel Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174">
-								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" Width="50" Height="50" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-							</StackPanel>
+							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
+							<Button Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174">
+								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" Width="50" Height="50" HorizontalAlignment="Center"/>
+							</Button>
 						</WrapPanel>
 						<ScrollViewer Width="960.5" Height="497.01" Padding="0,3,0,0">
-							<ListView HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="-7" BorderBrush="white" Background="white">
-									<controls:CategoryItemControl HeaderText="Resultado de la búsqueda" HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
-																  HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"/>
-							</ListView>
+							<ListView x:Name="ListViewCategorias" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="-7" BorderBrush="white" Background="white">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
+                                                              HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
+                                                              HeaderText="{Binding NombreCategoria}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 						</ScrollViewer>
 					</StackPanel>
-					<controls:TouchKeyboardControl DockPanel.Dock="Bottom" BorderThickness="0"/>
+					<controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
 				</DockPanel>
 			</StackPanel>
 		</DockPanel>
