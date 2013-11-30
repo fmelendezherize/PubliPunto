@@ -1,9 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Controls;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
+using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
@@ -47,20 +49,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 	        this.ListViewCategorias.ItemsSource = listCategorias;
 	    }
 
-	    private void OnListViewItemClick(object sender, MouseButtonEventArgs e)
-        {
-            List<Categoria> listCategorias = new List<Categoria>();
-            Categoria aCategoria = new Categoria();
-            aCategoria.NombreCategoria = "Alimentos";
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Pizzerias" });
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Heladerias" });
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Comida China" });
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Comida Mexicana" });
-            listCategorias.Add(aCategoria);
-
-            this.ListViewCategorias.ItemsSource = listCategorias;
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -68,12 +56,21 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+            //nada
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.LoadCategorias();
+            ((BusquedaCategoriaViewModel) this.DataContext).Init();
         }
-    }
+
+	    private void CategoryItemControl_OnOnListViewCategoriaMouseClick(object sender, EventArgs e)
+	    {
+            var selectedSubCategoria = sender as SubCategoria;
+            if (selectedSubCategoria != null)
+            {
+                ((BusquedaCategoriaViewModel)this.DataContext).ShowEnteComercialsCommand.Execute(selectedSubCategoria.Id);
+            }
+	    }
+	}
 }

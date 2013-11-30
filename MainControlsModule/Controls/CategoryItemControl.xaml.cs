@@ -48,5 +48,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             get { return (Style)GetValue(HeaderStyleProperty); }
             set { SetValue(HeaderStyleProperty, value); }
         }
+
+        public event EventHandler OnListViewCategoriaMouseClick;
+
+        private void ListViewCategorias_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            OnListViewCategoriaMouseClick(this.ListViewCategorias.SelectedItem, e);
+        }
     }
 }

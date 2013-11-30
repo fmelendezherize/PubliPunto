@@ -84,6 +84,7 @@
       <DependentUpon>TouchKeyboardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainControlsModule.cs" />
+    <Compile Include="ViewModels\BusquedaCategoriaViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
     <Compile Include="ViewModels\OfertasViewModel.cs" />
     <Compile Include="Views\BusquedaCategoriaView.xaml.cs">
@@ -168,6 +169,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreApplication\CoreApplication.csproj">
+      <Project>{6e66fb84-7446-4f54-a7bd-6f772dbee8c8}</Project>
+      <Name>CoreApplication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PubliPuntoEstacion.Library\PubliPuntoEstacion.Library.csproj">
       <Project>{5b6385be-21c5-455f-9b02-cd858618a415}</Project>
       <Name>PubliPuntoEstacion.Library</Name>

@@ -4,9 +4,10 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
-	mc:Ignorable="d"
+    xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.BusquedaCategoriaView"
-	x:Name="UserControl">
+	x:Name="UserControl"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="PubliPuntoContentHeaderBusquedaCategoria" TargetType="StackPanel">
             <Setter Property="Height" Value="47"/>
@@ -48,8 +49,42 @@
 			<Setter Property="BorderBrush" Value="{DynamicResource CategoryPrimaryColorBrush}"/>
 			<Setter Property="Foreground" Value="White"/>
 		</Style>
+        <Style x:Key="ListViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Padding" Value="-7"/>
+        </Style>
+        <Style x:Key="TextBlockMensaje" TargetType="TextBlock">
+            <Setter Property="Padding" Value="15,10,0,0"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="Background" Value="{DynamicResource CategoryPrimaryColorBrush}"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="47"></Setter>
+            <Setter Property="Width" Value="920"></Setter>
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Categorias.Count}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
+            <Setter Property="Height" Value="1045"></Setter>
+            <Setter Property="Width" Value="920"></Setter>
+            <Setter Property="Visibility" Value="Visible"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Categorias.Count}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
+    <UserControl.DataContext>
+        <viewModels:BusquedaCategoriaViewModel/>
+    </UserControl.DataContext>
+    <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6">
@@ -57,46 +92,49 @@
                 <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Búsqueda por categoría</TextBlock>
             </StackPanel>
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal">
-				<ScrollViewer Height="1045" Width="920">
-            		<ListView x:Name="ListViewCategorias" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                              Padding="-7" BorderBrush="white" Background="white" MouseLeftButtonUp="OnListViewItemClick">
+                <TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>
+				<ScrollViewer Style="{StaticResource ScrollViewerCategorias}">
+            		<ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
+                              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                              ItemsSource="{Binding Categorias}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
                                                               HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
-                                                              HeaderText="{Binding NombreCategoria}"/>
+                                                              HeaderText="{Binding NombreCategoria}"
+                                                              OnListViewCategoriaMouseClick="CategoryItemControl_OnOnListViewCategoriaMouseClick"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
             		</ListView>
             	</ScrollViewer>
             	<WrapPanel Orientation="Vertical">
-            		<Button Content="A" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="B" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="C" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="D" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="E" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="F" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="G" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="H" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="I" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="J" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="K" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="L" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="M" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="N" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="O" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="P" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="Q" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="R" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="S" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="T" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="U" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="V" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="W" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="X" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="Y" Style="{DynamicResource IndiceButtonStyle}"/>
-            		<Button Content="Z" Style="{DynamicResource IndiceButtonStyle}"/>
-            	</WrapPanel>
+            		<Button Content="A" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="A"/>
+                    <Button Content="B" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="B"/>
+                    <Button Content="C" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="C"/>
+                    <Button Content="D" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="D"/>
+                    <Button Content="E" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="E"/>
+                    <Button Content="F" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="F"/>
+                    <Button Content="G" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="G"/>
+                    <Button Content="H" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="H"/>
+                    <Button Content="I" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="I"/>
+                    <Button Content="J" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="J"/>
+                    <Button Content="K" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="K"/>
+                    <Button Content="L" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="L"/>
+                    <Button Content="M" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="M"/>
+                    <Button Content="N" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="N"/>
+                    <Button Content="O" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="O"/>
+                    <Button Content="P" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="P"/>
+                    <Button Content="Q" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Q"/>
+                    <Button Content="R" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="R"/>
+                    <Button Content="S" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="S"/>
+                    <Button Content="T" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="T"/>
+                    <Button Content="U" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="U"/>
+                    <Button Content="V" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="V"/>
+                    <Button Content="W" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="W"/>
+                    <Button Content="X" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="X"/>
+                    <Button Content="Y" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Y"/>
+                    <Button Content="Z" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Z"/>
+                </WrapPanel>
             </StackPanel>
         </DockPanel>
 	</Grid>

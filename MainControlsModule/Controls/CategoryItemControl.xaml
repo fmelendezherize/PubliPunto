@@ -21,7 +21,8 @@
                            Text="{Binding ElementName=UserControl, Path=HeaderText}"/>
             </StackPanel>
             <StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">
-                <ListView MinHeight="50" Background="White" BorderBrush="White" ItemsSource="{Binding ListCategorias}">
+                <ListView x:Name="ListViewCategorias" MinHeight="50" Background="White" BorderBrush="White" 
+                          ItemsSource="{Binding ListCategorias}" MouseLeftButtonUp="ListViewCategorias_OnMouseLeftButtonUp">
                     <ListView.Resources>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="ContentTemplate">
