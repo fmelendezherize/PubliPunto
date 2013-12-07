@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 {
@@ -14,6 +9,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         [MinLength(1), MaxLength(200)]
         public string Nombre { get; set; }
+        public string Rif { get; set; }
+        public string Telefonos { get; set; }
+        public string Direccion { get; set; }
+        public string WebAddress { get; set; }
+        public string Promocion { get; set; }
 
         public RamoComercial RamoComercial { get; set; }
     }

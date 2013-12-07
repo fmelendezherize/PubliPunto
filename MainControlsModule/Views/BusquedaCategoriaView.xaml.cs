@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
+using Decktra.PubliPuntoEstacion.Library;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 {
@@ -17,60 +18,38 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 	{
 		public BusquedaCategoriaView()
 		{
-		    this.InitializeComponent();
+			this.InitializeComponent();
 		}
 
-	    public void LoadCategorias()
-	    {
-	        List<Categoria> listCategorias = new List<Categoria>();
-	        Categoria aCategoria = new Categoria();
-	        aCategoria.NombreCategoria = "A";
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Alimentos"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Anillo"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Antiguedades"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Autos"});
-	        listCategorias.Add(aCategoria);
+		public bool IsNavigationTarget(NavigationContext navigationContext)
+		{
+			return true;
+		}
 
-	        aCategoria = new Categoria();
-	        aCategoria.NombreCategoria = "B";
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Bancos"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Baños"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Bowling"});
-	        listCategorias.Add(aCategoria);
+		public void OnNavigatedFrom(NavigationContext navigationContext)
+		{
+			//nada
+		}
 
-	        aCategoria = new Categoria();
-	        aCategoria.NombreCategoria = "C";
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Carros"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Casas"});
-	        aCategoria.ListCategorias.Add(new SubCategoria() {Nombre = "Confiteria"});
-	        listCategorias.Add(aCategoria);
+		public void OnNavigatedTo(NavigationContext navigationContext)
+		{
+			((BusquedaCategoriaViewModel) this.DataContext).Init();
+		}
 
-	        this.ListViewCategorias.ItemsSource = null;
-	        this.ListViewCategorias.ItemsSource = listCategorias;
-	    }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return true;
-        }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            //nada
-        }
-
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            ((BusquedaCategoriaViewModel) this.DataContext).Init();
-        }
-
-	    private void CategoryItemControl_OnOnListViewCategoriaMouseClick(object sender, EventArgs e)
-	    {
-            var selectedSubCategoria = sender as SubCategoria;
-            if (selectedSubCategoria != null)
-            {
-                ((BusquedaCategoriaViewModel)this.DataContext).ShowEnteComercialsCommand.Execute(selectedSubCategoria.Id);
-            }
-	    }
+		private void CategoryItemControl_OnOnListViewCategoriaMouseClick(object sender, EventArgs e)
+		{
+			var selectedSubCategoria = sender as SubCategoria;
+			if (selectedSubCategoria != null)
+			{
+				if (selectedSubCategoria.TipoSubCategoria == TipoSubCategoria.RamoComercial) 
+				{
+					((BusquedaCategoriaViewModel)this.DataContext).ShowEnteComercialsCommand.Execute(selectedSubCategoria.Id);
+				}
+				else 
+				{
+					GlobalCommands.GoToDatosClienteCommand.Execute(selectedSubCategoria.Id);
+				}					
+			}
+		}
 	}
 }

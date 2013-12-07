@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
@@ -40,11 +36,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             {
                 NombreCategoria = letter,
                 ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
-                    select new SubCategoria
-                    {
-                        Nombre = q.Nombre,
-                        Id = q.Id
-                    }).ToList()
+                                  select new SubCategoria
+                                  {
+                                      Nombre = q.Nombre,
+                                      Id = q.Id,
+                                      TipoSubCategoria = TipoSubCategoria.RamoComercial
+                                  }).ToList()
             };
             Categorias.Clear();
             if (newCategoria.ListCategorias.Count > 0) Categorias.Add(newCategoria);
@@ -52,14 +49,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         public void ShowEnteComercials(object idRamoComercial)
         {
-            var ramoComercial = _ramoComercialRepository.FindBy((int) idRamoComercial);
+            var ramoComercial = _ramoComercialRepository.FindBy((int)idRamoComercial);
             var newCategoria = new Categoria
             {
                 NombreCategoria = ramoComercial.Nombre,
-                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy((int) idRamoComercial)
+                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy((int)idRamoComercial)
                                   select new SubCategoria()
                                   {
-                                      Nombre = q.Nombre
+                                      Id = q.Id,
+                                      Nombre = q.Nombre,
+                                      TipoSubCategoria = TipoSubCategoria.EnteComercial
                                   }).ToList()
             };
             Categorias.Clear();

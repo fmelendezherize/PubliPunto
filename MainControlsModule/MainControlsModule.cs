@@ -1,6 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Views;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -22,11 +23,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
 
         public void Initialize()
         {
-            this._container.RegisterType<Object, HomeControlsView>("HomeControlsView");
-            this._container.RegisterType<Object, BusquedaCategoriaView>("BusquedaCategoriaView", 
+            this._container.RegisterType<Object, HomeControlsView>("HomeControlsView",
                 new ContainerControlledLifetimeManager());
-            this._container.RegisterType<Object, BusquedaTecladoView>("BusquedaTecladoView");
-            this._container.RegisterType<Object, DatosClienteView>("DatosClienteView");
+            this._container.RegisterType<Object, BusquedaCategoriaView>("BusquedaCategoriaView",
+                new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, BusquedaTecladoView>("BusquedaTecladoView",
+                new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, DatosClienteView>("DatosClienteView",
+                new ContainerControlledLifetimeManager());
 
             GlobalCommands.GoToDatosClienteCommand = new DelegateCommand<object>(this.GoToDatosCliente);
 
@@ -35,7 +39,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
 
         private void GoToDatosCliente(object obj)
         {
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("DatosClienteView", UriKind.Relative));
+            UriQuery uri = new UriQuery();
+            uri.Add("ID", obj.ToString());
+            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, 
+                new Uri("DatosClienteView" + uri.ToString(), UriKind.Relative));
         }
     }
 }

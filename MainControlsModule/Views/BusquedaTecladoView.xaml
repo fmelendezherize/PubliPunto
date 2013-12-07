@@ -5,6 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule"
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
+    xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	mc:Ignorable="d"
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.BusquedaTecladoView"
 	x:Name="UserControl">
@@ -46,7 +47,19 @@
             <Setter Property="Height" Value="47"/>
             <Setter Property="Background" Value="{DynamicResource BusquedaTecladoPrimaryColorBrush}"/>
         </Style>
+        <Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
+            <Setter Property="Height" Value="497"></Setter>
+            <Setter Property="Width" Value="960"></Setter>
+        </Style>
+        <Style x:Key="ListViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Padding" Value="0,3,0,0"/>
+        </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModels:BusquedaTecladoViewModel />
+    </UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaTeclado}">
@@ -60,21 +73,26 @@
 					<StackPanel DockPanel.Dock="Top" Height="565">
 						<WrapPanel Height="70">
 							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
-							<Button Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174">
+							<Button Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174"
+                                    Command="{Binding SearchEnteComercialsCommand}"
+                                    CommandParameter="{Binding ElementName=TextBoxSearch, Path=Text}">
 								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" Width="50" Height="50" HorizontalAlignment="Center"/>
 							</Button>
 						</WrapPanel>
-						<ScrollViewer Width="960.5" Height="497.01" Padding="0,3,0,0">
-							<ListView x:Name="ListViewCategorias" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="-7" BorderBrush="white" Background="white">
+                        <ScrollViewer Style="{StaticResource ScrollViewerCategorias}">
+                            <ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
+                                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                                      ItemsSource="{Binding Categorias}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
-                                                              HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
-                                                              HeaderText="{Binding NombreCategoria}"/>
+                                                                      HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
+                                                                      HeaderText="{Binding NombreCategoria}"
+                                                                      OnListViewCategoriaMouseClick="CategoryItemControl_OnListViewCategoriaMouseClick"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-						</ScrollViewer>
+                        </ScrollViewer>
 					</StackPanel>
 					<controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
 				</DockPanel>

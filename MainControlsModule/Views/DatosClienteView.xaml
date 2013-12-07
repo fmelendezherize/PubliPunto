@@ -9,10 +9,21 @@
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.DatosClienteView"
 	d:DesignWidth="970" d:DesignHeight="1094">
 	<UserControl.Resources>
-		<viewModels:DatosClienteViewModel x:Key="DatosClienteViewModelDataSource" />
-	</UserControl.Resources>
+        <Style x:Key="H1Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="50"/>
+        </Style>
+        <Style x:Key="H2Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModels:DatosClienteViewModel/>
+    </UserControl.DataContext>
 
-	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DatosClienteViewModelDataSource}}" Style="{DynamicResource HomeControlStyle}">
+    <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>
 			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >
@@ -22,16 +33,25 @@
 				</Grid.ColumnDefinitions>
 				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>
-					<TextBlock Text="Pizza Hut" FontFamily="Calibri" FontSize="50.667" Margin="0,20,0,0"></TextBlock>
-					<TextBlock Text="Rif: J-123-456-789" FontFamily="Calibri" FontSize="28" TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
-					<Line X1="0" X2="550" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
-					<TextBlock Text="Teléfono(s): 0251.251.11.11 - 0416.111.11.11" FontFamily="Calibri" FontSize="28" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,10"/>
-					<TextBlock Text="Dirección: Av. Lara con Av. Leones, Local 05" FontFamily="Calibri" FontSize="28" TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
-					<TextBlock Text="www.pizzahut.com" FontFamily="Calibri" FontSize="28" TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>
+                    </StackPanel>
+                    <Line X1="0" X2="550" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Teléfono(s):" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="435" Margin="0,0,0,10"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Dirección:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="435" Margin="0,0,0,10"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>
 				</StackPanel>
 				<StackPanel Grid.Column="1">
-					<TextBlock TextWrapping="Wrap" Text="Cupones" FontFamily="Calibri" FontSize="50.667" Margin="0,0,0,40"/>
-					<TextBlock TextWrapping="Wrap" Text="Pizza 2 x 1 los miercoles y jueves" VerticalAlignment="Center" FontFamily="Calibri" FontSize="30.667" Margin="0,0,0,40"/>
+                    <TextBlock TextWrapping="Wrap" Text="Cupones" Style="{StaticResource H1Style}"  Margin="0,0,0,40"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding EnteComercial.Promocion}" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,40"/>
 					<Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Style="{DynamicResource TwoColorButton}" Height="56" Background="#FFFFA901" BorderBrush="#FFFFD028">
 						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
                             <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>

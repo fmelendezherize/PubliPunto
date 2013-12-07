@@ -1,34 +1,45 @@
-﻿using System.Windows.Input;
+﻿using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
-using System.Collections.Generic;
+using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
+using Microsoft.Practices.Prism.Regions;
 using System.Windows.Controls;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 {
-	/// <summary>
-	/// Interaction logic for BusquedaTecladoView.xaml
-	/// </summary>
-	public partial class BusquedaTecladoView : UserControl
-	{
-		public BusquedaTecladoView()
-		{
-			this.InitializeComponent();
+    /// <summary>
+    /// Interaction logic for BusquedaTecladoView.xaml
+    /// </summary>
+    public partial class BusquedaTecladoView : UserControl, INavigationAware
+    {
+        public BusquedaTecladoView()
+        {
+            this.InitializeComponent();
             this.touchKeyboard.SetControlToWrite(this.TextBoxSearch);
-            this.LoadData();
-		}
+        }
 
-	    public void LoadData()
-	    {
-            List<Categoria> listCategorias = new List<Categoria>();
-            Categoria aCategoria = new Categoria();
-	        aCategoria.NombreCategoria = "Resultado de la búsqueda";
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Zara" });
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Daka" });
-            aCategoria.ListCategorias.Add(new SubCategoria() { Nombre = "Adidas" });
-            listCategorias.Add(aCategoria);
+        private void CategoryItemControl_OnListViewCategoriaMouseClick(object sender, System.EventArgs e)
+        {
+            var selectedSubCategoria = sender as SubCategoria;
+            if (selectedSubCategoria != null)
+            {
+                GlobalCommands.GoToDatosClienteCommand.Execute(selectedSubCategoria.Id);
+            }
+        }
 
-            this.ListViewCategorias.ItemsSource = null;
-            this.ListViewCategorias.ItemsSource = listCategorias;
-	    }
-	}
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            //nada
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            this.TextBoxSearch.Clear();
+            ((BusquedaTecladoViewModel)this.DataContext).Init();
+        }
+    }
 }

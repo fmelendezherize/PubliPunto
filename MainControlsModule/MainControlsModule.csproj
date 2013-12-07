@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="MainControlsModule.cs" />
     <Compile Include="ViewModels\BusquedaCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\BusquedaTecladoViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
     <Compile Include="ViewModels\OfertasViewModel.cs" />
     <Compile Include="Views\BusquedaCategoriaView.xaml.cs">
