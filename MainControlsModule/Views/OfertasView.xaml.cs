@@ -1,4 +1,5 @@
-﻿using Decktra.PubliPuntoEstacion.Library;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.Library;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,7 +19,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            GlobalCommands.GoToDatosClienteCommand.Execute(0);
+            Button activeButton = sender as Button;
+            if (activeButton != null)
+            {
+                GlobalCommands.GoToDatosClienteCommand.Execute(((EnteComercial)activeButton.DataContext).Id);
+            }
         }
     }
 }

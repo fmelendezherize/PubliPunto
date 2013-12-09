@@ -32,7 +32,9 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 Telefonos = "0251.251.11.11 - 0416.111.11.11",
                 Direccion = "Av. Lara con Av. Leones, Local 05, al lado del Burguer King",
                 WebAddress = "http://www.pizzahut.net.ve/",
-                Promocion = "Pizza 2 x 1 los miercoles y jueves"
+                Promocion = "Pizza 2 x 1 los miercoles y jueves",
+                RutaImagen = "pizza01.jpg",
+                RutaLogo = "logo_pizzahut.jpg"
             });
             _enteComercials.Add(new EnteComercial
             {
@@ -54,7 +56,14 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialsByName(string nombre)
         {
-            return (from q in _enteComercials where (q.Nombre.Contains(nombre)) select q);
+            return (from q in _enteComercials
+                    where (q.Nombre.StartsWith(nombre, System.StringComparison.InvariantCultureIgnoreCase))
+                    select q);
+        }
+
+        public IEnumerable<EnteComercial> GetAll()
+        {
+            return _enteComercials;
         }
     }
 }

@@ -4,11 +4,13 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule"
+	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.DatosClienteView"
 	d:DesignWidth="970" d:DesignHeight="1094">
 	<UserControl.Resources>
+        <local:RutaLogoConverter x:Key="RutaLogoConverter" />
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="H1Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="50"/>
@@ -25,14 +27,17 @@
 
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
-			<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>
+			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
+            <Image VerticalAlignment="Top" DockPanel.Dock="Top" Stretch="UniformToFill" Width="970" Height="543"
+                   Source="{Binding EnteComercial, Converter={StaticResource RutaImagenConverter}}" />
 			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="571*"/>
 					<ColumnDefinition Width="319*"/>
 				</Grid.ColumnDefinitions>
 				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
-					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>
+					<!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
+                    <Image Source="{Binding EnteComercial, Converter={StaticResource RutaLogoConverter}}" Stretch="None" HorizontalAlignment="Left"></Image>
                     <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>

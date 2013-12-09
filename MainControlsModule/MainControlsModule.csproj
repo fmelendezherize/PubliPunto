@@ -106,6 +106,8 @@
     <Compile Include="Views\OfertasView.xaml.cs">
       <DependentUpon>OfertasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RutaImagenConverter.cs" />
+    <Compile Include="Views\RutaLogoConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
