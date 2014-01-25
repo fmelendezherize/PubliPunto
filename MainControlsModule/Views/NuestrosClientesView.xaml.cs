@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Decktra.PubliPuntoEstacion.Library;
+using System.Windows.Controls;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 {
@@ -10,6 +11,20 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public NuestrosClientesView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            GlobalCommands.GoToDatosClienteCommand.Execute(5);
+
+            //this.WrapPanelClientes.Visibility = System.Windows.Visibility.Collapsed;
+            //this.WrapPanelVideo.Visibility = System.Windows.Visibility.Visible;
+            //this.Video.Play();
+        }
+
+        public void StopVideo()
+        {
+            //this.Video.Stop();
         }
     }
 }

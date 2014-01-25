@@ -10,8 +10,8 @@
 	x:Name="UserControl">
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<StackPanel>
-			<views:NuestrosClientesView />
-			<views:OfertasView x:Name="OfertasView" Margin="0,54,0,0" />
+			<views:NuestrosClientesView x:Name="NuestrosClientesView"/>
+			<views:OfertasView x:Name="OfertasView" Margin="0,30,0,0" />
 		</StackPanel>
 	</Grid>
 </UserControl>

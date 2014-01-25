@@ -87,6 +87,7 @@
     <Compile Include="ViewModels\BusquedaCategoriaViewModel.cs" />
     <Compile Include="ViewModels\BusquedaTecladoViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
+    <Compile Include="ViewModels\NuestrosClientesViewModel.cs" />
     <Compile Include="ViewModels\OfertasViewModel.cs" />
     <Compile Include="Views\BusquedaCategoriaView.xaml.cs">
       <DependentUpon>BusquedaCategoriaView.xaml</DependentUpon>
@@ -123,6 +124,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\play_peq.png" />
+    <Resource Include="Resources\play_gran.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

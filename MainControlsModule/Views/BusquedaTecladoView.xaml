@@ -48,7 +48,7 @@
             <Setter Property="Background" Value="{DynamicResource BusquedaTecladoPrimaryColorBrush}"/>
         </Style>
         <Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
-            <Setter Property="Height" Value="497"></Setter>
+            <Setter Property="Height" Value="620"></Setter>
             <Setter Property="Width" Value="960"></Setter>
         </Style>
         <Style x:Key="ListViewStyle" TargetType="ListView">
@@ -70,7 +70,7 @@
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" Height="Auto"
 						HorizontalAlignment="Left">
 				<DockPanel>
-					<StackPanel DockPanel.Dock="Top" Height="565">
+					<StackPanel DockPanel.Dock="Top" Height="692">
 						<WrapPanel Height="70">
 							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
 							<Button Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174"

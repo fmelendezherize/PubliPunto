@@ -4,6 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.DatosClienteView"
@@ -20,6 +21,29 @@
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
+        <Style x:Key="ImageEnteComercial" TargetType="Image">
+            <Setter Property="Stretch" Value="UniformToFill"/>
+            <Setter Property="Width" Value="970" />
+            <Setter Property="Height" Value="546"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CanvasPanelVideo" TargetType="Canvas">
+            <Setter Property="Height" Value="546"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="Black" Opacity=".8" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:DatosClienteViewModel/>
@@ -28,9 +52,16 @@
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
-            <Image VerticalAlignment="Top" DockPanel.Dock="Top" Stretch="UniformToFill" Width="970" Height="543"
+            <Image x:Name="ImageEnteComercial" VerticalAlignment="Top" DockPanel.Dock="Top" Style="{StaticResource ImageEnteComercial}" 
                    Source="{Binding EnteComercial, Converter={StaticResource RutaImagenConverter}}" />
-			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >
+            <Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
+                <Border BorderBrush="Black" BorderThickness="0" Canvas.Top="0">
+                    <MediaElement x:Name="Video" Width="970" Height="546"  
+                                  Source="{Binding EnteComercial.VideoUrl}" 
+                                  Stretch="Fill" LoadedBehavior="Play"></MediaElement>
+                </Border>
+            </Canvas>
+            <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="571*"/>
 					<ColumnDefinition Width="319*"/>

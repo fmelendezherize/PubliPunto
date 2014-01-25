@@ -15,6 +15,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             this.InitializeComponent();
             this.touchKeyboard.SetControlToWrite(this.TextBoxSearch);
+            this.touchKeyboard.OnButtonClick += touchKeyboard_OnButtonClick;
+        }
+
+        private void touchKeyboard_OnButtonClick(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                ((BusquedaTecladoViewModel)this.DataContext).SearchEnteComercialsCommand.Execute(this.TextBoxSearch.Text);
+            }
         }
 
         private void CategoryItemControl_OnListViewCategoriaMouseClick(object sender, System.EventArgs e)

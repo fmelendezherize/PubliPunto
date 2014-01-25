@@ -7,15 +7,16 @@
     <Grid>
         <Grid.Resources>
             <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,27,60,27"/>
+                <Setter Property="Margin" Value="60, 15"/>
             </Style>
 
             <Style x:Key="WorkAreaRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,27,60,27"/>
+                <Setter Property="Margin" Value="60, 15"/>
+                <!--<Setter Property="Background" Value="blue"/>-->
             </Style>
 
             <Style x:Key="FooterRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,27,60,27"/>
+                <Setter Property="Margin" Value="60, 15"/>
             </Style>
 
             <Style x:Key="ScrollViewerMainStyle" TargetType="ScrollViewer">
@@ -26,10 +27,10 @@
         <ScrollViewer Style="{StaticResource ScrollViewerMainStyle}">
             <Grid Style="{StaticResource PubliPuntoGridStyle}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="460" />
-                    <RowDefinition Height="1148" />
-                    <RowDefinition Height="225" />
-					<RowDefinition Height="40" />
+                    <RowDefinition Height="436" />
+                    <RowDefinition Height="1254" />
+                    <RowDefinition Height="201" />
+					<RowDefinition Height="24" />
                 </Grid.RowDefinitions>
                 <ContentControl  x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
                               VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
@@ -41,10 +42,10 @@
                               prism:RegionManager.RegionName="FooterRegion">
                 </ContentControl>
                 <StackPanel Orientation="Vertical" Grid.Row="3">
-					<TextBlock HorizontalAlignment="Right" FontSize="24" TextAlignment="Right" Margin="0,0,60,0">
+					<TextBlock HorizontalAlignment="Right" FontSize="21" TextAlignment="Right" Margin="60, 5">
 						<TextBlock.Foreground>
 							<SolidColorBrush Color="{DynamicResource ColorHeader}"/>
-						</TextBlock.Foreground><Run Text="SIESCOM C.A. www.publipunto.com"/></TextBlock>
+                        </TextBlock.Foreground><Run Text="SIESCOM C.A. www.siescom.com.ve"/></TextBlock>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

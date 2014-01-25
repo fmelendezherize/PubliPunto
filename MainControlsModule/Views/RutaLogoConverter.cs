@@ -11,7 +11,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             EnteComercial obj = value as EnteComercial;
             if (obj != null)
             {
-                return AppDomain.CurrentDomain.BaseDirectory + "Data\\" + obj.Id + "\\" + obj.RutaLogo;
+                return AppDomain.CurrentDomain.BaseDirectory + "Data\\" + obj.Id + "\\" + obj.LogoUrl;
             }
             return string.Empty;
         }

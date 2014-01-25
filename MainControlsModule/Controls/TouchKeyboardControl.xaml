@@ -141,10 +141,10 @@
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="a" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="s" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="d" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="f" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="g" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="h" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
-                <Button Content="i" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="j" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="k" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="l" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>

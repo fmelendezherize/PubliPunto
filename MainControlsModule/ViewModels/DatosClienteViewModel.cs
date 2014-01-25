@@ -27,10 +27,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             EnteComercial = _enteComercialRepository.FindBy(int.Parse(obj));
             if (EnteComercial == null) GlobalCommands.GoToHomeCommand.Execute(null);
 
-            this.RaisePropertyChanged(() => this.EnteComercial);
-
-            this.RutaImagen = AppDomain.CurrentDomain.BaseDirectory + "Data\\" + EnteComercial.Id + "\\" + EnteComercial.RutaImagen;
+            this.RutaImagen = AppDomain.CurrentDomain.BaseDirectory + "Data\\" + EnteComercial.Id + "\\" + EnteComercial.ImagenUrl;
             this.RaisePropertyChanged(() => this.RutaImagen);
+
+            this.RaisePropertyChanged(() => this.EnteComercial);
         }
     }
 }

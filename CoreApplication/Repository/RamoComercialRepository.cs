@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 {
@@ -28,10 +25,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
             _ramoComercials.Add(new RamoComercial { Id = 1, Nombre = "Alimentos" });
             _ramoComercials.Add(new RamoComercial { Id = 2, Nombre = "Antiguedades" });
-            _ramoComercials.Add(new RamoComercial{Id=3, Nombre = "Bancos"});
-            _ramoComercials.Add(new RamoComercial{Id=4, Nombre = "Comida Rapida"});
-            _ramoComercials.Add(new RamoComercial{Id=5, Nombre = "Muebles"});
-            _ramoComercials.Add(new RamoComercial{Id=6, Nombre = "Peluquerias"});
+            _ramoComercials.Add(new RamoComercial { Id = 3, Nombre = "Bancos" });
+            _ramoComercials.Add(new RamoComercial { Id = 4, Nombre = "Comida Rapida" });
+            _ramoComercials.Add(new RamoComercial { Id = 5, Nombre = "Muebles" });
+            _ramoComercials.Add(new RamoComercial { Id = 6, Nombre = "Peluquerias" });
+            _ramoComercials.Add(new RamoComercial { Id = 7, Nombre = "Seguridad" });
         }
 
         public IEnumerable<RamoComercial> GetAll()

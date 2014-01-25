@@ -28,22 +28,60 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public void Init()
         {
             Categorias.Clear();
+            this.ShowCategoriasAll();
         }
 
         private void ShowCategoriasByLetter(string letter)
         {
-            var newCategoria = new Categoria
-            {
-                NombreCategoria = letter,
-                ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
-                                  select new SubCategoria
-                                  {
-                                      Nombre = q.Nombre,
-                                      Id = q.Id,
-                                      TipoSubCategoria = TipoSubCategoria.RamoComercial
-                                  }).ToList()
-            };
             Categorias.Clear();
+            AddCategoriaToList(letter);
+        }
+
+        private void ShowCategoriasAll()
+        {
+            Categorias.Clear();
+            AddCategoriaToList("A");
+            AddCategoriaToList("B");
+            AddCategoriaToList("C");
+            AddCategoriaToList("D");
+            AddCategoriaToList("E");
+            AddCategoriaToList("F");
+            AddCategoriaToList("G");
+            AddCategoriaToList("H");
+            AddCategoriaToList("I");
+            AddCategoriaToList("J");
+            AddCategoriaToList("K");
+            AddCategoriaToList("L");
+            AddCategoriaToList("M");
+            AddCategoriaToList("N");
+            AddCategoriaToList("O");
+            AddCategoriaToList("P");
+            AddCategoriaToList("Q");
+            AddCategoriaToList("R");
+            AddCategoriaToList("S");
+            AddCategoriaToList("T");
+            AddCategoriaToList("U");
+            AddCategoriaToList("V");
+            AddCategoriaToList("W");
+            AddCategoriaToList("X");
+            AddCategoriaToList("Y");
+            AddCategoriaToList("Z");
+            RaisePropertyChanged(() => this.Categorias);
+        }
+
+        private void AddCategoriaToList(string letter)
+        {
+            var newCategoria = new Categoria
+                        {
+                            NombreCategoria = letter,
+                            ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
+                                              select new SubCategoria
+                                              {
+                                                  Nombre = q.Nombre,
+                                                  Id = q.Id,
+                                                  TipoSubCategoria = TipoSubCategoria.RamoComercial
+                                              }).ToList()
+                        };
             if (newCategoria.ListCategorias.Count > 0) Categorias.Add(newCategoria);
         }
 
@@ -63,6 +101,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             };
             Categorias.Clear();
             if (newCategoria.ListCategorias.Count > 0) Categorias.Add(newCategoria);
+            RaisePropertyChanged(() => this.Categorias);
         }
     }
 }

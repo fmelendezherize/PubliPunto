@@ -37,7 +37,7 @@
                                                            Text="{Binding Nombre}"
 														   Style="{StaticResource CategoryText}"/>
                                             </StackPanel>
-                                            <Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="820"/>
+                                            <Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="800"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </Setter.Value>

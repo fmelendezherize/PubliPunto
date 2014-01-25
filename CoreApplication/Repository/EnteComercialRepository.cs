@@ -33,14 +33,25 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 Direccion = "Av. Lara con Av. Leones, Local 05, al lado del Burguer King",
                 WebAddress = "http://www.pizzahut.net.ve/",
                 Promocion = "Pizza 2 x 1 los miercoles y jueves",
-                RutaImagen = "pizza01.jpg",
-                RutaLogo = "logo_pizzahut.jpg"
+                ImagenUrl = "pizza01.jpg",
+                LogoUrl = "logo_pizzahut.jpg",
+                VideoUrl = string.Empty
             });
             _enteComercials.Add(new EnteComercial
             {
                 Id = 4,
                 Nombre = "Mac Donald",
-                RamoComercial = ramoComercial
+                RamoComercial = ramoComercial,
+                VideoUrl = "algo.wmv"
+            });
+
+            ramoComercial = new RamoComercial { Id = 7, Nombre = "Seguridad" };
+            _enteComercials.Add(new EnteComercial
+            {
+                Id = 5,
+                Nombre = "SIESCOM C.A.",
+                RamoComercial = ramoComercial,
+                VideoUrl = "videos/siescom_final.wmv"
             });
         }
 
