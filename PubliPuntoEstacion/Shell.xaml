@@ -7,16 +7,16 @@
     <Grid>
         <Grid.Resources>
             <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60, 15"/>
+                <Setter Property="Margin" Value="60,15"/>
             </Style>
 
             <Style x:Key="WorkAreaRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60, 15"/>
+                <Setter Property="Margin" Value="60,15"/>
                 <!--<Setter Property="Background" Value="blue"/>-->
             </Style>
 
             <Style x:Key="FooterRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60, 15"/>
+                <Setter Property="Margin" Value="60,0,60,0"/>
             </Style>
 
             <Style x:Key="ScrollViewerMainStyle" TargetType="ScrollViewer">
@@ -29,7 +29,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="436" />
                     <RowDefinition Height="1254" />
-                    <RowDefinition Height="201" />
+                    <RowDefinition Height="186" />
 					<RowDefinition Height="24" />
                 </Grid.RowDefinitions>
                 <ContentControl  x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
@@ -42,7 +42,7 @@
                               prism:RegionManager.RegionName="FooterRegion">
                 </ContentControl>
                 <StackPanel Orientation="Vertical" Grid.Row="3">
-					<TextBlock HorizontalAlignment="Right" FontSize="21" TextAlignment="Right" Margin="60, 5">
+					<TextBlock HorizontalAlignment="Right" FontSize="21" TextAlignment="Right" Margin="60, 0">
 						<TextBlock.Foreground>
 							<SolidColorBrush Color="{DynamicResource ColorHeader}"/>
                         </TextBlock.Foreground><Run Text="SIESCOM C.A. www.siescom.com.ve"/></TextBlock>

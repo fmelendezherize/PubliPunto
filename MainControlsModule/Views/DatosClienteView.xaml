@@ -21,10 +21,10 @@
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
-        <Style x:Key="ImageEnteComercial" TargetType="Image">
-            <Setter Property="Stretch" Value="UniformToFill"/>
+        <Style x:Key="CanvasPanelImagen" TargetType="Canvas">
             <Setter Property="Width" Value="970" />
             <Setter Property="Height" Value="546"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -52,13 +52,26 @@
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
-            <Image x:Name="ImageEnteComercial" VerticalAlignment="Top" DockPanel.Dock="Top" Style="{StaticResource ImageEnteComercial}" 
+            <Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
+                <Image x:Name="ImageEnteComercial" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
                    Source="{Binding EnteComercial, Converter={StaticResource RutaImagenConverter}}" />
+            </Canvas> 
             <Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
                 <Border BorderBrush="Black" BorderThickness="0" Canvas.Top="0">
                     <MediaElement x:Name="Video" Width="970" Height="546"  
-                                  Source="{Binding EnteComercial.VideoUrl}" 
-                                  Stretch="Fill" LoadedBehavior="Play"></MediaElement>
+                                  Stretch="Fill" LoadedBehavior="Play">
+                        <MediaElement.Triggers>
+                            <EventTrigger RoutedEvent="MediaElement.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <MediaTimeline Source="{Binding EnteComercial.VideoUrl}" Storyboard.TargetName="Video" RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MediaElement.Triggers>
+                    </MediaElement>
                 </Border>
             </Canvas>
             <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >

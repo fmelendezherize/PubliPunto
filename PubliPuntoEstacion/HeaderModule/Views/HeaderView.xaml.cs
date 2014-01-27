@@ -1,5 +1,4 @@
 ﻿using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism.Regions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,6 +27,11 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule.Views
         private void ButtonBusquedaTeclado_Click(object sender, RoutedEventArgs e)
         {
             GlobalCommands.GoToBusquedaTecladoCommand.Execute(null);
+        }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GlobalCommands.GoToHomeCommand.Execute(null);
         }
     }
 }

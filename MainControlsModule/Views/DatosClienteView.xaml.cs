@@ -28,7 +28,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.ImageEnteComercial.Visibility = System.Windows.Visibility.Visible;
+            //this.ImageEnteComercial.Visibility = System.Windows.Visibility.Visible;
             string ID = navigationContext.Parameters["ID"];
             ((DatosClienteViewModel)DataContext).ShowEnteComercialCommand.Execute(ID);
         }

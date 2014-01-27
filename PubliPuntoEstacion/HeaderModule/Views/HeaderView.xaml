@@ -13,7 +13,8 @@
         <!--<Border BorderBrush="Black" BorderThickness="0">-->
         <StackPanel>
             <Canvas Height="282">
-                <Image Width="229" Height="229" Canvas.Left="0" Canvas.Top="0" Source="pack://application:,,,/Resources/logo.png" Stretch="UniformToFill"/>
+                <Image Width="229" Height="229" Canvas.Left="0" Canvas.Top="0" Source="pack://application:,,,/Resources/logo.png" 
+                       Stretch="UniformToFill"  MouseDown="Image_MouseDown"/>
                 <DockPanel Width="155" Height="110" Canvas.Right="0" Canvas.Top="0">
                     <Rectangle Width="155" Height="80" Fill="#3bd1c6" DockPanel.Dock="Top"></Rectangle>
                     <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" Padding="5" FontSize="20"
@@ -21,8 +22,16 @@
                                Background="{DynamicResource ColorHeaderBrush}" VerticalAlignment="Center">¿Como Usar?</TextBlock>
                 </DockPanel>
                 <Button x:Name="ButtonHome" Width="110" Height="110" Canvas.Right="170"
-                        Foreground="White" Click="ButtonHome_Click" Background="{DynamicResource ColorHeaderBrush}">
-                    <Image Source="/PubliPuntoEstacion;component/Resources/bot_inicio.png" Width="70" Height="70" Stretch="UniformToFill"/>
+                        Foreground="White" Click="ButtonHome_Click" 
+                        Background="{DynamicResource ColorHeaderBrush}">
+                    <Button.Content>
+                        <StackPanel Orientation="Vertical" >
+                            <Image Source="/PubliPuntoEstacion;component/Resources/bot_inicio.png" Width="70" Height="70" 
+                                   Stretch="UniformToFill" Margin="0,5,0,0"/>
+                            <TextBlock HorizontalAlignment="Center" FontFamily="{DynamicResource CaviarFontStyle}"
+                                       FontSize="20" Padding="0,5,0,0">Inicio</TextBlock>
+                        </StackPanel>
+                    </Button.Content>
                 </Button>
             </Canvas>
             <WrapPanel Height="124">

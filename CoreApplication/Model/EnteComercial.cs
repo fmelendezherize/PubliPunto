@@ -19,5 +19,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string VideoUrl { get; set; }
 
         public RamoComercial RamoComercial { get; set; }
+
+        public EnteComercial()
+        {
+            this.ImagenUrl = string.Empty;
+            this.VideoUrl = string.Empty;
+        }
     }
 }
