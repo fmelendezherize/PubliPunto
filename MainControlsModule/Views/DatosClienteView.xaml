@@ -10,15 +10,18 @@
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.DatosClienteView"
 	d:DesignWidth="970" d:DesignHeight="1094">
 	<UserControl.Resources>
+
         <local:RutaLogoConverter x:Key="RutaLogoConverter" />
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <local:RutaVideoConverter x:Key="RutaVideoConverter" />
+
         <Style x:Key="H1Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="50"/>
         </Style>
         <Style x:Key="H2Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontSize" Value="26"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="CanvasPanelImagen" TargetType="Canvas">
@@ -65,7 +68,7 @@
                                 <EventTrigger.Actions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <MediaTimeline Source="{Binding EnteComercial.VideoUrl}" Storyboard.TargetName="Video" RepeatBehavior="Forever" />
+                                            <MediaTimeline Source="{Binding EnteComercial.VideoUrl, Converter={StaticResource RutaVideoConverter}}" Storyboard.TargetName="Video" RepeatBehavior="Forever" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger.Actions>
@@ -74,7 +77,7 @@
                     </MediaElement>
                 </Border>
             </Canvas>
-            <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="511" Margin="0,40,0,0" Width="890" >
+            <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="571*"/>
 					<ColumnDefinition Width="319*"/>

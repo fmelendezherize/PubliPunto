@@ -7,8 +7,14 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [MinLength(1), MaxLength(200)]
         public string Nombre { get; set; }
+
+        [Required]
+        [MinLength(1), MaxLength(200)]
+        public string Codigo { get; set; }
+
         public string Rif { get; set; }
         public string Telefonos { get; set; }
         public string Direccion { get; set; }
@@ -18,7 +24,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string ImagenUrl { get; set; }
         public string VideoUrl { get; set; }
 
-        public RamoComercial RamoComercial { get; set; }
+        [Required]
+        public virtual RamoComercial RamoComercial { get; set; }
 
         public EnteComercial()
         {

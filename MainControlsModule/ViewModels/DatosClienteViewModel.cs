@@ -3,7 +3,6 @@ using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.Library;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
-using System;
 using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
@@ -13,7 +12,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         private readonly EnteComercialRepository _enteComercialRepository;
         public ICommand ShowEnteComercialCommand;
         public EnteComercial EnteComercial { get; set; }
-        public string RutaImagen { get; set; }
+        //public string RutaImagen { get; set; }
 
 
         public DatosClienteViewModel()
@@ -27,8 +26,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             EnteComercial = _enteComercialRepository.FindBy(int.Parse(obj));
             if (EnteComercial == null) GlobalCommands.GoToHomeCommand.Execute(null);
 
-            this.RutaImagen = AppDomain.CurrentDomain.BaseDirectory + "Data\\" + EnteComercial.Id + "\\" + EnteComercial.ImagenUrl;
-            this.RaisePropertyChanged(() => this.RutaImagen);
+            //this.RutaImagen = AppDomain.CurrentDomain.BaseDirectory + "Data\\" + EnteComercial.Id + "\\" + EnteComercial.ImagenUrl;
+            //this.RaisePropertyChanged(() => this.RutaImagen);
 
             this.RaisePropertyChanged(() => this.EnteComercial);
         }

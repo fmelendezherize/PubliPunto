@@ -15,7 +15,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GlobalCommands.GoToDatosClienteCommand.Execute(5);
+            GlobalCommands.GoToDatosClienteCommand.Execute(12);
 
             //this.WrapPanelClientes.Visibility = System.Windows.Visibility.Collapsed;
             //this.WrapPanelVideo.Visibility = System.Windows.Visibility.Visible;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 {
@@ -12,10 +6,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
     {
         [Key]
         public int Id { get; set; }
-        
+
+        [Required]
         [MinLength(1), MaxLength(200)]
         public string Nombre { get; set; }
-        
+
+        [Required]
+        [MinLength(1), MaxLength(200)]
+        public string Codigo { get; set; }
+
         public string Descripcion { get; set; }
     }
 }

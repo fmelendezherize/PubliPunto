@@ -1,0 +1,110 @@
+namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
+{
+    using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+    using System.Data.Entity.Migrations;
+
+    internal sealed class ConfigurationCopy : DbMigrationsConfiguration<Decktra.PubliPuntoEstacion.CoreApplication.Context.PubliPuntoContext>
+    {
+        public ConfigurationCopy()
+        {
+            AutomaticMigrationsEnabled = true;
+        }
+
+        protected override void Seed(Decktra.PubliPuntoEstacion.CoreApplication.Context.PubliPuntoContext context)
+        {
+            var ramoComercial = context.RamoComercials.Add(new RamoComercial { Codigo = "001", Nombre = "Comida Rapida" });
+
+            context.EnteComercials.AddOrUpdate(q => q.Codigo,
+                new EnteComercial
+                {
+                    Codigo = "001",
+                    Nombre = "Pizza Hut",
+                    RamoComercial = ramoComercial,
+                    Rif = "J-123-456-789",
+                    Telefonos = "0251.251.11.11 - 0416.111.11.11",
+                    Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    WebAddress = "http://www.pizzahut.net.ve/",
+                    Promocion = "Pizza 2 x 1 los miercoles y jueves",
+                    ImagenUrl = "pizza01.jpg",
+                    LogoUrl = "logo_pizzahut.jpg",
+                    VideoUrl = string.Empty
+                });
+
+            ramoComercial = ramoComercial = context.RamoComercials.Add(new RamoComercial { Codigo = "002", Nombre = "Seguridad" });
+
+            context.EnteComercials.AddOrUpdate(q => q.Codigo,
+                new EnteComercial
+                {
+                    Codigo = "002",
+                    Nombre = "SIESCOM C.A.",
+                    RamoComercial = ramoComercial,
+                    Rif = "J-123-456-789",
+                    Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    Telefonos = "0251.251.11.11 - 0416.111.11.11",
+                    WebAddress = "http://www.siescom.com.ve/",
+                    VideoUrl = "siescom_final.wmv"
+                });
+        }
+
+        //private void Seed()
+        //{
+        //    _ramoComercials = new List<RamoComercial>();
+        //    var ramoComercial = new RamoComercial
+        //    {
+        //        Id = 0,
+        //        Nombre = "Animales",
+        //    };
+        //    _ramoComercials.Add(ramoComercial);
+
+        //    _ramoComercials.Add(new RamoComercial { Id = 1, Nombre = "Alimentos" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 2, Nombre = "Antiguedades" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 3, Nombre = "Bancos" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 4, Nombre = "Comida Rapida" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 5, Nombre = "Muebles" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 6, Nombre = "Peluquerias" });
+        //    _ramoComercials.Add(new RamoComercial { Id = 7, Nombre = "Seguridad" });
+        //}
+
+        //private void Seed()
+        //{
+        //    _enteComercials = new List<EnteComercial>();
+        //    var ramoComercial = new RamoComercial { Id = 3, Nombre = "Bancos" };
+
+        //    _enteComercials.Add(new EnteComercial { Id = 0, Nombre = "Banco Mercantil", RamoComercial = ramoComercial });
+        //    _enteComercials.Add(new EnteComercial { Id = 1, Nombre = "Banesco", RamoComercial = ramoComercial });
+        //    _enteComercials.Add(new EnteComercial { Id = 2, Nombre = "Banco Provincial", RamoComercial = ramoComercial });
+
+        //    ramoComercial = new RamoComercial { Id = 4, Nombre = "Comida Rapida" };
+        //    _enteComercials.Add(new EnteComercial
+        //    {
+        //        Id = 3,
+        //        Nombre = "Pizza Hut",
+        //        RamoComercial = ramoComercial,
+        //Rif = "J-123-456-789",
+        //Telefonos = "0251.251.11.11 - 0416.111.11.11",
+        //Direccion = "Av. Lara con Av. Leones, Local 05, al lado del Burguer King",
+        //WebAddress = "http://www.pizzahut.net.ve/",
+        //Promocion = "Pizza 2 x 1 los miercoles y jueves",
+        //ImagenUrl = "pizza01.jpg",
+        //LogoUrl = "logo_pizzahut.jpg",
+        //VideoUrl = string.Empty
+        //    });
+        //    _enteComercials.Add(new EnteComercial
+        //    {
+        //        Id = 4,
+        //        Nombre = "Mac Donald",
+        //        RamoComercial = ramoComercial,
+        //        VideoUrl = "algo.wmv"
+        //    });
+
+        //    ramoComercial = new RamoComercial { Id = 7, Nombre = "Seguridad" };
+        //    _enteComercials.Add(new EnteComercial
+        //    {
+        //        Id = 5,
+        //        Nombre = "SIESCOM C.A.",
+        //        RamoComercial = ramoComercial,
+        //        VideoUrl = "videos/siescom_final.wmv"
+        //    });
+        //}
+    }
+}

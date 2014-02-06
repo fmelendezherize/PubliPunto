@@ -52,7 +52,8 @@
 									<RowDefinition Height="1*"/>
 								</Grid.RowDefinitions>
                                 <Grid.Background>
-                                    <ImageBrush ImageSource="{Binding Converter={StaticResource RutaLogoConverter}}" Stretch="UniformToFill"/>
+                                    <ImageBrush ImageSource="{Binding Converter={StaticResource RutaLogoConverter}}" 
+                                                Stretch="Fill"/>
                                 </Grid.Background>
 								<StackPanel Orientation="Vertical" Grid.Row="1">
 									<StackPanel.Background>
