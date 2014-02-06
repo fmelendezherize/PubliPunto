@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
              x:Name="UserControl"
              mc:Ignorable="d" 
              d:DesignWidth="960">
 	<UserControl.Resources>
-		<Style x:Key="CategoryText" TargetType="TextBlock">
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <Style x:Key="CategoryText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
 			<Setter Property="FontSize" Value="26" />
 			<Setter Property="Padding" Value="34,34,0,0" />
@@ -31,10 +33,11 @@
                                         <StackPanel Margin="34,34" Orientation="Vertical">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                                                 <Border BorderThickness="1" BorderBrush="Black">
-                                                    <Image Height="95" Width="280"/>
+                                                    <Image Source="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                                           Stretch="Uniform" Height="95" Width="280"/>
                                                 </Border>
                                                 <TextBlock VerticalAlignment="Center" 
-                                                           Text="{Binding Nombre}"
+                                                           Text="{Binding Path=Nombre}"
 														   Style="{StaticResource CategoryText}"/>
                                             </StackPanel>
                                             <Line Stroke="#7d7d7d" StrokeThickness="1" X1="1" X2="800"/>

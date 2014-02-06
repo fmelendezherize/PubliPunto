@@ -1,5 +1,4 @@
 ﻿
-using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using System;
 using System.Windows.Data;
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
@@ -8,10 +7,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     {
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            EnteComercial obj = value as EnteComercial;
+            string obj = value as string;
             if (obj != null)
             {
-                return AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj.ImagenUrl;
+                return AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj;
             }
             return string.Empty;
         }

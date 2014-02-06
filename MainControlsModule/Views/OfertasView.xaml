@@ -11,7 +11,7 @@
 	d:DesignWidth="640" d:DesignHeight="480"
 	Width="970" Height="294">
 	<UserControl.Resources>
-        <local:RutaLogoConverter x:Key="RutaLogoConverter" />
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<Style x:Key="FocusVisual">
 			<Setter Property="Control.Template">
 				<Setter.Value>
@@ -52,7 +52,7 @@
 									<RowDefinition Height="1*"/>
 								</Grid.RowDefinitions>
                                 <Grid.Background>
-                                    <ImageBrush ImageSource="{Binding Converter={StaticResource RutaLogoConverter}}" 
+                                    <ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
                                                 Stretch="Fill"/>
                                 </Grid.Background>
 								<StackPanel Orientation="Vertical" Grid.Row="1">

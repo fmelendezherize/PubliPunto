@@ -96,6 +96,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                                   {
                                       Id = q.Id,
                                       Nombre = q.Nombre,
+                                      LogoUrl = q.LogoUrl,
                                       TipoSubCategoria = TipoSubCategoria.EnteComercial
                                   }).ToList()
             };

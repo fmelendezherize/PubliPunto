@@ -108,7 +108,6 @@
       <DependentUpon>OfertasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RutaImagenConverter.cs" />
-    <Compile Include="Views\RutaLogoConverter.cs" />
     <Compile Include="Views\RutaVideoConverter.cs" />
   </ItemGroup>
   <ItemGroup>
