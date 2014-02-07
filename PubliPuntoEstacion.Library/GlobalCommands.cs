@@ -8,5 +8,6 @@ namespace Decktra.PubliPuntoEstacion.Library
         public static ICommand GoToBusquedaCategoriaCommand;
         public static ICommand GoToBusquedaTecladoCommand;
         public static ICommand GoToDatosClienteCommand;
+        public static ICommand GoToContactanosCommand;
     }
 }

@@ -10,7 +10,7 @@
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.BusquedaTecladoView"
 	x:Name="UserControl">
     <UserControl.Resources>
-        <Style x:Key="PubliPuntoContentHeaderBusquedaTeclado" TargetType="{x:Type StackPanel}">
+        <Style x:Key="ContentHeaderBusquedaTeclado" TargetType="{x:Type StackPanel}">
         	<Setter Property="Height" Value="47"/>
         	<Setter Property="Background">
         		<Setter.Value>
@@ -56,17 +56,30 @@
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Padding" Value="0,3,0,0"/>
         </Style>
+        <Style x:Key="ButtonAtras" TargetType="Button">
+            <Setter Property="Height" Value="47"></Setter>
+            <Setter Property="Width" Value="139"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:BusquedaTecladoViewModel />
     </UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
-			<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaTeclado}">
+            <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource ContentHeaderBusquedaTeclado}">
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_teclado.png" Height="35" Margin="6">
 				</Image>
-                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="búsqueda por teclado"/>
-			</StackPanel>
+                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
+                <Button Content="atras" Style="{StaticResource ButtonAtras}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" Height="Auto"
 						HorizontalAlignment="Left">
 				<DockPanel>

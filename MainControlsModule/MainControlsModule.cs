@@ -10,12 +10,12 @@ using System;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule
 {
-    public class MainControlsModule: IModule
+    public class MainControlsModule : IModule
     {
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _container;
 
-        public MainControlsModule(IRegionManager regionManager, IUnityContainer container) 
+        public MainControlsModule(IRegionManager regionManager, IUnityContainer container)
         {
             this._regionManager = regionManager;
             this._container = container;
@@ -31,6 +31,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, DatosClienteView>("DatosClienteView",
                 new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, ContactanosView>("ContactanosView",
+                new ContainerControlledLifetimeManager());
 
             GlobalCommands.GoToDatosClienteCommand = new DelegateCommand<object>(this.GoToDatosCliente);
 
@@ -41,7 +43,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
         {
             UriQuery uri = new UriQuery();
             uri.Add("ID", obj.ToString());
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, 
+            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("DatosClienteView" + uri.ToString(), UriKind.Relative));
         }
     }

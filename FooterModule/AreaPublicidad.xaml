@@ -9,7 +9,7 @@
 	d:DesignWidth="640" d:DesignHeight="480" Width="960" Height="171">
 
     <Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
-        <StackPanel>
+        <StackPanel MouseUp="StackPanel_MouseUp">
         	<StackPanel.Background>
         		<ImageBrush ImageSource="Resources/como_pub_footer.jpg"/>
         	</StackPanel.Background>

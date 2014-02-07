@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using Decktra.PubliPuntoEstacion.Library;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Decktra.PubliPuntoEstacion.FooterModule
 {
-	/// <summary>
-	/// Interaction logic for AreaPublicidad.xaml
-	/// </summary>
-	public partial class AreaPublicidad : UserControl
-	{
-		public AreaPublicidad()
-		{
-			this.InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for AreaPublicidad.xaml
+    /// </summary>
+    public partial class AreaPublicidad : UserControl
+    {
+        public AreaPublicidad()
+        {
+            this.InitializeComponent();
+        }
+
+        private void StackPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            GlobalCommands.GoToContactanosCommand.Execute(null);
+        }
+    }
 }

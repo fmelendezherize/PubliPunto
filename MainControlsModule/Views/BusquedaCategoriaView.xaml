@@ -82,6 +82,14 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ButtonAtras" TargetType="Button">
+            <Setter Property="Height" Value="47"></Setter>
+            <Setter Property="Width" Value="139"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:BusquedaCategoriaViewModel/>
@@ -89,9 +97,13 @@
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
-				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6">
-				</Image>
-                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Búsqueda por categoría</TextBlock>
+                <Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6"/>
+                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Width="774">Búsqueda por categoría</TextBlock>
+                <Button Content="atras" Style="{StaticResource ButtonAtras}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal">
                 <TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>

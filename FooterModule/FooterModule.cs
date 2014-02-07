@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Decktra.PubliPuntoEstacion.Interfaces;
+﻿using Decktra.PubliPuntoEstacion.Interfaces;
+using Decktra.PubliPuntoEstacion.Library;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using System;
 
 namespace Decktra.PubliPuntoEstacion.FooterModule
 {
-    public class FooterModule: IModule
+    public class FooterModule : IModule
     {
-        private readonly IRegionManager regionManager;
+        private readonly IRegionManager _regionManager;
 
-        public FooterModule(IRegionManager regionManager) 
+        public FooterModule(IRegionManager regionManager)
         {
-            this.regionManager = regionManager; 
+            this._regionManager = regionManager;
         }
 
         public void Initialize()
         {
-            regionManager.RegisterViewWithRegion(RegionNames.REGION_FOOTER_AREA, typeof(AreaPublicidad));
+            _regionManager.RegisterViewWithRegion(RegionNames.REGION_FOOTER_AREA, typeof(AreaPublicidad));
+            GlobalCommands.GoToContactanosCommand = new DelegateCommand<Object>(GoToContactnos);
+        }
+
+        private void GoToContactnos(object obj)
+        {
+            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("ContactanosView", UriKind.Relative));
         }
     }
 }

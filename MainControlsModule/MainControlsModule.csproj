@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -95,6 +96,9 @@
     <Compile Include="Views\BusquedaTecladoView.xaml.cs">
       <DependentUpon>BusquedaTecladoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ContactanosView.xaml.cs">
+      <DependentUpon>ContactanosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
     </Compile>
@@ -124,11 +128,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\ico_contactanos.png" />
     <Resource Include="Resources\play_peq.png" />
     <Resource Include="Resources\play_gran.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -136,6 +142,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\bot_atras.png" />
     <Content Include="Resources\CaviarDreams.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -156,6 +163,10 @@
     <Page Include="Views\BusquedaTecladoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ContactanosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DatosClienteView.xaml">
       <Generator>MSBuild:Compile</Generator>
