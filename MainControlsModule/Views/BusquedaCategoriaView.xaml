@@ -99,7 +99,8 @@
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
                 <Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6"/>
                 <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Width="774">Búsqueda por categoría</TextBlock>
-                <Button Content="atras" Style="{StaticResource ButtonAtras}">
+                <Button Content="atras" Style="{StaticResource ButtonAtras}"
+                        Command="{Binding BackCommand}">
                     <Button.Background>
                         <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
                     </Button.Background>
@@ -110,7 +111,7 @@
 				<ScrollViewer Style="{StaticResource ScrollViewerCategorias}">
             		<ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
                               HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
-                              ItemsSource="{Binding Categorias}">
+                              ItemsSource="{Binding CategoriaActual}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"

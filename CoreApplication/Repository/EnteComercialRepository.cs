@@ -36,5 +36,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
         {
             return db.EnteComercials;
         }
+
+        public IEnumerable<EnteComercial> GetEnteComercialsByTags(string Tag)
+        {
+            var listOfResult = this.GetAll().Where(q => q.TagMatched(Tag));
+            return listOfResult.ToList();
+        }
     }
 }

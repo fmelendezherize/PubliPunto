@@ -13,7 +13,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
 
         protected override void Seed(Decktra.PubliPuntoEstacion.CoreApplication.Context.PubliPuntoContext context)
         {
-            var ramoComercial = context.RamoComercials.Add(new RamoComercial { Codigo = "CR", Nombre = "Comida Rapida" });
+            var ramoComercial = context.RamoComercials.Add(
+                new RamoComercial
+                {
+                    Codigo = "CR",
+                    Nombre = "Comida Rapida"
+                });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
                 new EnteComercial
@@ -27,7 +32,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.pizzahut.net.ve/",
                     Promocion = "Pizza 2 x 1 los miercoles y jueves",
                     ImagenUrl = "pizza01.jpg",
-                    LogoUrl = "logo_pizzahut.jpg"
+                    LogoUrl = "logo_pizzahut.jpg",
+                    Tags = "Pizza;Pizzeria;Dulces"
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -40,7 +46,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     WebAddress = "http://www.spigolopizza.com.ve/",
-                    LogoUrl = "ejemp_empre2.jpg"
+                    LogoUrl = "ejemp_empre2.jpg",
+                    Tags = "Pizza;Pizzeria;Pasta;Dulces;Cafe;Helados"
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -53,7 +60,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     WebAddress = "http://www.pizzacono.com.ve/",
-                    LogoUrl = "ejemp_empre1.jpg"
+                    LogoUrl = "ejemp_empre1.jpg",
+                    Tags = "Pizza;Conos;Galletas;Dulces;Helados"
                 });
 
             //---------------------------
@@ -72,7 +80,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.siescom.com.ve/",
                     VideoUrl = "siescom_final.wmv",
                     ImagenUrl = "siescom_gra.jpg",
-                    LogoUrl = "siescom_peq.jpg"
+                    LogoUrl = "siescom_peq.jpg",
+                    Tags = "Seguridad;Alarma;Alambrado;Cercos;Camaras"
                 });
 
             //---------------------------
@@ -90,7 +99,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.danceclub.com.ve/",
                     ImagenUrl = "danceclub_gra.jpg",
-                    LogoUrl = "danceclub_peq.jpg"
+                    LogoUrl = "danceclub_peq.jpg",
+                    Tags = "Discoteca;Baile;Fiestas;Bar;Club"
                 });
 
             //---------------------------
@@ -108,7 +118,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.dcshoes.com.ve/",
                     ImagenUrl = "dcshoes_gra.jpg",
-                    LogoUrl = "dcshoes_peq.jpg"
+                    LogoUrl = "dcshoes_peq.jpg",
+                    Tags = "Zapatos;Zapateria;Cholas;Sandalias;Zapatillas;Calzado;Deportivos"
                 });
 
             //---------------------------
@@ -125,7 +136,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.bellavino.com.ve/",
-                    LogoUrl = "ejemp_empre3.jpg"
+                    LogoUrl = "ejemp_empre3.jpg",
+                    Tags = "Restaurant;Vinos;Mariscos;Carnes;Pescados;Pastas"
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -139,7 +151,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.restaurant.com.ve/",
                     ImagenUrl = "restaurant_gra.jpg",
-                    LogoUrl = "restaurant_peq.jpg"
+                    LogoUrl = "restaurant_peq.jpg",
+                    Tags = "Restaurant;Pollos;Carnes;Pescados"
                 });
 
             //---------------------------
@@ -157,7 +170,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "gabrielanzola@gmail.com",
                     ImagenUrl = "gabrielanzola_gra.jpg",
-                    LogoUrl = "grabrielanzola_peq.jpg"
+                    LogoUrl = "grabrielanzola_peq.jpg",
+                    Tags = "Publicidad;Diseño;Animaciones;Campañas;Logos"
                 });
 
             //---------------------------
@@ -175,7 +189,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.hotel.com.ve/",
                     ImagenUrl = "hotel_gra.jpg",
-                    LogoUrl = "hotel_peq.jpg"
+                    LogoUrl = "hotel_peq.jpg",
+                    Tags = "Hospedaje;Habitaciones;Turimos;Hoteles;Camas"
                 });
 
             //---------------------------
@@ -193,7 +208,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.taller.com.ve/",
                     ImagenUrl = "taler_gra.jpg",
-                    LogoUrl = "taler_peq.jpg"
+                    LogoUrl = "taler_peq.jpg",
+                    Tags = "Taller;Carros;Reparaciones;Automoviles;Repuestos"
                 });
         }
     }

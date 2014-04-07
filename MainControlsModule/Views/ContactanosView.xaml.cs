@@ -48,7 +48,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.TextBoxNombre.Clear();
             this.TextBoxTelefono.Clear();
             this.TextBoxComentario.Clear();
+
+            this.FormularioPanel.Visibility = System.Windows.Visibility.Visible;
+            this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Collapsed;
+            this.touchKeyboard.Visibility = System.Windows.Visibility.Visible;
+
             this.TextBox_GotFocus(this.TextBoxNombre, null);
+        }
+
+        private void ButtonEnviar_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.FormularioPanel.Visibility = System.Windows.Visibility.Collapsed;
+            this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Visible;
+            this.touchKeyboard.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

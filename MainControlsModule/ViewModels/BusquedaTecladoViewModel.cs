@@ -1,5 +1,6 @@
 ﻿
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
+using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Microsoft.Practices.Prism.Commands;
 using System.Collections.ObjectModel;
@@ -10,14 +11,17 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
     class BusquedaTecladoViewModel
     {
-        public ObservableCollection<Categoria> Categorias { get; set; }
         private readonly EnteComercialRepository _enteComercialRepository;
+
+        public ObservableCollection<Categoria> Categorias { get; set; }
         public ICommand SearchEnteComercialsCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
         public BusquedaTecladoViewModel()
         {
             this._enteComercialRepository = new EnteComercialRepository();
             this.SearchEnteComercialsCommand = new DelegateCommand<string>(this.SearchEnteComercials);
+            this.BackCommand = new DelegateCommand<object>(this.Back);
             Categorias = new ObservableCollection<Categoria>();
         }
 
@@ -32,19 +36,42 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
             var newCategoria = new Categoria
             {
-                NombreCategoria = "Resultados de la búsqueda",
-                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsByName(obj)
-                                  select new SubCategoria()
-                                  {
-                                      Id = q.Id,
-                                      Nombre = q.Nombre,
-                                      LogoUrl = q.LogoUrl,
-                                      TipoSubCategoria = TipoSubCategoria.EnteComercial
-                                  }).ToList()
+                NombreCategoria = "Resultados de la búsqueda"
             };
+            newCategoria.ListCategorias.AddRange(
+                (from q in _enteComercialRepository.GetEnteComercialsByName(obj)
+                 select new SubCategoria()
+                 {
+                     Id = q.Id,
+                     Nombre = q.Nombre,
+                     LogoUrl = q.LogoUrl,
+                     TipoSubCategoria = TipoSubCategoria.EnteComercial
+                 }).ToList());
+
+            newCategoria.ListCategorias.AddRange(
+                (from q in _enteComercialRepository.GetEnteComercialsByTags(obj)
+                 select new SubCategoria()
+                     {
+                         Id = q.Id,
+                         Nombre = q.Nombre,
+                         LogoUrl = q.LogoUrl,
+                         TipoSubCategoria = TipoSubCategoria.EnteComercial
+                     }).ToList());
             Categorias.Clear();
             if (newCategoria.ListCategorias.Count == 0) newCategoria.NombreCategoria = "No se consiguieron resultados";
             Categorias.Add(newCategoria);
+        }
+
+        public void Back(object arg)
+        {
+            if (Categorias.Count > 0)
+            {
+                this.Categorias.Clear();
+            }
+            else
+            {
+                GlobalCommands.GoToHomeCommand.Execute(null);
+            }
         }
     }
 }

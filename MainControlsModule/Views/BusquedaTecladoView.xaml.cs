@@ -50,5 +50,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.TextBoxSearch.Clear();
             ((BusquedaTecladoViewModel)this.DataContext).Init();
         }
+
+        private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.TextBoxSearch.Clear();
+            ((BusquedaTecladoViewModel)this.DataContext).BackCommand.Execute(null);
+        }
     }
 }

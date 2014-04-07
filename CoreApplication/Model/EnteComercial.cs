@@ -27,10 +27,22 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [Required]
         public virtual RamoComercial RamoComercial { get; set; }
 
+        public string Tags { get; set; }
+
         public EnteComercial()
         {
             this.ImagenUrl = string.Empty;
             this.VideoUrl = string.Empty;
+        }
+
+        public bool TagMatched(string Tag)
+        {
+            var listOfTags = Tags.Split(';');
+            foreach (string s in listOfTags)
+            {
+                if (s.StartsWith(Tag, System.StringComparison.InvariantCultureIgnoreCase)) return true;
+            }
+            return false;
         }
     }
 }

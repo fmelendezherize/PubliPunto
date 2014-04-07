@@ -80,7 +80,7 @@
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" 
                         Height="Auto" HorizontalAlignment="Left">
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Height="692">
+                    <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible">
                         <TextBlock Style="{StaticResource TextBlockMensaje}">Ingresa tus datos y nos comunicaremos contigo a la brevedad</TextBlock>
                         <WrapPanel>
                             <WrapPanel Orientation="Vertical">
@@ -102,8 +102,16 @@
                             </WrapPanel>
                         </WrapPanel>
                         <StackPanel Orientation="Vertical" Width="275" HorizontalAlignment="Right">
-                            <Button Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,50,45,0"/>
+                            <Button Name="ButtonEnviar" Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,50,45,0"
+                                    Click="ButtonEnviar_Click"/>
                         </StackPanel>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioEnviadoPanel" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviado, pronto nos comunicaremos contigo. Gracias.</TextBlock>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Image Width="343" Height="343" Source="pack://application:,,,/Resources/logo.png" 
+                                   Stretch="UniformToFill" Margin="0,300"/>
+                        </WrapPanel>
                     </StackPanel>
                     <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
                 </DockPanel>

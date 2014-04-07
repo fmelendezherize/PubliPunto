@@ -65,6 +65,10 @@
   <ItemGroup>
     <Compile Include="Context\PubliPuntoContext.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
+    <Compile Include="Migrations\201404071610301_1.cs" />
+    <Compile Include="Migrations\201404071610301_1.Designer.cs">
+      <DependentUpon>201404071610301_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\EnteComercial.cs" />
     <Compile Include="Model\RamoComercial.cs" />
@@ -103,6 +107,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201404071610301_1.resx">
+      <DependentUpon>201404071610301_1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

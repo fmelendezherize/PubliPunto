@@ -74,7 +74,8 @@
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_teclado.png" Height="35" Margin="6">
 				</Image>
                 <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
-                <Button Content="atras" Style="{StaticResource ButtonAtras}">
+                <Button Name="ButtonBack" Content="atras" Style="{StaticResource ButtonAtras}"
+                        Click="ButtonBack_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
                     </Button.Background>

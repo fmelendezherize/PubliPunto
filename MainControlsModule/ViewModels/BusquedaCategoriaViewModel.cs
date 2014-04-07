@@ -1,7 +1,9 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
+using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -10,36 +12,75 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
     class BusquedaCategoriaViewModel : NotificationObject
     {
-        public ObservableCollection<Categoria> Categorias { get; set; }
         private readonly RamoComercialRepository _ramoComercialRepository;
         private readonly EnteComercialRepository _enteComercialRepository;
+
+        public ObservableCollection<Categoria> CategoriaActual { get; set; }
         public ICommand ShowCategoriasByLetterCommand { get; set; }
         public ICommand ShowEnteComercialsCommand { get; set; }
+        public ICommand BackCommand { get; set; }
+
+        private List<Categoria> _categoriaAnterior;
 
         public BusquedaCategoriaViewModel()
         {
             _ramoComercialRepository = new RamoComercialRepository();
             _enteComercialRepository = new EnteComercialRepository();
+
             ShowCategoriasByLetterCommand = new DelegateCommand<string>(this.ShowCategoriasByLetter);
             ShowEnteComercialsCommand = new DelegateCommand<object>(this.ShowEnteComercials);
-            Categorias = new ObservableCollection<Categoria>();
+            BackCommand = new DelegateCommand<object>(this.Back);
+
+            CategoriaActual = new ObservableCollection<Categoria>();
         }
 
         public void Init()
         {
-            Categorias.Clear();
+            this._categoriaAnterior = null;
+            CategoriaActual.Clear();
             this.ShowCategoriasAll();
+        }
+
+        public bool CanExecuteBack(object arg)
+        {
+            if (this._categoriaAnterior == null) return false;
+            return true;
+        }
+
+        public void Back(object arg)
+        {
+            if (this._categoriaAnterior != null)
+            {
+                CategoriaActual.Clear();
+                foreach (Categoria item in this._categoriaAnterior)
+                {
+                    CategoriaActual.Add(item);
+                }
+                this._categoriaAnterior = null;
+            }
+            else
+            {
+                GlobalCommands.GoToHomeCommand.Execute(null);
+            }
         }
 
         private void ShowCategoriasByLetter(string letter)
         {
-            Categorias.Clear();
+            if (CategoriaActual.Count == 0)
+            {
+                this._categoriaAnterior = null;
+            }
+            else
+            {
+                this._categoriaAnterior = new List<Categoria>(CategoriaActual.ToList());
+            }
+            CategoriaActual.Clear();
             AddCategoriaToList(letter);
         }
 
         private void ShowCategoriasAll()
         {
-            Categorias.Clear();
+            CategoriaActual.Clear();
             AddCategoriaToList("A");
             AddCategoriaToList("B");
             AddCategoriaToList("C");
@@ -66,23 +107,26 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             AddCategoriaToList("X");
             AddCategoriaToList("Y");
             AddCategoriaToList("Z");
-            RaisePropertyChanged(() => this.Categorias);
+            RaisePropertyChanged(() => this.CategoriaActual);
         }
 
         private void AddCategoriaToList(string letter)
         {
             var newCategoria = new Categoria
                         {
-                            NombreCategoria = letter,
-                            ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
-                                              select new SubCategoria
-                                              {
-                                                  Nombre = q.Nombre,
-                                                  Id = q.Id,
-                                                  TipoSubCategoria = TipoSubCategoria.RamoComercial
-                                              }).ToList()
+                            NombreCategoria = letter
                         };
-            if (newCategoria.ListCategorias.Count > 0) Categorias.Add(newCategoria);
+
+            newCategoria.ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
+                                           select new SubCategoria
+                                           {
+                                               Nombre = q.Nombre,
+                                               Id = q.Id,
+                                               TipoSubCategoria = TipoSubCategoria.RamoComercial
+                                           }).ToList();
+
+            if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
+            //CategoriaActual.Add(newCategoria);
         }
 
         public void ShowEnteComercials(object idRamoComercial)
@@ -100,9 +144,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                                       TipoSubCategoria = TipoSubCategoria.EnteComercial
                                   }).ToList()
             };
-            Categorias.Clear();
-            if (newCategoria.ListCategorias.Count > 0) Categorias.Add(newCategoria);
-            RaisePropertyChanged(() => this.Categorias);
+
+            this._categoriaAnterior = new List<Categoria>(CategoriaActual.ToList());
+            CategoriaActual.Clear();
+
+            if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
+            RaisePropertyChanged(() => this.CategoriaActual);
         }
     }
 }
