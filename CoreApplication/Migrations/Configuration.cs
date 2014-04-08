@@ -33,7 +33,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Promocion = "Pizza 2 x 1 los miercoles y jueves",
                     ImagenUrl = "pizza01.jpg",
                     LogoUrl = "logo_pizzahut.jpg",
-                    Tags = "Pizza;Pizzeria;Dulces"
+                    Tags = "Pizza;Pizzeria;Dulces",
+                    IsActivo = true
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -47,7 +48,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     WebAddress = "http://www.spigolopizza.com.ve/",
                     LogoUrl = "ejemp_empre2.jpg",
-                    Tags = "Pizza;Pizzeria;Pasta;Dulces;Cafe;Helados"
+                    Tags = "Pizza;Pizzeria;Pasta;Dulces;Cafe;Helados",
+                    IsActivo = true
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -61,10 +63,57 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     WebAddress = "http://www.pizzacono.com.ve/",
                     LogoUrl = "ejemp_empre1.jpg",
-                    Tags = "Pizza;Conos;Galletas;Dulces;Helados"
+                    Tags = "Pizza;Conos;Galletas;Dulces;Helados",
+                    IsActivo = true
                 });
 
             //---------------------------
+
+            ramoComercial = ramoComercial = context.RamoComercials.Add(new RamoComercial { Codigo = "CMP", Nombre = "Computacion" });
+
+            context.EnteComercials.AddOrUpdate(q => q.Codigo,
+                new EnteComercial
+                {
+                    Codigo = "CMP-001",
+                    Nombre = "Microsoft",
+                    RamoComercial = ramoComercial,
+                    Rif = "J-123-456-789",
+                    Telefonos = "0251.251.11.11 - 0416.111.11.11",
+                    Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    WebAddress = "http://www.microsoft.com/",
+                    Tags = "Computacion;Software;Moviles;Celulares;Windows",
+                    IsActivo = true
+                });
+
+            context.EnteComercials.AddOrUpdate(q => q.Codigo,
+                new EnteComercial
+                {
+                    Codigo = "CMP-002",
+                    Nombre = "Google",
+                    RamoComercial = ramoComercial,
+                    Rif = "J-123-456-789",
+                    Telefonos = "0251.251.11.11 - 0416.111.11.11",
+                    Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    WebAddress = "http://www.google.com/",
+                    Tags = "Computacion;Software;Moviles;Celulares;Android",
+                    IsActivo = true
+                });
+
+            context.EnteComercials.AddOrUpdate(q => q.Codigo,
+                new EnteComercial
+                {
+                    Codigo = "CMP-003",
+                    Nombre = "Decktra",
+                    RamoComercial = ramoComercial,
+                    Rif = "J-123-456-789",
+                    Telefonos = "0251.251.11.11 - 0416.111.11.11",
+                    Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    WebAddress = "http://www.decktra.com.ve/",
+                    Tags = "Computacion;Software;Redes",
+                    IsActivo = true
+                });
+
+            //--------------------------------------------------------------------------------------------------------
 
             ramoComercial = ramoComercial = context.RamoComercials.Add(new RamoComercial { Codigo = "SCT", Nombre = "Seguridad" });
 
@@ -81,7 +130,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     VideoUrl = "siescom_final.wmv",
                     ImagenUrl = "siescom_gra.jpg",
                     LogoUrl = "siescom_peq.jpg",
-                    Tags = "Seguridad;Alarma;Alambrado;Cercos;Camaras"
+                    Tags = "Seguridad;Alarma;Alambrado;Cercos;Camaras",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -100,7 +150,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.danceclub.com.ve/",
                     ImagenUrl = "danceclub_gra.jpg",
                     LogoUrl = "danceclub_peq.jpg",
-                    Tags = "Discoteca;Baile;Fiestas;Bar;Club"
+                    Tags = "Discoteca;Baile;Fiestas;Bar;Club",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -119,7 +170,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.dcshoes.com.ve/",
                     ImagenUrl = "dcshoes_gra.jpg",
                     LogoUrl = "dcshoes_peq.jpg",
-                    Tags = "Zapatos;Zapateria;Cholas;Sandalias;Zapatillas;Calzado;Deportivos"
+                    Tags = "Zapatos;Zapateria;Cholas;Sandalias;Zapatillas;Calzado;Deportivos",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -137,7 +189,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "http://www.bellavino.com.ve/",
                     LogoUrl = "ejemp_empre3.jpg",
-                    Tags = "Restaurant;Vinos;Mariscos;Carnes;Pescados;Pastas"
+                    Tags = "Restaurant;Vinos;Mariscos;Carnes;Pescados;Pastas",
+                    IsActivo = true
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -152,7 +205,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.restaurant.com.ve/",
                     ImagenUrl = "restaurant_gra.jpg",
                     LogoUrl = "restaurant_peq.jpg",
-                    Tags = "Restaurant;Pollos;Carnes;Pescados"
+                    Tags = "Restaurant;Pollos;Carnes;Pescados",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -170,8 +224,9 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     WebAddress = "gabrielanzola@gmail.com",
                     ImagenUrl = "gabrielanzola_gra.jpg",
-                    LogoUrl = "grabrielanzola_peq.jpg",
-                    Tags = "Publicidad;Diseño;Animaciones;Campañas;Logos"
+                    LogoUrl = "gabrielanzola_peq.jpg",
+                    Tags = "Publicidad;Diseño;Animaciones;Campañas;Logos",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -190,7 +245,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.hotel.com.ve/",
                     ImagenUrl = "hotel_gra.jpg",
                     LogoUrl = "hotel_peq.jpg",
-                    Tags = "Hospedaje;Habitaciones;Turimos;Hoteles;Camas"
+                    Tags = "Hospedaje;Habitaciones;Turimos;Hoteles;Camas",
+                    IsActivo = true
                 });
 
             //---------------------------
@@ -209,7 +265,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     WebAddress = "http://www.taller.com.ve/",
                     ImagenUrl = "taler_gra.jpg",
                     LogoUrl = "taler_peq.jpg",
-                    Tags = "Taller;Carros;Reparaciones;Automoviles;Repuestos"
+                    Tags = "Taller;Carros;Reparaciones;Automoviles;Repuestos",
+                    IsActivo = true
                 });
         }
     }

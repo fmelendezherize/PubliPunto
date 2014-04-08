@@ -12,7 +12,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             {
                 return AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj;
             }
-            return string.Empty;
+            return AppDomain.CurrentDomain.BaseDirectory + "media\\logo.png";
         }
 
         public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)

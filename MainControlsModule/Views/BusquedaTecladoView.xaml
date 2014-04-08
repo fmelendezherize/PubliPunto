@@ -93,10 +93,13 @@
 								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" Width="50" Height="50" HorizontalAlignment="Center"/>
 							</Button>
 						</WrapPanel>
-                        <ScrollViewer Style="{StaticResource ScrollViewerCategorias}">
+                        <ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">
                             <ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
                                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
-                                      ItemsSource="{Binding Categorias}">
+                                      ItemsSource="{Binding Categorias}"
+                                      PreviewMouseDown="ListViewCategorias_PreviewMouseDown"
+                                      MouseUp="ListViewCategorias_MouseUp"
+                                      MouseMove="ListViewCategorias_MouseMove">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"

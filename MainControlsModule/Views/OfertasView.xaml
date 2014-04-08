@@ -7,11 +7,11 @@
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
 	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.OfertasView"
-    xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
+	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	d:DesignWidth="640" d:DesignHeight="480"
 	Width="970" Height="294">
 	<UserControl.Resources>
-        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<Style x:Key="FocusVisual">
 			<Setter Property="Control.Template">
 				<Setter.Value>
@@ -38,10 +38,10 @@
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Height" Value="171"/>
-            <Setter Property="Width" Value="291"/>
+			<Setter Property="Height" Value="171"/>
+			<Setter Property="Width" Value="291"/>
 			<Setter Property="Padding" Value="1"/>
-            <Setter Property="Margin" Value="5,0,5,0"/>
+			<Setter Property="Margin" Value="5,0,5,0"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type Button}">
@@ -51,17 +51,17 @@
 									<RowDefinition Height="3*"/>
 									<RowDefinition Height="1*"/>
 								</Grid.RowDefinitions>
-                                <Grid.Background>
-                                    <ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
-                                                Stretch="Fill"/>
-                                </Grid.Background>
+								<Grid.Background>
+									<ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+												Stretch="Uniform"/>
+								</Grid.Background>
 								<StackPanel Orientation="Vertical" Grid.Row="1">
 									<StackPanel.Background>
 										<SolidColorBrush Color="Black" Opacity=".5"/>
 									</StackPanel.Background>
 									<TextBlock TextWrapping="Wrap" Text="{Binding Nombre}" 
-                                               Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                               FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
+											   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
+											   FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
 								</StackPanel>
 							</Grid>
 						</Border>
@@ -83,19 +83,19 @@
 			</Setter>
 		</Style>
 	</UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModels:OfertasViewModel />
-    </UserControl.DataContext>
+	<UserControl.DataContext>
+		<viewModels:OfertasViewModel />
+	</UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
 		<DockPanel Background="White">
-            <StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
-                <TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Ofertas</TextBlock>
-            </StackPanel>
-            <StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>
-                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial1}" Click="ButtonBase_OnClick"/>
-                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial2}" Click="ButtonBase_OnClick"/>
-            </StackPanel>
-        </DockPanel>
+			<StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
+				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Cupones y Ofertas</TextBlock>
+			</StackPanel>
+			<StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>
+				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial1}" Click="ButtonBase_OnClick"/>
+				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial2}" Click="ButtonBase_OnClick"/>
+			</StackPanel>
+		</DockPanel>
 	</Grid>
 </UserControl>

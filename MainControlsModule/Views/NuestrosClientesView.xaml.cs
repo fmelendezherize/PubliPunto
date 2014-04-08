@@ -1,4 +1,5 @@
-﻿using Decktra.PubliPuntoEstacion.Library;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.Library;
 using System.Windows.Controls;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
@@ -15,7 +16,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GlobalCommands.GoToDatosClienteCommand.Execute(12);
+            Button button = sender as Button;
+            EnteComercial ente = button.DataContext as EnteComercial;
+            if (ente != null) GlobalCommands.GoToDatosClienteCommand.Execute(ente.Id);
 
             //this.WrapPanelClientes.Visibility = System.Windows.Visibility.Collapsed;
             //this.WrapPanelVideo.Visibility = System.Windows.Visibility.Visible;

@@ -26,6 +26,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            ((NuestrosClientesViewModel)this.NuestrosClientesView.DataContext).ShowEnteComercialsCommand.Execute(null);
             ((OfertasViewModel)this.OfertasView.DataContext).ShowEnteComercialsCommand.Execute(null);
         }
     }

@@ -29,6 +29,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public string Tags { get; set; }
 
+        public bool IsActivo { get; set; }
+
         public EnteComercial()
         {
             this.ImagenUrl = string.Empty;

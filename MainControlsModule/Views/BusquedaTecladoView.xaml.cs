@@ -3,6 +3,7 @@ using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 {
@@ -28,6 +29,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void CategoryItemControl_OnListViewCategoriaMouseClick(object sender, System.EventArgs e)
         {
+            if (IsPressed) return;
+
             var selectedSubCategoria = sender as SubCategoria;
             if (selectedSubCategoria != null)
             {
@@ -55,6 +58,43 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             this.TextBoxSearch.Clear();
             ((BusquedaTecladoViewModel)this.DataContext).BackCommand.Execute(null);
+        }
+
+        private bool IsPressed = false;
+        private double InitY;
+        private void ListViewCategorias_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            InitY = e.GetPosition(TextBoxSearch).Y;
+        }
+
+        private void ListViewCategorias_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (IsPressed)
+            {
+                IsPressed = false;
+            }
+        }
+
+        private void ListViewCategorias_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                IsPressed = true;
+                const double DBL_Offtset = .6;
+                if (e.GetPosition(TextBoxSearch).Y > InitY)
+                {
+                    //Bajo
+                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset + DBL_Offtset);
+                    InitY = e.GetPosition(TextBoxSearch).Y - DBL_Offtset;
+                }
+                else
+                {
+                    //Subio
+                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset - DBL_Offtset);
+                    InitY = e.GetPosition(TextBoxSearch).Y + DBL_Offtset;
+                }
+
+            }
         }
     }
 }
