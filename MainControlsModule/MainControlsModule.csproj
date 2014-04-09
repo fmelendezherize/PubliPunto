@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
+    <ExpressionBlendVersion>12.0.41212.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +99,15 @@
     <Compile Include="Views\ContactanosView.xaml.cs">
       <DependentUpon>ContactanosView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CuponesView\CuponesAutorizadoView.xaml.cs">
+      <DependentUpon>CuponesAutorizadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CuponesView\CuponesInicioView.xaml.cs">
+      <DependentUpon>CuponesInicioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CuponesView\CuponesLoginView.xaml.cs">
+      <DependentUpon>CuponesLoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +137,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\logo_facebook_small.png" />
+    <Resource Include="Resources\facebook-logo.jpg" />
     <None Include="Resources\logo.png" />
     <Resource Include="Resources\ico_contactanos.png" />
     <Resource Include="Resources\play_peq.png" />
@@ -166,6 +177,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ContactanosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CuponesView\CuponesAutorizadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CuponesView\CuponesInicioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CuponesView\CuponesLoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
