@@ -1,0 +1,23 @@
+﻿using Decktra.PubliPuntoEstacion.Library;
+using System.Windows;
+using System.Windows.Input;
+
+namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
+{
+    /// <summary>
+    /// Interaction logic for CuponSuccessWindow.xaml
+    /// </summary>
+    public partial class CuponSuccessWindow : Window
+    {
+        public CuponSuccessWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            GlobalCommands.GoToHomeCommand.Execute(null);
+        }
+    }
+}
