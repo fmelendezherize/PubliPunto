@@ -11,7 +11,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
     /// <summary>
     /// Interaction logic for CuponesInicioView.xaml
     /// </summary>
-    public partial class CuponesInicioView : UserControl
+    public partial class CuponesInicioView : UserControl, INavigationAware
     {
         [Dependency]
         public IRegionManager RegionManager { get; set; }
@@ -36,6 +36,25 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             errorWnd.OnNavigatedTo("MustLogin");
             errorWnd.Owner = Application.Current.MainWindow;
             errorWnd.ShowDialog();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            if (navigationContext.Uri.OriginalString != "CuponesLoginView")
+            {
+                navigationContext.NavigationService.Region.Context = null;
+                return;
+            }
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            this.DataContext = navigationContext.NavigationService.Region.Context;
         }
     }
 }

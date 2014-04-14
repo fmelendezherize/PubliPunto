@@ -1,6 +1,7 @@
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
 {
     using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Decktra.PubliPuntoEstacion.CoreApplication.Context.PubliPuntoContext>
@@ -30,11 +31,21 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     Telefonos = "0251.251.11.11 - 0416.111.11.11",
                     Direccion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                     WebAddress = "http://www.pizzahut.net.ve/",
-                    Promocion = "Pizza 2 x 1 los miercoles y jueves",
                     ImagenUrl = "pizza01.jpg",
                     LogoUrl = "logo_pizzahut.jpg",
                     Tags = "Pizza;Pizzeria;Dulces",
-                    IsActivo = true
+                    IsActivo = true,
+                    ListOfPromocions = new List<Promocion>() { 
+                        new Promocion { 
+                            Codigo = "001", Descripcion = "Promocion Lunes 2 x 1." 
+                        } ,
+                        new Promocion {
+                            Codigo = "002", Descripcion = "Promocion Martes por una Grande una pequeña gratis."
+                        },
+                        new Promocion {
+                            Codigo = "003", Descripcion = "Promocion Miercoles un ingrediente adicional gratis."
+                        }
+                    }
                 });
 
             context.EnteComercials.AddOrUpdate(q => q.Codigo,
@@ -131,7 +142,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     ImagenUrl = "siescom_gra.jpg",
                     LogoUrl = "siescom_peq.jpg",
                     Tags = "Seguridad;Alarma;Alambrado;Cercos;Camaras",
-                    IsActivo = true
+                    IsActivo = true,
+                    ListOfPromocions = new List<Promocion>() { 
+                        new Promocion { 
+                            Codigo = "001", Descripcion = "Promocion 2 puntos de camaras por el precio de 1." 
+                        } ,
+                        new Promocion {
+                            Codigo = "002", Descripcion = "Promocion 15 mts de cerco electrico gratis."
+                        }
+                    }
                 });
 
             //---------------------------
@@ -151,7 +170,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     ImagenUrl = "danceclub_gra.jpg",
                     LogoUrl = "danceclub_peq.jpg",
                     Tags = "Discoteca;Baile;Fiestas;Bar;Club",
-                    IsActivo = true
+                    IsActivo = true,
+                    ListOfPromocions = new List<Promocion>() { 
+                        new Promocion { 
+                            Codigo = "001", Descripcion = "Jueves Ladies Night 3 tragos de tequila gratis." 
+                        } ,
+                        new Promocion {
+                            Codigo = "002", Descripcion = "Miercoles de parejas, mitad de precio entrada."
+                        }
+                    }
                 });
 
             //---------------------------
@@ -206,7 +233,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
                     ImagenUrl = "restaurant_gra.jpg",
                     LogoUrl = "restaurant_peq.jpg",
                     Tags = "Restaurant;Pollos;Carnes;Pescados",
-                    IsActivo = true
+                    IsActivo = true,
+                    ListOfPromocions = new List<Promocion>() { 
+                        new Promocion { 
+                            Codigo = "001", Descripcion = "Lunes Mexicano. Descuento del 10%" 
+                        } ,
+                        new Promocion {
+                            Codigo = "002", Descripcion = "Martes Italiano. Descuento del 10%"
+                        }
+                    }
                 });
 
             //---------------------------

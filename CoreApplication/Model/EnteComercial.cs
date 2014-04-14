@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 {
@@ -19,7 +20,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string Telefonos { get; set; }
         public string Direccion { get; set; }
         public string WebAddress { get; set; }
-        public string Promocion { get; set; }
         public string LogoUrl { get; set; }
         public string ImagenUrl { get; set; }
         public string VideoUrl { get; set; }
@@ -30,6 +30,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string Tags { get; set; }
 
         public bool IsActivo { get; set; }
+
+        public virtual IList<Promocion> ListOfPromocions { get; set; }
 
         public EnteComercial()
         {

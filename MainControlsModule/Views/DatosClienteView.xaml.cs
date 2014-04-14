@@ -29,7 +29,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //nada
+            if (navigationContext.Uri.OriginalString != "CuponesInicioView")
+            {
+                navigationContext.NavigationService.Region.Context = null;
+                return;
+            }
+
+            navigationContext.NavigationService.Region.Context = this.DataContext;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

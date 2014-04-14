@@ -34,7 +34,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetAll()
         {
-            return db.EnteComercials;
+            return db.EnteComercials.ToList();
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsByTags(string Tag)
