@@ -14,6 +14,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public EnteComercial EnteComercial { get; set; }
         //public string RutaImagen { get; set; }
 
+        public bool IsAuthorized { get; set; }
 
         public DatosClienteViewModel()
         {

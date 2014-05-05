@@ -82,14 +82,6 @@
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
-		<Style x:Key="ButtonAtras" TargetType="Button">
-			<Setter Property="Height" Value="47"></Setter>
-			<Setter Property="Width" Value="139"></Setter>
-			<Setter Property="Foreground" Value="White" />
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="24" />
-			<Setter Property="BorderThickness" Value="0" />
-		</Style>
 	</UserControl.Resources>
 	<UserControl.DataContext>
 		<viewModels:BusquedaCategoriaViewModel/>
@@ -97,10 +89,11 @@
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
-				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png" Height="35" Margin="6"/>
+                <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"
+                       Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png"/>
 				<TextBlock Name="TextBlockTitulo" Style="{DynamicResource PubliPuntoContentHeaderText}"
 						   Margin="10,10,0,0" Width="774">Búsqueda por categoría</TextBlock>
-				<Button Content="atras" Style="{StaticResource ButtonAtras}"
+                <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
 						Command="{Binding BackCommand}">
 					<Button.Background>
 						<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>

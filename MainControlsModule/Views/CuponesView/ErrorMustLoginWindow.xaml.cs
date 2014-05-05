@@ -20,7 +20,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             InitializeComponent();
         }
 
-        private void ImageFacebook_MouseUp(object sender, MouseButtonEventArgs e)
+        private void OnWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
@@ -29,15 +29,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedTo(string accion)
         {
-            if (accion == "MustLogin")
+            if (accion == "ErrorFormularioLibre")
             {
                 this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Antes de poder reclamar su cupón debe iniciar sesión en Facebook.";
+                this.TextBlockMensaje.Text = "Debe llenar por completo el formulario para poder reclamar un cupón a traves de este kiosko.";
             }
             else if (accion == "ErrorLogin")
             {
                 this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Su correo de facebook o contraseña son incorrectos. Por favor vuelva a introducirlos.";
+                this.TextBlockMensaje.Text = "Su cédula de identidad o PIN son incorrectos. Por favor vuelva a introducirlos.";
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.OfertasView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,6 @@
 	mc:Ignorable="d"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
-	x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.OfertasView"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	d:DesignWidth="640" d:DesignHeight="480"
 	Width="970" Height="294">

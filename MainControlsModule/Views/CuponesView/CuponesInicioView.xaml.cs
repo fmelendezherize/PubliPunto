@@ -2,7 +2,6 @@
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -32,10 +31,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-            errorWnd.OnNavigatedTo("MustLogin");
-            errorWnd.Owner = Application.Current.MainWindow;
-            errorWnd.ShowDialog();
+            //var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            //errorWnd.OnNavigatedTo("MustLogin");
+            //errorWnd.Owner = Application.Current.MainWindow;
+            //errorWnd.ShowDialog();
+
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesLoginView", UriKind.Relative));
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -45,7 +47,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            if (navigationContext.Uri.OriginalString != "CuponesLoginView")
+            if ((navigationContext.Uri.OriginalString != "CuponesLoginView") &
+                (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
             {
                 navigationContext.NavigationService.Region.Context = null;
                 return;
@@ -55,6 +58,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.DataContext = navigationContext.NavigationService.Region.Context;
+        }
+
+        private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesCondicionesView", UriKind.Relative));
         }
     }
 }

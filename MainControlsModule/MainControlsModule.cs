@@ -43,6 +43,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponSuccessWindow>("CuponSuccessWindow",
                 new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, Views.CuponesView.CuponesCondicionesView>("CuponesCondicionesView",
+                new ContainerControlledLifetimeManager());
 
             GlobalCommands.GoToDatosClienteCommand = new DelegateCommand<object>(this.GoToDatosCliente);
 

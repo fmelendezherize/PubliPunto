@@ -1,4 +1,5 @@
 ﻿using Decktra.PubliPuntoEstacion.Library;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,6 +19,17 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             this.Close();
             GlobalCommands.GoToHomeCommand.Execute(null);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(8000);
+            }).ContinueWith((q) =>
+            {
+                this.Close();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 }

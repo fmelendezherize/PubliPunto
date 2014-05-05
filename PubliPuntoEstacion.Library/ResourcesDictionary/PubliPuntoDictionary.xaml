@@ -14,6 +14,10 @@
     <SolidColorBrush  x:Key="BusquedaTecladoSecundaryColorBrush" Color="{StaticResource BusquedaTecladoSecundaryColor}"/>
     <Color x:Key="BusquedaTecladoPrimaryColor">#0dc9ed</Color>
     <SolidColorBrush  x:Key="BusquedaTecladoPrimaryColorBrush" Color="{StaticResource BusquedaTecladoPrimaryColor}"/>
+    <Color x:Key="CuponesPrimaryColor">#FFFFA901</Color>
+    <SolidColorBrush  x:Key="CuponesPrimaryColorBrush" Color="{StaticResource CuponesPrimaryColor}"/>
+    <Color x:Key="CuponesSecundaryColor">#FFFFD028</Color>
+    <SolidColorBrush  x:Key="CuponesSecundaryColorBrush" Color="{StaticResource CuponesSecundaryColor}"/>
 
     <FontFamily x:Key="CaviarFontStyle">../Resources/#Caviar Dreams</FontFamily>
     
@@ -105,5 +109,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="ButtonAtrasStyle" TargetType="Button">
+        <Setter Property="Height" Value="47"></Setter>
+        <Setter Property="Width" Value="139"></Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="BorderThickness" Value="0" />
     </Style>
 </ResourceDictionary>

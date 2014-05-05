@@ -4,13 +4,14 @@ using Microsoft.Practices.Unity;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 {
     /// <summary>
     /// Interaction logic for CuponesLoginView.xaml
     /// </summary>
-    public partial class CuponesLoginView : UserControl
+    public partial class CuponesLoginView : UserControl, INavigationAware
     {
         [Dependency]
         public IRegionManager RegionManager { get; set; }
@@ -18,28 +19,93 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
+        private Control PreviousTextBox;
+
         public CuponesLoginView()
         {
             InitializeComponent();
         }
 
-        private void ButtonEnviar_Click(object sender, RoutedEventArgs e)
+        private void ButtonReclamarCuponPorPin_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.TextBoxEmail.Text))
+            if ((!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text)) &
+                (!String.IsNullOrEmpty(this.TextBoxPIN.Password)))
             {
-                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-                errorWnd.OnNavigatedTo("ErrorLogin");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.ShowDialog();
+                this.ReclamarCupon();
                 return;
             }
 
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesAutorizadoView", UriKind.Relative));
+            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            errorWnd.OnNavigatedTo("ErrorLogin");
+            errorWnd.Owner = Application.Current.MainWindow;
+            errorWnd.ShowDialog();
         }
 
         private void TextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as Control;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWrite(this.PreviousTextBox);
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            if ((navigationContext.Uri.OriginalString != "CuponesAutorizadoView") &
+                (navigationContext.Uri.OriginalString != "CuponesLoginView") &
+                (navigationContext.Uri.OriginalString != "CuponesRegistroView"))
+            {
+                navigationContext.NavigationService.Region.Context = null;
+                return;
+            }
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            this.DataContext = navigationContext.NavigationService.Region.Context;
+
+            this.TextBoxCedulaIdentidad.Clear();
+            this.TextBoxPIN.Clear();
+
+            this.TextBoxNewCedulaIdentidad.Clear();
+            this.TextBoxNewEmail.Clear();
+            this.TextBoxNewNombreApellido.Clear();
+
+            this.TextBox_GotFocus(this.TextBoxCedulaIdentidad, null);
+        }
+
+        private void ButtonReclamarCuponPorFormulario_Click(object sender, RoutedEventArgs e)
+        {
+            if ((!String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) &
+                (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
+                (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
+            {
+                this.ReclamarCupon();
+                return;
+            }
+
+            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            errorWnd.OnNavigatedTo("ErrorFormularioLibre");
+            errorWnd.Owner = Application.Current.MainWindow;
+            errorWnd.ShowDialog();
+        }
+
+        private void ReclamarCupon()
+        {
+            var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
+            processWnd.Owner = Application.Current.MainWindow;
+            processWnd.ShowDialog();
+
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesAutorizadoView", UriKind.Relative));
         }
     }
 }

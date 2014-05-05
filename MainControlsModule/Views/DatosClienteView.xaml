@@ -45,13 +45,13 @@
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
-        <Style x:Key="PanelCuponesStyle" TargetType="StackPanel">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding EnteComercial.ListOfPromocions.Count}" Value="0">
-                    <Setter Property="Visibility" Value="Collapsed"></Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+		<Style x:Key="PanelCuponesStyle" TargetType="StackPanel">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding EnteComercial.ListOfPromocions.Count}" Value="0">
+					<Setter Property="Visibility" Value="Collapsed"></Setter>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
 	</UserControl.Resources>
 	<UserControl.DataContext>
 		<viewModels:DatosClienteViewModel/>
@@ -109,21 +109,22 @@
 				</StackPanel>
 				<!-- Columna Cupon -->
 				<StackPanel Grid.Column="1">
-                    <StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}" Margin="10,0">
-					    <TextBlock TextWrapping="Wrap" Text="Cupones" Style="{StaticResource H1Style}"  Margin="0,0,0,40"/>
-					    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,40"
-                                   Text="Para poder ver los cupones disponibles seleccione el botón de reclamar cupón."/>
-					    <Button Name="ButtonReclamarCupon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" 
-							    Style="{DynamicResource TwoColorButton}" Height="56" Background="#FFFFA901" BorderBrush="#FFFFD028"
-							    Click="ButtonReclamarCupon_Click">
-						    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
-							    <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>
-							    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333"
-									       Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Reclamar cupón" Width="131.667" Height="56" Margin="18,0,0,0"/>
-						    </StackPanel>
-					    </Button>
-                    </StackPanel>
-                </StackPanel>
+					<StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}" Margin="10,0">
+						<TextBlock TextWrapping="Wrap" Text="Cupones" Style="{StaticResource H1Style}"  Margin="0,0,0,40"/>
+						<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,40"
+								   Text="Para poder ver los cupones disponibles seleccione el botón de reclamar cupón."/>
+						<Button Name="ButtonReclamarCupon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" 
+								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource CuponesPrimaryColorBrush}" 
+                                BorderBrush="{DynamicResource CuponesSecundaryColorBrush}"
+								Click="ButtonReclamarCupon_Click">
+							<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
+								<Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>
+								<TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333"
+										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Reclamar cupón" Width="131.667" Height="56" Margin="18,0,0,0"/>
+							</StackPanel>
+						</Button>
+					</StackPanel>
+				</StackPanel>
 			</Grid>
 		</DockPanel>
 	</Grid>

@@ -102,11 +102,17 @@
     <Compile Include="Views\CuponesView\CuponesAutorizadoView.xaml.cs">
       <DependentUpon>CuponesAutorizadoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CuponesView\CuponesCondicionesView.xaml.cs">
+      <DependentUpon>CuponesCondicionesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CuponesView\CuponesInicioView.xaml.cs">
       <DependentUpon>CuponesInicioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CuponesView\CuponesLoginView.xaml.cs">
       <DependentUpon>CuponesLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CuponesView\CuponesRegistroView.xaml.cs">
+      <DependentUpon>CuponesRegistroView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CuponesView\CuponSuccessWindow.xaml.cs">
       <DependentUpon>CuponSuccessWindow.xaml</DependentUpon>
@@ -190,11 +196,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CuponesView\CuponesCondicionesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CuponesView\CuponesInicioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CuponesView\CuponesLoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CuponesView\CuponesRegistroView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
