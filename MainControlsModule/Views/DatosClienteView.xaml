@@ -13,7 +13,35 @@
 		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<local:RutaVideoConverter x:Key="RutaVideoConverter" />
 
-		<Style x:Key="H1Style" TargetType="TextBlock">
+        <Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
+            <Setter Property="Height" Value="47"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,1,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="1,0,20,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="H1Style" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
 			<Setter Property="FontSize" Value="50"/>
 		</Style>
@@ -58,7 +86,21 @@
 	</UserControl.DataContext>
 
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-		<DockPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
+            <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"/>
+            <TextBlock Margin="10,10,0,0" Width="774" Style="{DynamicResource PubliPuntoContentHeaderText}" 
+                       Text="{Binding EnteComercial.Nombre}"/>
+            <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <DockPanel Grid.Row="1">
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
 			<Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
 				<Image x:Name="ImageEnteComercial" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  

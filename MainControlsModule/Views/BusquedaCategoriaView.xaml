@@ -89,12 +89,11 @@
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<DockPanel>
 			<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeaderBusquedaCategoria}">
-                <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"
-                       Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png"/>
+				<Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"
+					   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_cat.png"/>
 				<TextBlock Name="TextBlockTitulo" Style="{DynamicResource PubliPuntoContentHeaderText}"
 						   Margin="10,10,0,0" Width="774">Búsqueda por categoría</TextBlock>
-                <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
-						Command="{Binding BackCommand}">
+				<Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
 					<Button.Background>
 						<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
 					</Button.Background>
@@ -107,8 +106,8 @@
 							  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
 							  ItemsSource="{Binding CategoriaActual}"
 							  MouseMove="ListViewCategorias_MouseMove"
-                              PreviewMouseDown="ListViewCategorias_MouseDown"
-                              MouseUp="ListViewCategorias_MouseUp">
+							  PreviewMouseDown="ListViewCategorias_MouseDown"
+							  MouseUp="ListViewCategorias_MouseUp">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
@@ -120,32 +119,32 @@
 					</ListView>
 				</ScrollViewer>
 				<WrapPanel Orientation="Vertical">
-					<Button Content="A" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="A"/>
-					<Button Content="B" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="B"/>
-					<Button Content="C" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="C"/>
-					<Button Content="D" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="D"/>
-					<Button Content="E" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="E"/>
-					<Button Content="F" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="F"/>
-					<Button Content="G" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="G"/>
-					<Button Content="H" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="H"/>
-					<Button Content="I" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="I"/>
-					<Button Content="J" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="J"/>
-					<Button Content="K" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="K"/>
-					<Button Content="L" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="L"/>
-					<Button Content="M" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="M"/>
-					<Button Content="N" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="N"/>
-					<Button Content="O" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="O"/>
-					<Button Content="P" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="P"/>
-					<Button Content="Q" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Q"/>
-					<Button Content="R" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="R"/>
-					<Button Content="S" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="S"/>
-					<Button Content="T" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="T"/>
-					<Button Content="U" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="U"/>
-					<Button Content="V" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="V"/>
-					<Button Content="W" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="W"/>
-					<Button Content="X" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="X"/>
-					<Button Content="Y" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Y"/>
-					<Button Content="Z" Style="{DynamicResource IndiceButtonStyle}" Command="{Binding ShowCategoriasByLetterCommand}" CommandParameter="Z"/>
+					<Button Content="A" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="B" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="C" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="D" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="E" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="F" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="G" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="H" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="I" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="J" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="K" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="L" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="M" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="N" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="O" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="P" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="Q" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="R" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="S" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="T" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="U" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="V" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="W" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="X" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="Y" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="Z" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
 				</WrapPanel>
 			</StackPanel>
 		</DockPanel>

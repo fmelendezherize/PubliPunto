@@ -29,8 +29,65 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             }
         }
 
-        public void SetControlToWrite(Control control)
+        public void SetControlToWriteAlphaNumeric(Control control)
         {
+            this.StackPanelAlpha1.Visibility = Visibility.Visible;
+            this.StackPanelAlpha2.Visibility = Visibility.Visible;
+            this.StackPanelAlpha3.Visibility = Visibility.Visible;
+            this.StackPanelAlpha4.Visibility = Visibility.Visible;
+
+            this.WrapPanelNumeric.Width = double.NaN;
+            Style style = this.FindResource("KeyNumericButtonStyle") as Style;
+            Style newStyle = new Style();
+            newStyle.TargetType = typeof(Button);
+            newStyle.BasedOn = style;
+            string buttonSize = "90";
+            newStyle.Setters.Add(new Setter(Button.WidthProperty, double.Parse(buttonSize)));
+            newStyle.Setters.Add(new Setter(Button.HeightProperty, double.Parse(buttonSize)));
+
+            foreach (var item in this.WrapPanelNumeric.Children)
+            {
+                Button button = item as Button;
+                if (button == null) continue;
+                button.Style = newStyle;
+            }
+            this.ButtonZero.Height = double.Parse(buttonSize);
+            this.ButtonZero.Width = double.Parse(buttonSize);
+
+            this.ButtonDeleteNumeric.Visibility = Visibility.Collapsed;
+
+            this._activeControl = control;
+        }
+
+        public void SetControlToWriteNumeric(Control control)
+        {
+            this.StackPanelAlpha1.Visibility = Visibility.Hidden;
+            this.StackPanelAlpha2.Visibility = Visibility.Hidden;
+            this.StackPanelAlpha3.Visibility = Visibility.Hidden;
+            this.StackPanelAlpha4.Visibility = Visibility.Hidden;
+
+            this.WrapPanelNumeric.Width = 380;
+            Style style = this.FindResource("KeyNumericButtonStyle") as Style;
+            Style newStyle = new Style();
+            newStyle.TargetType = typeof(Button);
+            newStyle.BasedOn = style;
+            string buttonSize = "114";
+            newStyle.Setters.Add(new Setter(Button.WidthProperty, double.Parse(buttonSize)));
+            newStyle.Setters.Add(new Setter(Button.HeightProperty, double.Parse(buttonSize)));
+
+            foreach (var item in this.WrapPanelNumeric.Children)
+            {
+                Button button = item as Button;
+                if (button == null) continue;
+                button.Style = newStyle;
+            }
+            this.ButtonZero.Width = 235;
+            this.ButtonZero.Height = double.Parse(buttonSize);
+
+            this.ButtonDeleteNumeric.Visibility = Visibility.Visible;
+            this.ButtonDeleteNumeric.Width = double.Parse(buttonSize);
+            this.ButtonDeleteNumeric.Height = double.Parse(buttonSize);
+
             this._activeControl = control;
         }
 

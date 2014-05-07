@@ -116,12 +116,12 @@
                                            Text="Puedes reclamar directamente tu cupón con tu:"/>
                                 <WrapPanel Orientation="Vertical">
                                     <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
-                                    <TextBox x:Name="TextBoxCedulaIdentidad" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                                    <TextBox x:Name="TextBoxCedulaIdentidad" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"></TextBox>
                                 </WrapPanel>
                                 <WrapPanel Orientation="Vertical">
                                     <Label Style="{StaticResource LabelFormulario}">PIN de Cupón Express:</Label>
                                     <PasswordBox  x:Name="TextBoxPIN" Style="{StaticResource PassWordFormularioStyle}"
-                                                  PasswordChar="*" GotFocus="TextBox_GotFocus"></PasswordBox>
+                                                  PasswordChar="*" GotFocus="TextBoxNumeric_GotFocus"></PasswordBox>
                                 </WrapPanel>
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
                                     <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" Content="Reclamar Cupón"
@@ -135,15 +135,15 @@
                                            Text="Si no estas registrado en Cupón Express puedes reclamar tu cupón a través de este kiosko, llenando los siguientes datos:"/>
                                 <WrapPanel>
                                     <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
-                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
-                                    <TextBox Name="TextBoxNewCedulaIdentidad" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                                    <TextBox Name="TextBoxNewCedulaIdentidad" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"></TextBox>
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Label Style="{StaticResource LabelFormulario}">Correo Electrónico:</Label>
-                                    <TextBox Name="TextBoxNewEmail" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                                    <TextBox Name="TextBoxNewEmail" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
                                 </WrapPanel>
                                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Button Name="ButtonRegistrarUsuario" Style="{StaticResource ButtonReclamarCuponStyle}"

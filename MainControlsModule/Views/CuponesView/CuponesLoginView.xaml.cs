@@ -41,7 +41,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             errorWnd.ShowDialog();
         }
 
-        private void TextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             if (PreviousTextBox != null)
             {
@@ -49,7 +49,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             }
             this.PreviousTextBox = sender as Control;
             this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
-            this.touchKeyboard.SetControlToWrite(this.PreviousTextBox);
+            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
+        }
+
+        private void TextBoxNumeric_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as Control;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -79,7 +90,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxNewEmail.Clear();
             this.TextBoxNewNombreApellido.Clear();
 
-            this.TextBox_GotFocus(this.TextBoxCedulaIdentidad, null);
+            this.TextBoxAlpha_GotFocus(this.TextBoxNewNombreApellido, null);
         }
 
         private void ButtonReclamarCuponPorFormulario_Click(object sender, RoutedEventArgs e)

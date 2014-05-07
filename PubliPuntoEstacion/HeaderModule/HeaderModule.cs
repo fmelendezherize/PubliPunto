@@ -1,6 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.HeaderModule.Views;
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.Library;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -41,14 +42,22 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule
         {
             this.HomeTimer.Stop();
             this.HomeTimer.Start();
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("BusquedaTecladoView", UriKind.Relative));
+
+            UriQuery query = new UriQuery();
+            query.Add("reset", "true");
+            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
         }
 
         private void GoToBusquedaCategoria(object obj)
         {
             this.HomeTimer.Stop();
             this.HomeTimer.Start();
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("BusquedaCategoriaView", UriKind.Relative));
+
+            UriQuery query = new UriQuery();
+            query.Add("reset", "true");
+            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("BusquedaCategoriaView" + query.ToString(), UriKind.Relative));
         }
 
         private void GoToHome(object obj)

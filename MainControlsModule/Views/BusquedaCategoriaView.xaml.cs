@@ -1,7 +1,9 @@
-﻿using Decktra.PubliPuntoEstacion.Library;
+﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,6 +15,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     /// </summary>
     public partial class BusquedaCategoriaView : UserControl, INavigationAware
     {
+        [Dependency]
+        public IRegionManager RegionManager { get; set; }
+
+        private IRegionNavigationService navigationService;
+
         public BusquedaCategoriaView()
         {
             this.InitializeComponent();
@@ -30,7 +37,28 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            ((BusquedaCategoriaViewModel)this.DataContext).Init();
+            this.navigationService = navigationContext.NavigationService;
+
+            if (!String.IsNullOrEmpty(navigationContext.Parameters["subCategoria"]))
+            {
+                ((BusquedaCategoriaViewModel)this.DataContext).ShowEnteComercialsCommand.Execute(navigationContext.Parameters["subCategoria"]);
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(navigationContext.Parameters["criterioLetter"]))
+            {
+                ((BusquedaCategoriaViewModel)this.DataContext).ShowCategoriasByLetterCommand.Execute(navigationContext.Parameters["criterioLetter"]);
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(navigationContext.Parameters["reset"]))
+            {
+                if (navigationContext.Parameters["reset"] == "true")
+                {
+                    ((BusquedaCategoriaViewModel)this.DataContext).Init();
+                    return;
+                }
+            }
         }
 
         private void CategoryItemControl_OnOnListViewCategoriaMouseClick(object sender, EventArgs e)
@@ -42,12 +70,35 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             {
                 if (selectedSubCategoria.TipoSubCategoria == TipoSubCategoria.RamoComercial)
                 {
-                    ((BusquedaCategoriaViewModel)this.DataContext).ShowEnteComercialsCommand.Execute(selectedSubCategoria.Id);
+                    UriQuery query = new UriQuery();
+                    query.Add("subCategoria", selectedSubCategoria.Id.ToString());
+                    this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                        new Uri("BusquedaCategoriaView" + query.ToString(), UriKind.Relative));
                 }
                 else
                 {
-                    GlobalCommands.GoToDatosClienteCommand.Execute(selectedSubCategoria.Id);
+                    UriQuery query = new UriQuery();
+                    query.Add("ID", selectedSubCategoria.Id.ToString());
+                    this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                        new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));
                 }
+            }
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            UriQuery query = new UriQuery();
+            query.Add("criterioLetter", button.Content.ToString());
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("BusquedaCategoriaView" + query.ToString(), UriKind.Relative));
+        }
+
+        private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (navigationService.Journal.CanGoBack)
+            {
+                navigationService.Journal.GoBack();
             }
         }
 

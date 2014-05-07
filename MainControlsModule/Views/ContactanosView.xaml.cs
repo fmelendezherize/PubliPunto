@@ -24,7 +24,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
             this.PreviousTextBox = sender as TextBox;
             this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
-            this.touchKeyboard.SetControlToWrite(this.PreviousTextBox);
+            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
         }
 
         private void TextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)

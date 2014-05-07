@@ -1,9 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
-using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -18,9 +16,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public ObservableCollection<Categoria> CategoriaActual { get; set; }
         public ICommand ShowCategoriasByLetterCommand { get; set; }
         public ICommand ShowEnteComercialsCommand { get; set; }
-        public ICommand BackCommand { get; set; }
-
-        private List<Categoria> _categoriaAnterior;
 
         public BusquedaCategoriaViewModel()
         {
@@ -29,51 +24,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
             ShowCategoriasByLetterCommand = new DelegateCommand<string>(this.ShowCategoriasByLetter);
             ShowEnteComercialsCommand = new DelegateCommand<object>(this.ShowEnteComercials);
-            BackCommand = new DelegateCommand<object>(this.Back);
 
             CategoriaActual = new ObservableCollection<Categoria>();
         }
 
         public void Init()
         {
-            this._categoriaAnterior = null;
             CategoriaActual.Clear();
             this.ShowCategoriasAll();
         }
 
-        public bool CanExecuteBack(object arg)
-        {
-            if (this._categoriaAnterior == null) return false;
-            return true;
-        }
-
-        public void Back(object arg)
-        {
-            if (this._categoriaAnterior != null)
-            {
-                CategoriaActual.Clear();
-                foreach (Categoria item in this._categoriaAnterior)
-                {
-                    CategoriaActual.Add(item);
-                }
-                this._categoriaAnterior = null;
-            }
-            else
-            {
-                GlobalCommands.GoToHomeCommand.Execute(null);
-            }
-        }
-
         private void ShowCategoriasByLetter(string letter)
         {
-            if (CategoriaActual.Count == 0)
-            {
-                this._categoriaAnterior = null;
-            }
-            else
-            {
-                this._categoriaAnterior = new List<Categoria>(CategoriaActual.ToList());
-            }
             CategoriaActual.Clear();
             AddCategoriaToList(letter);
         }
@@ -126,16 +88,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                                            }).ToList();
 
             if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
-            //CategoriaActual.Add(newCategoria);
         }
 
         public void ShowEnteComercials(object idRamoComercial)
         {
-            var ramoComercial = _ramoComercialRepository.FindBy((int)idRamoComercial);
+            var ramoComercial = _ramoComercialRepository.FindBy(int.Parse(idRamoComercial.ToString()));
             var newCategoria = new Categoria
             {
                 NombreCategoria = ramoComercial.Nombre,
-                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy((int)idRamoComercial)
+                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy(int.Parse(idRamoComercial.ToString()))
                                   select new SubCategoria()
                                   {
                                       Id = q.Id,
@@ -145,9 +106,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                                   }).ToList()
             };
 
-            this._categoriaAnterior = new List<Categoria>(CategoriaActual.ToList());
             CategoriaActual.Clear();
-
             if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
             RaisePropertyChanged(() => this.CategoriaActual);
         }

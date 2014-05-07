@@ -33,7 +33,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             }
             this.PreviousTextBox = sender as Control;
             this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
-            this.touchKeyboard.SetControlToWrite(this.PreviousTextBox);
+            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
         }
 
         private void ButtonRegistro_Click(object sender, System.Windows.RoutedEventArgs e)

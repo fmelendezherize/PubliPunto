@@ -1,8 +1,5 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
-using Decktra.PubliPuntoEstacion.Library;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Views;
-using Microsoft.Practices.Prism;
-using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
@@ -25,6 +22,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
         {
             this._container.RegisterType<Object, HomeControlsView>("HomeControlsView",
                 new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, HomeControlsView>("NuestrosClientesView",
+                new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, HomeControlsView>("OfertasView",
+                new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, BusquedaCategoriaView>("BusquedaCategoriaView",
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, BusquedaTecladoView>("BusquedaTecladoView",
@@ -46,17 +47,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
             this._container.RegisterType<Object, Views.CuponesView.CuponesCondicionesView>("CuponesCondicionesView",
                 new ContainerControlledLifetimeManager());
 
-            GlobalCommands.GoToDatosClienteCommand = new DelegateCommand<object>(this.GoToDatosCliente);
-
             this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("HomeControlsView", UriKind.Relative));
-        }
-
-        private void GoToDatosCliente(object obj)
-        {
-            UriQuery uri = new UriQuery();
-            uri.Add("ID", obj.ToString());
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("DatosClienteView" + uri.ToString(), UriKind.Relative));
+            this._regionManager.AddToRegion(RegionNames.REGION_NUESTROSCLIENTES_AREA, this._container.Resolve<NuestrosClientesView>());
+            this._regionManager.AddToRegion(RegionNames.REGION_OFERTAS_AREA, this._container.Resolve<OfertasView>());
         }
     }
 }

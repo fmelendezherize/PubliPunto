@@ -87,10 +87,10 @@
 					<StackPanel DockPanel.Dock="Top" Height="692">
 						<WrapPanel Height="70">
 							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
-							<Button Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174"
-                                    Command="{Binding SearchEnteComercialsCommand}"
-                                    CommandParameter="{Binding ElementName=TextBoxSearch, Path=Text}">
-								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" Width="50" Height="50" HorizontalAlignment="Center"/>
+							<Button Name="ButtonSearch" Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174"
+                                    Click="ButtonSearch_Click">
+								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" 
+                                       Width="50" Height="50" HorizontalAlignment="Center"/>
 							</Button>
 						</WrapPanel>
                         <ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">

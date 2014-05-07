@@ -1,7 +1,10 @@
-﻿using Decktra.PubliPuntoEstacion.Library;
+﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
+using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,10 +15,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     /// </summary>
     public partial class BusquedaTecladoView : UserControl, INavigationAware
     {
+        [Dependency]
+        public IRegionManager RegionManager { get; set; }
+
+        private IRegionNavigationService navigationService;
+
         public BusquedaTecladoView()
         {
             this.InitializeComponent();
-            this.touchKeyboard.SetControlToWrite(this.TextBoxSearch);
+            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.TextBoxSearch);
             this.touchKeyboard.OnButtonClick += touchKeyboard_OnButtonClick;
         }
 
@@ -23,9 +31,21 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                ((BusquedaTecladoViewModel)this.DataContext).SearchEnteComercialsCommand.Execute(this.TextBoxSearch.Text);
+                UriQuery query = new UriQuery();
+                query.Add("criterio", this.TextBoxSearch.Text);
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
             }
         }
+
+        private void ButtonSearch_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UriQuery query = new UriQuery();
+            query.Add("criterio", this.TextBoxSearch.Text);
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
+        }
+
 
         private void CategoryItemControl_OnListViewCategoriaMouseClick(object sender, System.EventArgs e)
         {
@@ -34,7 +54,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             var selectedSubCategoria = sender as SubCategoria;
             if (selectedSubCategoria != null)
             {
-                GlobalCommands.GoToDatosClienteCommand.Execute(selectedSubCategoria.Id);
+                UriQuery query = new UriQuery();
+                query.Add("ID", selectedSubCategoria.Id.ToString());
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));
             }
         }
 
@@ -50,14 +73,33 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.TextBoxSearch.Clear();
-            ((BusquedaTecladoViewModel)this.DataContext).Init();
+            this.navigationService = navigationContext.NavigationService;
+
+            if (!String.IsNullOrEmpty(navigationContext.Parameters["criterio"]))
+            {
+                this.TextBoxSearch.Text = navigationContext.Parameters["criterio"];
+                ((BusquedaTecladoViewModel)this.DataContext).SearchEnteComercialsCommand.
+                    Execute(navigationContext.Parameters["criterio"]);
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(navigationContext.Parameters["reset"]))
+            {
+                if (navigationContext.Parameters["reset"] == "true")
+                {
+                    this.TextBoxSearch.Clear();
+                    ((BusquedaTecladoViewModel)this.DataContext).Init();
+                    return;
+                }
+            }
         }
 
         private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.TextBoxSearch.Clear();
-            ((BusquedaTecladoViewModel)this.DataContext).BackCommand.Execute(null);
+            if (navigationService.Journal.CanGoBack)
+            {
+                navigationService.Journal.GoBack();
+            }
         }
 
         private bool IsPressed = false;
