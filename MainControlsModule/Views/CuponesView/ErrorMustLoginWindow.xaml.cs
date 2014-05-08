@@ -1,9 +1,6 @@
-﻿using Decktra.PubliPuntoEstacion.Interfaces;
-using Microsoft.Practices.Prism.Regions;
+﻿using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
-using System;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 {
@@ -18,13 +15,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public ErrorMustLoginWindow()
         {
             InitializeComponent();
-        }
-
-        private void OnWindow_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
         }
 
         public void OnNavigatedTo(string accion)

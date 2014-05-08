@@ -5,8 +5,7 @@
 		WindowStartupLocation="CenterOwner"
 		WindowStyle="None"
 		MaxHeight="500" MinHeight="500"
-		MaxWidth="600" MinWidth="600"
-        MouseDown="OnWindow_MouseUp">
+		MaxWidth="600" MinWidth="600">
 	<Window.Resources>
 		<Style x:Key="H1Style" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
@@ -20,7 +19,7 @@
 		</Style>
 	</Window.Resources>
     <Grid Margin="0,0,0,-20">
-        <StackPanel Margin="20,20,20,10" MouseDown="OnWindow_MouseUp">
+        <StackPanel Margin="20,20,20,10">
 			<TextBlock Name="TextBlockTitulo" Style="{StaticResource H1Style}"></TextBlock>
 			<Line X1="0" X2="550" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" />
 			<TextBlock Name="TextBlockMensaje" Style="{StaticResource H2Style}" Margin="0,20"></TextBlock>

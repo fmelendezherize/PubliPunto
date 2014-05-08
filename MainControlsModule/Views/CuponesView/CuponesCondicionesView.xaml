@@ -98,7 +98,7 @@
             <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
                            Text="Reclamar Cupón" />
             <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
-						Command="{Binding BackCommand}">
+					Name="ButtonBack" Click="ButtonBack_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
                 </Button.Background>

@@ -19,6 +19,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
+        private IRegionNavigationService navigationService;
+
         private Control PreviousTextBox;
 
         public CuponesLoginView()
@@ -38,7 +40,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
             errorWnd.OnNavigatedTo("ErrorLogin");
             errorWnd.Owner = Application.Current.MainWindow;
+            errorWnd.MouseDown += errorWnd_MouseDown;
             errorWnd.ShowDialog();
+        }
+
+        private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Window wnd = sender as Window;
+            wnd.Close();
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesLoginView", UriKind.Relative));
         }
 
         private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -65,6 +76,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
+            if (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView")
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -72,7 +88,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             if ((navigationContext.Uri.OriginalString != "CuponesAutorizadoView") &
                 (navigationContext.Uri.OriginalString != "CuponesLoginView") &
-                (navigationContext.Uri.OriginalString != "CuponesRegistroView"))
+                (navigationContext.Uri.OriginalString != "CuponesInicioView"))
             {
                 navigationContext.NavigationService.Region.Context = null;
                 return;
@@ -81,6 +97,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            this.navigationService = navigationContext.NavigationService;
             this.DataContext = navigationContext.NavigationService.Region.Context;
 
             this.TextBoxCedulaIdentidad.Clear();
@@ -106,6 +123,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
             errorWnd.OnNavigatedTo("ErrorFormularioLibre");
             errorWnd.Owner = Application.Current.MainWindow;
+            errorWnd.MouseDown += errorWnd_MouseDown;
             errorWnd.ShowDialog();
         }
 
@@ -117,6 +135,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesAutorizadoView", UriKind.Relative));
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (navigationService.Journal.CanGoBack)
+            {
+                navigationService.Journal.GoBack();
+            }
         }
     }
 }

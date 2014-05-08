@@ -18,6 +18,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         [Dependency]
         public IUnityContainer Container { get; set; }
 
+        private IRegionNavigationService navigationService;
+
         public CuponesInicioView()
         {
             InitializeComponent();
@@ -47,23 +49,32 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            if ((navigationContext.Uri.OriginalString != "CuponesLoginView") &
-                (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
-            {
-                navigationContext.NavigationService.Region.Context = null;
-                return;
-            }
+            //if ((navigationContext.Uri.OriginalString != "CuponesLoginView") &
+            //    (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
+            //{
+            //    navigationContext.NavigationService.Region.Context = null;
+            //    return;
+            //}
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.DataContext = navigationContext.NavigationService.Region.Context;
+            this.navigationService = navigationContext.NavigationService;
         }
 
         private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesCondicionesView", UriKind.Relative));
+        }
+
+        private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (navigationService.Journal.CanGoBack)
+            {
+                navigationService.Journal.GoBack();
+            }
         }
     }
 }

@@ -126,8 +126,7 @@
             <StackPanel Orientation="Horizontal">
                 <Image Name="ImageFacebook" HorizontalAlignment="Left" Width="115" Height="115" Margin="15,0"
                        Source="pack://application:,,,/Resources/logo.png" Stretch="UniformToFill"/>
-                <TextBlock Width="784" Text="Hola $NOMBRE_USUARIO, ya tu cupón esta disponible. A continuación lee toda la información que te damos acerca de este, anota el número y recuerda que esta pantalla se cerrara en $Contador_Tiempo segundos." 
-                           Style="{StaticResource H3Style}" Margin="20,20"></TextBlock>
+                    <TextBlock Name="TextBlockTitulo" Style="{StaticResource H3Style}" Margin="20,20" Height="128" Width="773"></TextBlock>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="3">

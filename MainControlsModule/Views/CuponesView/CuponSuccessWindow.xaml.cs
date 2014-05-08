@@ -1,5 +1,4 @@
-﻿using Decktra.PubliPuntoEstacion.Library;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,7 +17,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-            GlobalCommands.GoToHomeCommand.Execute(null);
+            //GlobalCommands.GoToHomeCommand.Execute(null);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
