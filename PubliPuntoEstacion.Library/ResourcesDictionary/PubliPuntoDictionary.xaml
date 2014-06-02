@@ -18,6 +18,10 @@
     <SolidColorBrush  x:Key="CuponesPrimaryColorBrush" Color="{StaticResource CuponesPrimaryColor}"/>
     <Color x:Key="CuponesSecundaryColor">#FFFFD028</Color>
     <SolidColorBrush  x:Key="CuponesSecundaryColorBrush" Color="{StaticResource CuponesSecundaryColor}"/>
+    <Color x:Key="ContactanosSecundaryColor">#68729d</Color>
+    <SolidColorBrush  x:Key="ContactanosSecundaryColorBrush" Color="{StaticResource ContactanosSecundaryColor}"/>
+    <Color x:Key="ContactanosPrimaryColor">#404767</Color>
+    <SolidColorBrush  x:Key="ContactanosPrimaryColorBrush" Color="{StaticResource ContactanosPrimaryColor}"/>
 
     <FontFamily x:Key="CaviarFontStyle">../Resources/#Caviar Dreams</FontFamily>
     

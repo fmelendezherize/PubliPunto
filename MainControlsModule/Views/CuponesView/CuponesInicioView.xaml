@@ -93,7 +93,7 @@
             <Image Width="35" Height="35" Margin="6" Stretch="UniformToFill" 
                    Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
             <TextBlock Name="TextBlockTitulo" Style="{DynamicResource PubliPuntoContentHeaderText}"
-						   Margin="10,10,0,0" Width="774">Reclamar Cupón</TextBlock>
+						   Margin="10,10,0,0" Width="774">Servicio de Cupones</TextBlock>
             <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
 					Name="ButtonBack" Click="ButtonBack_Click">
                 <Button.Background>
@@ -122,7 +122,7 @@
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Row="2">
-			<TextBlock Text="Seleccione su Cupón" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
+			<TextBlock Text="Selecciona tu cupón" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
 			<Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 			<StackPanel>
 				<StackPanel Style="{StaticResource CuponStyle}" DataContext="{Binding EnteComercial.ListOfPromocions[0]}">
@@ -139,7 +139,7 @@
 							   Text="Ver condiciones" MouseDown="TextBlockVerCondiciones_MouseDown"/>
                     <TextBlock Name="TextBlockReclamarCupon" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Reclamar cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
 				</StackPanel>
 				<StackPanel Style="{StaticResource CuponStyle}" DataContext="{Binding EnteComercial.ListOfPromocions[1]}">
 					<Canvas Style="{StaticResource CuponImageStyle}">
@@ -155,7 +155,7 @@
 							   Text="Ver condiciones" MouseDown="TextBlockVerCondiciones_MouseDown"/>
                     <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Reclamar cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
                 </StackPanel>
 				<StackPanel Style="{StaticResource CuponStyle}" DataContext="{Binding EnteComercial.ListOfPromocions[2]}">
 					<Canvas Style="{StaticResource CuponImageStyle}">
@@ -171,7 +171,7 @@
 							   Text="Ver condiciones" MouseDown="TextBlockVerCondiciones_MouseDown"/>
                     <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Reclamar cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
                 </StackPanel>
 				<StackPanel Style="{StaticResource CuponStyle}" DataContext="{Binding EnteComercial.ListOfPromocions[3]}">
 					<Canvas Style="{StaticResource CuponImageStyle}">
@@ -187,7 +187,7 @@
 							   Text="Ver condiciones" MouseDown="TextBlockVerCondiciones_MouseDown"/>
                     <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Reclamar cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
                 </StackPanel>
 				<StackPanel DataContext="{Binding EnteComercial.ListOfPromocions[4]}" Style="{StaticResource CuponStyle}">
 					<Canvas Style="{StaticResource CuponImageStyle}">
@@ -203,7 +203,7 @@
 							   Text="Ver condiciones" MouseDown="TextBlockVerCondiciones_MouseDown"/>
                     <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Reclamar cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseUp"/>
                 </StackPanel>
 			</StackPanel>
 		</StackPanel>

@@ -13,35 +13,35 @@
 		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<local:RutaVideoConverter x:Key="RutaVideoConverter" />
 
-        <Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
-            <Setter Property="Height" Value="47"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <DrawingBrush>
-                        <DrawingBrush.Drawing>
-                            <DrawingGroup>
-                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
-                                    <GeometryDrawing.Geometry>
-                                        <GeometryGroup>
-                                            <RectangleGeometry Rect="0,0,1,1" />
-                                        </GeometryGroup>
-                                    </GeometryDrawing.Geometry>
-                                </GeometryDrawing>
-                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
-                                    <GeometryDrawing.Geometry>
-                                        <GeometryGroup>
-                                            <RectangleGeometry Rect="1,0,20,1" />
-                                        </GeometryGroup>
-                                    </GeometryDrawing.Geometry>
-                                </GeometryDrawing>
-                            </DrawingGroup>
-                        </DrawingBrush.Drawing>
-                    </DrawingBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
+		<Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
+			<Setter Property="Height" Value="47"/>
+			<Setter Property="Background">
+				<Setter.Value>
+					<DrawingBrush>
+						<DrawingBrush.Drawing>
+							<DrawingGroup>
+								<GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+									<GeometryDrawing.Geometry>
+										<GeometryGroup>
+											<RectangleGeometry Rect="0,0,1,1" />
+										</GeometryGroup>
+									</GeometryDrawing.Geometry>
+								</GeometryDrawing>
+								<GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+									<GeometryDrawing.Geometry>
+										<GeometryGroup>
+											<RectangleGeometry Rect="1,0,20,1" />
+										</GeometryGroup>
+									</GeometryDrawing.Geometry>
+								</GeometryDrawing>
+							</DrawingGroup>
+						</DrawingBrush.Drawing>
+					</DrawingBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-        <Style x:Key="H1Style" TargetType="TextBlock">
+		<Style x:Key="H1Style" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
 			<Setter Property="FontSize" Value="50"/>
 		</Style>
@@ -86,21 +86,21 @@
 	</UserControl.DataContext>
 
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
-            <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"/>
-            <TextBlock Margin="10,10,0,0" Width="774" Style="{DynamicResource PubliPuntoContentHeaderText}" 
-                       Text="{Binding EnteComercial.Nombre}"/>
-            <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
-                </Button.Background>
-            </Button>
-        </StackPanel>
-        <DockPanel Grid.Row="1">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
+			<Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"/>
+			<TextBlock Margin="10,10,0,0" Width="774" Style="{DynamicResource PubliPuntoContentHeaderText}" 
+					   Text="{Binding EnteComercial.Nombre}"/>
+			<Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
+				<Button.Background>
+					<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+				</Button.Background>
+			</Button>
+		</StackPanel>
+		<DockPanel Grid.Row="1">
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
 			<Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
 				<Image x:Name="ImageEnteComercial" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
@@ -124,7 +124,7 @@
 					</MediaElement>
 				</Border>
 			</Canvas>
-			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890" >
+			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="950" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="571*"/>
 					<ColumnDefinition Width="319*"/>
@@ -151,18 +151,36 @@
 				</StackPanel>
 				<!-- Columna Cupon -->
 				<StackPanel Grid.Column="1">
-					<StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}" Margin="10,0">
-						<TextBlock TextWrapping="Wrap" Text="Cupones" Style="{StaticResource H1Style}"  Margin="0,0,0,40"/>
-						<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,40"
-								   Text="Para poder ver los cupones disponibles seleccione el botón de reclamar cupón."/>
-						<Button Name="ButtonReclamarCupon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" 
+                    <StackPanel Margin="10,0">
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
+                            <Run Text="¿Necesita más información? Presiona el botón "/>
+                            <Run Text="contáctanos" Foreground="{DynamicResource ContactanosPrimaryColorBrush}" FontWeight="Bold"/>
+                        </TextBlock>
+                        <Button Name="ButtonContactanosCliente" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
+								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource ContactanosPrimaryColorBrush}" 
+								BorderBrush="{DynamicResource ContactanosSecundaryColorBrush}"
+								Click="ButtonContactanosCliente_Click">
+							<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
+                                <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_contactenos.png" Margin="7,0,0,0"/>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
+										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Contáctanos"  Margin="18,0,0,0"/>
+							</StackPanel>
+						</Button>
+                    </StackPanel>
+                    <StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}" Margin="10,0">
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
+                            <Run Text="Presiona el botón "/>
+                            <Run Text="cupones" FontWeight="Bold" Foreground="{DynamicResource CuponesPrimaryColorBrush}"/>
+                            <Run Text="y disfruta de nuestras ofertas."/>
+                        </TextBlock>
+                        <Button Name="ButtonReclamarCupon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
 								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource CuponesPrimaryColorBrush}" 
-                                BorderBrush="{DynamicResource CuponesSecundaryColorBrush}"
+								BorderBrush="{DynamicResource CuponesSecundaryColorBrush}"
 								Click="ButtonReclamarCupon_Click">
 							<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
 								<Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>
-								<TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333"
-										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Reclamar cupón" Width="131.667" Height="56" Margin="18,0,0,0"/>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
+										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Cupones" Margin="18,0,0,0"/>
 							</StackPanel>
 						</Button>
 					</StackPanel>

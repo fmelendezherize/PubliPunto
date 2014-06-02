@@ -1,4 +1,7 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿using Decktra.PubliPuntoEstacion.Interfaces;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
+using System;
 using System.Windows.Controls;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
@@ -9,6 +12,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
     public partial class CuponesCondicionesView : UserControl, INavigationAware
     {
         private IRegionNavigationService navigationService;
+
+        [Dependency]
+        public IRegionManager RegionManager { get; set; }
 
         public CuponesCondicionesView()
         {
@@ -46,6 +52,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             {
                 navigationService.Journal.GoBack();
             }
+        }
+
+        private void TextBlockReclamarCupon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesLoginView", UriKind.Relative));
         }
     }
 }

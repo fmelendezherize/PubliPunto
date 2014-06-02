@@ -78,12 +78,25 @@
         </Style>
         <Style x:Key="ButtonReclamarCuponStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="26" />
+            <Setter Property="FontSize" Value="22" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Background" Value="{DynamicResource CuponesPrimaryColorBrush}"/>
             <Setter Property="Height" Value="67" />
             <Setter Property="Width" Value="210" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="CuponImageStyle" TargetType="Canvas">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFD028"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CuponStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="10,10"/>
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
@@ -93,7 +106,7 @@
                 <Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
                            Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
                 <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
-                           Text="Reclamar Cupón" />
+                           Text="Servicio de Cupones" />
                 <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
                         Name="ButtonBack" Click="ButtonBack_Click">
                     <Button.Background>
@@ -109,7 +122,7 @@
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <StackPanel Margin="0,40" Width="450">
                                 <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
-                                           Text="Si estas registrado en Cupón Express través de nuestra página:"/>
+                                           Text="Si estas registrado en Cupón Express a través de nuestra página:"/>
                                 <TextBlock Width="427" Height="Auto" Style="{StaticResource H2Style}" 
                                            Foreground="{DynamicResource ColorHeaderBrush}" Text="www.cuponexpress.com.ve" 
                                            FontStyle="Italic" TextDecorations="{x:Null}" FontWeight="Bold" FontSize="30px"/>
@@ -124,32 +137,35 @@
                                     <PasswordBox  x:Name="TextBoxPIN" Style="{StaticResource PassWordFormularioStyle}"
                                                   PasswordChar="*" GotFocus="TextBoxNumeric_GotFocus"></PasswordBox>
                                 </WrapPanel>
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" Content="Reclamar Cupón"
-                                            Margin="0,25,45,0"
-                                            Click="ButtonReclamarCuponPorPin_Click"/>
-                                </StackPanel>
                             </StackPanel>
                             <Line Y1="10" Y2="630" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="20,0"/>
                             <StackPanel Margin="0,40" Width="450">
-                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}"
-                                           Text="Si no estas registrado en Cupón Express puedes reclamar tu cupón a través de este kiosko, llenando los siguientes datos:"/>
-                                <WrapPanel>
-                                    <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
-                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
-                                    <TextBox Name="TextBoxNewCedulaIdentidad" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"></TextBox>
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <Label Style="{StaticResource LabelFormulario}">Correo Electrónico:</Label>
-                                    <TextBox Name="TextBoxNewEmail" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
-                                </WrapPanel>
-                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Button Name="ButtonRegistrarUsuario" Style="{StaticResource ButtonReclamarCuponStyle}"
-                                            Content="Reclamar Cupón" Margin="0,25,45,0"
-                                            Click="ButtonReclamarCuponPorFormulario_Click"/>
+                                <StackPanel Style="{StaticResource CuponStyle}" Height="419">
+                                    <Canvas Style="{StaticResource CuponImageStyle}" VerticalAlignment="Top" >
+                                        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
+                                               Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
+                                    </Canvas>
+                                    <WrapPanel Width="340">
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
+                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
+                                                   Width="320" Height="Auto" Margin="10,10">
+                                            <Run Text="Cupones" ></Run>
+                                        </TextBlock>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
+                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
+                                                   Width="320" Height="Auto" Margin="10,0">
+                                            <Run Text="Descripción de Cupón Seleccionado. Detalles de promoción y ofertas." ></Run>
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}"
+                                            Background="{DynamicResource ColorHeaderBrush}"
+                                            Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click">
+                                        <TextBlock Padding="10,0" TextWrapping="Wrap">No estoy registrado</TextBlock>
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonReclamarCuponStyle}" Content="Enviar"
+                                            Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </WrapPanel>

@@ -76,19 +76,21 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            if (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView")
+            if ((navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView") |
+                (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesCondicionesView"))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             if ((navigationContext.Uri.OriginalString != "CuponesAutorizadoView") &
                 (navigationContext.Uri.OriginalString != "CuponesLoginView") &
-                (navigationContext.Uri.OriginalString != "CuponesInicioView"))
+                (navigationContext.Uri.OriginalString != "CuponesInicioView") &
+                (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
             {
                 navigationContext.NavigationService.Region.Context = null;
                 return;
@@ -103,28 +105,28 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxCedulaIdentidad.Clear();
             this.TextBoxPIN.Clear();
 
-            this.TextBoxNewCedulaIdentidad.Clear();
-            this.TextBoxNewEmail.Clear();
-            this.TextBoxNewNombreApellido.Clear();
+            //this.TextBoxNewCedulaIdentidad.Clear();
+            //this.TextBoxNewEmail.Clear();
+            //this.TextBoxNewNombreApellido.Clear();
 
-            this.TextBoxAlpha_GotFocus(this.TextBoxNewNombreApellido, null);
+            this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
         }
 
         private void ButtonReclamarCuponPorFormulario_Click(object sender, RoutedEventArgs e)
         {
-            if ((!String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) &
-                (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
-                (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
-            {
-                this.ReclamarCupon();
-                return;
-            }
+            //if ((!String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) &
+            //    (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
+            //    (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
+            //{
+            //    this.ReclamarCupon();
+            //    return;
+            //}
 
-            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-            errorWnd.OnNavigatedTo("ErrorFormularioLibre");
-            errorWnd.Owner = Application.Current.MainWindow;
-            errorWnd.MouseDown += errorWnd_MouseDown;
-            errorWnd.ShowDialog();
+            //var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            //errorWnd.OnNavigatedTo("ErrorFormularioLibre");
+            //errorWnd.Owner = Application.Current.MainWindow;
+            //errorWnd.MouseDown += errorWnd_MouseDown;
+            //errorWnd.ShowDialog();
         }
 
         private void ReclamarCupon()

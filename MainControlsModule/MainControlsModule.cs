@@ -34,6 +34,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, ContactanosView>("ContactanosView",
                 new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, ContactanosClientesView>("ContactanosClientesView",
+                new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponesInicioView>("CuponesInicioView",
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponesLoginView>("CuponesLoginView",

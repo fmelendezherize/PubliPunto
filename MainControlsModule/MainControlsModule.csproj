@@ -96,6 +96,9 @@
     <Compile Include="Views\BusquedaTecladoView.xaml.cs">
       <DependentUpon>BusquedaTecladoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ContactanosClientesView.xaml.cs">
+      <DependentUpon>ContactanosClientesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ContactanosView.xaml.cs">
       <DependentUpon>ContactanosView.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <Resource Include="Resources\bot_atras.png" />
+    <Resource Include="Resources\bot_contactenos.png" />
     <Content Include="Resources\CaviarDreams.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -185,6 +189,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BusquedaTecladoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ContactanosClientesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

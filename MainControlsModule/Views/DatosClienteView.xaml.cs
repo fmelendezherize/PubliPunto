@@ -60,5 +60,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
                 navigationService.Journal.GoBack();
             }
         }
+
+        private void ButtonContactanosCliente_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("ContactanosClientesView", UriKind.Relative));
+        }
     }
 }
