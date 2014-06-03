@@ -40,6 +40,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponesLoginView>("CuponesLoginView",
                 new ContainerControlledLifetimeManager());
+            this._container.RegisterType<Object, Views.CuponesView.CuponesRegistroView>("CuponesRegistroView",
+                new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponesAutorizadoView>("CuponesAutorizadoView",
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.ErrorMustLoginWindow>("ErrorMustLoginWindow",

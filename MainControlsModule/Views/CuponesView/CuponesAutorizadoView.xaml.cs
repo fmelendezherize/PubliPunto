@@ -31,12 +31,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            if (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesLoginView")
+            if ((navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString == "CuponesLoginView") |
+                (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString == "CuponesRegistroView"))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
@@ -50,8 +51,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             this.DataContext = navigationContext.NavigationService.Region.Context;
             Counter = 60;
-            string strTitulo = string.Format("Hola $NOMBRE_USUARIO, ya tu cupón esta disponible. A continuación lee toda la información que te damos acerca de este, anota el número y recuerda que esta pantalla se cerrara en {0} segundos.", Counter);
-            this.TextBlockTitulo.Text = strTitulo;
+            this.TextBlockTiempoRestante.Text = Counter.ToString();
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -63,8 +63,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             System.Windows.Threading.DispatcherTimer dispatcherTimer = sender as System.Windows.Threading.DispatcherTimer;
             Counter -= 1;
-            string strTitulo = string.Format("Hola $NOMBRE_USUARIO, ya tu cupón esta disponible. A continuación lee toda la información que te damos acerca de este, anota el número y recuerda que esta pantalla se cerrara en {0} segundos.", Counter);
-            this.TextBlockTitulo.Text = strTitulo;
+            this.TextBlockTiempoRestante.Text = Counter.ToString();
             if (Counter == 0)
             {
                 GlobalCommands.GoToHomeCommand.Execute(null);

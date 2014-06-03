@@ -100,7 +100,7 @@
 				</Button.Background>
 			</Button>
 		</StackPanel>
-		<DockPanel Grid.Row="1">
+		<DockPanel Grid.Row="1" Background="White">
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
 			<Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
 				<Image x:Name="ImageEnteComercial" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
@@ -124,7 +124,7 @@
 					</MediaElement>
 				</Border>
 			</Canvas>
-			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="950" >
+			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="950">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="571*"/>
 					<ColumnDefinition Width="319*"/>

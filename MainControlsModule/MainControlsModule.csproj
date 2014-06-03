@@ -171,6 +171,7 @@
     <AppDesigner Include="Properties\" />
     <Resource Include="Resources\bot_atras.png" />
     <Resource Include="Resources\bot_contactenos.png" />
+    <Resource Include="Resources\barcode.jpg" />
     <Content Include="Resources\CaviarDreams.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

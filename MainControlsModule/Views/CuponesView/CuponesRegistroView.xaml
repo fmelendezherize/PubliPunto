@@ -17,14 +17,14 @@
                     <DrawingBrush>
                         <DrawingBrush.Drawing>
                             <DrawingGroup>
-                                <GeometryDrawing Brush="{DynamicResource ContactanosSecundaryColorBrush}">
+                                <GeometryDrawing Brush="{DynamicResource CuponesSecundaryColorBrush}">
                                     <GeometryDrawing.Geometry>
                                         <GeometryGroup>
                                             <RectangleGeometry Rect="0,0,1,1" />
                                         </GeometryGroup>
                                     </GeometryDrawing.Geometry>
                                 </GeometryDrawing>
-                                <GeometryDrawing Brush="{DynamicResource ContactanosPrimaryColorBrush}">
+                                <GeometryDrawing Brush="{DynamicResource CuponesPrimaryColorBrush}">
                                     <GeometryDrawing.Geometry>
                                         <GeometryGroup>
                                             <RectangleGeometry Rect="1,0,20,1" />
@@ -43,7 +43,7 @@
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="24" />
-            <Setter Property="Background" Value="{DynamicResource ContactanosSecundaryColorBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource CuponesSecundaryColorBrush}"/>
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Height" Value="47"></Setter>
             <Setter Property="Width" Value="960"></Setter>
@@ -54,36 +54,56 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="LabelFormulario" TargetType="Label">
-            <Setter Property="Padding" Value="45,50,45,0"></Setter>
+            <Setter Property="Padding" Value="45,20,45,0"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="26" />
         </Style>
         <Style x:Key="TextBoxFormularioStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="45,25,45,0"></Setter>
+            <Setter Property="Margin" Value="45,20,45,0"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="26" />
             <Setter Property="Height" Value="50" />
-            <Setter Property="Width" Value="390" />
+            <Setter Property="Width" Value="360" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="#DEDEE6"/>
+        </Style>
+        <Style x:Key="RadioFormularioStyle" TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="PassWordFormularioStyle" TargetType="PasswordBox">
             <Setter Property="Margin" Value="45,25,45,0"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="26" />
             <Setter Property="Height" Value="50" />
-            <Setter Property="Width" Value="390" />
+            <Setter Property="Width" Value="360" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="#DEDEE6"/>
         </Style>
-        <Style x:Key="ButtonRegistroUsuarioStyle" TargetType="Button">
+        <Style x:Key="ButtonReclamarCuponStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="26" />
+            <Setter Property="FontSize" Value="22" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="#3A5897"/>
+            <Setter Property="Background" Value="{DynamicResource CuponesPrimaryColorBrush}"/>
             <Setter Property="Height" Value="67" />
-            <Setter Property="Width" Value="185" />
+            <Setter Property="Width" Value="210" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="CuponImageStyle" TargetType="Canvas">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFD028"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CuponStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="10,10"/>
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
@@ -92,44 +112,68 @@
                         Style="{DynamicResource ContentHeaderContactanos}">
                 <Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
                            Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
-                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Registrar Usuario"/>
+                <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
+                           Text="Servicio de Cupones" />
+                <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
+                        Name="ButtonBack" Click="ButtonBack_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
-            <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" 
-                        Height="Auto" HorizontalAlignment="Left">
-                <DockPanel>
+            <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch"  
+                        Height="Auto" HorizontalAlignment="Stretch">
+                <DockPanel HorizontalAlignment="Left">
                     <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible">
-                        <TextBlock Style="{StaticResource TextBlockMensaje}">Registra un usuario en Cupón Express para poder reclamar nuestros cupones</TextBlock>
-                        <WrapPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Nombre</Label>
-                                    <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                        <TextBlock Style="{StaticResource TextBlockMensaje}">Registrate en Cupón Express para poder reclamar nuestros cupones</TextBlock>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel Margin="0,40" Width="450">
+                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}"
+                                           Text="Si no estas registrado en Cupón Express puedes obtener tu cupón a través de este kiosko, llenando los siguientes datos:"/>
+                                <WrapPanel>
+                                    <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
+                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
                                 </WrapPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Correo Electronico</Label>
-                                    <TextBox Name="TextBoxEmail" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
+                                <WrapPanel>
+                                    <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
+                                    <WrapPanel>
+                                        <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="45,20,0,0" 
+                                                     Content="E" GroupName="TipoId" />
+                                        <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId" 
+                                                     Background="Red" IsChecked="True"/>
+                                        <TextBox Name="TextBoxNewCedulaIdentidad" Width="240" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"
+                                                 Margin="10,20,0,0"></TextBox>
+                                    </WrapPanel>
                                 </WrapPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Confirmar Contraseña</Label>
-                                    <PasswordBox  Name="PasswordBoxConfirmPassword" Style="{StaticResource PassWordFormularioStyle}"
-                                                  PasswordChar="*" GotFocus="TextBox_GotFocus"></PasswordBox>
+                                <WrapPanel>
+                                    <Label Style="{StaticResource LabelFormulario}">Correo Electrónico:</Label>
+                                    <TextBox Name="TextBoxNewEmail" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxAlpha_GotFocus"></TextBox>
                                 </WrapPanel>
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                                    <Button Name="ButtonRegistro" Style="{StaticResource ButtonRegistroUsuarioStyle}" Content="Registrar"
-                                            Margin="0,50,45,0"
-                                            Click="ButtonRegistro_Click"/>
-                                </StackPanel>
                             </StackPanel>
-                            <StackPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Apellido</Label>
-                                    <TextBox Name="TextBoxApellido" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBox_GotFocus"></TextBox>
-                                </WrapPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Contraseña</Label>
-                                    <PasswordBox  Name="PasswordBoxPassword" Style="{StaticResource PassWordFormularioStyle}"
-                                                  PasswordChar="*" GotFocus="TextBox_GotFocus"></PasswordBox>
-                                </WrapPanel>
+                            <Line Y1="10" Y2="630" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="20,0"/>
+                            <StackPanel Margin="0,40" Width="450">
+                                <StackPanel Style="{StaticResource CuponStyle}" Height="419">
+                                    <Canvas Style="{StaticResource CuponImageStyle}" VerticalAlignment="Top" >
+                                        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
+                                               Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
+                                    </Canvas>
+                                    <WrapPanel Width="340">
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
+                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
+                                                   Width="320" Height="Auto" Margin="10,10">
+                                            <Run Text="Cupones" ></Run>
+                                        </TextBlock>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
+                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
+                                                   Width="320" Height="Auto" Margin="10,0">
+                                            <Run Text="Descripción de Cupón Seleccionado. Detalles de promoción y ofertas." ></Run>
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Style="{StaticResource ButtonReclamarCuponStyle}" Content="Enviar"
+                                            Margin="8,25,8,0"  Click="ButtonRegistro_Click"/>
+                                </StackPanel>
                             </StackPanel>
                         </WrapPanel>
                     </StackPanel>

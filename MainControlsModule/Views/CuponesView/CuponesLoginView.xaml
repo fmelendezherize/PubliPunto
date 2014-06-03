@@ -159,13 +159,13 @@
                                     </WrapPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}"
+                                    <Button Name="ButtonRegistrarUsuario" Style="{StaticResource ButtonReclamarCuponStyle}"
                                             Background="{DynamicResource ColorHeaderBrush}"
-                                            Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click">
+                                            Margin="8,25,8,0"  Click="ButtonRegistrarUsuario_Click">
                                         <TextBlock Padding="10,0" TextWrapping="Wrap">No estoy registrado</TextBlock>
                                     </Button>
-                                    <Button Style="{StaticResource ButtonReclamarCuponStyle}" Content="Enviar"
-                                            Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
+                                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" 
+                                            Content="Enviar" Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </WrapPanel>

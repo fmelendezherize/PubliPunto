@@ -101,7 +101,7 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White">
 			<Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" Stretch="None" 
                    HorizontalAlignment="Left" Width="291" Height="171" Margin="10,5"></Image>
 			<StackPanel>
@@ -121,7 +121,7 @@
 				<TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel Grid.Row="2">
+		<StackPanel Grid.Row="2" Background="White">
 			<TextBlock Text="Selecciona tu cupón" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
 			<Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 			<StackPanel>

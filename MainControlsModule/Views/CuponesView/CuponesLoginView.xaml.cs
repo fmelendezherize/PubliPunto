@@ -48,8 +48,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             Window wnd = sender as Window;
             wnd.Close();
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
+            this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
         }
 
         private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -90,7 +89,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if ((navigationContext.Uri.OriginalString != "CuponesAutorizadoView") &
                 (navigationContext.Uri.OriginalString != "CuponesLoginView") &
                 (navigationContext.Uri.OriginalString != "CuponesInicioView") &
-                (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
+                (navigationContext.Uri.OriginalString != "CuponesCondicionesView") &
+                (navigationContext.Uri.OriginalString != "CuponesRegistroView"))
             {
                 navigationContext.NavigationService.Region.Context = null;
                 return;
@@ -105,28 +105,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxCedulaIdentidad.Clear();
             this.TextBoxPIN.Clear();
 
-            //this.TextBoxNewCedulaIdentidad.Clear();
-            //this.TextBoxNewEmail.Clear();
-            //this.TextBoxNewNombreApellido.Clear();
-
             this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
-        }
-
-        private void ButtonReclamarCuponPorFormulario_Click(object sender, RoutedEventArgs e)
-        {
-            //if ((!String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) &
-            //    (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
-            //    (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
-            //{
-            //    this.ReclamarCupon();
-            //    return;
-            //}
-
-            //var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-            //errorWnd.OnNavigatedTo("ErrorFormularioLibre");
-            //errorWnd.Owner = Application.Current.MainWindow;
-            //errorWnd.MouseDown += errorWnd_MouseDown;
-            //errorWnd.ShowDialog();
         }
 
         private void ReclamarCupon()
@@ -145,6 +124,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             {
                 navigationService.Journal.GoBack();
             }
+        }
+
+        private void ButtonRegistrarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesRegistroView", UriKind.Relative));
         }
     }
 }

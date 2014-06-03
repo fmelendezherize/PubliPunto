@@ -81,14 +81,13 @@
 	<UserControl.DataContext>
 		<viewModels:DatosClienteViewModel/>
 	</UserControl.DataContext>
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
+	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}" Background="White">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"
-						Style="{DynamicResource CuponesHeaderStyle}">
+		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"	Style="{DynamicResource CuponesHeaderStyle}">
 			<Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
 						   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
 			<TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
@@ -127,9 +126,9 @@
 							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseDown"/>
             </StackPanel>
         </StackPanel>
-		<StackPanel Grid.Row="2" Margin="0,10">
+		<StackPanel Grid.Row="2" Margin="15,10">
 			<TextBlock Text="Detalles y Condiciones" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
-			<Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+			<Line X1="0" X2="930" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left"/>
 			<StackPanel Orientation="Vertical">
 				<TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="20,20,5,0" FontWeight="Bold" FontStyle="Italic"></TextBlock>
 				<TextBlock Style="{StaticResource H3Style}" Margin="20,20,5,0">

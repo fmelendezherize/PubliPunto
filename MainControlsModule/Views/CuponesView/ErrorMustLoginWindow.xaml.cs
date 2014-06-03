@@ -22,7 +22,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if (accion == "ErrorFormularioLibre")
             {
                 this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Debe llenar por completo el formulario para poder reclamar un cupón a traves de este kiosko.";
+                this.TextBlockMensaje.Text = "Debe llenar por completo el formulario para poder obtener un cupón a traves de este kiosko.";
             }
             else if (accion == "ErrorLogin")
             {
