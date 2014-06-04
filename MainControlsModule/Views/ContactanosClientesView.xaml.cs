@@ -10,7 +10,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     public partial class ContactanosClientesView : UserControl, INavigationAware
     {
         private IRegionNavigationService navigationService;
-        private TextBox PreviousTextBox;
+        private Control PreviousTextBox;
 
         public ContactanosClientesView()
         {
@@ -26,6 +26,17 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.PreviousTextBox = sender as TextBox;
             this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
             this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
+        }
+
+        private void TextBoxNumeric_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as Control;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
         }
 
         private void TextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -51,6 +62,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.TextBoxNombre.Clear();
             this.TextBoxTelefono.Clear();
             this.TextBoxComentario.Clear();
+            this.TextBoxTelefonoPrefix.Clear();
 
             this.FormularioPanel.Visibility = System.Windows.Visibility.Visible;
             this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Collapsed;

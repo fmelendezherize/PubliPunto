@@ -122,7 +122,7 @@
 		<StackPanel Grid.Row="2" Margin="15,10">
             <TextBlock Text="Tu cupón fue enviado con éxito" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold" FontStyle="Italic"></TextBlock>
 			<Line X1="0" X2="930" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left"/>
-            <StackPanel HorizontalAlignment="Center" Margin="0,20">
+            <StackPanel HorizontalAlignment="Center" Margin="0,60,0,20">
                 <TextBlock Background="{DynamicResource CuponesPrimaryColorBrush}" Foreground="White"
                            Style="{StaticResource H1Style}" FontSize="56">Cupón #45W1 4BA2</TextBlock>
             </StackPanel>
