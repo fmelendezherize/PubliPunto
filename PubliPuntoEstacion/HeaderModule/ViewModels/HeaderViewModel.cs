@@ -1,19 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows.Input;
-using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
 
 namespace Decktra.PubliPuntoEstacion.HeaderModule.ViewModels
 {
     class HeaderViewModel : INotifyPropertyChanged
     {
-        public HeaderViewModel() 
+        public HeaderViewModel()
         {
-            Debug.Print("Iniciando");
+            Debug.Print("Iniciando HeaderViewModel");
         }
 
         #region INotifyPropertyChanged

@@ -1,4 +1,5 @@
 ﻿using Decktra.PubliPuntoEstacion.Library;
+using Microsoft.Practices.Unity;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,7 +10,7 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule.Views
     /// </summary>
     public partial class HeaderView : UserControl
     {
-        public HeaderView()
+        public HeaderView(IUnityContainer container)
         {
             InitializeComponent();
         }

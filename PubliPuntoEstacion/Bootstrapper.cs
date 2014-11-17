@@ -27,5 +27,10 @@ namespace Decktra.PubliPuntoEstacion
             moduleCatalog.AddModule(typeof(MainControlsModule.MainControlsModule));
             moduleCatalog.AddModule(typeof(FooterModule.FooterModule));
         }
+
+        protected override Microsoft.Practices.Prism.Logging.ILoggerFacade CreateLogger()
+        {
+            return new Logger();
+        }
     }
 }
