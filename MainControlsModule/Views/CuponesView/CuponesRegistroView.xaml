@@ -197,10 +197,10 @@
                                     <WrapPanel>
                                         <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="45,20,0,0" 
                                                      Content="E" GroupName="TipoId" />
-                                        <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId" 
+                                        <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId" 
                                                      />
                                         <TextBox Name="TextBoxNewCedulaIdentidad" Width="240" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"
-                                                 Margin="10,20,0,0"></TextBox>
+                                                 Margin="10,20,0,0" MaxLength="8"></TextBox>
                                     </WrapPanel>
                                 </WrapPanel>
                                 <WrapPanel>

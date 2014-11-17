@@ -104,6 +104,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
             this.TextBoxCedulaIdentidad.Clear();
             this.TextBoxPIN.Clear();
+            this.RadioButtonCedulaFirstLetter.IsChecked = true;
 
             this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
         }

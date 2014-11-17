@@ -42,7 +42,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            string ID = navigationContext.Parameters["ID"];
+            string ID = navigationContext.Parameters["ID"].ToString();
             ((DatosClienteViewModel)DataContext).ShowEnteComercialCommand.Execute(ID);
             this.navigationService = navigationContext.NavigationService;
         }

@@ -1,7 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
-using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
@@ -29,7 +28,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             EnteComercial ente = button.DataContext as EnteComercial;
             if (ente != null)
             {
-                UriQuery query = new UriQuery();
+                NavigationParameters query = new NavigationParameters();
                 query.Add("ID", ente.Id.ToString());
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));

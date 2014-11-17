@@ -1,7 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.HeaderModule.Views;
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -43,7 +42,7 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule
             this.HomeTimer.Stop();
             this.HomeTimer.Start();
 
-            UriQuery query = new UriQuery();
+            NavigationParameters query = new NavigationParameters();
             query.Add("reset", "true");
             this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
@@ -54,7 +53,7 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule
             this.HomeTimer.Stop();
             this.HomeTimer.Start();
 
-            UriQuery query = new UriQuery();
+            NavigationParameters query = new NavigationParameters();
             query.Add("reset", "true");
             this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("BusquedaCategoriaView" + query.ToString(), UriKind.Relative));

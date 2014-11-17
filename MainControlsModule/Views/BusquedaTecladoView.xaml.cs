@@ -1,7 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
-using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
@@ -31,7 +30,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                UriQuery query = new UriQuery();
+                NavigationParameters query = new NavigationParameters();
                 query.Add("criterio", this.TextBoxSearch.Text);
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
@@ -40,7 +39,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void ButtonSearch_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            UriQuery query = new UriQuery();
+            NavigationParameters query = new NavigationParameters();
             query.Add("criterio", this.TextBoxSearch.Text);
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("BusquedaTecladoView" + query.ToString(), UriKind.Relative));
@@ -54,7 +53,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             var selectedSubCategoria = sender as SubCategoria;
             if (selectedSubCategoria != null)
             {
-                UriQuery query = new UriQuery();
+                NavigationParameters query = new NavigationParameters();
                 query.Add("ID", selectedSubCategoria.Id.ToString());
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));
@@ -75,17 +74,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             this.navigationService = navigationContext.NavigationService;
 
-            if (!String.IsNullOrEmpty(navigationContext.Parameters["criterio"]))
+            if ((navigationContext.Parameters["criterio"] != null) &&
+                (!String.IsNullOrEmpty(navigationContext.Parameters["criterio"].ToString())))
             {
-                this.TextBoxSearch.Text = navigationContext.Parameters["criterio"];
+                this.TextBoxSearch.Text = navigationContext.Parameters["criterio"].ToString();
                 ((BusquedaTecladoViewModel)this.DataContext).SearchEnteComercialsCommand.
                     Execute(navigationContext.Parameters["criterio"]);
                 return;
             }
 
-            if (!String.IsNullOrEmpty(navigationContext.Parameters["reset"]))
+            if ((navigationContext.Parameters["reset"] != null) &&
+                (!String.IsNullOrEmpty(navigationContext.Parameters["reset"].ToString())))
             {
-                if (navigationContext.Parameters["reset"] == "true")
+                if (navigationContext.Parameters["reset"].ToString() == "true")
                 {
                     this.TextBoxSearch.Clear();
                     ((BusquedaTecladoViewModel)this.DataContext).Init();

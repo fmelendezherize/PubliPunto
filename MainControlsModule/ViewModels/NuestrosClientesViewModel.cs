@@ -16,10 +16,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public ICommand ShowEnteComercialsCommand { get; set; }
 
         public List<EnteComercial> ListOfEnteComercials { get; set; }
+        private Random _randomObj;
 
         public NuestrosClientesViewModel()
         {
             this._enteComercialRepository = new EnteComercialRepository();
+            this._randomObj = new Random(DateTime.Now.Millisecond);
             this.ListOfEnteComercials = new List<EnteComercial>();
             this.ShowEnteComercialsCommand = new DelegateCommand<object>(this.ShowEnteComercials);
         }
@@ -54,6 +56,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         private void ShowRandomEnteComercials(IList listOfResults)
         {
             int?[] indexEnteComercials = new int?[12];
+
+
             for (int i = 0; i < 12; i++)
             {
                 indexEnteComercials[i] = GetIndex(indexEnteComercials, listOfResults);
@@ -64,7 +68,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private int GetIndex(int?[] indexEnteComercials, IList listEnteComercials)
         {
-            int intRamdon = new Random(DateTime.Now.Millisecond).Next(0, listEnteComercials.Count);
+            //Thread.Sleep(100);
+            int intRamdon = this._randomObj.Next(0, listEnteComercials.Count);
             //TODO Buscar solucion para el stackoverflow aqui
             if (indexEnteComercials.Any(q => q == intRamdon))
             {

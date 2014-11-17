@@ -107,6 +107,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxNewCedulaIdentidad.Clear();
             this.TextBoxNewEmail.Clear();
             this.TextBoxNewNombreApellido.Clear();
+            this.RadioButtonCedulaFirstLetter.IsChecked = true;
 
             this.TextBoxAlpha_GotFocus(this.TextBoxNewNombreApellido, null);
         }
