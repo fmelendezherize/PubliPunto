@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Decktra.PubliPuntoEstacion.SyncAgentModule;
+using Microsoft.Practices.Unity;
 using System.Windows;
 
 namespace Decktra.PubliPuntoEstacion
@@ -18,6 +14,9 @@ namespace Decktra.PubliPuntoEstacion
             base.OnStartup(e);
             Bootstrapper bootStrapper = new Bootstrapper();
             bootStrapper.Run();
+
+            SyncAgent syncAgentObj = bootStrapper.Container.Resolve<SyncAgent>();
+            syncAgentObj.StartService();
         }
     }
 }
