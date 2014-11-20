@@ -7,5 +7,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
     {
         public DbSet<RamoComercial> RamoComercials { get; set; }
         public DbSet<EnteComercial> EnteComercials { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

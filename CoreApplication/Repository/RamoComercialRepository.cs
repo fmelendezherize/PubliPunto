@@ -1,11 +1,13 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Context;
 using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 {
-    public class RamoComercialRepository
+    public class RamoComercialRepository : IDisposable
     {
         private PubliPuntoContext db { get; set; }
 
@@ -28,6 +30,31 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
         public RamoComercial FindBy(int id)
         {
             return (from q in db.RamoComercials where (q.Id == id) select q).FirstOrDefault();
+        }
+
+        public void AddOrUpdate(RamoComercialDTO dto)
+        {
+            var ramoComercial = (from q in db.RamoComercials where (q.Codigo == dto.Codigo) select q).FirstOrDefault();
+            if (ramoComercial == null)
+            {
+                RamoComercial newRamoComercial = new RamoComercial()
+                {
+                    Codigo = dto.Codigo,
+                    Nombre = dto.Descripcion
+                };
+                db.RamoComercials.Add(newRamoComercial);
+            }
+            else
+            {
+                ramoComercial.Nombre = dto.Descripcion;
+            }
+            db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            if (db == null) return;
+            db.Dispose();
         }
     }
 }

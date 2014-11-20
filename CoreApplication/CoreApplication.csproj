@@ -70,6 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\PubliPuntoContext.cs" />
+    <Compile Include="Migrations\201411202038349_6.cs" />
+    <Compile Include="Migrations\201411202038349_6.Designer.cs">
+      <DependentUpon>201411202038349_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\UsuariosRepository.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
     <Compile Include="Migrations\201404071610301_1.cs" />
     <Compile Include="Migrations\201404071610301_1.Designer.cs">
@@ -87,10 +92,17 @@
     <Compile Include="Migrations\201404142003463_4.Designer.cs">
       <DependentUpon>201404142003463_4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411201526523_5.cs" />
+    <Compile Include="Migrations\201411201526523_5.Designer.cs">
+      <DependentUpon>201411201526523_5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Dtos\EnteComercialDTO.cs" />
+    <Compile Include="Model\Dtos\RamoComercialDTO.cs" />
     <Compile Include="Model\Promocion.cs" />
     <Compile Include="Model\EnteComercial.cs" />
     <Compile Include="Model\RamoComercial.cs" />
+    <Compile Include="Model\Dtos\UsuarioDTO.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -140,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404142003463_4.resx">
       <DependentUpon>201404142003463_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411201526523_5.resx">
+      <DependentUpon>201411201526523_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411202038349_6.resx">
+      <DependentUpon>201411202038349_6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
