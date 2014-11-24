@@ -103,8 +103,11 @@
 		<DockPanel Grid.Row="1" Background="White">
 			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
 			<Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
-				<Image x:Name="ImageEnteComercial" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-				   Source="{Binding EnteComercial.ImagenUrl, Converter={StaticResource RutaImagenConverter}}" />
+				<Image x:Name="ImageEnteComercial"
+                       Margin="-2,0,0,0"
+                       Stretch="Uniform" Width="970" Height="546"  
+                       HorizontalAlignment="Center" VerticalAlignment="Stretch"  
+                       Source="{Binding EnteComercial.ImagenUrl, Converter={StaticResource RutaImagenConverter}}" />
 			</Canvas> 
 			<Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
 				<Border BorderBrush="Black" BorderThickness="0" Canvas.Top="0">
@@ -132,8 +135,10 @@
 				<!-- Columna Datos Cliente -->
 				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
 					<!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
-					<Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" Stretch="None" HorizontalAlignment="Left"></Image>
-					<TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
+                    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                           Stretch="None" 
+                           HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
 						<TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>

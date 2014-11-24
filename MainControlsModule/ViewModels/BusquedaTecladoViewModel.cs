@@ -35,7 +35,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             {
                 NombreCategoria = "Resultados de la búsqueda"
             };
-            newCategoria.ListCategorias.AddRange(
+            newCategoria.ListOfSubCategorias.AddRange(
                 (from q in _enteComercialRepository.GetEnteComercialsByName(obj)
                  select new SubCategoria()
                  {
@@ -45,7 +45,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                      TipoSubCategoria = TipoSubCategoria.EnteComercial
                  }).ToList());
 
-            newCategoria.ListCategorias.AddRange(
+            newCategoria.ListOfSubCategorias.AddRange(
                 (from q in _enteComercialRepository.GetEnteComercialsByTags(obj)
                  select new SubCategoria()
                      {
@@ -55,7 +55,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                          TipoSubCategoria = TipoSubCategoria.EnteComercial
                      }).ToList());
             Categorias.Clear();
-            if (newCategoria.ListCategorias.Count == 0) newCategoria.NombreCategoria = "No se consiguieron resultados";
+            if (newCategoria.ListOfSubCategorias.Count == 0) newCategoria.NombreCategoria = "No se consiguieron resultados";
             Categorias.Add(newCategoria);
         }
     }

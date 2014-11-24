@@ -4,12 +4,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Models
 {
     public class Categoria
     {
-        public List<SubCategoria> ListCategorias { get; set; }
+        public List<SubCategoria> ListOfSubCategorias { get; set; }
         public string NombreCategoria { get; set; }
+        public string LogoUrl { get; set; }
 
         public Categoria()
         {
-            this.ListCategorias = new List<SubCategoria>();
+            this.ListOfSubCategorias = new List<SubCategoria>();
         }
     }
 }

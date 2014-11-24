@@ -189,26 +189,43 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
         private void DownloadFileFTP(string ftpfilepath, string inputfilepath)
         {
             string ftpfullpath = Properties.Settings.Default.WebAddress + ftpfilepath;
-            Uri newUri = new Uri(ftpfullpath);
-            WebClient downloader = new WebClient();
-            downloader.DownloadFileAsync(newUri, inputfilepath);
+            if (CheckFileExists(GetRequest(ftpfullpath)))
+            {
+                Logger.Log(string.Format("Descargando Recurso de ftp (Id:{0}) {1}", _idSync, ftpfullpath), Category.Info, Priority.Low);
+                using (var downloader = new WebClient())
+                {
+                    Uri newUri = new Uri(ftpfullpath);
+                    downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
+                    downloader.DownloadFileAsync(newUri, inputfilepath);
+                }
+            }
+        }
 
-            //FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpfullpath);
-            //request.Method = WebRequestMethods.Ftp.DownloadFile;
+        private void downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            //Logger.Log(string.Format("Recurso descargado de ftp (Id:{0}) {1}", _idSync, sender.ToString()), Category.Info, Priority.Low);
+        }
 
-            //// This example assumes the FTP site uses anonymous logon.
-            //request.Credentials = new NetworkCredential("anonymous", "janeDoe@contoso.com");
+        private static HttpWebRequest GetRequest(string uriString)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(uriString);
+            request.Credentials = new NetworkCredential("", "");
+            request.Method = WebRequestMethods.Http.Head;
 
-            //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+            return request;
+        }
 
-            //Stream responseStream = response.GetResponseStream();
-            //StreamReader reader = new StreamReader(responseStream);
-            //Console.WriteLine(reader.ReadToEnd());
-
-            //Console.WriteLine("Download Complete, status {0}", response.StatusDescription);
-
-            //reader.Close();
-            //response.Close();
+        private static bool CheckFileExists(WebRequest request)
+        {
+            try
+            {
+                request.GetResponse();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

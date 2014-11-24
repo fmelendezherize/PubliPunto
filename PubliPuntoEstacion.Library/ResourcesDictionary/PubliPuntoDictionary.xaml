@@ -122,5 +122,6 @@
         <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
         <Setter Property="FontSize" Value="24" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
 </ResourceDictionary>

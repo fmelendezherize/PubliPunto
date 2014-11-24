@@ -40,13 +40,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 RamoComercial newRamoComercial = new RamoComercial()
                 {
                     Codigo = dto.Codigo,
-                    Nombre = dto.Descripcion
+                    Nombre = dto.Descripcion,
                 };
+                newRamoComercial.LogoUrl = dto.ToImagenFileName();
                 db.RamoComercials.Add(newRamoComercial);
             }
             else
             {
                 ramoComercial.Nombre = dto.Descripcion;
+                ramoComercial.LogoUrl = dto.ToImagenFileName();
             }
             db.SaveChanges();
         }

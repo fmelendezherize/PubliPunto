@@ -17,6 +17,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public string Descripcion { get; set; }
 
-        public string ImagenUrl { get; set; }
+        public string LogoUrl { get; set; }
     }
 }

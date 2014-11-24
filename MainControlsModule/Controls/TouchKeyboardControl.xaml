@@ -8,7 +8,6 @@
 	x:Name="UserControl"
 	d:DesignWidth="970" d:DesignHeight="480">
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="BackgroundColor" Color="#0dc9ed"/>
 		<Style x:Key="BasicButtonStyle" TargetType="{x:Type Button}">
 			<Setter Property="FontSize" Value="25"/>
 			<Setter Property="FontWeight" Value="Bold"/>
@@ -39,8 +38,8 @@
 		<Style x:Key="KeyNumericButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BasicButtonStyle}">
 			<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
 			<Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-			<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="Padding" Value="1"/>
@@ -77,8 +76,8 @@
 		<Style x:Key="KeyAlfaButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BasicButtonStyle}">
 			<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
 			<Setter Property="Background" Value="{StaticResource KeyAlfaButtonStyle.Static.Background}"/>
-			<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="Padding" Value="1"/>
@@ -113,7 +112,7 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot" Width="960">
-		<StackPanel Margin="0" Orientation="Vertical" Background="{StaticResource BackgroundColor}">
+        <StackPanel Margin="0" Orientation="Vertical" Background="{DynamicResource BusquedaTecladoSecundaryColorBrush}">
 			<WrapPanel Name="WrapPanelNumeric" Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="RightToLeft">
                 <Button Content="9" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="8" Style="{DynamicResource KeyNumericButtonStyle}" Click="AlphaNumericButton_Click"/>

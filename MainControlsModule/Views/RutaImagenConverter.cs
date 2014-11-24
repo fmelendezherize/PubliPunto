@@ -8,9 +8,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             string obj = value as string;
-            if (obj != null)
+            if (!String.IsNullOrEmpty(obj))
             {
-                return AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj;
+                string path = AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj;
+                if (System.IO.File.Exists(path)) return path;
             }
             return AppDomain.CurrentDomain.BaseDirectory + "media\\logo.png";
         }

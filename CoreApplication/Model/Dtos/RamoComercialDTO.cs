@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
 {
@@ -8,6 +9,16 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
         public string Descripcion { get; set; }
         public string Kiosko { get; set; }
         public ImagenUrlDTO ImagenURL { get; set; }
+
+        public string ToImagenFileName()
+        {
+            Uri webpath = new Uri("file://localhost" + ImagenURL.image.url);
+            if (webpath.IsFile)
+            {
+                return System.IO.Path.GetFileName(webpath.LocalPath);
+            }
+            return null;
+        }
     }
 
     public class ImagenUrlDTO

@@ -79,15 +79,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                             NombreCategoria = letter
                         };
 
-            newCategoria.ListCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
-                                           select new SubCategoria
-                                           {
-                                               Nombre = q.Nombre,
-                                               Id = q.Id,
-                                               TipoSubCategoria = TipoSubCategoria.RamoComercial
-                                           }).ToList();
+            newCategoria.ListOfSubCategorias = (from q in _ramoComercialRepository.GetAllByFirstLetter(letter)
+                                                select new SubCategoria
+                                                {
+                                                    Nombre = q.Nombre,
+                                                    Id = q.Id,
+                                                    LogoUrl = q.LogoUrl,
+                                                    TipoSubCategoria = TipoSubCategoria.RamoComercial
+                                                }).ToList();
 
-            if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
+            if (newCategoria.ListOfSubCategorias.Count > 0) CategoriaActual.Add(newCategoria);
         }
 
         public void ShowEnteComercials(object idRamoComercial)
@@ -96,18 +97,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             var newCategoria = new Categoria
             {
                 NombreCategoria = ramoComercial.Nombre,
-                ListCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy(int.Parse(idRamoComercial.ToString()))
-                                  select new SubCategoria()
-                                  {
-                                      Id = q.Id,
-                                      Nombre = q.Nombre,
-                                      LogoUrl = q.LogoUrl,
-                                      TipoSubCategoria = TipoSubCategoria.EnteComercial
-                                  }).ToList()
+                LogoUrl = ramoComercial.LogoUrl,
+                ListOfSubCategorias = (from q in _enteComercialRepository.GetEnteComercialsBy(int.Parse(idRamoComercial.ToString()))
+                                       select new SubCategoria()
+                                       {
+                                           Id = q.Id,
+                                           Nombre = q.Nombre,
+                                           LogoUrl = q.LogoUrl,
+                                           TipoSubCategoria = TipoSubCategoria.EnteComercial
+                                       }).ToList()
             };
 
             CategoriaActual.Clear();
-            if (newCategoria.ListCategorias.Count > 0) CategoriaActual.Add(newCategoria);
+            if (newCategoria.ListOfSubCategorias.Count > 0) CategoriaActual.Add(newCategoria);
             RaisePropertyChanged(() => this.CategoriaActual);
         }
     }

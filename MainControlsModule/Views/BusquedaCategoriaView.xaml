@@ -47,7 +47,8 @@
 			<Setter Property="Height" Value="43.2"/>
 			<Setter Property="Margin" Value="1, 1"/>
 			<Setter Property="Background" Value="{DynamicResource CategorySecundaryColorBrush}"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource CategoryPrimaryColorBrush}"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
 			<Setter Property="Foreground" Value="White"/>
 		</Style>
 		<Style x:Key="ListViewStyle" TargetType="ListView">
@@ -74,7 +75,7 @@
 		</Style>
 		<Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
 			<Setter Property="Height" Value="1177"></Setter>
-			<Setter Property="Width" Value="913"></Setter>
+			<Setter Property="Width" Value="912"></Setter>
 			<Setter Property="Visibility" Value="Visible"></Setter>
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding Categorias.Count}" Value="0">
@@ -99,7 +100,8 @@
 					</Button.Background>
 				</Button>
 			</StackPanel>
-			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal">
+			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal"
+                        HorizontalAlignment="Right" VerticalAlignment="Top">
 				<TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>
 				<ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">
 					<ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
