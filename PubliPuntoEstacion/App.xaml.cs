@@ -15,8 +15,11 @@ namespace Decktra.PubliPuntoEstacion
             Bootstrapper bootStrapper = new Bootstrapper();
             bootStrapper.Run();
 
-            SyncAgent syncAgentObj = bootStrapper.Container.Resolve<SyncAgent>();
-            syncAgentObj.StartService();
+            if (Decktra.PubliPuntoEstacion.Properties.Settings.Default.WebSyncOn)
+            {
+                SyncAgent syncAgentObj = bootStrapper.Container.Resolve<SyncAgent>();
+                syncAgentObj.StartService();
+            }
         }
     }
 }

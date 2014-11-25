@@ -78,6 +78,7 @@
     <Compile Include="Migrations\201411241544457_7.Designer.cs">
       <DependentUpon>201411241544457_7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Dtos\ImagenUrlDTO.cs" />
     <Compile Include="Repository\UsuariosRepository.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
     <Compile Include="Migrations\201404071610301_1.cs" />

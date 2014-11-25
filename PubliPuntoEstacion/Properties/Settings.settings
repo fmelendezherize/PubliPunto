@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Decktra.PubliPuntoEstacion.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="WebAddress" Type="System.String" Scope="User">
+    <Setting Name="WebSyncServerAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://cuponexpress.com.ve</Value>
+    </Setting>
+    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

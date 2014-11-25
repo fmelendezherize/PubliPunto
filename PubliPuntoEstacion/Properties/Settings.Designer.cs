@@ -26,12 +26,24 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://cuponexpress.com.ve")]
-        public string WebAddress {
+        public string WebSyncServerAddress {
             get {
-                return ((string)(this["WebAddress"]));
+                return ((string)(this["WebSyncServerAddress"]));
             }
             set {
-                this["WebAddress"] = value;
+                this["WebSyncServerAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WebSyncOn {
+            get {
+                return ((bool)(this["WebSyncOn"]));
+            }
+            set {
+                this["WebSyncOn"] = value;
             }
         }
     }

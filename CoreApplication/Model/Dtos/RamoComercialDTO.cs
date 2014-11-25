@@ -21,16 +21,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
         }
     }
 
-    public class ImagenUrlDTO
-    {
-        public ImageDTO image { get; set; }
-    }
-
-    public class ImageDTO
-    {
-        public string url { get; set; }
-    }
-
     public class ListOfRamoComercialDTO
     {
         public List<RamoComercialDTO> Ramos_Comerciales { get; set; }

@@ -52,7 +52,7 @@
 			<Setter Property="Foreground" Value="White"/>
 		</Style>
 		<Style x:Key="ListViewStyle" TargetType="ListView">
-			<Setter Property="Width" Value="895"/>
+			<Setter Property="Width" Value="Auto"/>
 			<Setter Property="Background" Value="White"/>
 			<Setter Property="BorderBrush" Value="White"/>
 			<Setter Property="Padding" Value="-7"/>
@@ -75,7 +75,7 @@
 		</Style>
 		<Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
 			<Setter Property="Height" Value="1177"></Setter>
-			<Setter Property="Width" Value="912"></Setter>
+			<Setter Property="Width" Value="915"></Setter>
 			<Setter Property="Visibility" Value="Visible"></Setter>
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding Categorias.Count}" Value="0">
@@ -101,7 +101,7 @@
 				</Button>
 			</StackPanel>
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal"
-                        HorizontalAlignment="Right" VerticalAlignment="Top">
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Width="970">
 				<TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>
 				<ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">
 					<ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
@@ -109,7 +109,9 @@
 							  ItemsSource="{Binding CategoriaActual}"
 							  MouseMove="ListViewCategorias_MouseMove"
 							  PreviewMouseDown="ListViewCategorias_MouseDown"
-							  MouseUp="ListViewCategorias_MouseUp">
+							  MouseUp="ListViewCategorias_MouseUp"
+                              TouchUp="ListViewCategorias_TouchUp"
+                              TouchDown="ListViewCategorias_TouchDown">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"

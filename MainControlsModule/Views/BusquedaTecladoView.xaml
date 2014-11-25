@@ -56,14 +56,14 @@
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Padding" Value="0,3,0,0"/>
         </Style>
-        <Style x:Key="ButtonAtras" TargetType="Button">
+        <!--<Style x:Key="ButtonAtras" TargetType="Button">
             <Setter Property="Height" Value="47"></Setter>
             <Setter Property="Width" Value="139"></Setter>
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="24" />
             <Setter Property="BorderThickness" Value="0" />
-        </Style>
+        </Style>-->
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:BusquedaTecladoViewModel />
@@ -74,7 +74,7 @@
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_teclado.png" Height="35" Margin="6">
 				</Image>
                 <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
-                <Button Name="ButtonBack" Content="atras" Style="{StaticResource ButtonAtras}"
+                <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
                         Click="ButtonBack_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
@@ -87,7 +87,12 @@
 					<StackPanel DockPanel.Dock="Top" Height="692">
 						<WrapPanel Height="70">
 							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
-							<Button Name="ButtonSearch" Width="70" Height="70" HorizontalAlignment="Right" Background="#FFA1D174"
+							<Button Name="ButtonSearch" 
+                                    Width="70" Height="70" 
+                                    HorizontalAlignment="Right" 
+                                    Background="#FFA1D174"
+                                    BorderThickness="0"
+                                    BorderBrush="Transparent" 
                                     Click="ButtonSearch_Click">
 								<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_barra_busqueda.png" 
                                        Width="50" Height="50" HorizontalAlignment="Center"/>

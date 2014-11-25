@@ -1,6 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
@@ -16,6 +17,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     {
         [Dependency]
         public IRegionManager RegionManager { get; set; }
+
+        [Dependency]
+        public ILoggerFacade Logger { get; set; }
 
         private IRegionNavigationService navigationService;
 
@@ -140,6 +144,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         private void ListViewCategorias_MouseDown(object sender, MouseButtonEventArgs e)
         {
             InitY = e.GetPosition(TextBlockTitulo).Y;
+        }
+
+        private void ListViewCategorias_TouchUp(object sender, TouchEventArgs e)
+        {
+            Logger.Log("Touch Up detectado!", Category.Info, Priority.Low);
+        }
+
+        private void ListViewCategorias_TouchDown(object sender, TouchEventArgs e)
+        {
+            Logger.Log("Touch Down detectado!", Category.Info, Priority.Low);
         }
     }
 }

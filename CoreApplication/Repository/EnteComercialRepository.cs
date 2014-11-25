@@ -1,11 +1,13 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Context;
 using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 {
-    public class EnteComercialRepository
+    public class EnteComercialRepository : IDisposable
     {
         private PubliPuntoContext db { get; set; }
 
@@ -41,6 +43,17 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
         {
             var listOfResult = this.GetAll().Where(q => q.TagMatched(Tag));
             return listOfResult.ToList();
+        }
+
+        public void AddOrUpdate(EnteComercialDTO dto)
+        {
+
+        }
+
+        public void Dispose()
+        {
+            if (db == null) return;
+            db.Dispose();
         }
     }
 }

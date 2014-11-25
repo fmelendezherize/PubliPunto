@@ -47,7 +47,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
 
             RetrieveUsuarios().ContinueWith((t) => UpdateUsuarios(t.Result));
             RetrieveRamosComerciales().ContinueWith((t) => UpdateRamosComerciales(t.Result));
-            //RetrieveEntesComerciales();
+            RetrieveEntesComerciales().ContinueWith((t) => UpdateEntesComerciales(t.Result));
         }
 
         private async Task<ListOfUsuario> RetrieveUsuarios()
@@ -112,7 +112,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             }
         }
 
-        private async Task<ListOfRamoComercialDTO> RetrieveEntesComerciales()
+        private async Task<ListOfEnteComercialDTO> RetrieveEntesComerciales()
         {
             Logger.Log(string.Format("Descargando Entes Comerciales (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
@@ -124,12 +124,12 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                 // New code:
                 try
                 {
-                    HttpResponseMessage response = await client.GetAsync("api/ramos_comerciales.json");
+                    HttpResponseMessage response = await client.GetAsync("api/entes_comerciales.json");
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsAsync<Object>();
-                        ListOfRamoComercialDTO listOfValues = Newtonsoft.Json.JsonConvert.DeserializeObject<ListOfRamoComercialDTO>(content.ToString());
-                        Logger.Log(string.Format("Ramos Comerciales descargados con exito (Id:{0})", _idSync), Category.Info, Priority.Low);
+                        ListOfEnteComercialDTO listOfValues = Newtonsoft.Json.JsonConvert.DeserializeObject<ListOfEnteComercialDTO>(content.ToString());
+                        Logger.Log(string.Format("Entes Comerciales descargados con exito (Id:{0})", _idSync), Category.Info, Priority.Low);
                         return listOfValues;
                     }
 
@@ -172,6 +172,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             //Imagenes
             foreach (var item in listOfRamosComerciales.Ramos_Comerciales)
             {
+                if (String.IsNullOrEmpty(item.ImagenURL.image.url)) continue;
                 Uri webpath = new Uri("file://localhost" + item.ImagenURL.image.url);
                 if (webpath.IsFile)
                 {
@@ -186,45 +187,95 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             }
         }
 
+        private void UpdateEntesComerciales(ListOfEnteComercialDTO listOfEntesComerciales)
+        {
+            if (listOfEntesComerciales == null) return;
+
+            //Repositorios
+            using (var repository = new EnteComercialRepository())
+            {
+                foreach (var item in listOfEntesComerciales.Entes_Comerciales)
+                {
+                    repository.AddOrUpdate(item);
+                }
+            }
+
+            //Imagenes
+            foreach (var item in listOfEntesComerciales.Entes_Comerciales)
+            {
+                Uri webpath;
+
+                //Imagen
+                if (!String.IsNullOrEmpty(item.ImagenURL.image.url))
+                {
+                    webpath = new Uri("file://localhost" + item.ImagenURL.image.url);
+                    if (webpath.IsFile)
+                    {
+                        string filename = System.IO.Path.GetFileName(webpath.LocalPath);
+                        string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "media\\" + filename;
+                        if (!System.IO.File.Exists(inputfilepath))
+                        {
+                            //descargo                    
+                            DownloadFileFTP(item.ImagenURL.image.url, inputfilepath);
+                        }
+                    }
+                }
+
+                //Logo
+                if (!String.IsNullOrEmpty(item.LogoURL.logo.url))
+                {
+                    webpath = new Uri("file://localhost" + item.LogoURL.logo.url);
+                    if (webpath.IsFile)
+                    {
+                        string filename = System.IO.Path.GetFileName(webpath.LocalPath);
+                        string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "media\\" + filename;
+                        if (!System.IO.File.Exists(inputfilepath))
+                        {
+                            //descargo                    
+                            DownloadFileFTP(item.LogoURL.logo.url, inputfilepath);
+                        }
+                    }
+                }
+            }
+        }
+
         private void DownloadFileFTP(string ftpfilepath, string inputfilepath)
         {
-            string ftpfullpath = Properties.Settings.Default.WebAddress + ftpfilepath;
-            if (CheckFileExists(GetRequest(ftpfullpath)))
+            string ftpfullpath = Properties.Settings.Default.WebSyncServerAddress + ftpfilepath;
+            if (CheckFileExists(ftpfullpath))
             {
                 Logger.Log(string.Format("Descargando Recurso de ftp (Id:{0}) {1}", _idSync, ftpfullpath), Category.Info, Priority.Low);
                 using (var downloader = new WebClient())
                 {
                     Uri newUri = new Uri(ftpfullpath);
-                    downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
+                    downloader.DownloadFileCompleted += Downloader_DownloadFileCompleted;
                     downloader.DownloadFileAsync(newUri, inputfilepath);
                 }
             }
         }
 
-        private void downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        private void Downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             //Logger.Log(string.Format("Recurso descargado de ftp (Id:{0}) {1}", _idSync, sender.ToString()), Category.Info, Priority.Low);
         }
 
-        private static HttpWebRequest GetRequest(string uriString)
+        private bool CheckFileExists(string uriString)
         {
             var request = (HttpWebRequest)WebRequest.Create(uriString);
-            request.Credentials = new NetworkCredential("", "");
-            request.Method = WebRequestMethods.Http.Head;
-
-            return request;
-        }
-
-        private static bool CheckFileExists(WebRequest request)
-        {
             try
             {
+                request.Credentials = new NetworkCredential("", "");
+                request.Method = WebRequestMethods.Http.Head;
                 request.GetResponse();
                 return true;
             }
             catch (Exception e)
             {
                 return false;
+            }
+            finally
+            {
+                request.Abort();
             }
         }
     }
