@@ -9,7 +9,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             if (!string.IsNullOrEmpty(value.ToString()))
             {
-                return AppDomain.CurrentDomain.BaseDirectory + "videos\\" + value;
+                var path = AppDomain.CurrentDomain.BaseDirectory + "videos\\" + value;
+                if (System.IO.File.Exists(path)) return path;
             }
             return string.Empty;
         }

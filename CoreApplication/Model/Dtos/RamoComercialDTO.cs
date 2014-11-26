@@ -12,6 +12,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
 
         public string ToImagenFileName()
         {
+            if (ImagenURL.image.url == null) return null;
             Uri webpath = new Uri("file://localhost" + ImagenURL.image.url);
             if (webpath.IsFile)
             {

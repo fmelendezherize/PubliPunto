@@ -46,5 +46,17 @@ namespace Decktra.PubliPuntoEstacion.Properties {
                 this["WebSyncOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\admin-PC\\Desktop\\Terminal de Pasajeros")]
+        public string VideosPath {
+            get {
+                return ((string)(this["VideosPath"]));
+            }
+            set {
+                this["VideosPath"] = value;
+            }
+        }
     }
 }

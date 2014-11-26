@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201411241544457_7.Designer.cs">
       <DependentUpon>201411241544457_7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411261610543_8.cs" />
+    <Compile Include="Migrations\201411261610543_8.Designer.cs">
+      <DependentUpon>201411261610543_8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Dtos\ImagenUrlDTO.cs" />
     <Compile Include="Repository\UsuariosRepository.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411241544457_7.resx">
       <DependentUpon>201411241544457_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411261610543_8.resx">
+      <DependentUpon>201411261610543_8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

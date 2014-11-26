@@ -17,7 +17,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
         public delegate void OnButtonClickHandler(object sender, KeyEventArgs e);
         public event OnButtonClickHandler OnButtonClick;
         private Control _activeControl;
-        private bool isShiftEnabled;
+        public bool IsShiftEnabled { get; set; }
 
         private void AlphaNumericButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -93,7 +93,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
 
         private void WriteAlphaNumericToActiveControl(string key)
         {
-            if (this.isShiftEnabled) key = key.ToUpper();
+            if (this.IsShiftEnabled) key = key.ToUpper();
             var textEvent = new TextCompositionEventArgs(Keyboard.PrimaryDevice,
                 new TextComposition(InputManager.Current, Keyboard.FocusedElement, key)) { RoutedEvent = TextInputEvent };
             InputManager.Current.ProcessInput(textEvent);
@@ -159,7 +159,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
 
         private void ButtonShift_Click(object sender, RoutedEventArgs e)
         {
-            this.isShiftEnabled = !this.isShiftEnabled;
+            this.IsShiftEnabled = !this.IsShiftEnabled;
         }
     }
 }

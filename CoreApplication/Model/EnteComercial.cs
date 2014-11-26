@@ -23,13 +23,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string LogoUrl { get; set; }
         public string ImagenUrl { get; set; }
         public string VideoUrl { get; set; }
+        public string Tags { get; set; }
+        public bool IsActivo { get; set; }
 
         [Required]
         public virtual RamoComercial RamoComercial { get; set; }
-
-        public string Tags { get; set; }
-
-        public bool IsActivo { get; set; }
 
         public virtual IList<Promocion> ListOfPromocions { get; set; }
 

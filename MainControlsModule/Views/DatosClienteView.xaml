@@ -80,7 +80,15 @@
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
+        <Style x:Key="LogoStyle" TargetType="Image">
+            <Setter Property="Width" Value="261" />
+            <Setter Property="Height" Value="155"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
 	</UserControl.Resources>
+    
 	<UserControl.DataContext>
 		<viewModels:DatosClienteViewModel/>
 	</UserControl.DataContext>
@@ -135,9 +143,8 @@
 				<!-- Columna Datos Cliente -->
 				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
 					<!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
-                    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
-                           Stretch="None" 
-                           HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}"
+                           Style="{StaticResource LogoStyle}"/>
                     <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>

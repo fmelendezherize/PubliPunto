@@ -46,8 +46,11 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Comenzando Agente de Sincronizacion (Id:{0})", _idSync), Category.Info, Priority.Low);
 
             RetrieveUsuarios().ContinueWith((t) => UpdateUsuarios(t.Result));
-            RetrieveRamosComerciales().ContinueWith((t) => UpdateRamosComerciales(t.Result));
-            RetrieveEntesComerciales().ContinueWith((t) => UpdateEntesComerciales(t.Result));
+            RetrieveRamosComerciales().ContinueWith((t1) =>
+            {
+                UpdateRamosComerciales(t1.Result);
+                RetrieveEntesComerciales().ContinueWith((t2) => UpdateEntesComerciales(t2.Result));
+            });
         }
 
         private async Task<ListOfUsuario> RetrieveUsuarios()
@@ -233,6 +236,20 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                         {
                             //descargo                    
                             DownloadFileFTP(item.LogoURL.logo.url, inputfilepath);
+                        }
+                    }
+                }
+
+                //Video
+                if (!String.IsNullOrEmpty(item.VideoUrl))
+                {
+                    var path = Properties.Settings.Default.VideosPath + "\\" + item.VideoUrl;
+                    if (System.IO.File.Exists(path))
+                    {
+                        string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "videos\\" + item.VideoUrl;
+                        if (!System.IO.File.Exists(inputfilepath))
+                        {
+                            System.IO.File.Copy(path, inputfilepath);
                         }
                     }
                 }

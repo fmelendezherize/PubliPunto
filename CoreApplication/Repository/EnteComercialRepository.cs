@@ -47,7 +47,44 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public void AddOrUpdate(EnteComercialDTO dto)
         {
+            var ramoComercial = db.RamoComercials.Where((q) => q.Codigo == dto.Categoria).FirstOrDefault();
+            if (ramoComercial == null) return;
 
+            var enteComercial = (from q in db.EnteComercials where (q.Codigo == dto.Codigo) select q).FirstOrDefault();
+            if (enteComercial == null)
+            {
+                EnteComercial newEnteComercial = new EnteComercial()
+                {
+                    Codigo = dto.Codigo,
+                    Direccion = dto.Direccion,
+                    IsActivo = dto.IsActivo,
+                    Nombre = dto.Nombre,
+                    Rif = dto.Rif,
+                    Tags = dto.Tags,
+                    Telefonos = dto.Telefonos,
+                    WebAddress = dto.WebAddress,
+                };
+                newEnteComercial.ImagenUrl = dto.ToImagenFileName();
+                newEnteComercial.LogoUrl = dto.ToLogoFileName();
+                newEnteComercial.RamoComercial = ramoComercial;
+                db.EnteComercials.Add(newEnteComercial);
+            }
+            else
+            {
+                enteComercial.Codigo = dto.Codigo;
+                enteComercial.Direccion = dto.Direccion;
+                enteComercial.IsActivo = dto.IsActivo;
+                enteComercial.Nombre = dto.Nombre;
+                enteComercial.Rif = dto.Rif;
+                enteComercial.Tags = dto.Tags;
+                enteComercial.Telefonos = dto.Telefonos;
+                enteComercial.WebAddress = dto.WebAddress;
+                enteComercial.ImagenUrl = dto.ToImagenFileName();
+                enteComercial.LogoUrl = dto.ToLogoFileName();
+                enteComercial.RamoComercial = ramoComercial;
+            }
+            db.Entry(ramoComercial).State = System.Data.Entity.EntityState.Unchanged;
+            db.SaveChanges();
         }
 
         public void Dispose()

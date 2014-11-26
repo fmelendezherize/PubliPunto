@@ -35,18 +35,68 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                                           Id = q.Id
                                       }).ToList();
 
-            int?[] indexEnteComercials = new int?[3];
-            for (int i = 0; i <= 2; i++)
+            if (listEnteComercials.Count > 3)
             {
-
-                indexEnteComercials[i] = GetIndex(indexEnteComercials, listEnteComercials);
-                //Eliminando Random
-                //indexEnteComercials[i] = i;
+                //Random Position
+                int?[] indexEnteComercials = new int?[3];
+                for (int i = 0; i <= 2; i++)
+                {
+                    indexEnteComercials[i] = GetIndex(indexEnteComercials, listEnteComercials);
+                    //Eliminando Random
+                    //indexEnteComercials[i] = i;
+                }
+                EnteComercial0 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[0].Value].Id);
+                EnteComercial1 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[1].Value].Id);
+                EnteComercial2 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[2].Value].Id);
             }
-
-            EnteComercial0 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[0].Value].Id);
-            EnteComercial1 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[1].Value].Id);
-            EnteComercial2 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[2].Value].Id);
+            else
+            {
+                if (listEnteComercials.ElementAtOrDefault(0) == null)
+                {
+                    EnteComercial0 = new EnteComercial()
+                    {
+                        Id = 0,
+                        Nombre = "Disponible",
+                        Direccion = "Direccion de su negocio o empresa.",
+                        Telefonos = "Telefonos para que sus clientes lo contacten.",
+                        WebAddress = "www.tudireccionweb.com"
+                    };
+                }
+                else
+                {
+                    EnteComercial0 = _enteComercialRepository.FindBy(listEnteComercials[0].Id);
+                }
+                if (listEnteComercials.ElementAtOrDefault(1) == null)
+                {
+                    EnteComercial1 = new EnteComercial()
+                    {
+                        Id = 0,
+                        Nombre = "Disponible",
+                        Direccion = "Direccion de su negocio o empresa.",
+                        Telefonos = "Telefonos para que sus clientes lo contacten.",
+                        WebAddress = "www.tudireccionweb.com"
+                    };
+                }
+                else
+                {
+                    EnteComercial1 = _enteComercialRepository.FindBy(listEnteComercials[1].Id);
+                }
+                if (listEnteComercials.ElementAtOrDefault(2) == null)
+                {
+                    EnteComercial2 = new EnteComercial()
+                    {
+                        Id = 0,
+                        Nombre = "Disponible",
+                        Direccion = "Direccion de su negocio o empresa.",
+                        Telefonos = "Telefonos para que sus clientes lo contacten.",
+                        WebAddress = "www.tudireccionweb.com"
+                    };
+                }
+                else
+                {
+                    EnteComercial2 = _enteComercialRepository.FindBy(listEnteComercials[2].Id);
+                }
+            }
             this.RaisePropertyChanged(() => this.EnteComercial0);
             this.RaisePropertyChanged(() => this.EnteComercial1);
             this.RaisePropertyChanged(() => this.EnteComercial2);
