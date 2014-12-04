@@ -101,7 +101,7 @@
 		</StackPanel>
 		<StackPanel Grid.Row="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-			    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" Stretch="None" 
+			    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" Stretch="Uniform" 
 					       HorizontalAlignment="Left" Width="291" Height="171" Margin="10,5"></Image>
 			    <StackPanel>
 				    <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>

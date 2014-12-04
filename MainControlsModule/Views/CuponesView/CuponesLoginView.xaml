@@ -235,7 +235,6 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Name="ButtonRegistrarUsuario" Style="{StaticResource ButtonReclamarCuponStyle}"
-                                            Background="{DynamicResource ColorHeaderBrush}"
                                             Margin="8,25,8,0"  Click="ButtonRegistrarUsuario_Click">
                                         <TextBlock Padding="10,0" TextWrapping="Wrap">No estoy registrado</TextBlock>
                                     </Button>

@@ -7,13 +7,13 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class _8 : IMigrationMetadata
+    public sealed partial class _9 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_8));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_9));
         
         string IMigrationMetadata.Id
         {
-            get { return "201411261610543_8"; }
+            get { return "201412042132246_9"; }
         }
         
         string IMigrationMetadata.Source

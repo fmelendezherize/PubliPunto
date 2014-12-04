@@ -87,6 +87,63 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             db.SaveChanges();
         }
 
+        public void AddOrUpdatePromocion(Kiosko_Promocion_Detalle dto)
+        {
+            var enteComercial = (from q in db.EnteComercials where (q.Codigo == dto.ClienteCodigo) select q).FirstOrDefault();
+            if (enteComercial == null) return;
+
+            var promocion = (from q in enteComercial.ListOfPromocions where (q.Codigo == dto.Codigo) select q).FirstOrDefault();
+            if (promocion == null)
+            {
+                var newPromocion = new Promocion()
+                {
+                    Codigo = dto.Codigo,
+                    Descripcion = dto.Descripcion,
+                    Detalles = dto.Detalles,
+                    IsActivo = true
+                };
+                newPromocion.FechaInicio = DateTime.Parse(dto.Inicio);
+                newPromocion.FechaFin = DateTime.Parse(dto.Fin);
+                newPromocion.ListOfPromocionCupons = new List<PromocionCupon>();
+
+                foreach (var item in dto.Kiosko_Promociones)
+                {
+                    var newCupon = new PromocionCupon()
+                    {
+                        CodigoCanjeo = item.Codigo,
+                        RemoteId = item.ID,
+                    };
+                    newPromocion.ListOfPromocionCupons.Add(newCupon);
+                }
+                enteComercial.ListOfPromocions.Add(newPromocion);
+            }
+            else
+            {
+                promocion.Descripcion = dto.Descripcion;
+                promocion.Detalles = dto.Detalles;
+                promocion.FechaInicio = DateTime.Parse(dto.Inicio);
+                promocion.FechaFin = DateTime.Parse(dto.Fin);
+
+                if (promocion.ListOfPromocionCupons != null)
+                {
+                    foreach (var item in dto.Kiosko_Promociones)
+                    {
+                        var cupon = (from q in promocion.ListOfPromocionCupons where (q.RemoteId == item.ID) select q).FirstOrDefault();
+                        if (cupon == null)
+                        {
+                            var newCupon = new PromocionCupon()
+                            {
+                                CodigoCanjeo = item.Codigo,
+                                RemoteId = item.ID,
+                            };
+                            promocion.ListOfPromocionCupons.Add(newCupon);
+                        }
+                    }
+                }
+            }
+            db.SaveChanges();
+        }
+
         public void Dispose()
         {
             if (db == null) return;

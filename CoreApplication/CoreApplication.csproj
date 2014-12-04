@@ -78,11 +78,16 @@
     <Compile Include="Migrations\201411241544457_7.Designer.cs">
       <DependentUpon>201411241544457_7.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411261610543_8.cs" />
-    <Compile Include="Migrations\201411261610543_8.Designer.cs">
-      <DependentUpon>201411261610543_8.cs</DependentUpon>
+    <Compile Include="Migrations\201412042028582_8.cs" />
+    <Compile Include="Migrations\201412042028582_8.Designer.cs">
+      <DependentUpon>201412042028582_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412042132246_9.cs" />
+    <Compile Include="Migrations\201412042132246_9.Designer.cs">
+      <DependentUpon>201412042132246_9.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Dtos\ImagenUrlDTO.cs" />
+    <Compile Include="Model\Dtos\Kiosko_PromocionesDTO.cs" />
     <Compile Include="Repository\UsuariosRepository.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
     <Compile Include="Migrations\201404071610301_1.cs" />
@@ -171,8 +176,11 @@
     <EmbeddedResource Include="Migrations\201411241544457_7.resx">
       <DependentUpon>201411241544457_7.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411261610543_8.resx">
-      <DependentUpon>201411261610543_8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412042028582_8.resx">
+      <DependentUpon>201412042028582_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412042132246_9.resx">
+      <DependentUpon>201412042132246_9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

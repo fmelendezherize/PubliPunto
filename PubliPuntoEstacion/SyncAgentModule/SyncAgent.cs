@@ -3,6 +3,7 @@ using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Unity;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -48,8 +49,33 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             RetrieveUsuarios().ContinueWith((t) => UpdateUsuarios(t.Result));
             RetrieveRamosComerciales().ContinueWith((t1) =>
             {
+                if (t1.IsFaulted) return;
                 UpdateRamosComerciales(t1.Result);
-                RetrieveEntesComerciales().ContinueWith((t2) => UpdateEntesComerciales(t2.Result));
+                RetrieveEntesComerciales().ContinueWith((t2) =>
+                {
+                    if (t2.IsFaulted) return;
+                    UpdateEntesComerciales(t2.Result);
+                    RetrieveKioskoPromociones().ContinueWith((t3) =>
+                    {
+                        if (t3.IsFaulted) return;
+                        List<Task<Kiosko_Promocion_Detalle>> listOfTaskKioskoPromocionDetalle = new List<Task<Kiosko_Promocion_Detalle>>();
+                        foreach (var item in t3.Result.Kiosko_Promociones)
+                        {
+                            listOfTaskKioskoPromocionDetalle.Add(RetrieveKiosko_Promocion_Detalle(item.Codigo));
+                        }
+                        Task.WhenAll(listOfTaskKioskoPromocionDetalle).ContinueWith((t4) =>
+                        {
+                            if (t4.IsFaulted) return;
+                            using (var repository = new EnteComercialRepository())
+                            {
+                                foreach (var itemTask in listOfTaskKioskoPromocionDetalle)
+                                {
+                                    repository.AddOrUpdatePromocion(itemTask.Result);
+                                }
+                            }
+                        });
+                    });
+                });
             });
         }
 
@@ -140,7 +166,69 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                 }
                 catch (HttpRequestException e)
                 {
-                    Logger.Log(string.Format("Error descargando Ramos Comerciales (Id:{0}): {1}", _idSync, e.InnerException.Message), Category.Info, Priority.Low);
+                    Logger.Log(string.Format("Error descargando Entes Comerciales (Id:{0}): {1}", _idSync, e.InnerException.Message), Category.Info, Priority.Low);
+                    return null;
+                }
+            }
+        }
+
+        private async Task<ListOfKiosko_PromocionesDTO> RetrieveKioskoPromociones()
+        {
+            Logger.Log(string.Format("Descargando Kiosko Promociones (Id:{0})", _idSync), Category.Info, Priority.Low);
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // New code:
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync("api/kiosko_promociones.json");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsAsync<Object>();
+                        ListOfKiosko_PromocionesDTO listOfValues = Newtonsoft.Json.JsonConvert.DeserializeObject<ListOfKiosko_PromocionesDTO>(content.ToString());
+                        Logger.Log(string.Format("Kiosko Promociones descargados con exito (Id:{0})", _idSync), Category.Info, Priority.Low);
+                        return listOfValues;
+                    }
+
+                    return null;
+                }
+                catch (HttpRequestException e)
+                {
+                    Logger.Log(string.Format("Error descargando Kiosko Promociones (Id:{0}): {1}", _idSync, e.InnerException.Message), Category.Info, Priority.Low);
+                    return null;
+                }
+            }
+        }
+
+        private async Task<Kiosko_Promocion_Detalle> RetrieveKiosko_Promocion_Detalle(string codigoPromocion)
+        {
+            Logger.Log(string.Format("Descargando Kiosko Promociones Detalle (Id:{0})(CodigoPromocion:{1})", _idSync, codigoPromocion), Category.Info, Priority.Low);
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // New code:
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(string.Format("api/kiosko_promociones/{0}.json", codigoPromocion));
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsAsync<Object>();
+                        Kiosko_Promocion_Detalle listOfValues = Newtonsoft.Json.JsonConvert.DeserializeObject<Kiosko_Promocion_Detalle>(content.ToString());
+                        Logger.Log(string.Format("Kiosko Promocion Detalle (Id:{0})(CodigoPromocion:{1}) descargado con exito.", _idSync, codigoPromocion), Category.Info, Priority.Low);
+                        return listOfValues;
+                    }
+
+                    return null;
+                }
+                catch (HttpRequestException e)
+                {
+                    Logger.Log(string.Format("Error descargando Kiosko Promocion Detalle (Id:{0})(CodigoPromocion{1}): {2}", _idSync, codigoPromocion, e.InnerException.Message), Category.Info, Priority.Low);
                     return null;
                 }
             }
