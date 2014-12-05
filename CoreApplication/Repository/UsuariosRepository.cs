@@ -39,6 +39,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             db.SaveChanges();
         }
 
+        public Usuario RetrieveUsuarioBy(string cedula, string pin)
+        {
+            var usuario = (from q in db.Usuarios where ((q.Cedula == cedula) & (q.Pin == pin)) select q).FirstOrDefault();
+            return usuario;
+        }
+
         public void Dispose()
         {
             if (db == null) return;

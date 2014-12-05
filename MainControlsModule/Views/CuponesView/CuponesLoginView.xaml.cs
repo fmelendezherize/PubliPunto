@@ -1,5 +1,8 @@
-﻿using Decktra.PubliPuntoEstacion.Interfaces;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.Interfaces;
+using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.Unity;
 using System;
 using System.Windows;
@@ -28,12 +31,66 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             InitializeComponent();
         }
 
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            DatosClienteViewModel viewModel = (DatosClienteViewModel)this.DataContext;
+
+            if (viewModel.UsuarioValidado == null)
+            {
+                //Usuario no encontrado
+                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                errorWnd.OnNavigatedTo("ErrorLogin");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.MouseDown += errorWnd_MouseDown;
+                errorWnd.ShowDialog();
+                this.TextBoxCedulaIdentidad.Clear();
+                this.TextBoxPIN.Clear();
+                this.RadioButtonCedulaFirstLetter.IsChecked = true;
+                return;
+            }
+
+            if (viewModel.PromocionCupon != null)
+            {
+                //bien
+            }
+            else
+            {
+                //no aceptado
+                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                errorWnd.OnNavigatedTo("ErrorPromocion");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.MouseDown += errorWnd_MouseDown;
+                errorWnd.ShowDialog();
+                if (navigationService.Journal.CanGoBack)
+                {
+                    navigationService.Journal.GoBack();
+                }
+                return;
+            }
+        }
+
         private void ButtonReclamarCuponPorPin_Click(object sender, RoutedEventArgs e)
         {
             if ((!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text)) &
                 (!String.IsNullOrEmpty(this.TextBoxPIN.Password)))
             {
-                this.ReclamarCupon();
+                string cedula = this.TextBoxCedulaIdentidad.Text;
+                //TODO hablar con Nacho que valide esto
+                //if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
+                //{
+                //    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
+                //}
+                //else
+                //{
+                //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
+                //};
+                
+                ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
+                    new Usuario
+                    {
+                        Cedula = cedula,
+                        Pin = this.TextBoxPIN.Password
+                    });
                 return;
             }
 
@@ -100,7 +157,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
+            this.DataContext = null;
             this.DataContext = navigationContext.NavigationService.Region.Context;
+            ((NotificationObject)this.DataContext).PropertyChanged += this.OnPropertyChanged;
 
             this.TextBoxCedulaIdentidad.Clear();
             this.TextBoxPIN.Clear();

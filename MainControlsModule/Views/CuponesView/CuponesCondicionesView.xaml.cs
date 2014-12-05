@@ -43,6 +43,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
+            this.DataContext = null;
             this.DataContext = navigationContext.NavigationService.Region.Context;
         }
 

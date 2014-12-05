@@ -9,25 +9,48 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
     public class DatosClienteViewModel : NotificationObject
     {
-        private readonly EnteComercialRepository _enteComercialRepository;
-        public ICommand ShowEnteComercialCommand;
+        public ICommand ShowEnteComercialCommand { get; set; }
+        public ICommand ReclamarCuponCommand { get; set; }
         public EnteComercial EnteComercial { get; set; }
-        //public string RutaImagen { get; set; }
+        public Promocion PromocionSelected { get; set; }
 
-        public bool IsAuthorized { get; set; }
+        public PromocionCupon PromocionCupon { get; set; }
+        public Usuario UsuarioValidado { get; set; }
 
         public DatosClienteViewModel()
         {
-            ShowEnteComercialCommand = new DelegateCommand<string>(this.ShowEnteComercial);
-            _enteComercialRepository = new EnteComercialRepository();
+            this.ShowEnteComercialCommand = new DelegateCommand<string>(this.ShowEnteComercial);
+            this.ReclamarCuponCommand = new DelegateCommand<Usuario>(this.ReclamarCupon);
+        }
+
+        private void ReclamarCupon(Usuario usuarioKiosko)
+        {
+            if (usuarioKiosko == null) return;
+
+            //Validar Usuario
+            PromocionCupon = null;
+
+            using (var usuarioRepository = new UsuariosRepository())
+            {
+                UsuarioValidado = usuarioRepository.RetrieveUsuarioBy(usuarioKiosko.Cedula, usuarioKiosko.Pin);
+            };
+
+            if (UsuarioValidado == null) this.RaisePropertyChanged<Usuario>(() => UsuarioValidado);
+
+
+            //PromocionCupon = new PromocionCupon();
+            this.RaisePropertyChanged<PromocionCupon>(() => PromocionCupon);
         }
 
         private void ShowEnteComercial(string obj)
         {
-            EnteComercial = _enteComercialRepository.FindBy(int.Parse(obj));
-            if (EnteComercial == null) GlobalCommands.GoToHomeCommand.Execute(null);
+            using (var _enteComercialRepository = new EnteComercialRepository())
+            {
+                EnteComercial = _enteComercialRepository.FindBy(int.Parse(obj));
+                if (EnteComercial == null) GlobalCommands.GoToHomeCommand.Execute(null);
 
-            this.RaisePropertyChanged(() => this.EnteComercial);
+                this.RaisePropertyChanged(() => this.EnteComercial);
+            }
         }
     }
 }

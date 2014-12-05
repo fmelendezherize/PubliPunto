@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
+             xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
@@ -166,6 +167,9 @@
             <Setter Property="Margin" Value="10,10"/>
         </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModels:DatosClienteViewModel/>
+    </UserControl.DataContext>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
         <DockPanel>
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" 
@@ -199,9 +203,9 @@
                                     <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
                                     <WrapPanel>
                                         <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="45,20,0,0" 
-                                                     Content="E" GroupName="TipoId" />
-                                        <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId" 
-                                                     />
+                                                     Content="E" GroupName="TipoId"/>
+                                        <RadioButton x:Name="RadioButtonCedulaFirstLetter" 
+                                                     Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
                                         <TextBox Name="TextBoxCedulaIdentidad" Width="240" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"
                                                  Margin="10,20,0,0" MaxLength="8"></TextBox>
                                     </WrapPanel>
@@ -229,7 +233,7 @@
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
                                                    Style="{StaticResource H2Style}" VerticalAlignment="Top" 
                                                    Width="320" Height="Auto" Margin="10,0">
-                                            <Run Text="Descripción de Cupón Seleccionado. Detalles de promoción y ofertas." ></Run>
+                                            <Run Text="{Binding PromocionSelected.Descripcion}" ></Run>
                                         </TextBlock>
                                     </WrapPanel>
                                 </StackPanel>
