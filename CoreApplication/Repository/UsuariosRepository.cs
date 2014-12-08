@@ -45,6 +45,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             return usuario;
         }
 
+        public void Add(Usuario newUsuario)
+        {
+            db.Usuarios.Add(newUsuario);
+            db.SaveChanges();
+        }
+
         public void Dispose()
         {
             if (db == null) return;

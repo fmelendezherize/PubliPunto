@@ -167,9 +167,6 @@
             <Setter Property="Margin" Value="10,10"/>
         </Style>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModels:DatosClienteViewModel/>
-    </UserControl.DataContext>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
         <DockPanel>
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" 

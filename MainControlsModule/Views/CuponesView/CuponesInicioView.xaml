@@ -80,9 +80,6 @@
 			</Style.Triggers>
 		</Style>
 	</UserControl.Resources>
-	<UserControl.DataContext>
-		<viewModels:DatosClienteViewModel/>
-	</UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>

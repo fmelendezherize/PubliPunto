@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 {
     public class Promocion
@@ -23,6 +25,25 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public bool IsActivo { get; set; }
 
         public virtual IList<PromocionCupon> ListOfPromocionCupons { get; set; }
+
+        public PromocionCupon ObtenerCupon(Usuario usuarioSelected)
+        {
+            var promocionCupon = (from q in this.ListOfPromocionCupons
+                                  where (q.UsuarioAsignadoId == usuarioSelected.Id)
+                                  select q).FirstOrDefault();
+            if (promocionCupon != null) return promocionCupon;
+
+            //nuevo Cupon
+            var newPromocionCupon = (from q in this.ListOfPromocionCupons
+                                     where (q.UsuarioAsignadoId == null)
+                                     select q).FirstOrDefault();
+            if (newPromocionCupon != null)
+            {
+                newPromocionCupon.UsuarioAsignadoId = usuarioSelected.Id;
+            }
+
+            return newPromocionCupon;
+        }
     }
 
     public class PromocionCupon

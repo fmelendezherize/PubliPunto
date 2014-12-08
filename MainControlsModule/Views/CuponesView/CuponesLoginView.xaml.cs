@@ -2,7 +2,6 @@
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.Unity;
 using System;
 using System.Windows;
@@ -35,37 +34,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             DatosClienteViewModel viewModel = (DatosClienteViewModel)this.DataContext;
 
-            if (viewModel.UsuarioValidado == null)
-            {
-                //Usuario no encontrado
-                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-                errorWnd.OnNavigatedTo("ErrorLogin");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.MouseDown += errorWnd_MouseDown;
-                errorWnd.ShowDialog();
-                this.TextBoxCedulaIdentidad.Clear();
-                this.TextBoxPIN.Clear();
-                this.RadioButtonCedulaFirstLetter.IsChecked = true;
-                return;
-            }
-
             if (viewModel.PromocionCupon != null)
             {
                 //bien
             }
             else
             {
-                //no aceptado
-                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-                errorWnd.OnNavigatedTo("ErrorPromocion");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.MouseDown += errorWnd_MouseDown;
-                errorWnd.ShowDialog();
-                if (navigationService.Journal.CanGoBack)
-                {
-                    navigationService.Journal.GoBack();
-                }
-                return;
             }
         }
 
@@ -84,7 +58,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 //{
                 //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
                 //};
-                
+
                 ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
                     new Usuario
                     {
@@ -157,10 +131,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
-            this.DataContext = null;
-            this.DataContext = navigationContext.NavigationService.Region.Context;
-            ((NotificationObject)this.DataContext).PropertyChanged += this.OnPropertyChanged;
-
+            if (this.DataContext == null)
+            {
+                this.DataContext = navigationContext.NavigationService.Region.Context;
+                DatosClienteViewModel viewModel = (DatosClienteViewModel)this.DataContext;
+                viewModel.PropertyChanged += OnPropertyChanged;
+                viewModel.OnUsuarioAprobado += CuponesLoginView_OnUsuarioAprobado;
+                viewModel.OnPromocionAprobada += CuponesLoginView_OnPromocionAprobada;
+            }
             this.TextBoxCedulaIdentidad.Clear();
             this.TextBoxPIN.Clear();
             this.RadioButtonCedulaFirstLetter.IsChecked = true;
@@ -168,14 +146,48 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
         }
 
-        private void ReclamarCupon()
+        void CuponesLoginView_OnPromocionAprobada(object sender, bool e)
         {
-            var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
-            processWnd.Owner = Application.Current.MainWindow;
-            processWnd.ShowDialog();
+            if (!e)
+            {
+                //no aceptado
+                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                errorWnd.OnNavigatedTo("ErrorPromocion");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.MouseDown += errorWnd_MouseDown;
+                errorWnd.ShowDialog();
+                if (navigationService.Journal.CanGoBack)
+                {
+                    navigationService.Journal.GoBack();
+                }
+                return;
+            }
+            else
+            {
+                var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
+                processWnd.Owner = Application.Current.MainWindow;
+                processWnd.ShowDialog();
 
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesAutorizadoView", UriKind.Relative));
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("CuponesAutorizadoView", UriKind.Relative));
+            }
+        }
+
+        void CuponesLoginView_OnUsuarioAprobado(object sender, bool e)
+        {
+            //Usuario no encontrado
+            if (!e)
+            {
+                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                errorWnd.OnNavigatedTo("ErrorLogin");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.MouseDown += errorWnd_MouseDown;
+                errorWnd.ShowDialog();
+                this.TextBoxCedulaIdentidad.Clear();
+                this.TextBoxPIN.Clear();
+                this.RadioButtonCedulaFirstLetter.IsChecked = true;
+                return;
+            }
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)

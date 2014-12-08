@@ -49,7 +49,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.DataContext = navigationContext.NavigationService.Region.Context;
+            if (this.DataContext == null) this.DataContext = navigationContext.NavigationService.Region.Context;
             Counter = 60;
             this.TextBlockTiempoRestante.Text = Counter.ToString();
 

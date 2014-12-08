@@ -77,9 +77,6 @@
 			<Setter Property="Margin" Value="10,10"/>
 		</Style>
 	</UserControl.Resources>
-	<UserControl.DataContext>
-		<viewModels:DatosClienteViewModel/>
-	</UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}" Background="White">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -115,7 +112,7 @@
 				</Canvas>
 				<TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
 							   Style="{StaticResource H2Style}" VerticalAlignment="Center" 
-							   Text="Descripción de Cupón Seleccionado" 
+							   Text="{Binding PromocionSelected.Descripcion}" 
 							   Width="700" Height="60" Margin="18,0,0,0"/>
 			</StackPanel>
 		</StackPanel>
@@ -124,7 +121,10 @@
 			<Line X1="0" X2="930" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left"/>
             <StackPanel HorizontalAlignment="Center" Margin="0,60,0,20">
                 <TextBlock Background="{DynamicResource CuponesPrimaryColorBrush}" Foreground="White"
-                           Style="{StaticResource H1Style}" FontSize="56">Cupón #45W1 4BA2</TextBlock>
+                           Style="{StaticResource H1Style}" FontSize="56">
+                    <Run Text="Cupón "/> 
+                    <Run Text="{Binding PromocionCupon.CodigoCanjeo}"/>
+                </TextBlock>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center">
                 <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/barcode.jpg" 
@@ -132,17 +132,17 @@
             </StackPanel>
         </StackPanel>
 		<StackPanel Grid.Row="3" Margin="20,20">
-            <TextBlock Style="{StaticResource H3Style}">
+            <!--<TextBlock Style="{StaticResource H3Style}">
                 <Run FontWeight="Bold" Text="Usuario: "/> 
-                <Run Text="Alejandro Celis"/>
-            </TextBlock>
+                <Run Text="{Binding UsuarioValidado}"/>
+            </TextBlock>-->
             <TextBlock Style="{StaticResource H3Style}">
                 <Run FontWeight="Bold" Text="Cédula de Identidad: "/> 
-                <Run Text="V-15.207.282"/>
+                <Run Text="{Binding UsuarioValidado.Cedula}"/>
             </TextBlock>
             <TextBlock Style="{StaticResource H3Style}">
                 <Run FontWeight="Bold" Text="Tu cupón fue enviado a:"/> 
-                <Run Text="alejandro.celis@siescom.com.ve"/>
+                <Run Text="{Binding UsuarioValidado.Email}"/>
             </TextBlock>
             <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" Margin="10,10">
                 <Run Text="Promoción emitida por Siescom C.A. / J-29349239-4"/>

@@ -1,4 +1,5 @@
-﻿using Decktra.PubliPuntoEstacion.Interfaces;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
@@ -56,7 +57,23 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
                 (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
             {
-                this.ReclamarCupon();
+                string cedula = this.TextBoxNewCedulaIdentidad.Text;
+                //TODO hablar con Nacho que valide esto
+                //if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
+                //{
+                //    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
+                //}
+                //else
+                //{
+                //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
+                //};
+
+                ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
+                    new Usuario
+                    {
+                        Cedula = cedula,
+                        Email = this.TextBoxNewEmail.Text
+                    });
                 return;
             }
 
@@ -72,16 +89,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             Window wnd = sender as Window;
             wnd.Close();
             this.TextBoxAlpha_GotFocus(this.TextBoxNewNombreApellido, null);
-        }
-
-        private void ReclamarCupon()
-        {
-            var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
-            processWnd.Owner = Application.Current.MainWindow;
-            processWnd.ShowDialog();
-
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesAutorizadoView", UriKind.Relative));
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -102,8 +109,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
-            this.DataContext = navigationContext.NavigationService.Region.Context;
-
+            if (this.DataContext == null)
+            {
+                this.DataContext = navigationContext.NavigationService.Region.Context;
+            }
             this.TextBoxNewCedulaIdentidad.Clear();
             this.TextBoxNewEmail.Clear();
             this.TextBoxNewNombreApellido.Clear();

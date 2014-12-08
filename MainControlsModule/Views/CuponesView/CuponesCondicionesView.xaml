@@ -78,9 +78,6 @@
             <Setter Property="Margin" Value="5,0"/>
         </Style>
 	</UserControl.Resources>
-	<UserControl.DataContext>
-		<viewModels:DatosClienteViewModel/>
-	</UserControl.DataContext>
 	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}" Background="White">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>

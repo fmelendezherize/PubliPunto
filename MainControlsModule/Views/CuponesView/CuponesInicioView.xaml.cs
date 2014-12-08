@@ -35,7 +35,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ((DatosClienteViewModel)this.DataContext).PromocionSelected = (Promocion)((TextBlock)sender).DataContext;
+            ((DatosClienteViewModel)this.DataContext).SelectPromocion((Promocion)((TextBlock)sender).DataContext);
 
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesLoginView", UriKind.Relative));
@@ -58,14 +58,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            this.DataContext = null;
-            this.DataContext = navigationContext.NavigationService.Region.Context;
+            if (this.DataContext == null)
+            {
+                this.DataContext = navigationContext.NavigationService.Region.Context;
+            }
             this.navigationService = navigationContext.NavigationService;
         }
 
         private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((DatosClienteViewModel)this.DataContext).PromocionSelected = (Promocion)((TextBlock)sender).DataContext;
+            ((DatosClienteViewModel)this.DataContext).SelectPromocion((Promocion)((TextBlock)sender).DataContext);
 
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesCondicionesView", UriKind.Relative));

@@ -225,7 +225,7 @@
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
                                                    Style="{StaticResource H2Style}" VerticalAlignment="Top" 
                                                    Width="320" Height="Auto" Margin="10,0">
-                                            <Run Text="Descripción de Cupón Seleccionado. Detalles de promoción y ofertas." ></Run>
+                                            <Run Text="{Binding PromocionSelected.Descripcion}" ></Run>
                                         </TextBlock>
                                     </WrapPanel>
                                 </StackPanel>

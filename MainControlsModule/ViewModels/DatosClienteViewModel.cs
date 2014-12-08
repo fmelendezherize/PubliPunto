@@ -3,6 +3,7 @@ using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.Library;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
+using System;
 using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
@@ -17,6 +18,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public PromocionCupon PromocionCupon { get; set; }
         public Usuario UsuarioValidado { get; set; }
 
+        public event EventHandler<bool> OnUsuarioAprobado;
+        public event EventHandler<bool> OnPromocionAprobada;
+
         public DatosClienteViewModel()
         {
             this.ShowEnteComercialCommand = new DelegateCommand<string>(this.ShowEnteComercial);
@@ -28,18 +32,38 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             if (usuarioKiosko == null) return;
 
             //Validar Usuario
-            PromocionCupon = null;
-
             using (var usuarioRepository = new UsuariosRepository())
             {
                 UsuarioValidado = usuarioRepository.RetrieveUsuarioBy(usuarioKiosko.Cedula, usuarioKiosko.Pin);
+
+                if (UsuarioValidado == null)
+                {
+                    if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email))
+                    {
+                        //chance de registro
+                        usuarioRepository.Add(usuarioKiosko);
+                    }
+                    else
+                    {
+                        if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
+                        return;
+                    }
+                }
             };
 
-            if (UsuarioValidado == null) this.RaisePropertyChanged<Usuario>(() => UsuarioValidado);
-
-
-            //PromocionCupon = new PromocionCupon();
-            this.RaisePropertyChanged<PromocionCupon>(() => PromocionCupon);
+            ///Promocion
+            PromocionCupon = null;
+            PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
+            if (PromocionCupon == null)
+            {
+                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+            }
+            else
+            {
+                this.RaisePropertyChanged(() => this.PromocionCupon);
+                this.RaisePropertyChanged(() => this.UsuarioValidado);
+                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+            }
         }
 
         private void ShowEnteComercial(string obj)
@@ -51,6 +75,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
                 this.RaisePropertyChanged(() => this.EnteComercial);
             }
+        }
+
+        public void SelectPromocion(Promocion promocion)
+        {
+            this.PromocionSelected = promocion;
+            this.RaisePropertyChanged(() => this.PromocionSelected);
         }
     }
 }

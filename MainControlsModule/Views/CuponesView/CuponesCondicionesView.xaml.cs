@@ -43,8 +43,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
-            this.DataContext = null;
-            this.DataContext = navigationContext.NavigationService.Region.Context;
+            if (this.DataContext == null)
+            {
+                this.DataContext = navigationContext.NavigationService.Region.Context;
+            }
         }
 
         private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
