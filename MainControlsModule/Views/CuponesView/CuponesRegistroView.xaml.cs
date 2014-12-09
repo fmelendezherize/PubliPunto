@@ -3,6 +3,7 @@ using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -53,9 +54,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void ButtonRegistro_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if ((!String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) &
-                (!String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) &
-                (!String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)))
+            if (IsCedulaIdentidadValida() & IsEmailValido() & IsNombreApellidoValido())
             {
                 string cedula = this.TextBoxNewCedulaIdentidad.Text;
                 //TODO hablar con Nacho que valide esto
@@ -72,7 +71,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                     new Usuario
                     {
                         Cedula = cedula,
-                        Email = this.TextBoxNewEmail.Text
+                        Email = this.TextBoxNewEmail.Text,
+                        Nombre = this.TextBoxNewNombreApellido.Text
                     });
                 return;
             }
@@ -82,6 +82,29 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             errorWnd.Owner = Application.Current.MainWindow;
             errorWnd.MouseDown += errorWnd_MouseDown;
             errorWnd.ShowDialog();
+        }
+
+        private bool IsCedulaIdentidadValida()
+        {
+            if (String.IsNullOrEmpty(this.TextBoxNewCedulaIdentidad.Text)) return false;
+            if (this.TextBoxNewCedulaIdentidad.Text.Length < 6) return false;
+            return true;
+        }
+
+        private bool IsEmailValido()
+        {
+            if (String.IsNullOrEmpty(this.TextBoxNewEmail.Text)) return false;
+
+            // source: http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx
+            Regex rx = new Regex(
+            @"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");
+            return rx.IsMatch(this.TextBoxNewEmail.Text);
+        }
+
+        private bool IsNombreApellidoValido()
+        {
+            if (String.IsNullOrEmpty(this.TextBoxNewNombreApellido.Text)) return false;
+            return true;
         }
 
         private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

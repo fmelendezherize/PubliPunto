@@ -8,6 +8,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
         public string Codigo { get; set; }
         public string Email { get; set; }
         public string Pin { get; set; }
+        public string Nombre { get; set; }
     }
 
     public class ListOfUsuario

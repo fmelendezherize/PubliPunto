@@ -26,7 +26,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                     Cedula = dto.Cedula,
                     Codigo = dto.Codigo,
                     Email = dto.Email,
-                    Pin = dto.Pin
+                    Pin = dto.Pin,
+                    Nombre = dto.Nombre
                 };
                 db.Usuarios.Add(newUsuario);
             }
@@ -35,6 +36,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 usuario.Cedula = dto.Cedula;
                 usuario.Email = dto.Email;
                 usuario.Pin = dto.Pin;
+                usuario.Nombre = dto.Nombre;
             }
             db.SaveChanges();
         }

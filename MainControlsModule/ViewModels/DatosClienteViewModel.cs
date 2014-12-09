@@ -38,10 +38,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
                 if (UsuarioValidado == null)
                 {
-                    if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email))
+                    if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email)
+                        && !string.IsNullOrEmpty(usuarioKiosko.Nombre))
                     {
                         //chance de registro
                         usuarioRepository.Add(usuarioKiosko);
+                        UsuarioValidado = usuarioKiosko;
                     }
                     else
                     {
