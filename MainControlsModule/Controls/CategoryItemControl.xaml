@@ -24,8 +24,7 @@
 			</StackPanel>
 			<StackPanel Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch">
                 <ListView x:Name="ListViewCategorias" MinHeight="50" Background="White" BorderBrush="White" 
-						  ItemsSource="{Binding ListOfSubCategorias}" 
-                          MouseLeftButtonUp="ListViewCategorias_OnMouseLeftButtonUp">
+						  SelectionMode="Extended" ItemsSource="{Binding ListOfSubCategorias}">
                     <ListView.Resources>
 						<Style TargetType="{x:Type ListViewItem}">
 							<Setter Property="ContentTemplate">

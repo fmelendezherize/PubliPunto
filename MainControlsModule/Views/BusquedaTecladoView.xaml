@@ -75,6 +75,7 @@
 				</Image>
                 <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
                 <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
+                        BorderThickness="0" BorderBrush="Transparent" 
                         Click="ButtonBack_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
@@ -110,7 +111,7 @@
                                         <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
                                                                       HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
                                                                       HeaderText="{Binding NombreCategoria}"
-                                                                      OnListViewCategoriaMouseClick="CategoryItemControl_OnListViewCategoriaMouseClick"/>
+                                                                      OnCategoriaSelected="CategoryItemControl_OnListViewCategoriaMouseClick"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

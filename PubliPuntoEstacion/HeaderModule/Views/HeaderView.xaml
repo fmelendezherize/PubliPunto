@@ -22,7 +22,8 @@
                                Background="{DynamicResource ColorHeaderBrush}" VerticalAlignment="Center">¿Como Usar?</TextBlock>
                 </DockPanel>
                 <Button x:Name="ButtonHome" Width="110" Height="110" Canvas.Right="170"
-                        Foreground="White" Click="ButtonHome_Click" 
+                        Foreground="White" BorderThickness="0" BorderBrush="Transparent" 
+                        Click="ButtonHome_Click" 
                         Background="{DynamicResource ColorHeaderBrush}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical" >

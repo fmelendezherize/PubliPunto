@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         Title="PubliPunto Estacion"
-        Style="{StaticResource PubliPuntoWindowStyle}">
+        Style="{DynamicResource PubliPuntoWindowStyle}">
     <Grid>
         <Grid.Resources>
             <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">

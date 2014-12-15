@@ -5,6 +5,7 @@ using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -69,11 +70,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
         }
 
-        private void CategoryItemControl_OnOnListViewCategoriaMouseClick(object sender, EventArgs e)
+        private void SelectSubCategoria(SubCategoria selectedSubCategoria)
         {
-            if (IsPressed) return;
-
-            var selectedSubCategoria = sender as SubCategoria;
             if (selectedSubCategoria != null)
             {
                 if (selectedSubCategoria.TipoSubCategoria == TipoSubCategoria.RamoComercial)
@@ -93,7 +91,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void CategoryItemControl_OnCategoriaSelected(object sender, EventArgs e)
+        {
+            //if (IsPressed) return;
+
+            var selectedSubCategoria = sender as SubCategoria;
+            SelectSubCategoria(selectedSubCategoria);
+        }
+
+        private void ButtonCategoriaPorLetra_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Button button = sender as Button;
             NavigationParameters query = new NavigationParameters();
@@ -110,50 +116,82 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
         }
 
-        private bool IsPressed = false;
-        private double InitY;
+        private Point LastPosition;
+        private SubCategoria SelectedSubCategoria;
+
         private void ListViewCategorias_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                IsPressed = true;
-                const double DBL_Offtset = .6;
-                if (e.GetPosition(TextBlockTitulo).Y > InitY)
-                {
-                    //Bajo
-                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset + DBL_Offtset);
-                    InitY = e.GetPosition(TextBlockTitulo).Y - DBL_Offtset;
-                }
-                else
-                {
-                    //Subio
-                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset - DBL_Offtset);
-                    InitY = e.GetPosition(TextBlockTitulo).Y + DBL_Offtset;
-                }
-            }
+            //if (e.LeftButton == MouseButtonState.Pressed)
+            //{
+            //    IsPressed = true;
+            //    if (e.GetPosition(TextBlockTitulo).Y > InitY)
+            //    {
+            //        //Bajo
+            //        this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset + DBL_Offtset);
+            //        InitY = e.GetPosition(TextBlockTitulo).Y - DBL_Offtset;
+            //    }
+            //    else
+            //    {
+            //        //Subio
+            //        this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset - DBL_Offtset);
+            //        InitY = e.GetPosition(TextBlockTitulo).Y + DBL_Offtset;
+            //    }
+            //}
         }
 
         private void ListViewCategorias_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (IsPressed)
-            {
-                IsPressed = false;
-            }
+            //if (IsPressed)
+            //{
+            //    IsPressed = false;
+            //}
         }
 
         private void ListViewCategorias_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            InitY = e.GetPosition(TextBlockTitulo).Y;
-        }
-
-        private void ListViewCategorias_TouchUp(object sender, TouchEventArgs e)
-        {
-            Logger.Log("Touch Up detectado!", Category.Info, Priority.Low);
+            //InitY = e.GetPosition(TextBlockTitulo).Y;
         }
 
         private void ListViewCategorias_TouchDown(object sender, TouchEventArgs e)
         {
-            Logger.Log("Touch Down detectado!", Category.Info, Priority.Low);
+            LastPosition = e.GetTouchPoint(this.TextBlockTitulo).Position;
+        }
+
+        private void ListViewCategorias_TouchUp(object sender, TouchEventArgs e)
+        {
+            //MoverScrollByTouch(e);
+        }
+
+        private void ListViewCategorias_TouchMove(object sender, TouchEventArgs e)
+        {
+            MoverScrollByTouch(e);
+        }
+
+        private void MoverScrollByTouch(TouchEventArgs e)
+        {
+            var actualPosition = e.GetTouchPoint(this.TextBlockTitulo).Position;
+
+            var diffPosition = actualPosition.Y - LastPosition.Y;
+            if ((diffPosition > -10) & (diffPosition < 10))
+            {
+                //MessageBox.Show("Click");
+                //if (this.SelectedSubCategoria != null) this.SelectSubCategoria(this.SelectedSubCategoria);
+                return;
+            };
+
+            double offset = this.ScrollViewerCategorias.VerticalOffset + (diffPosition / 20);
+            if (actualPosition.Y > LastPosition.Y)
+            {
+                //MessageBox.Show(string.Format("Bajo. Actual({0}) Ultimo({1})", actualPosition.Y, LastPosition.Y));
+                this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                e.Handled = true;
+            }
+            else
+            {
+                //MessageBox.Show(string.Format("Subio. Actual({0}) Ultimo({1})", actualPosition.Y, LastPosition.Y));
+                this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                e.Handled = true;
+            }
         }
     }
 }

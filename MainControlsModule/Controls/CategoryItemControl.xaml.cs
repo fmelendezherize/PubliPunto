@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
 {
@@ -20,6 +19,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
         public CategoryItemControl()
         {
             InitializeComponent();
+
+            this.ListViewCategorias.SelectionChanged += ListViewCategorias_SelectionChanged;
         }
 
         public string HeaderText
@@ -40,11 +41,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             set { SetValue(HeaderStyleProperty, value); }
         }
 
-        public event EventHandler OnListViewCategoriaMouseClick;
+        public event EventHandler OnCategoriaSelected;
 
-        private void ListViewCategorias_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ListViewCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OnListViewCategoriaMouseClick(this.ListViewCategorias.SelectedItem, e);
+            if (this.ListViewCategorias.SelectedItem == null) return;
+
+            if (OnCategoriaSelected == null) return;
+            OnCategoriaSelected(this.ListViewCategorias.SelectedItem, e);
         }
     }
 }

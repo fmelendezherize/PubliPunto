@@ -104,51 +104,50 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top" Width="970">
 				<TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>
 				<ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">
-					<ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
-							  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    <ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
+							  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                              SelectionMode="Extended"
 							  ItemsSource="{Binding CategoriaActual}"
-							  MouseMove="ListViewCategorias_MouseMove"
-							  PreviewMouseDown="ListViewCategorias_MouseDown"
-							  MouseUp="ListViewCategorias_MouseUp"
                               TouchUp="ListViewCategorias_TouchUp"
-                              TouchDown="ListViewCategorias_TouchDown">
+                              TouchDown="ListViewCategorias_TouchDown"
+                              TouchMove="ListViewCategorias_TouchMove">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
 															  HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
 															  HeaderText="{Binding NombreCategoria}"
-															  OnListViewCategoriaMouseClick="CategoryItemControl_OnOnListViewCategoriaMouseClick"/>
+															  OnCategoriaSelected="CategoryItemControl_OnCategoriaSelected"/>
 							</DataTemplate>
 						</ListView.ItemTemplate>
 					</ListView>
 				</ScrollViewer>
 				<WrapPanel Orientation="Vertical">
-					<Button Content="A" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="B" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="C" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="D" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="E" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="F" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="G" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="H" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="I" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="J" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="K" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="L" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="M" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="N" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="O" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="P" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="Q" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="R" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="S" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="T" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="U" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="V" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="W" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="X" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="Y" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
-					<Button Content="Z" Style="{DynamicResource IndiceButtonStyle}" Click="Button_Click"/>
+					<Button Content="A" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="B" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="C" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="D" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="E" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="F" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="G" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="H" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="I" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="J" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="K" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="L" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="M" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="N" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="O" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="P" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="Q" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="R" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="S" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="T" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="U" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="V" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="W" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="X" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="Y" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
+					<Button Content="Z" Style="{DynamicResource IndiceButtonStyle}" Click="ButtonCategoriaPorLetra_Click"/>
 				</WrapPanel>
 			</StackPanel>
 		</DockPanel>

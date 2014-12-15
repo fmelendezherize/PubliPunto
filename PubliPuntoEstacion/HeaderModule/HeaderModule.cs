@@ -61,6 +61,7 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule
 
         private void GoToHome(object obj)
         {
+            //throw new InvalidOperationException("Error Intencional");
             this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("HomeControlsView", UriKind.Relative));
         }
 

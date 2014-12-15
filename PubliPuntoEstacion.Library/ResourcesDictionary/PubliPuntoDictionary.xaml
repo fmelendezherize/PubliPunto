@@ -31,6 +31,9 @@
         <Setter Property="SizeToContent" Value="Height"/>
         <Setter Property="Background" Value="white"/>
         <Setter Property="WindowState" Value="Maximized"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
     </Style>
 
     <Style x:Key="PubliPuntoGridStyle" TargetType="{x:Type Grid}">
@@ -116,7 +119,7 @@
     </Style>
 
     <Style x:Key="ButtonAtrasStyle" TargetType="Button">
-        <Setter Property="Height" Value="47"></Setter>
+        <Setter Property="Height" Value="49"></Setter>
         <Setter Property="Width" Value="139"></Setter>
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
