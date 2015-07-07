@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Decktra.PubliPuntoEstacion.CoreApplication.Model.EnteComercial">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QIACAgAAAwgAAAAAACAIgAAAAAAAAkAAEIAAAgAAAAA=</HashCode>
+      <FileName>Model\EnteComercial.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RamoComercial" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ListOfPromocions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Decktra.PubliPuntoEstacion.CoreApplication.Model.Promocion">
+    <Position X="5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAQAAAAAAAAAAAAEBAgAAAAAAAACAAAAgAAU=</HashCode>
+      <FileName>Model\Promocion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ListOfPromocionCupons" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Decktra.PubliPuntoEstacion.CoreApplication.Model.PromocionCupon">
+    <Position X="11" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAACAAAAAAAAABAAgAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Promocion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UsuarioAsignado" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Decktra.PubliPuntoEstacion.CoreApplication.Model.RamoComercial">
+    <Position X="5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQgAAAAAAAAAgAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\RamoComercial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Decktra.PubliPuntoEstacion.CoreApplication.Model.Usuario">
+    <Position X="11" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAASAAAAIAAAACgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

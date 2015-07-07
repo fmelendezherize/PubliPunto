@@ -15,6 +15,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         private readonly EnteComercialRepository _enteComercialRepository;
         public ICommand ShowEnteComercialsCommand { get; set; }
 
+        private const short CANT_CLIENTES_VISIBLE = 12;
+
         public List<EnteComercial> ListOfEnteComercials { get; set; }
         private Random _randomObj;
 
@@ -28,16 +30,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowEnteComercials(object obj)
         {
-            var listOfResult = (from q in _enteComercialRepository.GetAll() where (q.IsActivo) select q).ToList();
+            var listOfResult = _enteComercialRepository.GetAllWithPromocionActiva().ToList();
             this.ListOfEnteComercials.Clear();
 
-            if (listOfResult.Count > 12)
+            if (listOfResult.Count > CANT_CLIENTES_VISIBLE)
             {
                 ShowRandomEnteComercials(listOfResult);
                 return;
             }
 
-            for (int i = listOfResult.Count; i < 12; i++)
+            for (int i = listOfResult.Count; i < CANT_CLIENTES_VISIBLE; i++)
             {
                 listOfResult.Add(new EnteComercial
                 {
@@ -55,10 +57,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowRandomEnteComercials(IList listOfResults)
         {
-            int?[] indexEnteComercials = new int?[12];
+            int?[] indexEnteComercials = new int?[CANT_CLIENTES_VISIBLE];
 
-
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < CANT_CLIENTES_VISIBLE; i++)
             {
                 indexEnteComercials[i] = GetIndex(indexEnteComercials, listOfResults);
                 ListOfEnteComercials.Add((EnteComercial)listOfResults[indexEnteComercials[i].Value]);

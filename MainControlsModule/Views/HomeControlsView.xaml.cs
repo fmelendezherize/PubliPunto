@@ -31,9 +31,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            NuestrosClientesView ncvm = this.RegionManager.Regions[RegionNames.REGION_NUESTROSCLIENTES_AREA].ActiveViews.FirstOrDefault() as NuestrosClientesView;
+            NuestrosClientesView ncvm = this.RegionManager.Regions[RegionNames.REGION_NUESTROSCLIENTES_AREA].ActiveViews.
+                FirstOrDefault() as NuestrosClientesView;
             if (ncvm != null) ncvm.ShowClientes();
-            OfertasView ofvm = this.RegionManager.Regions[RegionNames.REGION_OFERTAS_AREA].ActiveViews.FirstOrDefault() as OfertasView;
+            OfertasView ofvm = this.RegionManager.Regions[RegionNames.REGION_OFERTAS_AREA].ActiveViews.
+                FirstOrDefault() as OfertasView;
             if (ofvm != null) ofvm.ShowOfertas();
         }
     }

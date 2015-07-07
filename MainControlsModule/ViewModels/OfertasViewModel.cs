@@ -28,8 +28,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowEnteComercials(object obj)
         {
-            var listEnteComercials = (from q in _enteComercialRepository.GetAll()
-                                      where (q.IsActivo) && (q.ListOfPromocions.Any(j => j.Codigo != ""))
+            var listEnteComercials = (from q in _enteComercialRepository.GetAllActivos()
+                                      where (q.ListOfPromocions.Any(j => j.Codigo != ""))
                                       select new
                                       {
                                           Id = q.Id

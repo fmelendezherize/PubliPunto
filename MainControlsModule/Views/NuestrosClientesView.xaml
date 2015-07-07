@@ -32,61 +32,45 @@
 			<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
 			<Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
 			<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <!--<Setter Property="BorderBrush" Value="Transparent"/>-->
 			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
-			<Setter Property="Height" Value="171"/>
+
+            <Setter Property="Height" Value="380"/>
+            <Setter Property="Width" Value="437"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Margin" Value="12,12"/>
+
+            <!--Antigua medida para 12 casillas--><!--
+            <Setter Property="Height" Value="171"/>
 			<Setter Property="Width" Value="291"/>
-			<Setter Property="Padding" Value="1"/>
-			<Setter Property="Margin" Value="13,20"/>
+            <Setter Property="Padding" Value="1"/>
+			<Setter Property="Margin" Value="13,20"/>-->
+            
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type Button}">
-						<!--<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-							<Grid x:Name="LayoutRoot">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="3*"/>
-									<RowDefinition Height="1*"/>
-								</Grid.RowDefinitions>
-								<Grid.Background>
-									<SolidColorBrush Color="LightGray"/>
-								</Grid.Background>
-								<StackPanel Grid.Row="0">
-									<StackPanel.Background>
-										<ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
-													Stretch="Uniform"/>
-									</StackPanel.Background>
-								</StackPanel>
-								<StackPanel Orientation="Vertical" Grid.Row="1">
-									<StackPanel.Background>
-										<SolidColorBrush Color="Black" Opacity=".6"/>
-									</StackPanel.Background>
-									<TextBlock TextWrapping="Wrap" Text="{Binding Nombre}" 
-											   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
-											   FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
-								</StackPanel>
-							</Grid>
-						</Border>-->
 						<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 							<Grid x:Name="LayoutRoot">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="3*"/>
-									<RowDefinition Height="1*"/>
+									<RowDefinition Height="42px"/>
 								</Grid.RowDefinitions>
-								<Grid.Background>
-									<ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
-												Stretch="Uniform"  />
-								</Grid.Background>
-								<StackPanel Orientation="Vertical" Grid.Row="1">
-									<StackPanel.Background>
+                                <Grid Grid.Row="0">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+												Stretch="Uniform" />
+                                    </Grid.Background>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.Background>
 										<SolidColorBrush Color="Black" Opacity=".5"/>
-									</StackPanel.Background>
+									</Grid.Background>
 									<TextBlock TextWrapping="Wrap" Text="{Binding Nombre}" 
 											   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
 											   FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
-								</StackPanel>
+								</Grid>
 							</Grid>
 						</Border>
 						<ControlTemplate.Triggers>
@@ -110,25 +94,27 @@
 	<UserControl.DataContext>
 		<viewModels:NuestrosClientesViewModel />
 	</UserControl.DataContext>
-	<Grid Background="{DynamicResource BackgroundColorBrush}"> 
+    <Grid Background="{DynamicResource BackgroundSectionColorBrush}"> 
 		<DockPanel>
 			<StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
-				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Nuestros Clientes</TextBlock>
+				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Cupones</TextBlock>
 			</StackPanel>
-			<WrapPanel x:Name="WrapPanelClientes" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" 
-					   Height="852">
+            <WrapPanel x:Name="WrapPanelClientes" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" 
+					   Height="852" Margin="18,18">
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[0]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[1]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[2]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[3]}" Click="Button_Click"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[4]}" Click="Button_Click"/>
+
+                <!--Antes eran 12 casillas en la fase 2 pasaron a 4 y cambio de tamaño-->
+                <!--<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[4]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[5]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[6]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[7]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[8]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[9]}" Click="Button_Click"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[10]}" Click="Button_Click"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[11]}" Click="Button_Click"/>
+				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[11]}" Click="Button_Click"/>-->
 			</WrapPanel>
 		</DockPanel>
 	</Grid>

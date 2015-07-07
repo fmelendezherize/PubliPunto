@@ -23,26 +23,34 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialsBy(int idRamoComercial)
         {
-            return (from q in db.EnteComercials where (q.RamoComercial.Id == idRamoComercial) select q);
+            return (from q in GetAllActivos()
+                    where (q.RamoComercial.Id == idRamoComercial)
+                    select q);
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsByName(string nombre)
         {
-            var ret = (from q in db.EnteComercials
-                       where (q.Nombre.StartsWith(nombre))
+            var ret = (from q in GetAllActivos()
+                       where (q.Nombre.StartsWith(nombre, System.StringComparison.InvariantCultureIgnoreCase))
                        select q);
             return ret.ToList<EnteComercial>();
         }
 
-        public IEnumerable<EnteComercial> GetAll()
+        public IEnumerable<EnteComercial> GetAllActivos()
         {
-            return db.EnteComercials.ToList();
+            return db.EnteComercials.Where(q => q.IsActivo).ToList();
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsByTags(string Tag)
         {
-            var listOfResult = this.GetAll().Where(q => q.TagMatched(Tag));
+            var listOfResult = this.GetAllActivos().Where(q => q.TagMatched(Tag));
             return listOfResult.ToList();
+        }
+
+        public IEnumerable<EnteComercial> GetAllWithPromocionActiva()
+        {
+            return this.GetAllActivos().Where(q => q.ListOfPromocions.Any(j => (j.IsActivo) &&
+                (j.FechaInicio <= System.DateTime.Now) && (j.FechaFin >= System.DateTime.Now))).ToList();
         }
 
         public void AddOrUpdate(EnteComercialDTO dto)

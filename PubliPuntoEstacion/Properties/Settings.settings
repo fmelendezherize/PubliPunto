@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://cuponexpress.com.ve</Value>
     </Setting>
     <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="VideosPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\admin-PC\Desktop\Terminal de Pasajeros</Value>

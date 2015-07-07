@@ -26,6 +26,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public virtual IList<PromocionCupon> ListOfPromocionCupons { get; set; }
 
+        public Promocion()
+        {
+            this.FechaFin = System.DateTime.Now.AddDays(7);
+            this.FechaInicio = System.DateTime.Now;
+        }
+
         public PromocionCupon ObtenerCupon(Usuario usuarioSelected)
         {
             var promocionCupon = (from q in this.ListOfPromocionCupons

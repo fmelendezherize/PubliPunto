@@ -4,6 +4,8 @@
     <!-- Colors -->
     <Color x:Key="BackgroundColor">#DEDEE6</Color>
     <SolidColorBrush  x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
+    <Color x:Key="BackgroundSectionColor">#FFFFFF</Color>
+    <SolidColorBrush  x:Key="BackgroundSectionColorBrush" Color="{StaticResource BackgroundSectionColor}"/>
     <Color x:Key="ColorHeader">#FF404767</Color>
     <SolidColorBrush  x:Key="ColorHeaderBrush" Color="{StaticResource ColorHeader}"/>
     <Color x:Key="CategorySecundaryColor">#FF00AB9E</Color>
