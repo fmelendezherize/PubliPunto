@@ -28,11 +28,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowEnteComercials(object obj)
         {
-            var listEnteComercials = (from q in _enteComercialRepository.GetAllActivos()
-                                      where (q.ListOfPromocions.Any(j => j.Codigo != ""))
+            //Obtengo promociones activas de distintos entescomerciales
+            var result = (from q in _enteComercialRepository.GetPromocionesActivas().GroupBy(q => q.EnteComercialId)
+                          select (q.FirstOrDefault())).ToList();
+
+            var listEnteComercials = (from q in result
                                       select new
                                       {
-                                          Id = q.Id
+                                          Id = q.EnteComercialId
                                       }).ToList();
 
             if (listEnteComercials.Count > 3)
@@ -41,9 +44,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                 int?[] indexEnteComercials = new int?[3];
                 for (int i = 0; i <= 2; i++)
                 {
-                    indexEnteComercials[i] = GetIndex(indexEnteComercials, listEnteComercials);
+                    //indexEnteComercials[i] = GetIndex(indexEnteComercials, listEnteComercials);
                     //Eliminando Random
-                    //indexEnteComercials[i] = i;
+                    indexEnteComercials[i] = i;
                 }
                 EnteComercial0 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[0].Value].Id);
                 EnteComercial1 = _enteComercialRepository.FindBy(listEnteComercials[indexEnteComercials[1].Value].Id);

@@ -10,6 +10,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         public DbSet<RamoComercial> RamoComercials { get; set; }
         public DbSet<EnteComercial> EnteComercials { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Promocion> Promociones { get; set; }
 
         public PubliPuntoContext()
         {
@@ -315,7 +316,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
                     ImagenUrl = "taler_gra.jpg",
                     LogoUrl = "taler_peq.jpg",
                     Tags = "Taller;Carros;Reparaciones;Automoviles;Repuestos",
-                    IsActivo = true
+                    IsActivo = true,
+                    ListOfPromocions = new List<Promocion>() { 
+                        new Promocion { 
+                            Codigo = "001", Descripcion = "Revision Gratis la primera visita." 
+                        } ,
+                    }
                 });
         }
     }

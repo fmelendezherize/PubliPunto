@@ -53,6 +53,16 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 (j.FechaInicio <= System.DateTime.Now) && (j.FechaFin >= System.DateTime.Now))).ToList();
         }
 
+        public IEnumerable<Promocion> GetPromocionesActivas()
+        {
+            var result = (from q in db.Promociones
+                          where ((q.IsActivo) && (q.EnteComercial.IsActivo) &&
+                          (q.FechaInicio <= System.DateTime.Now) && (q.FechaFin >= System.DateTime.Now))
+                          orderby q.FechaInicio descending, q.Id descending
+                          select q).ToList();
+            return result;
+        }
+
         public void AddOrUpdate(EnteComercialDTO dto)
         {
             var ramoComercial = db.RamoComercials.Where((q) => q.Codigo == dto.Categoria).FirstOrDefault();

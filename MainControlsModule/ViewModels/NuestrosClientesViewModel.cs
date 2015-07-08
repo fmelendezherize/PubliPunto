@@ -15,7 +15,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         private readonly EnteComercialRepository _enteComercialRepository;
         public ICommand ShowEnteComercialsCommand { get; set; }
 
-        private const short CANT_CLIENTES_VISIBLE = 12;
+        private const short CANT_CLIENTES_VISIBLE = 4;
 
         public List<EnteComercial> ListOfEnteComercials { get; set; }
         private Random _randomObj;

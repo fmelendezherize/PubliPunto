@@ -89,7 +89,7 @@
 	<Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
 		<DockPanel Background="White">
 			<StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
-				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Cupones y Ofertas</TextBlock>
+				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Nuevos Cupones</TextBlock>
 			</StackPanel>
 			<StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>

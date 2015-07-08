@@ -10,6 +10,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public int Id { get; set; }
 
         public int EnteComercialId { get; set; }
+        public virtual EnteComercial EnteComercial { get; set; }
 
         [Required]
         [MinLength(1), MaxLength(200)]
