@@ -91,7 +91,7 @@
 			<StackPanel DockPanel.Dock="Top" Style="{DynamicResource PubliPuntoContentHeader}">
 				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Nuevos Cupones</TextBlock>
 			</StackPanel>
-			<StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+			<StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial1}" Click="ButtonBase_OnClick"/>
 				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial2}" Click="ButtonBase_OnClick"/>

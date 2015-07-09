@@ -135,10 +135,10 @@
 					</MediaElement>
 				</Border>
 			</Canvas>
-			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="950">
+			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="571*"/>
-					<ColumnDefinition Width="319*"/>
+					<ColumnDefinition Width="665"/>
+					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<!-- Columna Datos Cliente -->
 				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
@@ -148,27 +148,44 @@
                     <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>
+						<TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Width="602"></TextBlock>
 					</StackPanel>
-					<Line X1="0" X2="550" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+					<Line X1="0" X2="655" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,5,0,5"/>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Teléfono(s):" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="435" Margin="0,0,0,10"></TextBlock>
+						<TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="504" ></TextBlock>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Dirección:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="435" Margin="0,0,0,10"></TextBlock>
+						<TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="524" ></TextBlock>
 					</StackPanel>
-					<TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Margin="0,0,0,10"></TextBlock>
+					<TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Width="639" ></TextBlock>
 				</StackPanel>
 				<!-- Columna Cupon -->
 				<StackPanel Grid.Column="1">
-                    <StackPanel Margin="10,0">
+                    <StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}">
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
+                            <Run Text="Presiona el botón "/>
+                            <Run Text="cupones" FontWeight="Bold" Foreground="{DynamicResource CuponesPrimaryColorBrush}"/>
+                            <Run Text="y disfruta de nuestras ofertas."/>
+                        </TextBlock>
+                        <Button Name="ButtonReclamarCupon" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
+								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource CuponesPrimaryColorBrush}" 
+								BorderBrush="{DynamicResource CuponesSecundaryColorBrush}"
+								Click="ButtonReclamarCupon_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
+                                <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
+										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Cupones" Margin="18,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel>
                         <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
                             <Run Text="¿Necesita más información? Presiona el botón "/>
                             <Run Text="contáctanos" Foreground="{DynamicResource ContactanosPrimaryColorBrush}" FontWeight="Bold"/>
                         </TextBlock>
-                        <Button Name="ButtonContactanosCliente" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
+                        <Button Name="ButtonContactanosCliente" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
 								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource ContactanosPrimaryColorBrush}" 
 								BorderBrush="{DynamicResource ContactanosSecundaryColorBrush}"
 								Click="ButtonContactanosCliente_Click">
@@ -179,23 +196,6 @@
 							</StackPanel>
 						</Button>
                     </StackPanel>
-                    <StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}" Margin="10,0">
-                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
-                            <Run Text="Presiona el botón "/>
-                            <Run Text="cupones" FontWeight="Bold" Foreground="{DynamicResource CuponesPrimaryColorBrush}"/>
-                            <Run Text="y disfruta de nuestras ofertas."/>
-                        </TextBlock>
-                        <Button Name="ButtonReclamarCupon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
-								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource CuponesPrimaryColorBrush}" 
-								BorderBrush="{DynamicResource CuponesSecundaryColorBrush}"
-								Click="ButtonReclamarCupon_Click">
-							<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
-								<Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" Margin="7,0,0,0"/>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
-										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Cupones" Margin="18,0,0,0"/>
-							</StackPanel>
-						</Button>
-					</StackPanel>
 				</StackPanel>
 			</Grid>
 		</DockPanel>
