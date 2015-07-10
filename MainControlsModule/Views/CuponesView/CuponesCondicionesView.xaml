@@ -62,7 +62,7 @@
 		</Style>
         <Style x:Key="CuponStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Margin" Value="10,10"/>
+            <Setter Property="Margin" Value="0,10"/>
         </Style>
         <Style x:Key="TextBlockReclamarCuponStyle" TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Left"/>
@@ -78,11 +78,10 @@
             <Setter Property="Margin" Value="5,0"/>
         </Style>
 	</UserControl.Resources>
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}" Background="White">
+	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"	Style="{DynamicResource CuponesHeaderStyle}">
 			<Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
@@ -96,52 +95,75 @@
 				</Button.Background>
 			</Button>
 		</StackPanel>
-		<StackPanel Grid.Row="1" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-			    <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" Stretch="Uniform" 
-					       HorizontalAlignment="Left" Width="291" Height="171" Margin="10,5"></Image>
-			    <StackPanel>
-				    <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
-				    <WrapPanel>
-					    <TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-					    <TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Margin="0,0,0,10"
-                                   Width="460"></TextBlock>
+        <Grid Grid.Row="1" Width="890">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                       Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
+                    <WrapPanel Margin="0,5">
+                        <TextBlock Text="Rif:" Style="{StaticResource H2Style}" />
+                        <TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Width="550"  />
                     </WrapPanel>
+                    <WrapPanel Margin="0,5">
+                        <TextBlock Text="Teléfono(s):" Style="{StaticResource H2Style}" ></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="453" />
+                    </WrapPanel>
+                    <WrapPanel Margin="0,5">
+                        <TextBlock Text="Dirección:" Style="{StaticResource H2Style}"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="473" />
+                    </WrapPanel>
+                    <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Margin="0,5" />
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Style="{StaticResource CuponStyle}">
+            </Grid>
+            <StackPanel Style="{StaticResource CuponStyle}" Grid.Row="1" Margin="0,10">
                 <Canvas Style="{StaticResource CuponImageStyle}">
                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
 						   Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                 </Canvas>
-                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
+                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
 							   Style="{StaticResource H2Style}" VerticalAlignment="Center" 
 							   Text="{Binding PromocionSelected.Descripcion}" 
-							   Width="700" Height="60" Margin="18,0,0,0"/>
+							   Width="645" Height="60" Margin="18,0,0,0"/>
                 <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
 							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseDown"/>
             </StackPanel>
-        </StackPanel>
-		<StackPanel Grid.Row="2" Margin="15,10">
-			<TextBlock Text="Detalles y Condiciones" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
-			<Line X1="0" X2="930" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left"/>
-			<StackPanel Orientation="Vertical">
-				<TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="20,20,5,0" FontWeight="Bold" FontStyle="Italic"></TextBlock>
-				<TextBlock Style="{StaticResource H3Style}" Margin="20,20,5,0">
+            <StackPanel Grid.Row="2" Margin="0,10">
+                <TextBlock Text="Detalles y Condiciones" Style="{StaticResource H2Style}" FontWeight="Bold"></TextBlock>
+                <Line X1="0" X2="890" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,10"/>
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
+
+                    <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
 					<Run Text="{Binding PromocionSelected.Detalles}"></Run>
-				</TextBlock>
-                <!--<TextBlock Style="{StaticResource H3Style}" Margin="20,20,5,0">
-					<Run Text="Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei."></Run>
-                </TextBlock>
-                <TextBlock Text="Condiciones" Style="{StaticResource H3Style}" Margin="20,20,5,0" FontWeight="Bold" FontStyle="Italic"></TextBlock>
-				<TextBlock Style="{StaticResource H3Style}" Margin="20,20,5,0">
-					<Run Text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per."></Run>
-				</TextBlock>
-                <TextBlock Style="{StaticResource H3Style}" Margin="20,20,5,0">
-					<Run Text="Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei."></Run>
-                </TextBlock>-->
+				</TextBlock>-->
+
+                    <TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
+					<Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
+                    </TextBlock>
+
+                    <!--<textblock text="condiciones" style="{staticresource h3style}" margin="20,20,5,0" fontweight="bold" fontstyle="italic"></textblock>
+				
+                <textblock style="{staticresource h3style}" margin="20,20,5,0">
+					<run text="lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. in usu latine equidem dolores. quo no falli viris intellegam, ut fugit veritus placerat per."></run>
+				</textblock>
+                
+                <textblock style="{staticresource h3style}" margin="20,20,5,0">
+					<run text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></run>
+                </textblock>-->
+                </StackPanel>
             </StackPanel>
-		</StackPanel>
+        </Grid>
 	</Grid>
 </UserControl>

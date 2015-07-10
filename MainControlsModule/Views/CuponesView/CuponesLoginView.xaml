@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
              xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
+             xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
              mc:Ignorable="d">
     <UserControl.Resources>
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -120,12 +122,11 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="LabelFormulario" TargetType="Label">
-            <Setter Property="Padding" Value="45,20,45,0"></Setter>
+            <Setter Property="Padding" Value="0,20,45,0"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="26" />
         </Style>
         <Style x:Key="TextBoxFormularioStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="45,20,45,0"></Setter>
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
             <Setter Property="FontSize" Value="26" />
             <Setter Property="Height" Value="50" />
@@ -164,7 +165,7 @@
         </Style>
         <Style x:Key="CuponStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Margin" Value="10,10"/>
+            <Setter Property="Margin" Value="0,10"/>
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
@@ -185,66 +186,53 @@
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch"  
                         Height="Auto" HorizontalAlignment="Stretch">
                 <DockPanel HorizontalAlignment="Left">
-                    <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible">
-                        <TextBlock Style="{StaticResource TextBlockMensaje}">Inicia sesión en Cupón Express para poder reclamar nuestros cupones</TextBlock>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <StackPanel Margin="0,40" Width="450">
-                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
-                                           Text="Si estas registrado en Cupón Express a través de nuestra página:"/>
-                                <TextBlock Width="427" Height="Auto" Style="{StaticResource H2Style}" 
-                                           Foreground="{DynamicResource ColorHeaderBrush}" Text="www.cuponexpress.com.ve" 
-                                           FontStyle="Italic" TextDecorations="{x:Null}" FontWeight="Bold" FontSize="30px"/>
-                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
-                                           Text="Puedes reclamar directamente tu cupón con tu:"/>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
-                                    <WrapPanel>
-                                        <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="45,20,0,0" 
-                                                     Content="E" GroupName="TipoId"/>
-                                        <RadioButton x:Name="RadioButtonCedulaFirstLetter" 
-                                                     Style="{StaticResource RadioFormularioStyle}" Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
-                                        <TextBox Name="TextBoxCedulaIdentidad" Width="240" Style="{StaticResource TextBoxFormularioStyle}" GotFocus="TextBoxNumeric_GotFocus"
-                                                 Margin="10,20,0,0" MaxLength="8"></TextBox>
-                                    </WrapPanel>
-                                </WrapPanel>
-                                <WrapPanel Orientation="Vertical">
-                                    <Label Style="{StaticResource LabelFormulario}">PIN (4 dígitos):</Label>
-                                    <PasswordBox  x:Name="TextBoxPIN" Style="{StaticResource PassWordFormularioStyle}"
-                                                  PasswordChar="*" GotFocus="TextBoxNumeric_GotFocus"
-                                                  MaxLength="4" HorizontalContentAlignment="Center"></PasswordBox>
-                                </WrapPanel>
-                            </StackPanel>
-                            <Line Y1="10" Y2="630" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="20,0"/>
-                            <StackPanel Margin="0,40" Width="450">
-                                <StackPanel Style="{StaticResource CuponStyle}" Height="419">
-                                    <Canvas Style="{StaticResource CuponImageStyle}" VerticalAlignment="Top" >
-                                        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
-                                               Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
-                                    </Canvas>
-                                    <WrapPanel Width="340">
-                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
-                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
-                                                   Width="320" Height="Auto" Margin="10,10">
-                                            <Run Text="Cupones" ></Run>
-                                        </TextBlock>
-                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
-                                                   Style="{StaticResource H2Style}" VerticalAlignment="Top" 
-                                                   Width="320" Height="Auto" Margin="10,0">
+                    <Grid DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible" Width="890">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,40" Grid.Column="0">
+                            <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                   Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
+                            <StackPanel Style="{StaticResource CuponStyle}" Orientation="Vertical">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
+                                               Style="{StaticResource H2Style}" VerticalAlignment="Top" 
+                                               Margin="0,10">
                                             <Run Text="{Binding PromocionSelected.Descripcion}" ></Run>
-                                        </TextBlock>
-                                    </WrapPanel>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Name="ButtonRegistrarUsuario" Style="{StaticResource ButtonReclamarCuponStyle}"
-                                            Margin="8,25,8,0"  Click="ButtonRegistrarUsuario_Click">
-                                        <TextBlock Padding="10,0" TextWrapping="Wrap">No estoy registrado</TextBlock>
-                                    </Button>
-                                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" 
-                                            Content="Enviar" Margin="8,25,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
-                                </StackPanel>
+                                    </TextBlock>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
+                                           Style="{StaticResource H2Style}" >
+                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                    </TextBlock>
                             </StackPanel>
-                        </WrapPanel>
-                    </StackPanel>
+                        </StackPanel>
+                        <Line Y1="5" Y2="680" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Center" Grid.Column="1"/>
+                        <StackPanel Margin="0,40" Grid.Column="2">
+                            <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
+                                           Text="Puedes reclamar directamente tu cupón con tu:"/>
+                            <WrapPanel Orientation="Vertical">
+                                <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
+                                <WrapPanel>
+                                    <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="0,20,0,0" 
+                                                     Content="E" GroupName="TipoId"/>
+                                    <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" 
+                                                 Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
+                                    <TextBox Name="TextBoxCedulaIdentidad" Width="140" Style="{StaticResource TextBoxFormularioStyle}" 
+                                             GotFocus="TextBoxNumeric_GotFocus" Margin="10,20,0,0" MaxLength="8" TextAlignment="Center"/> 
+                                </WrapPanel>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
+                                <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
+                                         GotFocus="TextBoxAlpha_GotFocus" Width="420" Margin="0,20,0,0"></TextBox>
+                            </WrapPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" 
+                                            Content="Enviar" Margin="8,40,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                     <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
                 </DockPanel>
             </StackPanel>

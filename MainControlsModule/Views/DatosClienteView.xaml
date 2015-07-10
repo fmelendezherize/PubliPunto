@@ -135,7 +135,7 @@
 					</MediaElement>
 				</Border>
 			</Canvas>
-			<Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890">
+            <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="665"/>
 					<ColumnDefinition Width="*"/>

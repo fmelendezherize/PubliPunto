@@ -8,97 +8,97 @@
 			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
 			 mc:Ignorable="d" 
 			 d:DesignWidth="970" d:DesignHeight="1094">
-	
+
     <UserControl.Resources>
-		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
-		<Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
-			<Setter Property="Height" Value="47"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<DrawingBrush>
-						<DrawingBrush.Drawing>
-							<DrawingGroup>
-								<GeometryDrawing Brush="{DynamicResource CuponesSecundaryColorBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="0,0,1,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-								<GeometryDrawing Brush="{DynamicResource CuponesPrimaryColorBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="1,0,20,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-							</DrawingGroup>
-						</DrawingBrush.Drawing>
-					</DrawingBrush>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="H1Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="50"/>
-		</Style>
-		<Style x:Key="H2Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="26"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-		<Style x:Key="H3Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="26"/>
-			<Setter Property="FontWeight" Value="Light"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-		<Style x:Key="CuponImageStyle" TargetType="Canvas">
-			<Setter Property="Width" Value="80"/>
-			<Setter Property="Height" Value="80"/>
-			<Setter Property="Background" Value="{DynamicResource CuponesSecundaryColorBrush}"/>
-		</Style>
-		<Style x:Key="TextBlockReclamarCuponStyle" TargetType="TextBlock">
-			<Setter Property="TextAlignment" Value="Left"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-			<Setter Property="FontSize" Value="21"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="FontFamily" Value="{StaticResource CaviarFontStyle}" />
-			<Setter Property="Background" Value="{DynamicResource CuponesPrimaryColorBrush}"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="Width" Value="140"/>
-			<Setter Property="Height" Value="80"/>
-			<Setter Property="Padding" Value="10,10"/>
-			<Setter Property="Margin" Value="5,0"/>
-		</Style>
-		<Style x:Key="CuponStyle" TargetType="StackPanel">
-			<Setter Property="Orientation" Value="Horizontal"/>
-			<Setter Property="Margin" Value="10,10"/>
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding Codigo}" Value="{x:Null}">
-					<Setter Property="Visibility" Value="Collapsed"/>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
-	</UserControl.Resources>
-    
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource CuponesHeaderStyle}">
-			<Image Width="35" Height="35" Margin="6" Stretch="UniformToFill" 
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
+            <Setter Property="Height" Value="47"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{DynamicResource CuponesSecundaryColorBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,1,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="{DynamicResource CuponesPrimaryColorBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="1,0,20,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="H1Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="50"/>
+        </Style>
+        <Style x:Key="H2Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="H3Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="CuponImageStyle" TargetType="Canvas">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background" Value="{DynamicResource CuponesSecundaryColorBrush}"/>
+        </Style>
+        <Style x:Key="TextBlockReclamarCuponStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="21"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="{StaticResource CaviarFontStyle}" />
+            <Setter Property="Background" Value="{DynamicResource CuponesPrimaryColorBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Padding" Value="10,10"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+        <Style x:Key="CuponStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,10"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Codigo}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource CuponesHeaderStyle}">
+            <Image Width="35" Height="35" Margin="6" Stretch="UniformToFill" 
 				   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
-			<TextBlock Name="TextBlockTitulo" Style="{DynamicResource PubliPuntoContentHeaderText}"
+            <TextBlock Name="TextBlockTitulo" Style="{DynamicResource PubliPuntoContentHeaderText}"
 						   Margin="10,10,0,0" Width="774">Servicio de Cupones</TextBlock>
-			<Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
+            <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
 					Name="ButtonBack" Click="ButtonBack_Click">
-				<Button.Background>
-					<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
-				</Button.Background>
-			</Button>
-		</StackPanel>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
         <DockPanel Grid.Row="1" Width="890">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
@@ -124,29 +124,31 @@
                     <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Margin="0,5" />
                 </StackPanel>
             </Grid>
-            <StackPanel Background="White" DockPanel.Dock="Bottom">
+            <StackPanel DockPanel.Dock="Bottom">
                 <TextBlock Text="Selecciona tu cupón" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
-                <Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                <Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,5,0,5"/>
                 <StackPanel>
                     <StackPanel.Resources>
                         <ControlTemplate x:Key="PromocionRowTemplate">
-                            <StackPanel Style="{StaticResource CuponStyle}">
-                                <Canvas Style="{StaticResource CuponImageStyle}">
+                            <StackPanel Style="{StaticResource CuponStyle}" VerticalAlignment="Top" Margin="0,15">
+                                <Canvas Style="{StaticResource CuponImageStyle}" VerticalAlignment="Top">
                                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
                                            Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                                 </Canvas>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21.333" Foreground="Black"
-							   Style="{StaticResource H2Style}" VerticalAlignment="Center" 
-							   Text="{Binding Descripcion}" 
-							   Width="540" Height="60" Margin="18,0,0,0"/>
-                                <TextBlock Name="TextBlockVerCondiciones" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
-                               DataContext="{Binding}"
-							   VerticalAlignment="Center" Text="Ver condiciones" 
-                               MouseDown="TextBlockVerCondiciones_MouseDown"/>
+                                <WrapPanel Width="650" Margin="9,0,0,0">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
+                                           Style="{StaticResource H2Style}" Text="{Binding Descripcion}" Margin="0,0,0,5"/>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
+                                           Style="{StaticResource H2Style}" >
+                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                    </TextBlock>
+                                </WrapPanel>
+                                <!--<TextBlock Name="TextBlockVerCondiciones" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
+                                           DataContext="{Binding}" Text="Ver condiciones" VerticalAlignment="Top"
+                                           MouseDown="TextBlockVerCondiciones_MouseDown"/>-->
                                 <TextBlock Name="TextBlockReclamarCupon" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
-							   DataContext="{Binding}" 
-                               VerticalAlignment="Center" Text="Obtener cupón" 
-                               MouseDown="TextBlockReclamarCupon_MouseUp"/>
+                                           DataContext="{Binding}" Text="Obtener cupón" VerticalAlignment="Top"
+                                           MouseDown="TextBlockReclamarCupon_MouseUp"/>
                             </StackPanel>
                         </ControlTemplate>
                     </StackPanel.Resources>
@@ -154,10 +156,8 @@
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[0]}"/>
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[1]}"/>
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[2]}"/>
-                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[3]}"/>
-                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[4]}"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
-	</Grid>
+    </Grid>
 </UserControl>

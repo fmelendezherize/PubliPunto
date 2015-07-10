@@ -45,8 +45,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void ButtonReclamarCuponPorPin_Click(object sender, RoutedEventArgs e)
         {
-            if ((!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text)) &
-                (!String.IsNullOrEmpty(this.TextBoxPIN.Password)))
+            if (!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text))
             {
                 string cedula = this.TextBoxCedulaIdentidad.Text;
                 //TODO hablar con Nacho que valide esto
@@ -63,7 +62,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                     new Usuario
                     {
                         Cedula = cedula,
-                        Pin = this.TextBoxPIN.Password
                     });
                 return;
             }
@@ -140,7 +138,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 viewModel.OnPromocionAprobada += CuponesLoginView_OnPromocionAprobada;
             }
             this.TextBoxCedulaIdentidad.Clear();
-            this.TextBoxPIN.Clear();
             this.RadioButtonCedulaFirstLetter.IsChecked = true;
 
             this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
@@ -184,7 +181,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 errorWnd.MouseDown += errorWnd_MouseDown;
                 errorWnd.ShowDialog();
                 this.TextBoxCedulaIdentidad.Clear();
-                this.TextBoxPIN.Clear();
                 this.RadioButtonCedulaFirstLetter.IsChecked = true;
                 return;
             }
