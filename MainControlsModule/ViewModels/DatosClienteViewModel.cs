@@ -32,40 +32,41 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             if (usuarioKiosko == null) return;
 
             //Validar Usuario
-            using (var usuarioRepository = new UsuariosRepository())
-            {
-                UsuarioValidado = usuarioRepository.RetrieveUsuarioBy(usuarioKiosko.Cedula, usuarioKiosko.Pin);
+            //using (var usuarioRepository = new UsuariosRepository())
+            //{
+            //    UsuarioValidado = usuarioRepository.RetrieveUsuarioBy(usuarioKiosko.Cedula, usuarioKiosko.Pin);
 
-                if (UsuarioValidado == null)
-                {
-                    if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email)
-                        && !string.IsNullOrEmpty(usuarioKiosko.Nombre))
-                    {
-                        //chance de registro
-                        usuarioRepository.Add(usuarioKiosko);
-                        UsuarioValidado = usuarioKiosko;
-                    }
-                    else
-                    {
-                        if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
-                        return;
-                    }
-                }
-            };
+            //    if (UsuarioValidado == null)
+            //    {
+            //        if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email)
+            //            && !string.IsNullOrEmpty(usuarioKiosko.Nombre))
+            //        {
+            //            //chance de registro
+            //            usuarioRepository.Add(usuarioKiosko);
+            //            UsuarioValidado = usuarioKiosko;
+            //        }
+            //        else
+            //        {
+            //            if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
+            //            return;
+            //        }
+            //    }
+            //};
 
             ///Promocion
-            PromocionCupon = null;
-            PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
-            if (PromocionCupon == null)
-            {
-                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
-            }
-            else
-            {
-                this.RaisePropertyChanged(() => this.PromocionCupon);
-                this.RaisePropertyChanged(() => this.UsuarioValidado);
-                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
-            }
+            //PromocionCupon = null;
+            //PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
+            //if (PromocionCupon == null)
+            //{
+            //    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+            //}
+            //else
+            //{
+            //    this.RaisePropertyChanged(() => this.PromocionCupon);
+            //    this.RaisePropertyChanged(() => this.UsuarioValidado);
+            //    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+            //}
+            if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
         }
 
         private void ShowEnteComercial(string obj)

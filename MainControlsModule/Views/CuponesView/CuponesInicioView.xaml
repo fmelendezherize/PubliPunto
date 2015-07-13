@@ -139,7 +139,7 @@
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
                                            Style="{StaticResource H2Style}" Text="{Binding Descripcion}" Margin="0,0,0,5"/>
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
-                                           Style="{StaticResource H2Style}" >
+                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                                     </TextBlock>
                                 </WrapPanel>

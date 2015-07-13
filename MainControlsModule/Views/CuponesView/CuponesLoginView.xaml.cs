@@ -43,21 +43,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             }
         }
 
-        private void ButtonReclamarCuponPorPin_Click(object sender, RoutedEventArgs e)
+        private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text))
+            var wndConfirmacion = new CuponConfirmacionWindow();
+            wndConfirmacion.Owner = Application.Current.MainWindow;
+            if (wndConfirmacion.ShowDialog() == true)
             {
                 string cedula = this.TextBoxCedulaIdentidad.Text;
-                //TODO hablar con Nacho que valide esto
-                //if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
-                //{
-                //    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
-                //}
-                //else
-                //{
-                //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
-                //};
-
                 ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
                     new Usuario
                     {
@@ -66,11 +58,32 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 return;
             }
 
-            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-            errorWnd.OnNavigatedTo("ErrorLogin");
-            errorWnd.Owner = Application.Current.MainWindow;
-            errorWnd.MouseDown += errorWnd_MouseDown;
-            errorWnd.ShowDialog();
+            //if (!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text))
+            //{
+            //    string cedula = this.TextBoxCedulaIdentidad.Text;
+            //    //TODO hablar con Nacho que valide esto
+            //    //if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
+            //    //{
+            //    //    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
+            //    //}
+            //    //else
+            //    //{
+            //    //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
+            //    //};
+
+            //    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
+            //        new Usuario
+            //        {
+            //            Cedula = cedula,
+            //        });
+            //    return;
+            //}
+
+            //var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            //errorWnd.OnNavigatedTo("ErrorLogin");
+            //errorWnd.Owner = Application.Current.MainWindow;
+            //errorWnd.MouseDown += errorWnd_MouseDown;
+            //errorWnd.ShowDialog();
         }
 
         private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

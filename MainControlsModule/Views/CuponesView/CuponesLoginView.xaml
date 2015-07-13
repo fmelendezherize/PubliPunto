@@ -143,17 +143,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="#DEDEE6"/>
         </Style>
-        <Style x:Key="ButtonReclamarCuponStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="{DynamicResource CuponesPrimaryColorBrush}"/>
-            <Setter Property="Height" Value="67" />
-            <Setter Property="Width" Value="210" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
         <Style x:Key="CuponImageStyle" TargetType="Canvas">
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="80"/>
@@ -202,7 +191,7 @@
                                             <Run Text="{Binding PromocionSelected.Descripcion}" ></Run>
                                     </TextBlock>
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
-                                           Style="{StaticResource H2Style}" >
+                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                                     </TextBlock>
                             </StackPanel>
@@ -227,9 +216,17 @@
                                 <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
                                          GotFocus="TextBoxAlpha_GotFocus" Width="420" Margin="0,20,0,0"></TextBox>
                             </WrapPanel>
+                            <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" Margin="0,20,0,0"
+                                           Text="Además, si deseas recibir tu cupón en el móvil, solo escribe tu número:"/>
+                            <WrapPanel>
+                                <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="4" 
+                                         GotFocus="TextBoxNumeric_GotFocus" Width="100" Margin="0,20,10,0"/>
+                                <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="7"
+                                         GotFocus="TextBoxNumeric_GotFocus" Width="180" Margin="0,20,0,0"/>
+                            </WrapPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Name="ButtonEnviar" Style="{StaticResource ButtonReclamarCuponStyle}" 
-                                            Content="Enviar" Margin="8,40,8,0"  Click="ButtonReclamarCuponPorPin_Click"/>
+                                <Button Name="ButtonEnviar" Style="{DynamicResource ButtonReclamarCuponStyle}" 
+                                            Content="Enviar" Margin="8,40,8,0"  Click="ButtonReclamarCupon_Click"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
