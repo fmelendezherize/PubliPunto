@@ -14,10 +14,8 @@
             <RowDefinition Height="27px"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ContentControl x:Name="NuestrosClientesRegion" prism:RegionManager.RegionName="NuestrosClientesRegion"
-                        Grid.Row="0" Margin="-10,0,0,0"/>
+        <ContentControl x:Name="NuestrosClientesRegion" prism:RegionManager.RegionName="NuestrosClientesRegion" Grid.Row="0" />
         <Grid Grid.Row="1" Background="{DynamicResource BackgroundColorBrush}"/>
-        <ContentControl x:Name="OfertasRegion" prism:RegionManager.RegionName="OfertasRegion" Grid.Row="2"
-                        />
+        <ContentControl x:Name="OfertasRegion" prism:RegionManager.RegionName="OfertasRegion" Grid.Row="2"/>
 	</Grid>
 </UserControl>

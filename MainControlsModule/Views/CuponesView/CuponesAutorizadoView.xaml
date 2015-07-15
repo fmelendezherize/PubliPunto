@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
+            <Setter Property="Margin" Value="-1,0"/>
             <Setter Property="Height" Value="47"/>
             <Setter Property="Background">
                 <Setter.Value>
@@ -87,7 +88,7 @@
             <Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
 						   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
             <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
-						   Text="Reclamar Cupón" />
+						   Text="Servicio de Cupones" />
         </StackPanel>
         <Grid Grid.Row="1" Width="890">
             <Grid.RowDefinitions>

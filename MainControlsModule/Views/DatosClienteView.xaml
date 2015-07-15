@@ -7,79 +7,80 @@
 	xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
-	d:DesignWidth="970" d:DesignHeight="1094">
-	<UserControl.Resources>
+	d:DesignWidth="970" d:DesignHeight="1200">
+    <UserControl.Resources>
 
-		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
-		<local:RutaVideoConverter x:Key="RutaVideoConverter" />
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <local:RutaVideoConverter x:Key="RutaVideoConverter" />
 
-		<Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
-			<Setter Property="Height" Value="47"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<DrawingBrush>
-						<DrawingBrush.Drawing>
-							<DrawingGroup>
-								<GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="0,0,1,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-								<GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="1,0,20,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-							</DrawingGroup>
-						</DrawingBrush.Drawing>
-					</DrawingBrush>
-				</Setter.Value>
-			</Setter>
-		</Style>
+        <Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="-1,0"/>
+            <Setter Property="Height" Value="47"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,1,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="{DynamicResource ColorHeaderBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="1,0,20,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-		<Style x:Key="H1Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="50"/>
-		</Style>
-		<Style x:Key="H2Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="26"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-		<Style x:Key="CanvasPanelImagen" TargetType="Canvas">
-			<Setter Property="Width" Value="970" />
-			<Setter Property="Height" Value="546"/>
-			<Setter Property="Visibility" Value="Collapsed"/>
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
-					<Setter Property="Visibility" Value="Visible"></Setter>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
-		<Style x:Key="CanvasPanelVideo" TargetType="Canvas">
-			<Setter Property="Height" Value="546"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<SolidColorBrush Color="Black" Opacity=".8" />
-				</Setter.Value>
-			</Setter>
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
-					<Setter Property="Visibility" Value="Collapsed"></Setter>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
-		<Style x:Key="PanelCuponesStyle" TargetType="StackPanel">
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding EnteComercial.ListOfPromocions.Count}" Value="0">
-					<Setter Property="Visibility" Value="Collapsed"></Setter>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
+        <Style x:Key="H1Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="50"/>
+        </Style>
+        <Style x:Key="H2Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="CanvasPanelImagen" TargetType="Canvas">
+            <Setter Property="Width" Value="960" />
+            <Setter Property="Height" Value="546"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CanvasPanelVideo" TargetType="Canvas">
+            <Setter Property="Height" Value="546"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="Black" Opacity=".8" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EnteComercial.VideoUrl}" Value="{x:Static sys:String.Empty}">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PanelCuponesStyle" TargetType="StackPanel">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EnteComercial.ListOfPromocions.Count}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="LogoStyle" TargetType="Image">
             <Setter Property="Width" Value="261" />
             <Setter Property="Height" Value="155"/>
@@ -87,82 +88,90 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>
-	</UserControl.Resources>
-    
-	<UserControl.DataContext>
-		<viewModels:DatosClienteViewModel/>
-	</UserControl.DataContext>
+    </UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
-			<Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"/>
-			<TextBlock Margin="10,10,0,0" Width="774" Style="{DynamicResource PubliPuntoContentHeaderText}" 
+    <UserControl.DataContext>
+        <viewModels:DatosClienteViewModel/>
+    </UserControl.DataContext>
+
+    <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
+            <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"/>
+            <TextBlock Margin="10,10,0,0" Width="774" Style="{DynamicResource PubliPuntoContentHeaderText}" 
 					   Text="{Binding EnteComercial.Nombre}"/>
-			<Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
-				<Button.Background>
-					<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
-				</Button.Background>
-			</Button>
-		</StackPanel>
-		<DockPanel Grid.Row="1" Background="White">
-			<!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
-			<Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
-				<Image x:Name="ImageEnteComercial"
-                       Margin="-2,0,0,0"
-                       Stretch="Uniform" Width="970" Height="546"  
+            <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}" Click="ButtonBack_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <DockPanel Grid.Row="1" Background="White">
+            <!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
+            <Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
+                <Image x:Name="ImageEnteComercial"
+                       Margin="-1,-2,0,0"
+                       Stretch="Uniform" Width="960" Height="546"  
                        HorizontalAlignment="Center" VerticalAlignment="Stretch"  
                        Source="{Binding EnteComercial.ImagenUrl, Converter={StaticResource RutaImagenConverter}}" />
-			</Canvas> 
-			<Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
-				<Border BorderBrush="Black" BorderThickness="0" Canvas.Top="0">
-					<MediaElement x:Name="Video" Width="970" Height="546"  
+            </Canvas>
+            <Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
+                <MediaElement x:Name="Video" Width="964" Height="546" Canvas.Top="0" 
 								  Stretch="Fill" LoadedBehavior="Play">
-						<MediaElement.Triggers>
-							<EventTrigger RoutedEvent="MediaElement.Loaded">
-								<EventTrigger.Actions>
-									<BeginStoryboard>
-										<Storyboard>
-											<MediaTimeline Source="{Binding EnteComercial.VideoUrl, Converter={StaticResource RutaVideoConverter}}" Storyboard.TargetName="Video" RepeatBehavior="Forever" />
-										</Storyboard>
-									</BeginStoryboard>
-								</EventTrigger.Actions>
-							</EventTrigger>
-						</MediaElement.Triggers>
-					</MediaElement>
-				</Border>
-			</Canvas>
+                    <MediaElement.Triggers>
+                        <EventTrigger RoutedEvent="MediaElement.Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <MediaTimeline Source="{Binding EnteComercial.VideoUrl, Converter={StaticResource RutaVideoConverter}}" Storyboard.TargetName="Video" RepeatBehavior="Forever" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </MediaElement.Triggers>
+                </MediaElement>
+            </Canvas>
             <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="640" Margin="0,30,0,0" Width="890">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="665"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<!-- Columna Datos Cliente -->
-				<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
-					<!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="665"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Columna Datos Cliente -->
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,0">
+                    <!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
                     <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}"
                            Style="{StaticResource LogoStyle}"/>
                     <TextBlock Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Width="602"></TextBlock>
-					</StackPanel>
-					<Line X1="0" X2="655" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,5,0,5"/>
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="Teléfono(s):" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="504" ></TextBlock>
-					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="Dirección:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
-						<TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="524" ></TextBlock>
-					</StackPanel>
-					<TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Width="639" ></TextBlock>
-				</StackPanel>
-				<!-- Columna Cupon -->
-				<StackPanel Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Width="602"></TextBlock>
+                    </StackPanel>
+                    <Line X1="0" X2="655" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Teléfono(s):" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Telefonos}" Style="{StaticResource H2Style}" Width="504" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Dirección:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
+                        <TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="524" ></TextBlock>
+                    </StackPanel>
+                    <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Width="639" ></TextBlock>
+                    <Button Name="ButtonContactanosCliente" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,20,0,20"
+								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource ContactanosPrimaryColorBrush}" 
+								BorderBrush="{DynamicResource ContactanosSecundaryColorBrush}"
+								Click="ButtonContactanosCliente_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
+                            <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_contactenos.png" Margin="7,0,0,0"/>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
+										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Contáctanos"  Margin="18,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <!-- Columna Cupon -->
+                <StackPanel Grid.Column="1">
                     <StackPanel Name="PanelCupones" Style="{StaticResource PanelCuponesStyle}">
                         <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
                             <Run Text="Presiona el botón "/>
@@ -180,24 +189,14 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <StackPanel>
+                    <!--<StackPanel>
                         <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource H2Style}" Margin="0,0,0,20">
                             <Run Text="¿Necesita más información? Presiona el botón "/>
                             <Run Text="contáctanos" Foreground="{DynamicResource ContactanosPrimaryColorBrush}" FontWeight="Bold"/>
                         </TextBlock>
-                        <Button Name="ButtonContactanosCliente" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Margin="0,0,0,20"
-								Style="{DynamicResource TwoColorButton}" Height="56" Background="{DynamicResource ContactanosPrimaryColorBrush}" 
-								BorderBrush="{DynamicResource ContactanosSecundaryColorBrush}"
-								Click="ButtonContactanosCliente_Click">
-							<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="56" Margin="1.155,0">
-                                <Image Width="40" Height="40" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_contactenos.png" Margin="7,0,0,0"/>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="23" Padding="5,15" Width="150" Height="56"
-										   Style="{DynamicResource PubliPuntoContentHeaderText}" VerticalAlignment="Center" Text="Contáctanos"  Margin="18,0,0,0"/>
-							</StackPanel>
-						</Button>
-                    </StackPanel>
-				</StackPanel>
-			</Grid>
-		</DockPanel>
-	</Grid>
+                    </StackPanel>-->
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
 </UserControl>

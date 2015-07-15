@@ -6,60 +6,61 @@
 			 xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 			 xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 			 mc:Ignorable="d" 
-			 d:DesignWidth="970" d:DesignHeight="1094">
-	<UserControl.Resources>
-		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
-		<Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
-			<Setter Property="Height" Value="47"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<DrawingBrush>
-						<DrawingBrush.Drawing>
-							<DrawingGroup>
-								<GeometryDrawing Brush="{DynamicResource CuponesSecundaryColorBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="0,0,1,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-								<GeometryDrawing Brush="{DynamicResource CuponesPrimaryColorBrush}">
-									<GeometryDrawing.Geometry>
-										<GeometryGroup>
-											<RectangleGeometry Rect="1,0,20,1" />
-										</GeometryGroup>
-									</GeometryDrawing.Geometry>
-								</GeometryDrawing>
-							</DrawingGroup>
-						</DrawingBrush.Drawing>
-					</DrawingBrush>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="H1Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="50"/>
-		</Style>
-		<Style x:Key="H2Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="26"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-		<Style x:Key="H3Style" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-			<Setter Property="FontWeight" Value="ExtraLight"/>
-		</Style>
-		<Style x:Key="CuponImageStyle" TargetType="Canvas">
-			<Setter Property="Width" Value="80"/>
-			<Setter Property="Height" Value="80"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<SolidColorBrush Color="#FFD028"/>
-				</Setter.Value>
-			</Setter>
-		</Style>
+			 d:DesignWidth="970" d:DesignHeight="1200">
+    <UserControl.Resources>
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
+            <Setter Property="Margin" Value="-1,0"/>
+            <Setter Property="Height" Value="47"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{DynamicResource CuponesSecundaryColorBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,1,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="{DynamicResource CuponesPrimaryColorBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="1,0,20,1" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="H1Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="50"/>
+        </Style>
+        <Style x:Key="H2Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="H3Style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+        </Style>
+        <Style x:Key="CuponImageStyle" TargetType="Canvas">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFD028"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="CuponStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="Margin" Value="0,10"/>
@@ -77,24 +78,24 @@
             <Setter Property="Padding" Value="10,10"/>
             <Setter Property="Margin" Value="5,0"/>
         </Style>
-	</UserControl.Resources>
-	<Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"	Style="{DynamicResource CuponesHeaderStyle}">
-			<Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"	Style="{DynamicResource CuponesHeaderStyle}">
+            <Image Width="35" Height="35" Stretch="UniformToFill" Margin="6"
 						   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
-			<TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
+            <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
 						   Text="Servicio de Cupones" />
-			<Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
+            <Button Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
 					Name="ButtonBack" Click="ButtonBack_Click">
-				<Button.Background>
-					<ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
-				</Button.Background>
-			</Button>
-		</StackPanel>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_atras.png"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
         <Grid Grid.Row="1" Width="890">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -130,40 +131,39 @@
                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
 						   Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                 </Canvas>
-                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
+                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
 							   Style="{StaticResource H2Style}" VerticalAlignment="Center" 
 							   Text="{Binding PromocionSelected.Descripcion}" 
-							   Width="645" Height="60" Margin="18,0,0,0"/>
-                <TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
+							   Width="782" Height="60" Margin="18,10,0,10"/>
+                <!--<TextBlock Style="{DynamicResource TextBlockReclamarCuponStyle}" 
 							   VerticalAlignment="Center" 
-							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseDown"/>
+							   Text="Obtener cupón" MouseDown="TextBlockReclamarCupon_MouseDown"/>-->
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="0,10">
                 <TextBlock Text="Detalles y Condiciones" Style="{StaticResource H2Style}" FontWeight="Bold"></TextBlock>
-                <Line X1="0" X2="890" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,10"/>
-                <StackPanel Orientation="Vertical">
-
-                    <TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
-
-                    <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
-					<Run Text="{Binding PromocionSelected.Detalles}"></Run>
-				</TextBlock>-->
-
-                    <TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
-					<Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
-                    </TextBlock>
-
-                    <!--<textblock text="condiciones" style="{staticresource h3style}" margin="20,20,5,0" fontweight="bold" fontstyle="italic"></textblock>
-				
-                <textblock style="{staticresource h3style}" margin="20,20,5,0">
-					<run text="lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. in usu latine equidem dolores. quo no falli viris intellegam, ut fugit veritus placerat per."></run>
-				</textblock>
-                
-                <textblock style="{staticresource h3style}" margin="20,20,5,0">
-					<run text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></run>
-                </textblock>-->
-                </StackPanel>
+                <Line X1="0" X2="890" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,10" Width="890" />
+                <Grid MaxHeight="736">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
+                        <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
+					    <Run Text="{Binding PromocionSelected.Detalles}"></Run>
+				        </TextBlock>-->
+                        <TextBlock Style="{StaticResource H3Style}" Margin="10,10,10,0">
+					        <Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Condiciones" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
+                        <TextBlock Style="{StaticResource H3Style}" Margin="10,10,10,0">
+        					<Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </Grid>
-	</Grid>
+    </Grid>
 </UserControl>

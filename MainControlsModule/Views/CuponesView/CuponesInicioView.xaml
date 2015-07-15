@@ -7,11 +7,12 @@
 			 xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
 			 mc:Ignorable="d" 
-			 d:DesignWidth="970" d:DesignHeight="1094">
+			 d:DesignWidth="970" d:DesignHeight="1200">
 
     <UserControl.Resources>
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
+            <Setter Property="Margin" Value="-1,0"/>
             <Setter Property="Height" Value="47"/>
             <Setter Property="Background">
                 <Setter.Value>
@@ -69,7 +70,7 @@
             <Setter Property="Width" Value="140"/>
             <Setter Property="Height" Value="80"/>
             <Setter Property="Padding" Value="10,10"/>
-            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
         </Style>
         <Style x:Key="CuponStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
@@ -126,7 +127,7 @@
             </Grid>
             <StackPanel DockPanel.Dock="Bottom">
                 <TextBlock Text="Selecciona tu cupón" Style="{StaticResource H2Style}" Margin="0,20,0,0" FontWeight="Bold"></TextBlock>
-                <Line X1="0" X2="950" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                <Line X1="0" X2="890" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="890"/>
                 <StackPanel>
                     <StackPanel.Resources>
                         <ControlTemplate x:Key="PromocionRowTemplate">
@@ -135,7 +136,7 @@
                                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
                                            Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                                 </Canvas>
-                                <WrapPanel Width="650" Margin="9,0,0,0">
+                                <WrapPanel Width="655" Margin="9,0,0,0">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
                                            Style="{StaticResource H2Style}" Text="{Binding Descripcion}" Margin="0,0,0,5"/>
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
@@ -147,7 +148,7 @@
                                            DataContext="{Binding}" Text="Ver condiciones" VerticalAlignment="Top"
                                            MouseDown="TextBlockVerCondiciones_MouseDown"/>-->
                                 <TextBlock Name="TextBlockReclamarCupon" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
-                                           DataContext="{Binding}" Text="Obtener cupón" VerticalAlignment="Top"
+                                           DataContext="{Binding}" Text="Obtener cupón" VerticalAlignment="Top" HorizontalAlignment="Right"
                                            MouseDown="TextBlockReclamarCupon_MouseUp"/>
                             </StackPanel>
                         </ControlTemplate>

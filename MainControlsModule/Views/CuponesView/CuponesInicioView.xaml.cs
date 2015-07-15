@@ -35,7 +35,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ((DatosClienteViewModel)this.DataContext).SelectPromocion((Promocion)((TextBlock)sender).DataContext);
+            Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
+            ((DatosClienteViewModel)this.DataContext).SelectPromocion(promocion);
 
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesLoginView", UriKind.Relative));

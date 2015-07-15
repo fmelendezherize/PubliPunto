@@ -7,16 +7,18 @@
     <Grid>
         <Grid.Resources>
             <Style x:Key="HeaderRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,15"/>
+                <Setter Property="Margin" Value="0,15"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
             <Style x:Key="WorkAreaRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,15"/>
-                <!--<Setter Property="Background" Value="blue"/>-->
+                <Setter Property="Margin" Value="0,15"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
             <Style x:Key="FooterRegionStyle" TargetType="ContentControl">
-                <Setter Property="Margin" Value="60,0,60,0"/>
+                <Setter Property="Margin" Value="0,0"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
             <Style x:Key="ScrollViewerMainStyle" TargetType="ScrollViewer">
@@ -33,7 +35,6 @@
 					<RowDefinition Height="24" />
                 </Grid.RowDefinitions>
                 <ContentControl  x:Name="HeaderRegion" Grid.Row="0" Style="{StaticResource HeaderRegionStyle}"
-                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                               prism:RegionManager.RegionName="HeaderRegion"/>
                 <ContentControl  x:Name="WorkAreaRegion" Grid.Row="1" Style="{StaticResource WorkAreaRegionStyle}"
                               prism:RegionManager.RegionName="WorkAreaRegion">

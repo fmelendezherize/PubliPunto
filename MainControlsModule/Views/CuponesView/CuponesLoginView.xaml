@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
              xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
              xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             d:DesignWidth="970" d:DesignHeight="1200">
     <UserControl.Resources>
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="FocusVisual">
@@ -79,6 +80,7 @@
         <Color x:Key="ContactanosPrimaryColor">#4C87C3</Color>
         <SolidColorBrush  x:Key="ContactanosPrimaryColorBrush" Color="{StaticResource ContactanosPrimaryColor}"/>
         <Style x:Key="ContentHeaderContactanos" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="-1,0"/>
             <Setter Property="Height" Value="47"/>
             <Setter Property="Background">
                 <Setter.Value>
@@ -175,59 +177,62 @@
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch"  
                         Height="Auto" HorizontalAlignment="Stretch">
                 <DockPanel HorizontalAlignment="Left">
-                    <Grid DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible" Width="890">
+                    <Grid DockPanel.Dock="Top" Height="672" Name="FormularioPanel" Visibility="Visible" Width="890">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0,40" Grid.Column="0">
-                            <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
-                                   Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
-                            <StackPanel Style="{StaticResource CuponStyle}" Orientation="Vertical">
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
-                                               Style="{StaticResource H2Style}" VerticalAlignment="Top" 
-                                               Margin="0,10">
-                                            <Run Text="{Binding PromocionSelected.Descripcion}" ></Run>
-                                    </TextBlock>
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
-                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
-                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                                    </TextBlock>
+                            <StackPanel Height="516">
+                                <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                       Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
+                                           Style="{StaticResource H2Style}" VerticalAlignment="Top" Margin="0,10">
+                                    <Run Text="{Binding PromocionSelected.Descripcion}" />
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
+                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" Height="293" >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                </TextBlock>
                             </StackPanel>
+                            <Button Name="ButtonVerCondiciones" Style="{DynamicResource ButtonReclamarCuponStyle}" Margin="0,10,0,0" 
+                                    Content="Ver Condiciones" Click="ButtonVerCondiciones_Click" HorizontalAlignment="Left"/>
                         </StackPanel>
                         <Line Y1="5" Y2="680" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Center" Grid.Column="1"/>
                         <StackPanel Margin="0,40" Grid.Column="2">
-                            <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
-                                           Text="Puedes reclamar directamente tu cupón con tu:"/>
-                            <WrapPanel Orientation="Vertical">
-                                <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
-                                <WrapPanel>
-                                    <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="0,20,0,0" 
+                            <StackPanel Height="516">
+                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
+                                               Text="Por favor, ingresa tus datos:"/>
+                                <WrapPanel Orientation="Vertical">
+                                    <Label Style="{StaticResource LabelFormulario}">Cédula de Identidad:</Label>
+                                    <WrapPanel>
+                                        <RadioButton Style="{StaticResource RadioFormularioStyle}" Margin="0,20,0,0" 
                                                      Content="E" GroupName="TipoId"/>
-                                    <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" 
-                                                 Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
-                                    <TextBox Name="TextBoxCedulaIdentidad" Width="140" Style="{StaticResource TextBoxFormularioStyle}" 
-                                             GotFocus="TextBoxNumeric_GotFocus" Margin="10,20,0,0" MaxLength="8" TextAlignment="Center"/> 
+                                        <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" 
+                                                     Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
+                                        <TextBox Name="TextBoxCedulaIdentidad" Width="140" Style="{StaticResource TextBoxFormularioStyle}" 
+                                                 GotFocus="TextBoxNumeric_GotFocus" Margin="10,20,0,0" MaxLength="8" TextAlignment="Center"/>
+                                    </WrapPanel>
                                 </WrapPanel>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
-                                <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
-                                         GotFocus="TextBoxAlpha_GotFocus" Width="420" Margin="0,20,0,0"></TextBox>
-                            </WrapPanel>
-                            <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" Margin="0,20,0,0"
-                                           Text="Además, si deseas recibir tu cupón en el móvil, solo escribe tu número:"/>
-                            <WrapPanel>
-                                <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="4" 
-                                         GotFocus="TextBoxNumeric_GotFocus" Width="100" Margin="0,20,10,0"/>
-                                <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="7"
-                                         GotFocus="TextBoxNumeric_GotFocus" Width="180" Margin="0,20,0,0"/>
-                            </WrapPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Name="ButtonEnviar" Style="{DynamicResource ButtonReclamarCuponStyle}" 
-                                            Content="Enviar" Margin="8,40,8,0"  Click="ButtonReclamarCupon_Click"/>
+                                <WrapPanel>
+                                    <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
+                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
+                                             GotFocus="TextBoxAlpha_GotFocus" Width="420" Margin="0,20,0,0"></TextBox>
+                                </WrapPanel>
+                                <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" Margin="0,20,0,0">
+                                    <Run Text="Recibe el cupón en tu móvil,"/>
+                                    <Run Text="(opcional):" FontWeight="Bold"/>
+                                </TextBlock>
+                                <WrapPanel>
+                                    <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="4" 
+                                             GotFocus="TextBoxNumeric_GotFocus" Width="100" Margin="0,20,10,0"/>
+                                    <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="7"
+                                             GotFocus="TextBoxNumeric_GotFocus" Width="180" Margin="0,20,0,0"/>
+                                </WrapPanel>
                             </StackPanel>
+                            <Button Name="ButtonEnviar" Style="{DynamicResource ButtonReclamarCuponStyle}" Margin="0,10,0,0"
+                                    Content="Continuar" Click="ButtonReclamarCupon_Click"/>
                         </StackPanel>
                     </Grid>
                     <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>

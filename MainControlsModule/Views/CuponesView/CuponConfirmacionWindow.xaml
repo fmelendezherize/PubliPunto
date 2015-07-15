@@ -32,7 +32,7 @@
         <StackPanel Margin="40">
             <TextBlock Name="TextBlockTitulo" Style="{StaticResource H1Style}"
 					   Text="Antes de continuar..."></TextBlock>
-            <Line X1="0" X2="500" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" />
+            <Line X1="0" X2="512" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left" Width="512" />
             <TextBlock Name="TextBlockMensaje" Style="{StaticResource H2Style}" Margin="0,20">
 					   Por favor confirma tus datos para poder procesar tu solicitud de cupón</TextBlock>
             <TextBlock Style="{StaticResource H2Style}" Margin="0,5">
@@ -47,9 +47,9 @@
                 <Run FontWeight="Bold" Text="Número Móvil:"/> 
                 <Run Text="{Binding UsuarioValidado.Email}"/>
             </TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="ButtonCancelar" Style="{DynamicResource ButtonReclamarCuponStyle}" 
-                        Content="Cancelar" Margin="8,40,8,0" Click="ButtonCancelar_Click" />
+                        Content="Regresar" Margin="8,40,8,0" Click="ButtonCancelar_Click" />
                 <Button Name="ButtonConfirmar" Style="{DynamicResource ButtonReclamarCuponStyle}" 
                         Content="Confirmar" Margin="8,40,8,0" Click="ButtonConfirmar_Click"/>
             </StackPanel>

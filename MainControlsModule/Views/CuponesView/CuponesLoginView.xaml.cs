@@ -212,5 +212,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesRegistroView", UriKind.Relative));
         }
+
+        private void ButtonVerCondiciones_Click(object sender, RoutedEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesCondicionesView", UriKind.Relative));
+        }
     }
 }
