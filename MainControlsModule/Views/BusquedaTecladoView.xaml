@@ -85,7 +85,7 @@
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" Height="Auto"
 						HorizontalAlignment="Left">
 				<DockPanel>
-					<StackPanel DockPanel.Dock="Top" Height="692">
+					<StackPanel DockPanel.Dock="Top" Height="771">
 						<WrapPanel Height="70">
 							<TextBox x:Name="TextBoxSearch" Width="890" Style="{DynamicResource SearchText}"></TextBox>
 							<Button Name="ButtonSearch" 

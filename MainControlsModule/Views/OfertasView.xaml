@@ -8,7 +8,7 @@
 	xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 	d:DesignWidth="640" d:DesignHeight="480"
-	Width="970" Height="294">
+	Width="960" Height="294">
 	<UserControl.Resources>
 		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<Style x:Key="FocusVisual">

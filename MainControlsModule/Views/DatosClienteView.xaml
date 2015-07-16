@@ -7,7 +7,7 @@
 	xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 	xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
-	d:DesignWidth="970" d:DesignHeight="1200">
+	d:DesignWidth="960" d:DesignHeight="1200">
     <UserControl.Resources>
 
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
@@ -113,13 +113,13 @@
             <!--<Image VerticalAlignment="Top" DockPanel.Dock="Top" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ejemp_pizzahut.jpg" Stretch="UniformToFill" Width="970" Height="543"/>-->
             <Canvas x:Name="PanelImagen" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelImagen}">
                 <Image x:Name="ImageEnteComercial"
-                       Margin="-1,-2,0,0"
+                       Margin="0,-2,0,0"
                        Stretch="Uniform" Width="960" Height="546"  
                        HorizontalAlignment="Center" VerticalAlignment="Stretch"  
                        Source="{Binding EnteComercial.ImagenUrl, Converter={StaticResource RutaImagenConverter}}" />
             </Canvas>
             <Canvas x:Name="PanelVideo" DockPanel.Dock="Top" Style="{StaticResource CanvasPanelVideo}">
-                <MediaElement x:Name="Video" Width="964" Height="546" Canvas.Top="0" 
+                <MediaElement x:Name="Video" Width="960" Height="546" Canvas.Top="0" 
 								  Stretch="Fill" LoadedBehavior="Play">
                     <MediaElement.Triggers>
                         <EventTrigger RoutedEvent="MediaElement.Loaded">

@@ -73,7 +73,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             this.navigationService = navigationContext.NavigationService;
-            this.touchKeyboard.IsShiftEnabled = false;
 
             if ((navigationContext.Parameters["criterio"] != null) &&
                 (!String.IsNullOrEmpty(navigationContext.Parameters["criterio"].ToString())))

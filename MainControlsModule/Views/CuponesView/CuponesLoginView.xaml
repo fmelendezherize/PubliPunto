@@ -177,14 +177,14 @@
             <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch"  
                         Height="Auto" HorizontalAlignment="Stretch">
                 <DockPanel HorizontalAlignment="Left">
-                    <Grid DockPanel.Dock="Top" Height="672" Name="FormularioPanel" Visibility="Visible" Width="890">
+                    <Grid DockPanel.Dock="Top" Height="768" Name="FormularioPanel" Visibility="Visible" Width="890">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0,40" Grid.Column="0">
-                            <StackPanel Height="516">
+                            <StackPanel Height="610">
                                 <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
                                        Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
                                 <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
@@ -199,9 +199,9 @@
                             <Button Name="ButtonVerCondiciones" Style="{DynamicResource ButtonReclamarCuponStyle}" Margin="0,10,0,0" 
                                     Content="Ver Condiciones" Click="ButtonVerCondiciones_Click" HorizontalAlignment="Left"/>
                         </StackPanel>
-                        <Line Y1="5" Y2="680" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Center" Grid.Column="1"/>
+                        <Line Y1="5" Y2="760" Stroke="#FF7D7D7D" StrokeThickness="2" HorizontalAlignment="Center" Grid.Column="1"/>
                         <StackPanel Margin="0,40" Grid.Column="2">
-                            <StackPanel Height="516">
+                            <StackPanel Height="610">
                                 <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" 
                                                Text="Por favor, ingresa tus datos:"/>
                                 <WrapPanel Orientation="Vertical">
@@ -212,23 +212,31 @@
                                         <RadioButton x:Name="RadioButtonCedulaFirstLetter" Style="{StaticResource RadioFormularioStyle}" 
                                                      Margin="10,20,0,0" Content="V" GroupName="TipoId"/>
                                         <TextBox Name="TextBoxCedulaIdentidad" Width="140" Style="{StaticResource TextBoxFormularioStyle}" 
-                                                 GotFocus="TextBoxNumeric_GotFocus" Margin="10,20,0,0" MaxLength="8" TextAlignment="Center"/>
+                                                 GotFocus="TextBoxNumeroMovil_GotFocus" Margin="10,20,0,0" MaxLength="8" TextAlignment="Center"/>
                                     </WrapPanel>
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
                                     <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
-                                             GotFocus="TextBoxAlpha_GotFocus" Width="420" Margin="0,20,0,0"></TextBox>
+                                             Width="423" Margin="0,20,0,0" MaxLength="35"
+                                             GotFocus="TextBoxAlpha_GotFocus"
+                                             TextChanged="TextBoxNewNombreApellido_TextChanged"></TextBox>
                                 </WrapPanel>
                                 <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" Margin="0,20,0,0">
                                     <Run Text="Recibe el cupón en tu móvil,"/>
                                     <Run Text="(opcional):" FontWeight="Bold"/>
                                 </TextBlock>
                                 <WrapPanel>
-                                    <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="4" 
-                                             GotFocus="TextBoxNumeric_GotFocus" Width="100" Margin="0,20,10,0"/>
-                                    <TextBox Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="7"
-                                             GotFocus="TextBoxNumeric_GotFocus" Width="180" Margin="0,20,0,0"/>
+                                    <TextBox Name="TextBoxCodigoMovil"
+                                             Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="4" 
+                                             Width="100" Margin="0,20,10,0"
+                                             GotFocus="TextBoxNumeroMovil_GotFocus"
+                                             TextChanged="TextBoxCodigoMovil_TextChanged"/>
+                                    <TextBox Name="TextBoxNumeroMovil"
+                                             Style="{StaticResource TextBoxFormularioStyle}" TextAlignment="Center" MaxLength="7"
+                                             Width="180" Margin="0,20,0,0"
+                                             GotFocus="TextBoxNumeroMovil_GotFocus"
+                                             TextChanged="TextBoxNumeroMovil_TextChanged"/>
                                 </WrapPanel>
                             </StackPanel>
                             <Button Name="ButtonEnviar" Style="{DynamicResource ButtonReclamarCuponStyle}" Margin="0,10,0,0"

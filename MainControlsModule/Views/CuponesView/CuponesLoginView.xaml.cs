@@ -4,6 +4,7 @@ using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -90,7 +91,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             Window wnd = sender as Window;
             wnd.Close();
-            this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
+            this.TextBoxNumeroMovil_GotFocus(this.TextBoxCedulaIdentidad, null);
         }
 
         private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -104,7 +105,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
         }
 
-        private void TextBoxNumeric_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        private void TextBoxNumeroMovil_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             if (PreviousTextBox != null)
             {
@@ -153,7 +154,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxCedulaIdentidad.Clear();
             this.RadioButtonCedulaFirstLetter.IsChecked = true;
 
-            this.TextBoxNumeric_GotFocus(this.TextBoxCedulaIdentidad, null);
+            this.TextBoxNumeroMovil_GotFocus(this.TextBoxCedulaIdentidad, null);
         }
 
         void CuponesLoginView_OnPromocionAprobada(object sender, bool e)
@@ -217,6 +218,27 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesCondicionesView", UriKind.Relative));
+        }
+
+        private void TextBoxNewNombreApellido_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var caret = this.TextBoxNewNombreApellido.CaretIndex;
+            this.TextBoxNewNombreApellido.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNewNombreApellido.Text.ToLower());
+            this.TextBoxNewNombreApellido.CaretIndex = caret;
+        }
+
+        private void TextBoxCodigoMovil_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.TextBoxCodigoMovil.Text.Length == 4) { this.TextBoxNumeroMovil.Focus(); }
+        }
+
+        private void TextBoxNumeroMovil_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.TextBoxNumeroMovil.Text.Length == 0)
+            {
+                this.TextBoxCodigoMovil.Focus();
+                this.TextBoxCodigoMovil.CaretIndex = 4;
+            }
         }
     }
 }

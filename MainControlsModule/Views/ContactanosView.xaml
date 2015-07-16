@@ -1,7 +1,8 @@
 ﻿<UserControl x:Class="Decktra.PubliPuntoEstacion.MainControlsModule.Views.ContactanosView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Controls">
+    
     <UserControl.Resources>
         <Color x:Key="ContactanosSecundaryColor">#68729d</Color>
         <SolidColorBrush  x:Key="ContactanosSecundaryColorBrush" Color="{StaticResource ContactanosSecundaryColor}"/>
@@ -73,51 +74,50 @@
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Style="{DynamicResource HomeControlStyle}">
-        <DockPanel>
-            <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource ContentHeaderContactanos}">
-                <Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_contactanos.png" Height="35" Margin="6">
-                </Image>
-                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Contáctanos"/>
-            </StackPanel>
-            <StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Center" 
-                        Height="Auto" HorizontalAlignment="Left">
-                <DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible">
-                        <TextBlock Style="{StaticResource TextBlockMensaje}">Ingresa tus datos y nos comunicaremos contigo a la brevedad</TextBlock>
-                        <WrapPanel>
-                            <WrapPanel Orientation="Vertical">
-                                <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido</Label>
-                                <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Vertical">
-                                <Label Style="{StaticResource LabelFormulario}">Email</Label>
-                                <TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Vertical">
-                                <Label Style="{StaticResource LabelFormulario}">Teléfono</Label>
-                                <TextBox x:Name="TextBoxTelefono" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Vertical">
-                                <Label Style="{StaticResource LabelFormulario}">Comentario</Label>
-                                <TextBox x:Name="TextBoxComentario" Style="{StaticResource TextBoxFormulario}" Height="127"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
+            <Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_contactanos.png" Height="35" Margin="6">
+            </Image>
+            <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Contáctanos"/>
+        </StackPanel>
+        <DockPanel x:Name="StackPanelContent" Background="White" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel DockPanel.Dock="Top" Height="770" Name="FormularioPanel" Visibility="Visible">
+                <TextBlock Style="{StaticResource TextBlockMensaje}">Ingresa tus datos y nos comunicaremos contigo a la brevedad</TextBlock>
+                <WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido</Label>
+                        <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <Label Style="{StaticResource LabelFormulario}">Email</Label>
+                        <TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <Label Style="{StaticResource LabelFormulario}">Teléfono</Label>
+                        <TextBox x:Name="TextBoxTelefono" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <Label Style="{StaticResource LabelFormulario}">Comentario</Label>
+                        <TextBox x:Name="TextBoxComentario" Style="{StaticResource TextBoxFormulario}" Height="127"
                                          GotFocus="TextBox_GotFocus" TextWrapping="Wrap" VerticalContentAlignment="Top"></TextBox>
-                            </WrapPanel>
-                        </WrapPanel>
-                        <StackPanel Orientation="Vertical" Width="275" HorizontalAlignment="Right">
-                            <Button Name="ButtonEnviar" Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,50,45,0"
+                    </WrapPanel>
+                </WrapPanel>
+                <StackPanel Orientation="Vertical" Width="275" HorizontalAlignment="Right">
+                    <Button Name="ButtonEnviar" Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,50,45,0"
                                     Click="ButtonEnviar_Click"/>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioEnviadoPanel" Visibility="Collapsed">
-                        <TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviado, pronto nos comunicaremos contigo. Gracias.</TextBlock>
-                        <WrapPanel HorizontalAlignment="Center">
-                            <Image Width="343" Height="343" Source="pack://application:,,,/Resources/logo.png" 
-                                   Stretch="UniformToFill" Margin="0,300"/>
-                        </WrapPanel>
-                    </StackPanel>
-                    <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
-                </DockPanel>
+                </StackPanel>
             </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioEnviadoPanel" Visibility="Collapsed">
+                <TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviado, pronto nos comunicaremos contigo. Gracias.</TextBlock>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Image Width="343" Height="343" Source="pack://application:,,,/Resources/logo.png" 
+                                   Stretch="UniformToFill" Margin="0,300"/>
+                </WrapPanel>
+            </StackPanel>
+            <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
         </DockPanel>
     </Grid>
 </UserControl>
