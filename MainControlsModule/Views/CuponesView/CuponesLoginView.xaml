@@ -192,8 +192,8 @@
                                     <Run Text="{Binding PromocionSelected.Descripcion}" />
                                 </TextBlock>
                                 <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
-                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" Height="293" >
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" Height="293">
+                                    <Run Text="{Binding PromocionSelected.Detalles}" />
                                 </TextBlock>
                             </StackPanel>
                             <Button Name="ButtonVerCondiciones" Style="{DynamicResource ButtonReclamarCuponStyle}" Margin="0,10,0,0" 
@@ -217,7 +217,7 @@
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
-                                    <TextBox Name="TextBoxNewNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
+                                    <TextBox Name="TextBoxNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
                                              Width="423" Margin="0,20,0,0" MaxLength="35"
                                              GotFocus="TextBoxAlpha_GotFocus"
                                              TextChanged="TextBoxNewNombreApellido_TextChanged"></TextBox>

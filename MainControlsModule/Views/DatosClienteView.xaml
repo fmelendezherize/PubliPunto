@@ -76,7 +76,7 @@
         </Style>
         <Style x:Key="PanelCuponesStyle" TargetType="StackPanel">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding EnteComercial.ListOfPromocions.Count}" Value="0">
+                <DataTrigger Binding="{Binding PromocionesActivas.Count}" Value="0">
                     <Setter Property="Visibility" Value="Collapsed"></Setter>
                 </DataTrigger>
             </Style.Triggers>

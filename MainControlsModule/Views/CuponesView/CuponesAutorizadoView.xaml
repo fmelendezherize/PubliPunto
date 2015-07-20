@@ -43,7 +43,7 @@
         </Style>
         <Style x:Key="H2Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontSize" Value="21"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="H3Style" TargetType="TextBlock">
@@ -128,10 +128,10 @@
                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
 						   Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                 </Canvas>
-                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black"
-							   Style="{StaticResource H2Style}" VerticalAlignment="Center" 
-							   Text="{Binding PromocionSelected.Descripcion}" 
-							   Width="700" Height="60" Margin="18,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
+                           Style="{StaticResource H2Style}" VerticalAlignment="Center" 
+                           Text="{Binding PromocionSelected.Descripcion}" 
+                           Width="700" Height="60" Margin="18,0,0,0"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Margin="15,10">
                 <!--<TextBlock Text="Tu cupón fue enviado con éxito" Style="{StaticResource H2Style}" Margin="0,20,0,0" 
@@ -150,15 +150,15 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="4">
-                <TextBlock Style="{StaticResource H3Style}">
+                <TextBlock Style="{StaticResource H2Style}">
                     <Run FontWeight="Bold" Text="Nombre: "/> 
                     <Run Text="{Binding UsuarioValidado.Nombre}"/>
                 </TextBlock>
-                <TextBlock Style="{StaticResource H3Style}">
+                <TextBlock Style="{StaticResource H2Style}">
                     <Run FontWeight="Bold" Text="Cédula de Identidad: "/> 
                     <Run Text="{Binding UsuarioValidado.Cedula}"/>
                 </TextBlock>
-                <TextBlock Style="{StaticResource H3Style}">
+                <TextBlock Style="{StaticResource H2Style}">
                     <Run FontWeight="Bold" Text="Tu cupón fue enviado a tu móvil con éxito."/> 
                     <Run Text="{Binding UsuarioValidado.Email}"/>
                 </TextBlock>

@@ -9,7 +9,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="VideosPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\admin-PC\Desktop\Terminal de Pasajeros</Value>
+      <Value Profile="(Default)">C:\Programas\PubliPunto\Models\videos</Value>
     </Setting>
   </Settings>
 </SettingsFile>

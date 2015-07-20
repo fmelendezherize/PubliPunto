@@ -149,18 +149,18 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
                         <TextBlock Text="Detalles" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
-                        <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,20,10,0">
-					    <Run Text="{Binding PromocionSelected.Detalles}"></Run>
-				        </TextBlock>-->
-                        <TextBlock Style="{StaticResource H3Style}" Margin="10,10,10,0">
-					        <Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
+                        <TextBlock Style="{StaticResource H3Style}" Margin="10,10">
+					        <Run Text="{Binding PromocionSelected.Detalles}"></Run>
                         </TextBlock>
+                        <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,10,10,0">
+					        <Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
+                        </TextBlock>-->
                     </StackPanel>
                     <StackPanel Grid.Row="1">
                         <TextBlock Text="Condiciones" Style="{StaticResource H3Style}" Margin="10,20,10,0" FontWeight="Bold" FontStyle="Italic"/>
-                        <TextBlock Style="{StaticResource H3Style}" Margin="10,10,10,0">
+                        <!--<TextBlock Style="{StaticResource H3Style}" Margin="10,10">
         					<Run Text="ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. no mei ferri graeco dicunt, ad cum veri accommodare. sed at malis omnesque delicata, usu et iusto zzril meliore. dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. eos vocibus deserunt quaestio ei."></Run>
-                        </TextBlock>
+                        </TextBlock>-->
                     </StackPanel>
                 </Grid>
             </StackPanel>

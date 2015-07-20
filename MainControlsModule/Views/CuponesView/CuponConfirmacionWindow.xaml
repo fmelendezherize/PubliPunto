@@ -37,15 +37,15 @@
 					   Por favor confirma tus datos para poder procesar tu solicitud de cupón</TextBlock>
             <TextBlock Style="{StaticResource H2Style}" Margin="0,5">
                 <Run FontWeight="Bold" Text="Nombre: "/> 
-                <Run Text="{Binding UsuarioValidado.Nombre}"/>
+                <Run Name="TextNombreUsuario"/>
             </TextBlock>
             <TextBlock Style="{StaticResource H2Style}" Margin="0,5">
                 <Run FontWeight="Bold" Text="Cédula de Identidad: "/> 
-                <Run Text="{Binding UsuarioValidado.Cedula}"/>
+                <Run Name="TextBoxCedula"/>
             </TextBlock>
             <TextBlock Style="{StaticResource H2Style}" Margin="0,5,0,40">
                 <Run FontWeight="Bold" Text="Número Móvil:"/> 
-                <Run Text="{Binding UsuarioValidado.Email}"/>
+                <Run Name="TextBoxMovil" Text="No se ingreso número."/>
             </TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="ButtonCancelar" Style="{DynamicResource ButtonReclamarCuponStyle}" 

@@ -44,78 +44,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             }
         }
 
-        private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
-        {
-            var wndConfirmacion = new CuponConfirmacionWindow();
-            wndConfirmacion.Owner = Application.Current.MainWindow;
-            if (wndConfirmacion.ShowDialog() == true)
-            {
-                string cedula = this.TextBoxCedulaIdentidad.Text;
-                ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
-                    new Usuario
-                    {
-                        Cedula = cedula,
-                    });
-                return;
-            }
-
-            //if (!String.IsNullOrEmpty(this.TextBoxCedulaIdentidad.Text))
-            //{
-            //    string cedula = this.TextBoxCedulaIdentidad.Text;
-            //    //TODO hablar con Nacho que valide esto
-            //    //if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
-            //    //{
-            //    //    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
-            //    //}
-            //    //else
-            //    //{
-            //    //    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
-            //    //};
-
-            //    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
-            //        new Usuario
-            //        {
-            //            Cedula = cedula,
-            //        });
-            //    return;
-            //}
-
-            //var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
-            //errorWnd.OnNavigatedTo("ErrorLogin");
-            //errorWnd.Owner = Application.Current.MainWindow;
-            //errorWnd.MouseDown += errorWnd_MouseDown;
-            //errorWnd.ShowDialog();
-        }
-
-        private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Window wnd = sender as Window;
-            wnd.Close();
-            this.TextBoxNumeroMovil_GotFocus(this.TextBoxCedulaIdentidad, null);
-        }
-
-        private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (PreviousTextBox != null)
-            {
-                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
-            }
-            this.PreviousTextBox = sender as Control;
-            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
-            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
-        }
-
-        private void TextBoxNumeroMovil_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (PreviousTextBox != null)
-            {
-                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
-            }
-            this.PreviousTextBox = sender as Control;
-            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
-            this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             if ((navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView") |
@@ -151,10 +79,102 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 viewModel.OnUsuarioAprobado += CuponesLoginView_OnUsuarioAprobado;
                 viewModel.OnPromocionAprobada += CuponesLoginView_OnPromocionAprobada;
             }
+            this.InitControls();
+        }
+
+        private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsDatosUsuarioValidos())
+            {
+                string cedula = this.TextBoxCedulaIdentidad.Text;
+                //TODO hablar con Nacho que valide esto
+                if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
+                {
+                    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
+                }
+                else
+                {
+                    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
+                };
+
+                var wndConfirmacion = new CuponConfirmacionWindow();
+                wndConfirmacion.Owner = Application.Current.MainWindow;
+                wndConfirmacion.TextNombreUsuario.Text = this.TextBoxNombreApellido.Text;
+                wndConfirmacion.TextBoxCedula.Text = cedula;
+                if (!string.IsNullOrEmpty(this.TextBoxCodigoMovil.Text))
+                {
+                    wndConfirmacion.TextBoxMovil.Text = String.Format("{0}-{1}", this.TextBoxCodigoMovil.Text,
+                        this.TextBoxNumeroMovil.Text);
+                }
+
+                if (wndConfirmacion.ShowDialog() == true)
+                {
+                    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
+                        new Usuario
+                        {
+                            Cedula = cedula,
+                        });
+                }
+                return;
+            }
+
+            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            errorWnd.OnNavigatedTo("ErrorLogin");
+            errorWnd.Owner = Application.Current.MainWindow;
+            errorWnd.MouseDown += errorWnd_MouseDown;
+            errorWnd.ShowDialog();
+        }
+
+        private bool IsDatosUsuarioValidos()
+        {
+            if (this.TextBoxCedulaIdentidad.Text.Length < 7) return false;
+            if (this.TextBoxNombreApellido.Text.Length < 7) return false;
+
+            if (!String.IsNullOrEmpty(this.TextBoxCodigoMovil.Text) &&
+                ((this.TextBoxCodigoMovil.Text.Length != 4) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
+            if (!String.IsNullOrEmpty(this.TextBoxNumeroMovil.Text) &&
+                ((this.TextBoxCodigoMovil.Text.Length != 4) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
+
+            return true;
+        }
+
+        private void InitControls()
+        {
             this.TextBoxCedulaIdentidad.Clear();
             this.RadioButtonCedulaFirstLetter.IsChecked = true;
-
+            this.TextBoxCodigoMovil.Clear();
+            this.TextBoxNombreApellido.Clear();
+            this.TextBoxNumeroMovil.Clear();
             this.TextBoxNumeroMovil_GotFocus(this.TextBoxCedulaIdentidad, null);
+        }
+
+        private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Window wnd = sender as Window;
+            wnd.Close();
+            this.InitControls();
+        }
+
+        private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as Control;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
+        }
+
+        private void TextBoxNumeroMovil_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as Control;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
         }
 
         void CuponesLoginView_OnPromocionAprobada(object sender, bool e)
@@ -194,8 +214,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 errorWnd.Owner = Application.Current.MainWindow;
                 errorWnd.MouseDown += errorWnd_MouseDown;
                 errorWnd.ShowDialog();
-                this.TextBoxCedulaIdentidad.Clear();
-                this.RadioButtonCedulaFirstLetter.IsChecked = true;
                 return;
             }
         }
@@ -222,9 +240,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void TextBoxNewNombreApellido_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var caret = this.TextBoxNewNombreApellido.CaretIndex;
-            this.TextBoxNewNombreApellido.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNewNombreApellido.Text.ToLower());
-            this.TextBoxNewNombreApellido.CaretIndex = caret;
+            var caret = this.TextBoxNombreApellido.CaretIndex;
+            this.TextBoxNombreApellido.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNombreApellido.Text.ToLower());
+            this.TextBoxNombreApellido.CaretIndex = caret;
         }
 
         private void TextBoxCodigoMovil_TextChanged(object sender, TextChangedEventArgs e)

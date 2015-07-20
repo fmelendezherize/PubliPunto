@@ -18,39 +18,42 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public EnteComercial FindBy(int id)
         {
-            return (from q in db.EnteComercials where (q.Id == id) select q).FirstOrDefault();
+            return db.EnteComercials.Find(id);
+            //return (from q in db.EnteComercials where (q.Id == id) select q).FirstOrDefault();
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsBy(int idRamoComercial)
         {
-            return (from q in GetAllActivos()
+            return (from q in GetEnteComercialesActivos()
                     where (q.RamoComercial.Id == idRamoComercial)
                     select q);
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsByName(string nombre)
         {
-            var ret = (from q in GetAllActivos()
+            var ret = (from q in GetEnteComercialesActivos()
                        where (q.Nombre.StartsWith(nombre, System.StringComparison.InvariantCultureIgnoreCase))
                        select q);
             return ret.ToList<EnteComercial>();
         }
 
-        public IEnumerable<EnteComercial> GetAllActivos()
+        public IEnumerable<EnteComercial> GetEnteComercialesActivos()
         {
             return db.EnteComercials.Where(q => q.IsActivo).ToList();
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsByTags(string Tag)
         {
-            var listOfResult = this.GetAllActivos().Where(q => q.TagMatched(Tag));
+            var listOfResult = this.GetEnteComercialesActivos().Where(q => q.TagMatched(Tag));
             return listOfResult.ToList();
         }
 
-        public IEnumerable<EnteComercial> GetAllWithPromocionActiva()
+        public IEnumerable<EnteComercial> GetEnteComercialesWithPromocionActiva()
         {
-            return this.GetAllActivos().Where(q => q.ListOfPromocions.Any(j => (j.IsActivo) &&
-                (j.FechaInicio <= System.DateTime.Now) && (j.FechaFin >= System.DateTime.Now))).ToList();
+            var result = from q in this.GetPromocionesActivas().GroupBy(grp => grp.EnteComercialId)
+                         select q.FirstOrDefault();
+
+            return (from q in result select q.EnteComercial).ToList();
         }
 
         public IEnumerable<Promocion> GetPromocionesActivas()
@@ -61,6 +64,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                           orderby q.FechaInicio descending, q.Id descending
                           select q).ToList();
             return result;
+        }
+
+        public IEnumerable<Promocion> GetPromocionesActivasBy(int idEnteComercial)
+        {
+            return this.GetPromocionesActivas().Where(q => q.EnteComercialId == idEnteComercial).ToList();
         }
 
         public void AddOrUpdate(EnteComercialDTO dto)

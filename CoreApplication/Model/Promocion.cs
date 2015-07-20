@@ -19,7 +19,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [Required]
         [MinLength(1), MaxLength(200)]
         public string Descripcion { get; set; }
-
         public string Detalles { get; set; }
         public System.DateTime FechaFin { get; set; }
         public System.DateTime FechaInicio { get; set; }

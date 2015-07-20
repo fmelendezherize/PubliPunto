@@ -27,7 +27,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             else if (accion == "ErrorLogin")
             {
                 this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Su cédula de identidad o PIN son incorrectos. Por favor vuelva a introducirlos.";
+                this.TextBlockMensaje.Text = "Sus datos de identificación no son correctos. Por favor revise los campos solicitados.";
             }
             else if (accion == "ErrorPromocion")
             {

@@ -27,21 +27,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             InitializeComponent();
         }
 
-        private void ImageFacebook_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
-        }
-
-        private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
-            ((DatosClienteViewModel)this.DataContext).SelectPromocion(promocion);
-
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -49,12 +34,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //if ((navigationContext.Uri.OriginalString != "CuponesLoginView") &
-            //    (navigationContext.Uri.OriginalString != "CuponesCondicionesView"))
-            //{
-            //    navigationContext.NavigationService.Region.Context = null;
-            //    return;
-            //}
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -66,10 +45,25 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.navigationService = navigationContext.NavigationService;
         }
 
+        private void ImageFacebook_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesLoginView", UriKind.Relative));
+        }
+
+        private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
+            ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
+
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesLoginView", UriKind.Relative));
+        }
+
         private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
-            ((DatosClienteViewModel)this.DataContext).SelectPromocion(promocion);
+            ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
 
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesCondicionesView", UriKind.Relative));

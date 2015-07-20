@@ -31,13 +31,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            if (navigationContext.Uri.OriginalString != "CuponesInicioView")
-            {
-                navigationContext.NavigationService.Region.Context = null;
-                return;
-            }
-
-            navigationContext.NavigationService.Region.Context = this.DataContext;
+            //if (navigationContext.Uri.OriginalString != "CuponesInicioView")
+            //{
+            //    navigationContext.NavigationService.Region.Context = null;
+            //    return;
+            //}
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -45,10 +43,20 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             string ID = navigationContext.Parameters["ID"].ToString();
             ((DatosClienteViewModel)DataContext).ShowEnteComercialCommand.Execute(ID);
             this.navigationService = navigationContext.NavigationService;
+            navigationContext.NavigationService.Region.Context = this.DataContext;
         }
 
         private void ButtonReclamarCupon_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            DatosClienteViewModel vm = this.DataContext as DatosClienteViewModel;
+            if (vm.PromocionesActivas.Count == 1)
+            {
+                vm.PromocionSelected = vm.PromocionesActivas[0];
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("CuponesLoginView", UriKind.Relative));
+                return;
+            }
+
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("CuponesInicioView", UriKind.Relative));
         }

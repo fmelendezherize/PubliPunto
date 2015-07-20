@@ -29,7 +29,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [Required]
         public virtual RamoComercial RamoComercial { get; set; }
 
-        public virtual IList<Promocion> ListOfPromocions { get; set; }
+        public IList<Promocion> ListOfPromocions { get; set; }
 
         public EnteComercial()
         {

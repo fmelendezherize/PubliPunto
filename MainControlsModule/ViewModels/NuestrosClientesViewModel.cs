@@ -30,7 +30,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowEnteComercials(object obj)
         {
-            var listOfResult = _enteComercialRepository.GetAllWithPromocionActiva().ToList();
+            var listOfResult = _enteComercialRepository.GetEnteComercialesWithPromocionActiva().ToList();
             this.ListOfEnteComercials.Clear();
 
             if (listOfResult.Count > CANT_CLIENTES_VISIBLE)

@@ -136,14 +136,14 @@
                                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" 
                                            Stretch="Fill" Width="70" Height="70" Canvas.Left="5" Canvas.Top="5"/>
                                 </Canvas>
-                                <WrapPanel Width="655" Margin="9,0,0,0">
+                                <StackPanel Width="655" Margin="9,0,0,0">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
-                                           Style="{StaticResource H2Style}" Text="{Binding Descripcion}" Margin="0,0,0,5"/>
+                                               Style="{StaticResource H2Style}" Text="{Binding Descripcion}" Margin="0,0,0,5"/>
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="21" Foreground="Black"
-                                           Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
-                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                                               Style="{StaticResource H2Style}" LineStackingStrategy="BlockLineHeight" LineHeight="30"
+                                               Text="{Binding Detalles}">
                                     </TextBlock>
-                                </WrapPanel>
+                                </StackPanel>
                                 <!--<TextBlock Name="TextBlockVerCondiciones" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
                                            DataContext="{Binding}" Text="Ver condiciones" VerticalAlignment="Top"
                                            MouseDown="TextBlockVerCondiciones_MouseDown"/>-->
@@ -154,9 +154,9 @@
                         </ControlTemplate>
                     </StackPanel.Resources>
 
-                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[0]}"/>
-                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[1]}"/>
-                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding EnteComercial.ListOfPromocions[2]}"/>
+                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[0]}"/>
+                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[1]}"/>
+                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[2]}"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
