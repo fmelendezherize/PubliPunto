@@ -5,6 +5,7 @@ using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -103,17 +104,23 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 wndConfirmacion.TextBoxCedula.Text = cedula;
                 if (!string.IsNullOrEmpty(this.TextBoxCodigoMovil.Text))
                 {
-                    wndConfirmacion.TextBoxMovil.Text = String.Format("{0}-{1}", this.TextBoxCodigoMovil.Text,
-                        this.TextBoxNumeroMovil.Text);
+                    wndConfirmacion.TextBoxMovil.Text = String.Format("{0}.{1}.{2}.{3}",
+                        this.TextBoxCodigoMovil.Text,
+                        this.TextBoxNumeroMovil.Text.Substring(0, 3),
+                        this.TextBoxNumeroMovil.Text.Substring(3, 2),
+                        this.TextBoxNumeroMovil.Text.Substring(5, 2));
                 }
 
                 if (wndConfirmacion.ShowDialog() == true)
                 {
-                    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(
-                        new Usuario
-                        {
-                            Cedula = cedula,
-                        });
+                    Usuario newUsuario = new Usuario
+                    {
+                        Cedula = cedula,
+                        Nombre = this.TextBoxNombreApellido.Text,
+                        Movil = this.TextBoxCodigoMovil.Text + this.TextBoxNumeroMovil.Text
+                    };
+
+                    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
                 }
                 return;
             }
@@ -127,13 +134,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private bool IsDatosUsuarioValidos()
         {
+            const string patronMovil = "(0412|0424|0416|0414)";
+
             if (this.TextBoxCedulaIdentidad.Text.Length < 7) return false;
             if (this.TextBoxNombreApellido.Text.Length < 7) return false;
 
             if (!String.IsNullOrEmpty(this.TextBoxCodigoMovil.Text) &&
-                ((this.TextBoxCodigoMovil.Text.Length != 4) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
+                (!Regex.IsMatch(this.TextBoxCodigoMovil.Text, patronMovil) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
             if (!String.IsNullOrEmpty(this.TextBoxNumeroMovil.Text) &&
-                ((this.TextBoxCodigoMovil.Text.Length != 4) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
+                (!Regex.IsMatch(this.TextBoxCodigoMovil.Text, patronMovil) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
 
             return true;
         }

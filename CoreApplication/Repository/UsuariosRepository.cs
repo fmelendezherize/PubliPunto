@@ -47,9 +47,19 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             return usuario;
         }
 
-        public void Add(Usuario newUsuario)
+        public void AddOrUpdate(Usuario newUsuario)
         {
-            db.Usuarios.Add(newUsuario);
+            var usuario = db.Usuarios.Where(q => q.Cedula == newUsuario.Cedula).FirstOrDefault();
+            if (usuario == null)
+            {
+                db.Usuarios.Add(newUsuario);
+            }
+            else
+            {
+                usuario.Nombre = newUsuario.Nombre;
+                usuario.Movil = newUsuario.Movil;
+                newUsuario.Id = usuario.Id;
+            }
             db.SaveChanges();
         }
 

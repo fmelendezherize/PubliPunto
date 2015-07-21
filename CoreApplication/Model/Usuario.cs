@@ -13,6 +13,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
+        public string Movil { get; set; }
         public string Pin { get; set; }
+
+        public bool IsValido()
+        {
+            if (string.IsNullOrEmpty(this.Cedula)) return false;
+            if (string.IsNullOrEmpty(this.Nombre)) return false;
+
+            return true;
+        }
     }
 }

@@ -172,14 +172,14 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public PromocionCupon UpdatePromocionCupon(Promocion promocionSelected, Usuario usuarioSelected)
         {
-            var enteComercial = (from q in db.EnteComercials where (q.Id == promocionSelected.EnteComercialId) select q).FirstOrDefault();
-            if (enteComercial == null) return null;
+            //var promocion = (from q in enteComercial.ListOfPromocions where (q.Id == promocionSelected.Id) select q).FirstOrDefault();
 
-            var promocion = (from q in enteComercial.ListOfPromocions where (q.Id == promocionSelected.Id) select q).FirstOrDefault();
+            var promocion = db.Promociones.Where(q => q.Id == promocionSelected.Id).FirstOrDefault();
             if (promocion == null) return null;
 
             var cupon = promocion.ObtenerCupon(usuarioSelected);
             db.SaveChanges();
+
             return cupon;
         }
 

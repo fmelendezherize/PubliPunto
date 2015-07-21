@@ -14,8 +14,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public ICommand ShowEnteComercialCommand { get; set; }
         public ICommand ReclamarCuponCommand { get; set; }
 
-        public PromocionCupon PromocionCupon { get; set; }
-        public Usuario UsuarioValidado { get; set; }
+        private PromocionCupon _promocionCupon;
+        public PromocionCupon PromocionCupon
+        {
+            get { return _promocionCupon; }
+            set { SetProperty(ref _promocionCupon, value); }
+        }
+
+        private Usuario _usuarioValidado;
+        public Usuario UsuarioValidado
+        {
+            get { return _usuarioValidado; }
+            set { SetProperty(ref _usuarioValidado, value); }
+        }
 
         private EnteComercial _enteComercial;
         public EnteComercial EnteComercial
@@ -66,41 +77,32 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             if (usuarioKiosko == null) return;
 
             //Validar Usuario
-            //using (var usuarioRepository = new UsuariosRepository())
-            //{
-            //    UsuarioValidado = usuarioRepository.RetrieveUsuarioBy(usuarioKiosko.Cedula, usuarioKiosko.Pin);
-
-            //    if (UsuarioValidado == null)
-            //    {
-            //        if (!string.IsNullOrEmpty(usuarioKiosko.Cedula) && !string.IsNullOrEmpty(usuarioKiosko.Email)
-            //            && !string.IsNullOrEmpty(usuarioKiosko.Nombre))
-            //        {
-            //            //chance de registro
-            //            usuarioRepository.Add(usuarioKiosko);
-            //            UsuarioValidado = usuarioKiosko;
-            //        }
-            //        else
-            //        {
-            //            if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
-            //            return;
-            //        }
-            //    }
-            //};
+            using (var usuarioRepository = new UsuariosRepository())
+            {
+                if (usuarioKiosko.IsValido())
+                {
+                    //chance de registro
+                    usuarioRepository.AddOrUpdate(usuarioKiosko);
+                    UsuarioValidado = usuarioKiosko;
+                }
+                else
+                {
+                    if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
+                    return;
+                }
+            };
 
             ///Promocion
-            //PromocionCupon = null;
-            //PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
-            //if (PromocionCupon == null)
-            //{
-            //    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
-            //}
-            //else
-            //{
-            //    this.RaisePropertyChanged(() => this.PromocionCupon);
-            //    this.RaisePropertyChanged(() => this.UsuarioValidado);
-            //    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
-            //}
-            if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+            PromocionCupon = null;
+            PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
+            if (PromocionCupon == null)
+            {
+                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+            }
+            else
+            {
+                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+            }
         }
     }
 }

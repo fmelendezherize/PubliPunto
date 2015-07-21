@@ -20,8 +20,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [MinLength(1), MaxLength(200)]
         public string Descripcion { get; set; }
         public string Detalles { get; set; }
+        public string Condiciones { get; set; }
+
         public System.DateTime FechaFin { get; set; }
         public System.DateTime FechaInicio { get; set; }
+
         public bool IsActivo { get; set; }
 
         public virtual IList<PromocionCupon> ListOfPromocionCupons { get; set; }
