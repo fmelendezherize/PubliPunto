@@ -67,6 +67,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             this.ButtonZero.Width = double.Parse(buttonSize);
 
             this.ButtonDeleteNumeric.Visibility = Visibility.Collapsed;
+            this.ButtonSymb.Visibility = Visibility.Visible;
+            this.ButtonLeftSpace.Visibility = Visibility.Visible;
+            this.ButtonRightSpace.Visibility = Visibility.Visible;
+            this.ButtonLeftEnter.Visibility = Visibility.Visible;
 
             this._activeControl = control;
         }
@@ -103,6 +107,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             this.ButtonDeleteNumeric.Height = double.Parse(buttonSize);
 
             this._activeControl = control;
+        }
+
+        public void SetControlToWriteCharacter(Control control)
+        {
+            this.SetControlToWriteAlphaNumeric(control);
+            this.ButtonSymb.Visibility = Visibility.Hidden;
+            this.ButtonLeftSpace.Visibility = Visibility.Hidden;
+            this.ButtonRightSpace.Visibility = Visibility.Hidden;
+            this.ButtonLeftEnter.Visibility = Visibility.Hidden;
         }
 
         private void AlphaNumericButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -149,9 +162,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
                 this.StackPanelSymb1.Visibility = Visibility.Collapsed;
                 this.StackPanelSymb2.Visibility = Visibility.Collapsed;
             }
-            //if (this._activeControl == null) return;
-            //this._activeControl.Focus();
-            //WriteAlphaNumericToActiveControl("@");
         }
 
         private void ButtonPunto_Click(object sender, RoutedEventArgs e)
@@ -159,12 +169,22 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             WriteAlphaNumericToActiveControl(".");
         }
 
+        private void ButtonArroba_Click(object sender, RoutedEventArgs e)
+        {
+            WriteAlphaNumericToActiveControl("@");
+        }
+
+        private void ButtonComma_Click(object sender, RoutedEventArgs e)
+        {
+            WriteAlphaNumericToActiveControl(",");
+        }
+
         private void ButtonGuion_Click(object sender, RoutedEventArgs e)
         {
             WriteAlphaNumericToActiveControl("-");
         }
 
-        private void ButtonPiso_Click(object sender, RoutedEventArgs e)
+        private void ButtonGuionPiso_Click(object sender, RoutedEventArgs e)
         {
             WriteAlphaNumericToActiveControl("_");
         }

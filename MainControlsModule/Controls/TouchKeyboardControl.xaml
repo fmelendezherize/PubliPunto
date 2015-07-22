@@ -165,11 +165,11 @@
 			</StackPanel>
             <StackPanel Name="StackPanelSymb1" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
                 <Button Content="!" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
-                <Button Content="@" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="#" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="$" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="/" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="^" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Content="&amp;" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="*" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="(" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content=")" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
@@ -191,14 +191,18 @@
 				</Button>
 			</StackPanel>
             <StackPanel Name="StackPanelSymb2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                <Button Content="&amp;" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
+                <Button Style="{DynamicResource KeyAlfaButtonStyle}" Click="ButtonGuion_Click">
+                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/guion.png" Stretch="None"/>
+                </Button>
+                <Button Style="{DynamicResource KeyAlfaButtonStyle}" Click="ButtonGuionPiso_Click" FontWeight="Bold">
+                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/piso.png" Stretch="None" Margin="0,34,0,0"/>
+                </Button>
+                <Button Content="'" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="&quot;" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content=":" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content=";" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="," Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Content="?" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
-                <Button Content="!" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
-                <Button Content="+" Style="{DynamicResource KeyAlfaButtonStyle}" Click="AlphaNumericButton_Click"/>
                 <Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#ec7073" Click="ButtonDelete_Click">
                     <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/del.png" Stretch="None"/>
                 </Button>
@@ -208,20 +212,17 @@
                     <TextBlock Width="70" TextWrapping="Wrap" TextAlignment="Center">
                         <Run Text="123 Sym" Foreground="White"/>
                     </TextBlock>
-                    <!--<Image Name="ImageArroba" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/arroba.png" Stretch="None"/>-->
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonPunto_Click" Foreground="White">
-					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/punto.png" Stretch="None"/>
-				</Button>
+                <Button Name="ButtonLeftSpace" Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonArroba_Click">
+                    <Image Name="ImageArroba" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/arroba.png" Stretch="None"/>
+                </Button>
 				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Width="379" Click="ButtonEspacio_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/espacio.png" Stretch="None"/>
 				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonGuion_Click">
-					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/guion.png" Stretch="None"/>
-				</Button>
-				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonPiso_Click">
-					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/piso.png" Stretch="None" Margin="0,34,0,0"/>
-				</Button>
+                <Button Name="ButtonRightSpace" Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonPunto_Click" Foreground="White">
+                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/punto.png" Stretch="None"/>
+                </Button>
+                <Button Name="ButtonLeftEnter" Content="," Style="{DynamicResource KeyAlfaButtonStyle}" Background="#3e728c" Click="ButtonComma_Click" Foreground="White"/>
 				<Button Style="{DynamicResource KeyAlfaButtonStyle}" Background="#a1d174" Width="137" Click="ButtonEnter_Click">
 					<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/enter.png" Stretch="None"/>
 				</Button>

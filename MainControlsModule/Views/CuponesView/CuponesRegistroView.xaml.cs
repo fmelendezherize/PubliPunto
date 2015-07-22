@@ -77,7 +77,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 return;
             }
 
-            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            var errorWnd = this.Container.Resolve<Views.DialogWindow>();
             errorWnd.OnNavigatedTo("ErrorFormularioLibre");
             errorWnd.Owner = Application.Current.MainWindow;
             errorWnd.MouseDown += errorWnd_MouseDown;

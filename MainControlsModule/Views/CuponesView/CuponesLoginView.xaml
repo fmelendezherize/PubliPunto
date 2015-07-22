@@ -219,7 +219,7 @@
                                     <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido:</Label>
                                     <TextBox Name="TextBoxNombreApellido" Style="{StaticResource TextBoxFormularioStyle}" 
                                              Width="423" Margin="0,20,0,0" MaxLength="35"
-                                             GotFocus="TextBoxAlpha_GotFocus"
+                                             GotFocus="TextBoxNombre_GotFocus"
                                              TextChanged="TextBoxNewNombreApellido_TextChanged"></TextBox>
                                 </WrapPanel>
                                 <TextBlock Width="Auto" Height="Auto" Style="{StaticResource H2Style}" Margin="0,20,0,0">

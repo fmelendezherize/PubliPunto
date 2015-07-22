@@ -1,4 +1,7 @@
 ﻿using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -9,6 +12,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
     /// </summary>
     public partial class ContactanosClientesView : UserControl, INavigationAware
     {
+        [Dependency]
+        public IUnityContainer Container { get; set; }
+
         private IRegionNavigationService navigationService;
         private Control PreviousTextBox;
 
@@ -68,14 +74,36 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Collapsed;
             this.touchKeyboard.Visibility = System.Windows.Visibility.Visible;
 
-            this.TextBox_GotFocus(this.TextBoxNombre, null);
+            this.TextBoxNombre_GotFocus(this.TextBoxNombre, null);
+        }
+
+        private bool IsDatosContactanosValidos()
+        {
+            return false;
         }
 
         private void ButtonEnviar_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.FormularioPanel.Visibility = System.Windows.Visibility.Collapsed;
-            this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Visible;
-            this.touchKeyboard.Visibility = System.Windows.Visibility.Hidden;
+            if (IsDatosContactanosValidos())
+            {
+                this.FormularioPanel.Visibility = System.Windows.Visibility.Collapsed;
+                this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Visible;
+                this.touchKeyboard.Visibility = System.Windows.Visibility.Hidden;
+            }
+            else
+            {
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd.OnNavigatedTo("ErrorFormularioLibre");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.MouseDown += errorWnd_MouseDown;
+                errorWnd.ShowDialog();
+            }
+        }
+
+        void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Window wnd = sender as Window;
+            wnd.Close();
         }
 
         private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -84,6 +112,24 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             {
                 navigationService.Journal.GoBack();
             }
+        }
+
+        private void TextBoxNombre_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as TextBox;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteCharacter(this.PreviousTextBox);
+        }
+
+        private void TextBoxNewNombreApellido_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var caret = this.TextBoxNombre.CaretIndex;
+            this.TextBoxNombre.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNombre.Text.ToLower());
+            this.TextBoxNombre.CaretIndex = caret;
         }
     }
 }

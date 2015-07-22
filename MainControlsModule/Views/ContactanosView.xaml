@@ -89,20 +89,25 @@
                 <WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <Label Style="{StaticResource LabelFormulario}">Nombre y Apellido</Label>
-                        <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                        <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" MaxLength="35"
+                                 GotFocus="TextBoxNombre_GotFocus"
+                                 TextChanged="TextBoxNewNombreApellido_TextChanged"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <Label Style="{StaticResource LabelFormulario}">Email</Label>
-                        <TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                        <TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}"
+                                 MaxLength="150" GotFocus="TextBox_GotFocus"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <Label Style="{StaticResource LabelFormulario}">Teléfono</Label>
-                        <TextBox x:Name="TextBoxTelefono" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBox_GotFocus"></TextBox>
+                        <TextBox x:Name="TextBoxTelefono" Style="{StaticResource TextBoxFormulario}" MaxLength="11"
+                                 GotFocus="TextBoxNumeric_GotFocus"/>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <Label Style="{StaticResource LabelFormulario}">Comentario</Label>
                         <TextBox x:Name="TextBoxComentario" Style="{StaticResource TextBoxFormulario}" Height="127"
-                                         GotFocus="TextBox_GotFocus" TextWrapping="Wrap" VerticalContentAlignment="Top"></TextBox>
+                                 TextWrapping="Wrap" VerticalContentAlignment="Top" MaxLength="200"
+                                 GotFocus="TextBox_GotFocus"></TextBox>
                     </WrapPanel>
                 </WrapPanel>
                 <StackPanel Orientation="Vertical" Width="275" HorizontalAlignment="Right">

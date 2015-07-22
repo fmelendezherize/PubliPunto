@@ -15,6 +15,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         public PubliPuntoContext()
         {
             Database.SetInitializer<PubliPuntoContext>(new PubliPuntoContextInitializer());
+            //Database.SetInitializer<PubliPuntoContext>(null);
         }
     }
 
@@ -28,7 +29,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         protected override void Seed(PubliPuntoContext context)
         {
             base.Seed(context);
+            //TestSampleSeed(context);
+        }
 
+        private static void TestSampleSeed(PubliPuntoContext context)
+        {
             var ramoComercial = context.RamoComercials.Add(
             new RamoComercial
             {
@@ -52,7 +57,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
                     IsActivo = true,
                     ListOfPromocions = new List<Promocion>() { 
                         new Promocion { 
-                            Codigo = "001", Descripcion = "Promocion Lunes 2 x 1." 
+                            Codigo = "001", Descripcion = "Promocion Lunes 2 x 1.", IsActivo = true 
                         } ,
                         new Promocion {
                             Codigo = "002", Descripcion = "Promocion Martes por una Grande una pequeña gratis."

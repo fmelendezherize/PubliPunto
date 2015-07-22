@@ -148,8 +148,8 @@
     <Compile Include="Views\CuponesView\CuponSuccessWindow.xaml.cs">
       <DependentUpon>CuponSuccessWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CuponesView\ErrorMustLoginWindow.xaml.cs">
-      <DependentUpon>ErrorMustLoginWindow.xaml</DependentUpon>
+    <Compile Include="Views\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
@@ -258,7 +258,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CuponesView\ErrorMustLoginWindow.xaml">
+    <Page Include="Views\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

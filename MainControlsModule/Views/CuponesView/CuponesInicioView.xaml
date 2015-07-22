@@ -60,7 +60,7 @@
             <Setter Property="Background" Value="{DynamicResource CuponesSecundaryColorBrush}"/>
         </Style>
         <Style x:Key="TextBlockReclamarCuponStyle" TargetType="TextBlock">
-            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="FontSize" Value="21"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -71,6 +71,8 @@
             <Setter Property="Height" Value="80"/>
             <Setter Property="Padding" Value="10,10"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
         <Style x:Key="CuponStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>

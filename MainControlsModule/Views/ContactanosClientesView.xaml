@@ -84,37 +84,44 @@
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" VerticalAlignment="Stretch"  
 						Height="Auto" HorizontalAlignment="Left">
 				<DockPanel>
-					<StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioPanel" Visibility="Visible">
+					<StackPanel DockPanel.Dock="Top" Height="770" Name="FormularioPanel" Visibility="Visible">
 						<TextBlock Style="{StaticResource TextBlockMensaje}">Envianos la información solicitada y nos comunicaremos contigo a la brevedad.</TextBlock>
 						<WrapPanel>
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">Nombre y Apellido</Label>
-								<TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" Width="870" GotFocus="TextBox_GotFocus"></TextBox>
-							</WrapPanel>
+                                <TextBox x:Name="TextBoxNombre" Style="{StaticResource TextBoxFormulario}" Width="870" MaxLength="35"
+                                         GotFocus="TextBoxNombre_GotFocus"
+                                         TextChanged="TextBoxNewNombreApellido_TextChanged"/>
+                            </WrapPanel>
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">Teléfono fijo o movil</Label>
 								<WrapPanel>
-									<TextBox x:Name="TextBoxTelefonoPrefix" Margin="45,25,10,0" MaxLength="4" Width="80" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBoxNumeric_GotFocus"></TextBox>
-									<TextBox x:Name="TextBoxTelefono" Margin="10,25,0,0" Width="290" Style="{StaticResource TextBoxFormulario}" GotFocus="TextBoxNumeric_GotFocus"></TextBox>
+									<TextBox x:Name="TextBoxTelefonoPrefix" Margin="45,25,10,0" MaxLength="4" Width="80" Style="{StaticResource TextBoxFormulario}"
+                                             TextAlignment="Center"
+                                             GotFocus="TextBoxNumeric_GotFocus"></TextBox>
+									<TextBox x:Name="TextBoxTelefono" Margin="10,25,0,0" Width="290" MaxLength="7" Style="{StaticResource TextBoxFormulario}"
+                                             TextAlignment="Center"
+                                             GotFocus="TextBoxNumeric_GotFocus"></TextBox>
 								</WrapPanel>
 							</WrapPanel>
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">Correo Electrónico</Label>
-								<TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}" Width="430"
-                                         GotFocus="TextBox_GotFocus"></TextBox>
-							</WrapPanel>
+                                <TextBox x:Name="TextBoxEmail" Style="{StaticResource TextBoxFormulario}" Width="430" MaxLength="150"
+                                         GotFocus="TextBox_GotFocus"/>
+                            </WrapPanel>
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">¿Cuál es tu solicitud?</Label>
-								<TextBox x:Name="TextBoxComentario" Style="{StaticResource TextBoxFormulario}" Height="127" Width="870"
-										 GotFocus="TextBox_GotFocus" TextWrapping="Wrap" VerticalContentAlignment="Top"></TextBox>
-							</WrapPanel>
+                                <TextBox x:Name="TextBoxComentario" Style="{StaticResource TextBoxFormulario}" Height="127" Width="870"
+										 GotFocus="TextBox_GotFocus" 
+                                         TextWrapping="Wrap" VerticalContentAlignment="Top" MaxLength="250"/>
+                            </WrapPanel>
 						</WrapPanel>
 						<StackPanel Orientation="Vertical" Width="275" HorizontalAlignment="Right">
-							<Button Name="ButtonEnviar" Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,20,45,0"
+							<Button Name="ButtonEnviar" Style="{StaticResource ButtonEnviar}" Content="Enviar" Margin="0,40,45,0"
 									Click="ButtonEnviar_Click"/>
 						</StackPanel>
 					</StackPanel>
-					<StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioEnviadoPanel" Visibility="Collapsed">
+					<StackPanel DockPanel.Dock="Top" Height="770" Name="FormularioEnviadoPanel" Visibility="Collapsed">
 						<TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviado, pronto nos comunicaremos contigo. Gracias.</TextBlock>
 						<WrapPanel HorizontalAlignment="Center">
 							<Image Width="343" Height="343" Source="pack://application:,,,/Resources/logo.png" 

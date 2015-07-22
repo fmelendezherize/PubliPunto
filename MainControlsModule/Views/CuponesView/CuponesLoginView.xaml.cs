@@ -125,7 +125,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 return;
             }
 
-            var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+            var errorWnd = this.Container.Resolve<Views.DialogWindow>();
             errorWnd.OnNavigatedTo("ErrorLogin");
             errorWnd.Owner = Application.Current.MainWindow;
             errorWnd.MouseDown += errorWnd_MouseDown;
@@ -161,7 +161,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         {
             Window wnd = sender as Window;
             wnd.Close();
-            this.InitControls();
+            //this.InitControls();
         }
 
         private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -191,7 +191,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if (!e)
             {
                 //no aceptado
-                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.OnNavigatedTo("ErrorPromocion");
                 errorWnd.Owner = Application.Current.MainWindow;
                 errorWnd.MouseDown += errorWnd_MouseDown;
@@ -218,7 +218,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             //Usuario no encontrado
             if (!e)
             {
-                var errorWnd = this.Container.Resolve<Views.CuponesView.ErrorMustLoginWindow>();
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.OnNavigatedTo("ErrorLogin");
                 errorWnd.Owner = Application.Current.MainWindow;
                 errorWnd.MouseDown += errorWnd_MouseDown;
@@ -266,6 +266,17 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 this.TextBoxCodigoMovil.Focus();
                 this.TextBoxCodigoMovil.CaretIndex = 4;
             }
+        }
+
+        private void TextBoxNombre_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (PreviousTextBox != null)
+            {
+                this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#DEDEE6"));
+            }
+            this.PreviousTextBox = sender as TextBox;
+            this.PreviousTextBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#b1b1b8"));
+            this.touchKeyboard.SetControlToWriteCharacter(this.PreviousTextBox);
         }
     }
 }
