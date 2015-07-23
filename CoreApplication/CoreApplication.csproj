@@ -94,8 +94,14 @@
     <Compile Include="Migrations\201507212019573_11.Designer.cs">
       <DependentUpon>201507212019573_11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507232005321_12.cs" />
+    <Compile Include="Migrations\201507232005321_12.Designer.cs">
+      <DependentUpon>201507232005321_12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DatosContacto.cs" />
     <Compile Include="Model\Dtos\ImagenUrlDTO.cs" />
     <Compile Include="Model\Dtos\Kiosko_PromocionesDTO.cs" />
+    <Compile Include="Repository\DatosContactosRepository.cs" />
     <Compile Include="Repository\UsuariosRepository.cs" />
     <Content Include="Migrations\Configuration - Copy.txt" />
     <Compile Include="Migrations\201404071610301_1.cs" />
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507212019573_11.resx">
       <DependentUpon>201507212019573_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507232005321_12.resx">
+      <DependentUpon>201507232005321_12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

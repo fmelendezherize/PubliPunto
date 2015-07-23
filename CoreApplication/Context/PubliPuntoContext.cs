@@ -11,6 +11,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         public DbSet<EnteComercial> EnteComercials { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Promocion> Promociones { get; set; }
+        public DbSet<DatosContacto> DatosContatos { get; set; }
 
         public PubliPuntoContext()
         {

@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
+using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
+using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -69,14 +71,29 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             if (string.IsNullOrEmpty(this.TextBoxTelefono.Text)) return false;
             if (string.IsNullOrEmpty(this.TextBoxComentario.Text)) return false;
 
-            string mailPattern = "";
+            string mailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
             if (!Regex.IsMatch(this.TextBoxEmail.Text, mailPattern)) return false;
+
+            return true;
         }
 
         private void ButtonEnviar_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (IsDatosContactanosValidos())
             {
+                using (var repository = new DatosContactosRepository())
+                {
+                    DatosContacto newContacto = new DatosContacto()
+                    {
+                        Comentario = this.TextBoxComentario.Text,
+                        Email = this.TextBoxEmail.Text,
+                        Destinatario = "Siescom Publicidad",
+                        Nombre = this.TextBoxNombre.Text,
+                        Telefono = this.TextBoxTelefono.Text
+                    };
+                    repository.Add(newContacto);
+                }
+
                 this.FormularioPanel.Visibility = System.Windows.Visibility.Collapsed;
                 this.FormularioEnviadoPanel.Visibility = System.Windows.Visibility.Visible;
                 this.touchKeyboard.Visibility = System.Windows.Visibility.Hidden;

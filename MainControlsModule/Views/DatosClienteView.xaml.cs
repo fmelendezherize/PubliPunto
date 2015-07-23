@@ -72,7 +72,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         private void ButtonContactanosCliente_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("ContactanosClientesView", UriKind.Relative));
+                new Uri("ContactanosClientesView?NombreEnteComercial=" + this.TextBlockNombreEnteComercial.Text, UriKind.Relative));
         }
     }
 }
