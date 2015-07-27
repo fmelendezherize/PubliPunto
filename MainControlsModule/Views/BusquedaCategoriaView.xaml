@@ -43,8 +43,8 @@
 		<Style x:Key="IndiceButtonStyle" TargetType="{x:Type Button}">
 			<Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}"></Setter>
 			<Setter Property="FontSize" Value="18"/>
-			<Setter Property="Width" Value="43.2"/>
-			<Setter Property="Height" Value="43.2"/>
+			<Setter Property="Width" Value="42.2"/>
+			<Setter Property="Height" Value="42.2"/>
 			<Setter Property="Margin" Value="1, 1"/>
 			<Setter Property="Background" Value="{DynamicResource CategorySecundaryColorBrush}"/>
 			<Setter Property="BorderBrush" Value="Transparent"/>
@@ -56,6 +56,9 @@
 			<Setter Property="Background" Value="White"/>
 			<Setter Property="BorderBrush" Value="White"/>
 			<Setter Property="Padding" Value="-7"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="SelectionMode" Value="Extended"/>
 		</Style>
 		<Style x:Key="TextBlockMensaje" TargetType="TextBlock">
 			<Setter Property="Padding" Value="15,10,0,0"></Setter>
@@ -65,20 +68,21 @@
 			<Setter Property="Background" Value="{DynamicResource CategoryPrimaryColorBrush}"/>
 			<Setter Property="Foreground" Value="White" />
 			<Setter Property="Height" Value="47"></Setter>
-			<Setter Property="Width" Value="913"></Setter>
+			<Setter Property="Width" Value="915"></Setter>
 			<Setter Property="Visibility" Value="Collapsed"></Setter>
 			<Style.Triggers>
-				<DataTrigger Binding="{Binding Categorias.Count}" Value="0">
+                <DataTrigger Binding="{Binding ListOfCategoriasRequested.Count}" Value="0">
 					<Setter Property="Visibility" Value="Visible"></Setter>
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
 		<Style x:Key="ScrollViewerCategorias" TargetType="ScrollViewer">
-			<Setter Property="Height" Value="1177"></Setter>
-			<Setter Property="Width" Value="915"></Setter>
-			<Setter Property="Visibility" Value="Visible"></Setter>
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding Categorias.Count}" Value="0">
+            <Setter Property="Height" Value="1177"/>
+            <Setter Property="Width" Value="915"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ListOfCategoriasRequested.Count}" Value="0">
 					<Setter Property="Visibility" Value="Collapsed"></Setter>
 				</DataTrigger>
 			</Style.Triggers>
@@ -102,12 +106,13 @@
 			</StackPanel>
 			<StackPanel x:Name="StackPanelContent" Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Width="970">
-				<TextBlock Style="{StaticResource TextBlockMensaje}">No se encontraron elementos</TextBlock>
+				<TextBlock Style="{StaticResource TextBlockMensaje}">
+                    <Run Text="No se encontrarón cupones por categoría:"/>
+                    <Run Text="{Binding CategoriaRequested.NombreCategoria}"/>
+                </TextBlock>
 				<ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}">
                     <ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
-							  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                              SelectionMode="Extended"
-							  ItemsSource="{Binding CategoriaActual}"
+							  ItemsSource="{Binding ListOfCategoriasRequested}"
                               TouchUp="ListViewCategorias_TouchUp"
                               TouchDown="ListViewCategorias_TouchDown"
                               TouchMove="ListViewCategorias_TouchMove">
@@ -116,6 +121,7 @@
 								<controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"
 															  HeaderStyle="{DynamicResource PubliPuntoSubContentHeaderBusquedaCategoria}"
 															  HeaderText="{Binding NombreCategoria}"
+                                                              Width="915"
 															  OnCategoriaSelected="CategoryItemControl_OnCategoriaSelected"/>
 							</DataTemplate>
 						</ListView.ItemTemplate>

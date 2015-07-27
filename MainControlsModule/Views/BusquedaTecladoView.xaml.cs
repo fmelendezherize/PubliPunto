@@ -24,12 +24,27 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.InitializeComponent();
             this.touchKeyboard.SetControlToWriteAlphaNumeric(this.TextBoxSearch);
             this.touchKeyboard.OnButtonClick += touchKeyboard_OnButtonClick;
+            this.AutoCompleteBoxSearch.Populating += AutoCompleteBoxSearch_Populating;
+            this.TextBoxSearch.TextChanged += TextBoxSearch_TextChanged;
+        }
+
+        void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.AutoCompleteBoxSearch.Text = this.TextBoxSearch.Text;
+            this.AutoCompleteBoxSearch.PopulateComplete();
+            this.AutoCompleteBoxSearch.IsDropDownOpen = true;
+        }
+
+        void AutoCompleteBoxSearch_Populating(object sender, PopulatingEventArgs e)
+        {
+
         }
 
         private void touchKeyboard_OnButtonClick(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
+                this.AutoCompleteBoxSearch.IsDropDownOpen = false;
                 NavigationParameters query = new NavigationParameters();
                 query.Add("criterio", this.TextBoxSearch.Text);
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
@@ -39,6 +54,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void ButtonSearch_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            this.AutoCompleteBoxSearch.IsDropDownOpen = false;
             NavigationParameters query = new NavigationParameters();
             query.Add("criterio", this.TextBoxSearch.Text);
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
@@ -88,7 +104,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             {
                 if (navigationContext.Parameters["reset"].ToString() == "true")
                 {
-                    this.TextBoxSearch.Clear();
+                    this.TextBoxSearch.Text = "";
                     ((BusquedaTecladoViewModel)this.DataContext).Init();
                     return;
                 }

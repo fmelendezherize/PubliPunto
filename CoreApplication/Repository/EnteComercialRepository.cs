@@ -24,7 +24,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialsBy(int idRamoComercial)
         {
-            return (from q in GetEnteComercialesActivos()
+            return (from q in GetEnteComercialesWithPromocionActiva()
                     where (q.RamoComercial.Id == idRamoComercial)
                     select q);
         }

@@ -191,9 +191,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
 
         private void SendKeyToActiveControl(Key key)
         {
+            if (this._activeControl == null) return;
+            this._activeControl.Focus();
+
             if (Keyboard.PrimaryDevice.ActiveSource == null) return;
-            var keyEvent = new KeyEventArgs(Keyboard.PrimaryDevice,
-                Keyboard.PrimaryDevice.ActiveSource, 0, key) { RoutedEvent = UIElement.KeyDownEvent };
+            var keyEvent = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, key)
+            {
+                RoutedEvent = Keyboard.KeyDownEvent
+            };
             InputManager.Current.ProcessInput(keyEvent);
             if (OnButtonClick != null) OnButtonClick(this, keyEvent);
         }
