@@ -31,7 +31,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialsByName(string nombre)
         {
-            var ret = (from q in GetEnteComercialesActivos()
+            var ret = (from q in GetEnteComercialesWithPromocionActiva()
                        where (q.Nombre.StartsWith(nombre, System.StringComparison.InvariantCultureIgnoreCase))
                        select q);
             return ret.ToList<EnteComercial>();
@@ -44,7 +44,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialsByTags(string Tag)
         {
-            var listOfResult = this.GetEnteComercialesActivos().Where(q => q.TagMatched(Tag));
+            var listOfResult = this.GetEnteComercialesWithPromocionActiva().Where(q => q.TagMatched(Tag));
             return listOfResult.ToList();
         }
 
@@ -69,6 +69,22 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
         public IEnumerable<Promocion> GetPromocionesActivasBy(int idEnteComercial)
         {
             return this.GetPromocionesActivas().Where(q => q.EnteComercialId == idEnteComercial).ToList();
+        }
+
+        public IEnumerable<string> GetAutoCompleteTags()
+        {
+            List<string> listOfTags = new List<string>();
+
+            var result = from q in this.GetEnteComercialesWithPromocionActiva()
+                         select q.Nombre.ToLowerInvariant();
+            listOfTags.AddRange(result.ToList());
+
+            this.GetEnteComercialesWithPromocionActiva().ToList().ForEach(q =>
+            {
+                listOfTags.AddRange((from j in q.GetListOfTags() select j.ToLowerInvariant()).ToList());
+            });
+
+            return listOfTags.Distinct().ToList();
         }
 
         public void AddOrUpdate(EnteComercialDTO dto)

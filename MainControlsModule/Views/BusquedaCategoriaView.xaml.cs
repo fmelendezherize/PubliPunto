@@ -93,10 +93,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void CategoryItemControl_OnCategoriaSelected(object sender, EventArgs e)
         {
-            //if (IsPressed) return;
-
-            var selectedSubCategoria = sender as SubCategoria;
-            SelectSubCategoria(selectedSubCategoria);
+            SelectedSubCategoria = sender as SubCategoria;
+            SelectSubCategoria(SelectedSubCategoria);
         }
 
         private void ButtonCategoriaPorLetra_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -118,39 +116,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private Point LastPosition;
         private SubCategoria SelectedSubCategoria;
-
-        private void ListViewCategorias_MouseMove(object sender, MouseEventArgs e)
-        {
-            //if (e.LeftButton == MouseButtonState.Pressed)
-            //{
-            //    IsPressed = true;
-            //    if (e.GetPosition(TextBlockTitulo).Y > InitY)
-            //    {
-            //        //Bajo
-            //        this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset + DBL_Offtset);
-            //        InitY = e.GetPosition(TextBlockTitulo).Y - DBL_Offtset;
-            //    }
-            //    else
-            //    {
-            //        //Subio
-            //        this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset - DBL_Offtset);
-            //        InitY = e.GetPosition(TextBlockTitulo).Y + DBL_Offtset;
-            //    }
-            //}
-        }
-
-        private void ListViewCategorias_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            //if (IsPressed)
-            //{
-            //    IsPressed = false;
-            //}
-        }
-
-        private void ListViewCategorias_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //InitY = e.GetPosition(TextBlockTitulo).Y;
-        }
+        private bool TouchMoved;
 
         private void ListViewCategorias_TouchDown(object sender, TouchEventArgs e)
         {
@@ -159,7 +125,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void ListViewCategorias_TouchUp(object sender, TouchEventArgs e)
         {
-            //MoverScrollByTouch(e);
+            if (!TouchMoved)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         private void ListViewCategorias_TouchMove(object sender, TouchEventArgs e)
@@ -174,22 +147,21 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             var diffPosition = actualPosition.Y - LastPosition.Y;
             if ((diffPosition > -10) & (diffPosition < 10))
             {
-                //MessageBox.Show("Click");
-                //if (this.SelectedSubCategoria != null) this.SelectSubCategoria(this.SelectedSubCategoria);
+                TouchMoved = false;
                 return;
             };
 
-            double offset = this.ScrollViewerCategorias.VerticalOffset + (diffPosition / 20);
+            double offset = this.ScrollViewerCategorias.VerticalOffset - (diffPosition / 10);
             if (actualPosition.Y > LastPosition.Y)
             {
-                //MessageBox.Show(string.Format("Bajo. Actual({0}) Ultimo({1})", actualPosition.Y, LastPosition.Y));
                 this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                TouchMoved = true;
                 e.Handled = true;
             }
             else
             {
-                //MessageBox.Show(string.Format("Subio. Actual({0}) Ultimo({1})", actualPosition.Y, LastPosition.Y));
                 this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                TouchMoved = true;
                 e.Handled = true;
             }
         }

@@ -78,7 +78,7 @@
             <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" DockPanel.Dock="Top" Style="{DynamicResource ContentHeaderBusquedaTeclado}">
 				<Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_busq_teclado.png" Height="35" Margin="6">
 				</Image>
-                <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
+                <TextBlock Name="TextBlockTitulo" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Búsqueda por teclado" Width="774"/>
                 <Button Name="ButtonBack" Content="atras" Style="{DynamicResource ButtonAtrasStyle}"
                         BorderThickness="0" BorderBrush="Transparent" 
                         Click="ButtonBack_Click">
@@ -94,7 +94,7 @@
 						<WrapPanel Height="70">
                             <wpftool:AutoCompleteBox Name="AutoCompleteBoxSearch" Width="890" 
                                                      Style="{DynamicResource SearchText}"
-                                                     ItemsSource="{Binding TestItems}" />
+                                                     ItemsSource="{Binding AutoCompleteItems}" />
                             <TextBox Name="TextBoxSearch" Width="0" Height="0"/>
                             <Button Name="ButtonSearch" 
                                     Width="70" Height="70" 
@@ -109,11 +109,12 @@
 						</WrapPanel>
                         <ScrollViewer Name="ScrollViewerCategorias" Style="{StaticResource ScrollViewerCategorias}"
                                       Background="Red">
-                            <ListView x:Name="ListViewCategorias" Style="{StaticResource ListViewStyle}"
+                            <ListView x:Name="ListViewCategorias" 
+                                      Style="{StaticResource ListViewStyle}"
                                       ItemsSource="{Binding Categorias}"
-                                      PreviewMouseDown="ListViewCategorias_PreviewMouseDown"
-                                      MouseUp="ListViewCategorias_MouseUp"
-                                      MouseMove="ListViewCategorias_MouseMove">
+                                      TouchUp="ListViewCategorias_TouchUp"
+                                      TouchDown="ListViewCategorias_TouchDown"
+                                      TouchMove="ListViewCategorias_TouchMove">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <controls:CategoryItemControl HeaderTextStyle="{DynamicResource PubliPuntoContentHeaderText}"

@@ -16,7 +16,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
         public ObservableCollection<Categoria> Categorias { get; set; }
         public ICommand SearchEnteComercialsCommand { get; set; }
 
-        public IEnumerable<string> TestItems { get; set; }
+        public IEnumerable<string> AutoCompleteItems { get; set; }
 
         public BusquedaTecladoViewModel()
         {
@@ -24,11 +24,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             this.SearchEnteComercialsCommand = new DelegateCommand<string>(this.SearchEnteComercials);
             Categorias = new ObservableCollection<Categoria>();
 
-            var testItems = new List<string>();
-            testItems.AddRange(new string[]{
-                "January", "February" ,"March", "April", "May", "June", "July", "August", "September", "Octuber", "November", "December"
-            });
-            TestItems = testItems;
+            //var testItems = new List<string>();
+            //testItems.AddRange(new string[]{
+            //    "January", "February" ,"March", "April", "May", "June", "July", "August", "September", "Octuber", "November", "December"
+            //});
+
+            AutoCompleteItems = this._enteComercialRepository.GetAutoCompleteTags();
         }
 
         public void Init()
@@ -44,6 +45,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             {
                 NombreCategoria = "Resultados de la búsqueda"
             };
+
             newCategoria.ListOfSubCategorias.AddRange(
                 (from q in _enteComercialRepository.GetEnteComercialsByName(obj)
                  select new SubCategoria()
@@ -54,15 +56,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                      TipoSubCategoria = TipoSubCategoria.EnteComercial
                  }).ToList());
 
-            newCategoria.ListOfSubCategorias.AddRange(
-                (from q in _enteComercialRepository.GetEnteComercialsByTags(obj)
-                 select new SubCategoria()
+            if (obj.Length >= 2)
+            {
+                newCategoria.ListOfSubCategorias.AddRange(
+                    (from q in _enteComercialRepository.GetEnteComercialsByTags(obj)
+                     select new SubCategoria()
                      {
                          Id = q.Id,
                          Nombre = q.Nombre,
                          LogoUrl = q.LogoUrl,
                          TipoSubCategoria = TipoSubCategoria.EnteComercial
                      }).ToList());
+            }
+
             Categorias.Clear();
             if (newCategoria.ListOfSubCategorias.Count == 0) newCategoria.NombreCategoria = "No se consiguieron resultados";
             Categorias.Add(newCategoria);

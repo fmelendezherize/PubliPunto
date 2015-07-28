@@ -46,5 +46,10 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
             }
             return false;
         }
+
+        public IEnumerable<string> GetListOfTags()
+        {
+            return Tags.Split(';');
+        }
     }
 }

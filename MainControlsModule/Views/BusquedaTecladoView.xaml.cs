@@ -26,13 +26,23 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.touchKeyboard.OnButtonClick += touchKeyboard_OnButtonClick;
             this.AutoCompleteBoxSearch.Populating += AutoCompleteBoxSearch_Populating;
             this.TextBoxSearch.TextChanged += TextBoxSearch_TextChanged;
+            this.AutoCompleteBoxSearch.SelectionChanged += AutoCompleteBoxSearch_SelectionChanged;
+        }
+
+        void AutoCompleteBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.TextBoxSearch.Text = this.AutoCompleteBoxSearch.Text;
+            this.TextBoxSearch.CaretIndex = this.TextBoxSearch.Text.Length;
         }
 
         void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             this.AutoCompleteBoxSearch.Text = this.TextBoxSearch.Text;
-            this.AutoCompleteBoxSearch.PopulateComplete();
-            this.AutoCompleteBoxSearch.IsDropDownOpen = true;
+            if (this.AutoCompleteBoxSearch.Text.Length > 0)
+            {
+                this.AutoCompleteBoxSearch.PopulateComplete();
+                this.AutoCompleteBoxSearch.IsDropDownOpen = true;
+            }
         }
 
         void AutoCompleteBoxSearch_Populating(object sender, PopulatingEventArgs e)
@@ -64,8 +74,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private void CategoryItemControl_OnListViewCategoriaMouseClick(object sender, System.EventArgs e)
         {
-            if (IsPressed) return;
-
             var selectedSubCategoria = sender as SubCategoria;
             if (selectedSubCategoria != null)
             {
@@ -119,40 +127,54 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
         }
 
-        private bool IsPressed = false;
-        private double InitY;
-        private void ListViewCategorias_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private System.Windows.Point LastPosition;
+        private bool TouchMoved;
+
+        private void ListViewCategorias_TouchDown(object sender, TouchEventArgs e)
         {
-            InitY = e.GetPosition(TextBoxSearch).Y;
+            LastPosition = e.GetTouchPoint(this.TextBlockTitulo).Position;
         }
 
-        private void ListViewCategorias_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ListViewCategorias_TouchUp(object sender, TouchEventArgs e)
         {
-            if (IsPressed)
+            if (!TouchMoved)
             {
-                IsPressed = false;
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 
-        private void ListViewCategorias_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ListViewCategorias_TouchMove(object sender, TouchEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                IsPressed = true;
-                const double DBL_Offtset = .6;
-                if (e.GetPosition(TextBoxSearch).Y > InitY)
-                {
-                    //Bajo
-                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset + DBL_Offtset);
-                    InitY = e.GetPosition(TextBoxSearch).Y - DBL_Offtset;
-                }
-                else
-                {
-                    //Subio
-                    this.ScrollViewerCategorias.ScrollToVerticalOffset(this.ScrollViewerCategorias.VerticalOffset - DBL_Offtset);
-                    InitY = e.GetPosition(TextBoxSearch).Y + DBL_Offtset;
-                }
+            MoverScrollByTouch(e);
+        }
 
+        private void MoverScrollByTouch(TouchEventArgs e)
+        {
+            var actualPosition = e.GetTouchPoint(this.TextBlockTitulo).Position;
+
+            var diffPosition = actualPosition.Y - LastPosition.Y;
+            if ((diffPosition > -10) & (diffPosition < 10))
+            {
+                TouchMoved = false;
+                return;
+            };
+
+            double offset = this.ScrollViewerCategorias.VerticalOffset - (diffPosition / 10);
+            if (actualPosition.Y > LastPosition.Y)
+            {
+                this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                TouchMoved = true;
+                e.Handled = true;
+            }
+            else
+            {
+                this.ScrollViewerCategorias.ScrollToVerticalOffset(offset);
+                TouchMoved = true;
+                e.Handled = true;
             }
         }
     }
