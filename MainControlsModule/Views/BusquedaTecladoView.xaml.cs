@@ -33,6 +33,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             this.TextBoxSearch.Text = this.AutoCompleteBoxSearch.Text;
             this.TextBoxSearch.CaretIndex = this.TextBoxSearch.Text.Length;
+            this.ButtonSearch_Click(this, null);
         }
 
         void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)

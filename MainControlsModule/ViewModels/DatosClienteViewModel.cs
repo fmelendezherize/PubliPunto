@@ -1,10 +1,17 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.Library;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
@@ -49,8 +56,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             set { SetProperty(ref this._promocionSelected, value); }
         }
 
+        private string _mensajeMovil;
+        public string MensajeMovil
+        {
+            get { return _mensajeMovil; }
+            set { SetProperty(ref this._mensajeMovil, value); }
+        }
+
         public event EventHandler<bool> OnUsuarioAprobado;
         public event EventHandler<bool> OnPromocionAprobada;
+
+        [Dependency]
+        public ILoggerFacade Logger { get; set; }
 
         public DatosClienteViewModel()
         {
@@ -94,14 +111,76 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
             ///Promocion
             PromocionCupon = null;
-            PromocionCupon = new EnteComercialRepository().UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
-            if (PromocionCupon == null)
+            using (var repository = new EnteComercialRepository())
             {
-                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+                PromocionCupon = repository.UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
+                if (PromocionCupon == null)
+                {
+                    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+                }
+                else
+                {
+                    if (PromocionCupon.SmsSent)
+                    {
+                        this.MensajeMovil = "Tu cupón ya fue enviado a tu móvil.";
+                        if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+                        return;
+                    }
+
+                    EnviarSmsToCliente(PromocionCupon.CodigoCanjeo, UsuarioValidado.Movil).ContinueWith((t) =>
+                    {
+                        if (t.Result)
+                        {
+                            repository.UpdatePromocionCuponBySmsSent(PromocionCupon.Id);
+                            this.MensajeMovil = "Tu cupón fue enviado a tu móvil con éxito.";
+                        }
+                        else
+                        {
+                            this.MensajeMovil = "Tu cupón no pudo ser enviado a tu móvil.";
+                        }
+                    }, CancellationToken.None, TaskContinuationOptions.NotOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
+                    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+                }
             }
-            else
+        }
+
+        private async Task<bool> EnviarSmsToCliente(string codigoCupon, string phoneNumber)
+        {
+            if ((string.IsNullOrEmpty(codigoCupon)) || (string.IsNullOrEmpty(phoneNumber))) return false;
+            if (Properties.Settings.Default.EnvioSMS_ON == false) return false;
+
+            using (var client = new HttpClient())
             {
-                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+                string smsUserName = Properties.Settings.Default.SMS_UserName;
+                string smsPwd = Properties.Settings.Default.SMS_Pwd;
+                string mensajeEnvio = String.Format("Su numero de cupón es: {0}. ", codigoCupon) + Properties.Settings.Default.SMS_MensajePie;
+
+                string uriStr = string.Format("secure/insert.php?uname={0}&pass={1}&num={2}&msg={3}",
+                    smsUserName, smsPwd, phoneNumber, Uri.EscapeUriString(mensajeEnvio));
+
+                client.BaseAddress = new Uri("http://041x.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(uriStr);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        Logger.Log(string.Format("Error enviando SMS: {0}", response.StatusCode.ToString()),
+                            Category.Info, Priority.Low);
+                        return false;
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Logger.Log(string.Format("Error enviando SMS: {0}", e.InnerException.Message),
+                        Category.Info, Priority.Low);
+                    return false;
+                }
             }
         }
     }

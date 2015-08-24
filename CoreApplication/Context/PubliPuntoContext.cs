@@ -12,6 +12,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Promocion> Promociones { get; set; }
         public DbSet<DatosContacto> DatosContatos { get; set; }
+        public DbSet<PromocionCupon> PromocionCupones { get; set; }
 
         public PubliPuntoContext()
         {
@@ -20,7 +21,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
         }
     }
 
-    class PubliPuntoContextInitializer : CreateDatabaseIfNotExists<PubliPuntoContext>
+    class PubliPuntoContextInitializer : DropCreateDatabaseIfModelChanges<PubliPuntoContext>
     {
         public PubliPuntoContextInitializer()
         {

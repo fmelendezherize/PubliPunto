@@ -199,6 +199,15 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             return cupon;
         }
 
+        public void UpdatePromocionCuponBySmsSent(int promocionCuponId)
+        {
+            var promocionCupon = db.PromocionCupones.Find(promocionCuponId);
+            if (promocionCupon == null) return;
+
+            promocionCupon.SmsSent = true;
+            db.SaveChanges();
+        }
+
         public void Dispose()
         {
             if (db == null) return;

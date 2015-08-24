@@ -159,8 +159,7 @@
                     <Run Text="{Binding UsuarioValidado.Cedula}"/>
                 </TextBlock>
                 <TextBlock Style="{StaticResource H2Style}">
-                    <Run FontWeight="Bold" Text="Tu cupón fue enviado a tu móvil con éxito."/> 
-                    <Run Text="{Binding UsuarioValidado.Email}"/>
+                    <Run FontWeight="Bold" Text="{Binding MensajeMovil}"/> 
                 </TextBlock>
                 <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" Margin="0,10" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
                     <Run Text="Recuerda solo necesitas presentar tu cédula de identidad en el establecimiento para poder canjear tu cupón. Esta pantalla se cerrara en "/>

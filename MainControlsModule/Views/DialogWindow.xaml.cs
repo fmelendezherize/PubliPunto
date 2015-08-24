@@ -15,6 +15,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public DialogWindow()
         {
             InitializeComponent();
+            this.Deactivated += DialogWindow_Deactivated;
+        }
+
+        void DialogWindow_Deactivated(object sender, System.EventArgs e)
+        {
+            this.Close();
         }
 
         public void OnNavigatedTo(string accion)

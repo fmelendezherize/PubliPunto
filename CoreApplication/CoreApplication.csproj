@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201507232005321_12.Designer.cs">
       <DependentUpon>201507232005321_12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508242217320_13.cs" />
+    <Compile Include="Migrations\201508242217320_13.Designer.cs">
+      <DependentUpon>201508242217320_13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\DatosContacto.cs" />
     <Compile Include="Model\Dtos\ImagenUrlDTO.cs" />
     <Compile Include="Model\Dtos\Kiosko_PromocionesDTO.cs" />
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507232005321_12.resx">
       <DependentUpon>201507232005321_12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508242217320_13.resx">
+      <DependentUpon>201508242217320_13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

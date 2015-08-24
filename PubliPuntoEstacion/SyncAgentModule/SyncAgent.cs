@@ -84,7 +84,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Usuarios (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -115,7 +115,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Ramos Comerciales (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -146,7 +146,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Entes Comerciales (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -177,7 +177,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Kiosko Promociones (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -208,7 +208,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Kiosko Promociones Detalle (Id:{0})(CodigoPromocion:{1})", _idSync, codigoPromocion), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://cuponexpress.com.ve/");
+                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

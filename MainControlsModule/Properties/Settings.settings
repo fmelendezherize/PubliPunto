@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Decktra.PubliPuntoEstacion.MainControlsModule.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SMS_UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">siescom</Value>
+    </Setting>
+    <Setting Name="SMS_Pwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">a891326000dd8f9db94092c898e54aa7</Value>
+    </Setting>
+    <Setting Name="SMS_MensajePie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Gracias por usar CUPONEXPRESS.</Value>
+    </Setting>
+    <Setting Name="EnvioSMS_ON" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

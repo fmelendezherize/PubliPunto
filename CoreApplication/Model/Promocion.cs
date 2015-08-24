@@ -67,5 +67,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public int? UsuarioAsignadoId { get; set; }
         public virtual Usuario UsuarioAsignado { get; set; }
+
+        public bool SmsSent { get; set; }
     }
 }

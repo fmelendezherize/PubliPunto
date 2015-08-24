@@ -88,7 +88,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if (IsDatosUsuarioValidos())
             {
                 string cedula = this.TextBoxCedulaIdentidad.Text;
-                //TODO hablar con Nacho que valide esto
                 if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
                 {
                     cedula = "V" + this.TextBoxCedulaIdentidad.Text;
@@ -128,8 +127,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             var errorWnd = this.Container.Resolve<Views.DialogWindow>();
             errorWnd.OnNavigatedTo("ErrorLogin");
             errorWnd.Owner = Application.Current.MainWindow;
-            errorWnd.MouseDown += errorWnd_MouseDown;
-            errorWnd.ShowDialog();
+            errorWnd.Show();
         }
 
         private bool IsDatosUsuarioValidos()
@@ -155,13 +153,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.TextBoxNombreApellido.Clear();
             this.TextBoxNumeroMovil.Clear();
             this.TextBoxNumeroMovil_GotFocus(this.TextBoxCedulaIdentidad, null);
-        }
-
-        private void errorWnd_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Window wnd = sender as Window;
-            wnd.Close();
-            //this.InitControls();
         }
 
         private void TextBoxAlpha_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -194,12 +185,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 var errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.OnNavigatedTo("ErrorPromocion");
                 errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.MouseDown += errorWnd_MouseDown;
-                errorWnd.ShowDialog();
-                if (navigationService.Journal.CanGoBack)
-                {
-                    navigationService.Journal.GoBack();
-                }
+                errorWnd.Show();
                 return;
             }
             else
@@ -215,14 +201,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         void CuponesLoginView_OnUsuarioAprobado(object sender, bool e)
         {
-            //Usuario no encontrado
             if (!e)
             {
                 var errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.OnNavigatedTo("ErrorLogin");
                 errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.MouseDown += errorWnd_MouseDown;
-                errorWnd.ShowDialog();
+                errorWnd.Show();
                 return;
             }
         }
