@@ -16,7 +16,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            //this.Close();
             //GlobalCommands.GoToHomeCommand.Execute(null);
         }
 

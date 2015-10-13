@@ -18,8 +18,9 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public EnteComercial FindBy(int id)
         {
-            return db.EnteComercials.Find(id);
-            //return (from q in db.EnteComercials where (q.Id == id) select q).FirstOrDefault();
+            return db.EnteComercials.Include("ListOfPromocions.ListOfPromocionCupons").
+                Where(q => q.Id == id).
+                FirstOrDefault();
         }
 
         public IEnumerable<EnteComercial> GetEnteComercialsBy(int idRamoComercial)
@@ -188,8 +189,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public PromocionCupon UpdatePromocionCupon(Promocion promocionSelected, Usuario usuarioSelected)
         {
-            //var promocion = (from q in enteComercial.ListOfPromocions where (q.Id == promocionSelected.Id) select q).FirstOrDefault();
-
             var promocion = db.Promociones.Where(q => q.Id == promocionSelected.Id).FirstOrDefault();
             if (promocion == null) return null;
 

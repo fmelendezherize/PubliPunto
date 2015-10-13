@@ -29,10 +29,24 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public virtual IList<PromocionCupon> ListOfPromocionCupons { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public bool HasCuponesDisponibles
+        {
+            get
+            {
+                return CheckHasCuponesDisponibles();
+            }
+        }
+
         public Promocion()
         {
             this.FechaFin = System.DateTime.Now.AddDays(7);
             this.FechaInicio = System.DateTime.Now;
+        }
+
+        private bool CheckHasCuponesDisponibles()
+        {
+            return (this.ListOfPromocionCupons.Any(q => q.UsuarioAsignadoId == null));
         }
 
         public PromocionCupon ObtenerCupon(Usuario usuarioSelected)

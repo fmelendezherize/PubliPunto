@@ -222,6 +222,7 @@
     <Resource Include="Resources\bot_atras.png" />
     <Resource Include="Resources\bot_contactenos.png" />
     <Resource Include="Resources\barcode.jpg" />
+    <Resource Include="Resources\banner_cedula.png" />
     <Content Include="Resources\CaviarDreams.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

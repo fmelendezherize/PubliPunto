@@ -6,7 +6,7 @@
 			 xmlns:local="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.Views"
 			 xmlns:viewModels="clr-namespace:Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels"
 			 mc:Ignorable="d" 
-			 d:DesignWidth="970" d:DesignHeight="1094">
+			 d:DesignWidth="970" d:DesignHeight="1200">
     <UserControl.Resources>
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
         <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
@@ -82,6 +82,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0"
 						Style="{DynamicResource CuponesHeaderStyle}">
@@ -133,23 +134,20 @@
                            Text="{Binding PromocionSelected.Descripcion}" 
                            Width="700" Height="60" Margin="18,0,0,0"/>
             </StackPanel>
-            <StackPanel Grid.Row="3" Margin="15,10">
-                <!--<TextBlock Text="Tu cupón fue enviado con éxito" Style="{StaticResource H2Style}" Margin="0,20,0,0" 
-                           FontWeight="Bold" FontStyle="Italic"></TextBlock>
-                <Line X1="0" X2="930" Stroke="#FF7D7D7D" StrokeThickness="1" HorizontalAlignment="Left"/>-->
-                <StackPanel HorizontalAlignment="Center" Margin="0,60,0,20">
-                    <TextBlock Background="{DynamicResource CuponesPrimaryColorBrush}" Foreground="White"
-                           Style="{StaticResource H1Style}" FontSize="56">
-                    <Run Text="Cupón "/> 
+            <Canvas Grid.Row="3" Height="267" Margin="0,10">
+                <StackPanel HorizontalAlignment="Center" Width="890">
+                    <Rectangle Width="700px" Height="267px" Fill="Red"/>
+                </StackPanel>
+                <TextBlock Background="White" Foreground="Black" VerticalAlignment="Center"
+                           Canvas.Left="100" Canvas.Top="210"
+                           Style="{StaticResource H1Style}" FontSize="56" Height="55" Width="300">
+                    <Run Text="Nº"/> 
                     <Run Text="{Binding PromocionCupon.CodigoCanjeo}"/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/barcode.jpg" 
-					    Width="220" Height="127" Stretch="UniformToFill"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Row="4">
+                </TextBlock>
+                <!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/barcode.jpg" 
+                       Width="220" Height="127" Stretch="UniformToFill"/>-->
+            </Canvas>
+            <StackPanel Grid.Row="4" Margin="0,10">
                 <TextBlock Style="{StaticResource H2Style}">
                     <Run FontWeight="Bold" Text="Nombre: "/> 
                     <Run Text="{Binding UsuarioValidado.Nombre}"/>
@@ -167,10 +165,12 @@
                     <Run Text=" segundos."/>
                 </TextBlock>
                 <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" FontStyle="Italic" FontSize="20"
-                           Margin="0,80,0,0">
+                           Margin="0,27">
                     <Run Text="Cupón emitido por Siescom C.A. / J-29349239-4"/>
                 </TextBlock>
             </StackPanel>
         </Grid>
+        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/banner_cedula.png" 
+               Stretch="UniformToFill" Grid.Row="2"/>
     </Grid>
 </UserControl>

@@ -16,6 +16,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             InitializeComponent();
             this.Deactivated += DialogWindow_Deactivated;
+            this.MouseDown += DialogWindow_MouseDown;
+        }
+
+        void DialogWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Hide();
         }
 
         void DialogWindow_Deactivated(object sender, System.EventArgs e)

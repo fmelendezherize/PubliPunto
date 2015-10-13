@@ -11,7 +11,7 @@
     <Grid x:Name="LayoutRoot" Background="{DynamicResource BackgroundColorBrush}">
         <StackPanel MouseUp="StackPanel_MouseUp">
         	<StackPanel.Background>
-        		<ImageBrush ImageSource="Resources/como_pub_footer.jpg"/>
+        		<ImageBrush ImageSource="Resources/Banner_Anuncia_Aqui.png"/>
         	</StackPanel.Background>
 		</StackPanel>
 	</Grid>
