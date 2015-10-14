@@ -96,13 +96,14 @@
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">Teléfono fijo o movil</Label>
 								<WrapPanel>
-									<TextBox x:Name="TextBoxTelefonoPrefix" Margin="45,25,10,0" MaxLength="4" Width="80" Style="{StaticResource TextBoxFormulario}"
+                                    <TextBox x:Name="TextBoxTelefonoPrefix" Margin="45,25,10,0" MaxLength="4" Width="80" Style="{StaticResource TextBoxFormulario}"
                                              TextAlignment="Center"
-                                             GotFocus="TextBoxNumeric_GotFocus"></TextBox>
-									<TextBox x:Name="TextBoxTelefono" Margin="10,25,0,0" Width="290" MaxLength="7" Style="{StaticResource TextBoxFormulario}"
+                                             GotFocus="TextBoxNumeric_GotFocus"
+                                             TextChanged="TextBoxTelefonoPrefix_TextChanged"/>
+                                    <TextBox x:Name="TextBoxTelefono" Margin="10,25,0,0" Width="290" MaxLength="7" Style="{StaticResource TextBoxFormulario}"
                                              TextAlignment="Center"
-                                             GotFocus="TextBoxNumeric_GotFocus"></TextBox>
-								</WrapPanel>
+                                             GotFocus="TextBoxNumeric_GotFocus"/>
+                                </WrapPanel>
 							</WrapPanel>
 							<WrapPanel Orientation="Vertical">
 								<Label Style="{StaticResource LabelFormulario}">Correo Electrónico</Label>

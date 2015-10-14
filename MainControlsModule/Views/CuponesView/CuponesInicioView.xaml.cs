@@ -4,6 +4,7 @@ using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -56,8 +57,19 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
             ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
 
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
+            if (!promocion.HasCuponesDisponibles)
+            {
+                //no aceptado
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd.OnNavigatedTo("ErrorPromocion");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.Show();
+            }
+            else
+            {
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("CuponesLoginView", UriKind.Relative));
+            }
         }
 
         private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
@@ -74,6 +86,26 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if (navigationService.Journal.CanGoBack)
             {
                 navigationService.Journal.GoBack();
+            }
+        }
+
+        private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
+        {
+            Promocion promocion = ((Button)sender).DataContext as Promocion;
+            ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
+
+            if (!promocion.HasCuponesDisponibles)
+            {
+                //no aceptado
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd.OnNavigatedTo("ErrorPromocion");
+                errorWnd.Owner = Application.Current.MainWindow;
+                errorWnd.Show();
+            }
+            else
+            {
+                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                    new Uri("CuponesLoginView", UriKind.Relative));
             }
         }
     }

@@ -44,7 +44,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             else if (accion == "ErrorPromocion")
             {
                 this.TextBlockTitulo.Text = "Disculpe !";
-                this.TextBlockMensaje.Text = "Promoción no disponible o ya terminada.";
+                this.TextBlockMensaje.Text = "Promoción no disponible o terminada.";
             }
         }
     }

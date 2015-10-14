@@ -158,5 +158,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.TextBoxNombre.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNombre.Text.ToLower());
             this.TextBoxNombre.CaretIndex = caret;
         }
+
+        private void TextBoxTelefonoPrefix_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.TextBoxTelefonoPrefix.Text.Length == 4) { this.TextBoxTelefono.Focus(); }
+        }
     }
 }

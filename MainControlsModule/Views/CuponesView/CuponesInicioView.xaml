@@ -59,9 +59,7 @@
             <Setter Property="Height" Value="80"/>
             <Setter Property="Background" Value="{DynamicResource CuponesSecundaryColorBrush}"/>
         </Style>
-        <Style x:Key="TextBlockReclamarCuponStyle" TargetType="TextBlock">
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
+        <Style x:Key="TextBlockReclamarCuponStyle" TargetType="Button">
             <Setter Property="FontSize" Value="21"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="{StaticResource CaviarFontStyle}" />
@@ -149,9 +147,17 @@
                                 <!--<TextBlock Name="TextBlockVerCondiciones" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
                                            DataContext="{Binding}" Text="Ver condiciones" VerticalAlignment="Top"
                                            MouseDown="TextBlockVerCondiciones_MouseDown"/>-->
-                                <TextBlock Name="TextBlockReclamarCupon" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
+                                <Button Name="ButtonReclamarCupon" Style="{StaticResource TextBlockReclamarCuponStyle}" 
+                                        DataContext="{Binding}" BorderThickness="0" BorderBrush="White"
+                                        Click="ButtonReclamarCupon_Click">
+                                    <Button.Content>
+                                        <TextBlock TextAlignment="Center" TextWrapping="Wrap">Obtener cupón</TextBlock>
+                                    </Button.Content>
+                                </Button>
+
+                                <!--<TextBlock Name="TextBlockReclamarCupon" Style="{DynamicResource TextBlockReclamarCuponStyle}" 
                                            DataContext="{Binding}" Text="Obtener cupón" VerticalAlignment="Top" HorizontalAlignment="Right"
-                                           MouseDown="TextBlockReclamarCupon_MouseUp"/>
+                                           MouseDown="TextBlockReclamarCupon_MouseUp"/>-->
                             </StackPanel>
                         </ControlTemplate>
                     </StackPanel.Resources>
