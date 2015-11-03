@@ -35,6 +35,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         {
             this.ImagenUrl = string.Empty;
             this.VideoUrl = string.Empty;
+            this.ListOfPromocions = new List<Promocion>();
         }
 
         public bool TagMatched(string Tag)

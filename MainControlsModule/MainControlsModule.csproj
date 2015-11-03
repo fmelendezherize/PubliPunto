@@ -201,6 +201,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\cupon_generico.png" />
     <Resource Include="Resources\logo_facebook_small.png" />
     <Resource Include="Resources\facebook-logo.jpg" />
     <None Include="app.config" />
