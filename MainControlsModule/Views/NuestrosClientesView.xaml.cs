@@ -25,11 +25,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Button button = sender as Button;
-            EnteComercial ente = button.DataContext as EnteComercial;
-            if (ente != null)
+            Promocion promocionSelected = button.DataContext as Promocion;
+            if (promocionSelected != null)
             {
                 NavigationParameters query = new NavigationParameters();
-                query.Add("ID", ente.Id.ToString());
+                query.Add("ID", promocionSelected.EnteComercial.Id.ToString());
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));
             }

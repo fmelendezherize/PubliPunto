@@ -49,15 +49,12 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             RetrieveUsuarios().ContinueWith((t) => UpdateUsuarios(t.Result));
             RetrieveRamosComerciales().ContinueWith((t1) =>
             {
-                if (t1.IsFaulted) return;
                 UpdateRamosComerciales(t1.Result);
                 RetrieveEntesComerciales().ContinueWith((t2) =>
                 {
-                    if (t2.IsFaulted) return;
                     UpdateEntesComerciales(t2.Result);
                     RetrieveKioskoPromociones().ContinueWith((t3) =>
                     {
-                        if (t3.IsFaulted) return;
                         List<Task<Kiosko_Promocion_Detalle>> listOfTaskKioskoPromocionDetalle = new List<Task<Kiosko_Promocion_Detalle>>();
                         foreach (var item in t3.Result.Kiosko_Promociones)
                         {
@@ -65,7 +62,6 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                         }
                         Task.WhenAll(listOfTaskKioskoPromocionDetalle).ContinueWith((t4) =>
                         {
-                            if (t4.IsFaulted) return;
                             using (var repository = new EnteComercialRepository())
                             {
                                 foreach (var itemTask in listOfTaskKioskoPromocionDetalle)
@@ -73,10 +69,10 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                                     repository.AddOrUpdatePromocion(itemTask.Result);
                                 }
                             }
-                        });
-                    });
-                });
-            });
+                        }, TaskContinuationOptions.NotOnFaulted);
+                    }, TaskContinuationOptions.NotOnFaulted);
+                }, TaskContinuationOptions.NotOnFaulted);
+            }, TaskContinuationOptions.NotOnFaulted);
         }
 
         private async Task<ListOfUsuario> RetrieveUsuarios()

@@ -158,7 +158,7 @@
                         <TextBlock Text="Dirección:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
                         <TextBlock Text="{Binding EnteComercial.Direccion}" Style="{StaticResource H2Style}" Width="524" ></TextBlock>
                     </StackPanel>
-                    <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Width="639" ></TextBlock>
+                    <TextBlock Text="{Binding EnteComercial.WebAddress}" Style="{StaticResource H2Style}" Width="654" ></TextBlock>
                 </StackPanel>
                 <!-- Columna Cupon -->
                 <StackPanel Grid.Column="1">

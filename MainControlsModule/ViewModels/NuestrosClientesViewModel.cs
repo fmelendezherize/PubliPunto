@@ -17,21 +17,21 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private const short CANT_CLIENTES_VISIBLE = 4;
 
-        public List<EnteComercial> ListOfEnteComercials { get; set; }
+        public List<Promocion> ListOfPromocionesActivas { get; set; }
         private Random _randomObj;
 
         public NuestrosClientesViewModel()
         {
             this._enteComercialRepository = new EnteComercialRepository();
             this._randomObj = new Random(DateTime.Now.Millisecond);
-            this.ListOfEnteComercials = new List<EnteComercial>();
+            this.ListOfPromocionesActivas = new List<Promocion>();
             this.ShowEnteComercialsCommand = new DelegateCommand<object>(this.ShowEnteComercials);
         }
 
         private void ShowEnteComercials(object obj)
         {
-            var listOfResult = _enteComercialRepository.GetEnteComercialesWithPromocionActiva().ToList();
-            this.ListOfEnteComercials.Clear();
+            var listOfResult = _enteComercialRepository.GetPromocionesActivas().ToList();
+            this.ListOfPromocionesActivas.Clear();
 
             if (listOfResult.Count > CANT_CLIENTES_VISIBLE)
             {
@@ -41,18 +41,15 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
             for (int i = listOfResult.Count; i < CANT_CLIENTES_VISIBLE; i++)
             {
-                listOfResult.Add(new EnteComercial
+                listOfResult.Add(new Promocion
                 {
                     Id = 0,
-                    Nombre = "Disponible",
-                    Direccion = "Direccion de su negocio o empresa.",
-                    Telefonos = "Telefonos para que sus clientes lo contacten.",
-                    WebAddress = "www.tudireccionweb.com"
+                    Descripcion = "Disponible",
                 });
             }
 
-            this.ListOfEnteComercials.AddRange(listOfResult);
-            RaisePropertyChanged(() => this.ListOfEnteComercials);
+            this.ListOfPromocionesActivas.AddRange(listOfResult);
+            RaisePropertyChanged(() => this.ListOfPromocionesActivas);
         }
 
         private void ShowRandomEnteComercials(IList listOfResults)
@@ -62,9 +59,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             for (int i = 0; i < CANT_CLIENTES_VISIBLE; i++)
             {
                 indexEnteComercials[i] = GetIndex(indexEnteComercials, listOfResults);
-                ListOfEnteComercials.Add((EnteComercial)listOfResults[indexEnteComercials[i].Value]);
+                ListOfPromocionesActivas.Add((Promocion)listOfResults[indexEnteComercials[i].Value]);
             }
-            RaisePropertyChanged(() => this.ListOfEnteComercials);
+            RaisePropertyChanged(() => this.ListOfPromocionesActivas);
         }
 
         private int GetIndex(int?[] indexEnteComercials, IList listEnteComercials)

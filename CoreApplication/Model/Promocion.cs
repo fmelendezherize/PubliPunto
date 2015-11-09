@@ -20,10 +20,14 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         [MinLength(1), MaxLength(200)]
         public string Descripcion { get; set; }
         public string Detalles { get; set; }
+        public string DetallesBig { get; set; }
         public string Condiciones { get; set; }
 
-        public System.DateTime FechaFin { get; set; }
+        public string ImagenUrl { get; set; }
+        public string ImagenSmallUrl { get; set; }
+
         public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaFin { get; set; }
 
         public bool IsActivo { get; set; }
 

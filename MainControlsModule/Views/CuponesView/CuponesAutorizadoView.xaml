@@ -168,7 +168,7 @@
                 </TextBlock>
                 <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" FontStyle="Italic" FontSize="20"
                            Margin="0,27">
-                    <Run Text="Cupón emitido por Siescom C.A. / J-29349239-4"/>
+                    <Run Text="Cupón emitido por SIESCOM PUBLICIDAD, C.A. / J-406205532"/>
                 </TextBlock>
             </StackPanel>
         </Grid>

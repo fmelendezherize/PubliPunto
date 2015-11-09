@@ -132,7 +132,9 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public void AddOrUpdatePromocion(Kiosko_Promocion_Detalle dto)
         {
-            var enteComercial = (from q in db.EnteComercials where (q.Codigo == dto.ClienteCodigo) select q).FirstOrDefault();
+            var enteComercial = (from q in db.EnteComercials.Include("ListOfPromocions.ListOfPromocionCupons")
+                                 where (q.Codigo == dto.ClienteCodigo)
+                                 select q).FirstOrDefault();
             if (enteComercial == null) return;
 
             var promocion = (from q in enteComercial.ListOfPromocions where (q.Codigo == dto.Codigo) select q).FirstOrDefault();

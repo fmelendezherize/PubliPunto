@@ -59,7 +59,7 @@
 								</Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <Grid.Background>
-                                        <ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                        <ImageBrush ImageSource="{Binding Path=ImagenSmallUrl, Converter={StaticResource RutaImagenConverter}}" 
 												Stretch="Uniform" />
                                     </Grid.Background>
                                 </Grid>
@@ -67,7 +67,7 @@
                                     <Grid.Background>
 										<SolidColorBrush Color="Black" Opacity=".5"/>
 									</Grid.Background>
-									<TextBlock TextWrapping="Wrap" Text="{Binding Nombre}" 
+									<TextBlock TextWrapping="Wrap" Text="{Binding EnteComercial.Nombre}" 
 											   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
 											   FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
 								</Grid>
@@ -101,10 +101,10 @@
 			</StackPanel>
             <WrapPanel x:Name="WrapPanelClientes" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" 
 					   Height="852" Margin="18,18">
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[0]}" Click="Button_Click"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[1]}" Click="Button_Click"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[2]}" Click="Button_Click"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[3]}" Click="Button_Click"/>
+                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfPromocionesActivas[0]}" Click="Button_Click"/>
+                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfPromocionesActivas[1]}" Click="Button_Click"/>
+                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfPromocionesActivas[2]}" Click="Button_Click"/>
+                <Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfPromocionesActivas[3]}" Click="Button_Click"/>
 
                 <!--Antes eran 12 casillas en la fase 2 pasaron a 4 y cambio de tamaño-->
                 <!--<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding ListOfEnteComercials[4]}" Click="Button_Click"/>
