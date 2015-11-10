@@ -190,9 +190,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             }
             else
             {
-                var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
-                processWnd.Owner = Application.Current.MainWindow;
-                processWnd.ShowDialog();
+                //Ya no quieren ver esta linda ventanita de espera
+                //var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
+                //processWnd.Owner = Application.Current.MainWindow;
+                //processWnd.ShowDialog();
 
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("CuponesAutorizadoView", UriKind.Relative));

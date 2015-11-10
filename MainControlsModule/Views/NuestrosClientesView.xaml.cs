@@ -26,7 +26,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         {
             Button button = sender as Button;
             Promocion promocionSelected = button.DataContext as Promocion;
-            if (promocionSelected != null)
+            if (promocionSelected != null && promocionSelected.EnteComercialId != 0)
             {
                 NavigationParameters query = new NavigationParameters();
                 query.Add("ID", promocionSelected.EnteComercial.Id.ToString());

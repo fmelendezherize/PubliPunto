@@ -69,6 +69,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                                     repository.AddOrUpdatePromocion(itemTask.Result);
                                 }
                             }
+                            Logger.Log(string.Format("Finalizando Agente de Sincronizacion (Id:{0})", _idSync), Category.Info, Priority.Low);
                         }, TaskContinuationOptions.NotOnFaulted);
                     }, TaskContinuationOptions.NotOnFaulted);
                 }, TaskContinuationOptions.NotOnFaulted);
@@ -215,9 +216,9 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsAsync<Object>();
-                        Kiosko_Promocion_Detalle listOfValues = Newtonsoft.Json.JsonConvert.DeserializeObject<Kiosko_Promocion_Detalle>(content.ToString());
+                        Kiosko_Promocion_Detalle promocionDetalleWeb = Newtonsoft.Json.JsonConvert.DeserializeObject<Kiosko_Promocion_Detalle>(content.ToString());
                         Logger.Log(string.Format("Kiosko Promocion Detalle (Id:{0})(CodigoPromocion:{1}) descargado con exito.", _idSync, codigoPromocion), Category.Info, Priority.Low);
-                        return listOfValues;
+                        return promocionDetalleWeb;
                     }
 
                     return null;

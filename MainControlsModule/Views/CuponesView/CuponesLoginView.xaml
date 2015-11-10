@@ -185,7 +185,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0,40" Grid.Column="0">
                             <StackPanel Height="610">
-                                <Image Grid.Column="0" Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                <Image Grid.Column="0" Source="{Binding PromocionSelected.ImagenSmallUrl, Converter={StaticResource RutaImagenConverter}}" 
                                        Stretch="Uniform" HorizontalAlignment="Left" Width="291" Height="171"></Image>
                                 <TextBlock TextWrapping="Wrap" TextAlignment="Left" FontSize="24" Foreground="Black" FontWeight="Bold"
                                            Style="{StaticResource H2Style}" VerticalAlignment="Top" Margin="0,10">

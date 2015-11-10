@@ -44,7 +44,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                 listOfResult.Add(new Promocion
                 {
                     Id = 0,
-                    Descripcion = "Disponible",
+                    EnteComercial = new EnteComercial() { Nombre = "Disponible" },
                 });
             }
 

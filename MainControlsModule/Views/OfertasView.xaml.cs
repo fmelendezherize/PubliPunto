@@ -28,10 +28,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Button activeButton = sender as Button;
-            if (activeButton != null)
+            var promocion = (Promocion)activeButton.DataContext;
+            if (promocion != null && promocion.EnteComercialId != 0)
             {
                 NavigationParameters query = new NavigationParameters();
-                query.Add("ID", ((EnteComercial)activeButton.DataContext).Id.ToString());
+                query.Add("ID", promocion.EnteComercial.Id.ToString());
                 this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                     new Uri("DatosClienteView" + query.ToString(), UriKind.Relative));
             }

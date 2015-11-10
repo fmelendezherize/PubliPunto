@@ -46,6 +46,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         {
             this.FechaFin = System.DateTime.Now.AddDays(7);
             this.FechaInicio = System.DateTime.Now;
+            //this.EnteComercial = new EnteComercial { Nombre = Descripcion };
         }
 
         private bool CheckHasCuponesDisponibles()

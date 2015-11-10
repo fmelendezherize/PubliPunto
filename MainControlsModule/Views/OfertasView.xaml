@@ -52,14 +52,14 @@
 									<RowDefinition Height="1*"/>
 								</Grid.RowDefinitions>
 								<Grid.Background>
-									<ImageBrush ImageSource="{Binding Path=LogoUrl, Converter={StaticResource RutaImagenConverter}}" 
+                                    <ImageBrush ImageSource="{Binding Path=ImagenSmallUrl, Converter={StaticResource RutaImagenConverter}}" 
 												Stretch="Uniform"/>
 								</Grid.Background>
 								<StackPanel Orientation="Vertical" Grid.Row="1">
 									<StackPanel.Background>
 										<SolidColorBrush Color="Black" Opacity=".5"/>
 									</StackPanel.Background>
-									<TextBlock TextWrapping="Wrap" Text="{Binding Nombre}" 
+									<TextBlock TextWrapping="Wrap" Text="{Binding EnteComercial.Nombre}" 
 											   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"
 											   FontSize="25" FontFamily="{DynamicResource CaviarFontStyle}" Margin="8"/>
 								</StackPanel>
@@ -92,9 +92,9 @@
 				<TextBlock Margin="60,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}">Nuevos Cupones</TextBlock>
 			</StackPanel>
 			<StackPanel Background="White" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial1}" Click="ButtonBase_OnClick"/>
-				<Button Style="{DynamicResource ClienteButtonStyle}" DataContext="{Binding EnteComercial2}" Click="ButtonBase_OnClick"/>
+				<Button Style="{StaticResource ClienteButtonStyle}" DataContext="{Binding EnteComercial0}" Click="ButtonBase_OnClick"/>
+                <Button Style="{StaticResource ClienteButtonStyle}" DataContext="{Binding EnteComercial1}" Click="ButtonBase_OnClick"/>
+                <Button Style="{StaticResource ClienteButtonStyle}" DataContext="{Binding EnteComercial2}" Click="ButtonBase_OnClick"/>
 			</StackPanel>
 		</DockPanel>
 	</Grid>

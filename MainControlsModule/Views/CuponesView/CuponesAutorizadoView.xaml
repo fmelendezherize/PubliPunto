@@ -141,35 +141,41 @@
                            Stretch="UniformToFill" Width="585"/>
                 </StackPanel>
                 <TextBlock Background="Transparent" Foreground="White" 
-                           Canvas.Left="330" Canvas.Top="100" 
+                           Canvas.Left="330" Canvas.Top="135" 
                            Style="{StaticResource H1Style}" FontSize="48" Height="55" Width="320">
-                    <!--<Run Text="Nº"/>--> 
                     <Run Text="{Binding PromocionCupon.CodigoCanjeo}"/>
                 </TextBlock>
-                <!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/barcode.jpg" 
-                       Width="220" Height="127" Stretch="UniformToFill"/>-->
-            </Canvas>
-            <StackPanel Grid.Row="4" Margin="0,10">
-                <TextBlock Style="{StaticResource H2Style}">
-                    <Run FontWeight="Bold" Text="Nombre: "/> 
+                <TextBlock Style="{StaticResource H2Style}" Width="180" 
+                           Background="Transparent" Foreground="White"
+                           TextWrapping="NoWrap"
+                           Canvas.Top="20" Canvas.Left="415">
                     <Run Text="{Binding UsuarioValidado.Nombre}"/>
                 </TextBlock>
-                <TextBlock Style="{StaticResource H2Style}">
-                    <Run FontWeight="Bold" Text="Cédula de Identidad: "/> 
+                <TextBlock Style="{StaticResource H2Style}" Width="180" 
+                           Background="Transparent" Foreground="White"
+                           TextWrapping="NoWrap" 
+                           Canvas.Top="50" Canvas.Left="415">
                     <Run Text="{Binding UsuarioValidado.Cedula}"/>
                 </TextBlock>
-                <TextBlock Style="{StaticResource H2Style}">
-                    <Run FontWeight="Bold" Text="{Binding MensajeMovil}"/> 
+            </Canvas>
+            <StackPanel Grid.Row="4" Margin="0,0" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource H2Style}" Margin="80,0,0,0">
+                    <Run Text="Esta pantalla se cerrara en"/>
+                    <Run Name="TextBlockTiempoRestante" Foreground="Red" Text="00" FontWeight="Bold" />
+                    <Run Text="segundos."/>
                 </TextBlock>
-                <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" Margin="0,10" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
+                <!--<TextBlock Style="{StaticResource H2Style}">
+                    <Run FontWeight="Bold" Text="{Binding MensajeMovil}"/> 
+                </TextBlock>-->
+                <!--<TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" Margin="0,10" LineStackingStrategy="BlockLineHeight" LineHeight="30" >
                     <Run Text="Recuerda solo necesitas presentar tu cédula de identidad en el establecimiento para poder canjear tu cupón. Esta pantalla se cerrara en "/>
                     <Run Name="TextBlockTiempoRestante" Background="Red" Foreground="White" Text="00"/>
                     <Run Text=" segundos."/>
-                </TextBlock>
-                <TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" FontStyle="Italic" FontSize="20"
+                </TextBlock>-->
+                <!--<TextBlock Style="{StaticResource H2Style}" TextAlignment="Justify" FontStyle="Italic" FontSize="20"
                            Margin="0,27">
                     <Run Text="Cupón emitido por SIESCOM PUBLICIDAD, C.A. / J-406205532"/>
-                </TextBlock>
+                </TextBlock>-->
             </StackPanel>
         </Grid>
         <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/banner_cedula.png" 
