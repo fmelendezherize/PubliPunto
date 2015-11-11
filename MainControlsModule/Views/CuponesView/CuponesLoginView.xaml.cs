@@ -112,14 +112,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
                 if (wndConfirmacion.ShowDialog() == true)
                 {
-                    Usuario newUsuario = new Usuario
+                    var wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
+                    wndConfirmacionCondiciones.Owner = Application.Current.MainWindow;
+                    if (wndConfirmacionCondiciones.ShowDialog() == true)
                     {
-                        Cedula = cedula,
-                        Nombre = this.TextBoxNombreApellido.Text,
-                        Movil = this.TextBoxCodigoMovil.Text + this.TextBoxNumeroMovil.Text
-                    };
-
-                    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
+                        Usuario newUsuario = new Usuario
+                        {
+                            Cedula = cedula,
+                            Nombre = this.TextBoxNombreApellido.Text,
+                            Movil = this.TextBoxCodigoMovil.Text + this.TextBoxNumeroMovil.Text
+                        };
+                        ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
+                    }
                 }
                 return;
             }

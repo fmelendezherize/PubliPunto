@@ -1,68 +1,39 @@
-﻿using Decktra.PubliPuntoEstacion.Interfaces;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
-using System;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 {
     /// <summary>
-    /// Interaction logic for CuponesCondiciones.xaml
+    /// Interaction logic for CuponSuccessWindow.xaml
     /// </summary>
-    public partial class CuponesCondicionesView : UserControl, INavigationAware
+    public partial class CuponCondicionesUsoWindow : Window
     {
-        private IRegionNavigationService navigationService;
-
-        [Dependency]
-        public IRegionManager RegionManager { get; set; }
-
-        public CuponesCondicionesView()
+        public CuponCondicionesUsoWindow()
         {
             InitializeComponent();
+            ReadContrato();
         }
 
-        public bool IsNavigationTarget(NavigationContext navigationContext)
+        private void ButtonCancelar_Click(object sender, RoutedEventArgs e)
         {
-            //if (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView")
-            //{
-            //    return false;
-            //}
-
-            return true;
+            this.DialogResult = false;
+            this.Close();
         }
 
-        public void OnNavigatedFrom(NavigationContext navigationContext)
+        private void ButtonConfirmar_Click(object sender, RoutedEventArgs e)
         {
-            //if (navigationContext.Uri.OriginalString != "CuponesInicioView")
-            //{
-            //    navigationContext.NavigationService.Region.Context = null;
-            //    return;
-            //}
+            this.DialogResult = true;
+            this.Close();
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        private void ReadContrato()
         {
-            this.navigationService = navigationContext.NavigationService;
-            if (this.DataContext == null)
+            string nombreContrato = "contrato.txt";
+            if (File.Exists(nombreContrato))
             {
-                this.DataContext = navigationContext.NavigationService.Region.Context;
+                this.TextBlockMensaje.Text = File.ReadAllText(nombreContrato);
             }
-        }
-
-        private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (navigationService.Journal.CanGoBack)
-            {
-                navigationService.Journal.GoBack();
-            }
-        }
-
-        private void TextBlockReclamarCupon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                new Uri("CuponesLoginView", UriKind.Relative));
         }
 
         private Point LastPosition;

@@ -148,6 +148,9 @@
     <Compile Include="Views\ContactanosView.xaml.cs">
       <DependentUpon>ContactanosView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CuponesView\CuponCondicionesUsoWindow.xaml.cs">
+      <DependentUpon>CuponCondicionesUsoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CuponesView\CuponesAutorizadoView.xaml.cs">
       <DependentUpon>CuponesAutorizadoView.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,10 @@
     <Page Include="Views\ContactanosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CuponesView\CuponCondicionesUsoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CuponesView\CuponesAutorizadoView.xaml">
       <SubType>Designer</SubType>
