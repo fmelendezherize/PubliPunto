@@ -90,6 +90,8 @@
 						   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/bot_cupon.png" />
             <TextBlock Width="774" Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" 
 						   Text="Servicio de Cupones" />
+            <Button Name="ButtonCerrar" Content="Cerrar" Style="{DynamicResource ButtonAtrasStyle}" Background="#C03D45"
+                    Click="ButtonCerrar_Click"/>
         </StackPanel>
         <Grid Grid.Row="1" Width="890">
             <Grid.RowDefinitions>

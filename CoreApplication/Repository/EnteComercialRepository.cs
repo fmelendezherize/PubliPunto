@@ -107,8 +107,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                     Telefonos = dto.Telefonos,
                     WebAddress = dto.WebAddress,
                 };
-                newEnteComercial.ImagenUrl = dto.ToImagenFileName();
-                newEnteComercial.LogoUrl = dto.ToLogoFileName();
+                newEnteComercial.ImagenUrl = dto.ImagenURL.image.ToFileName();
+                newEnteComercial.LogoUrl = dto.LogoURL.logo.ToFileName();
                 newEnteComercial.RamoComercial = ramoComercial;
                 db.EnteComercials.Add(newEnteComercial);
             }
@@ -122,8 +122,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 enteComercial.Tags = dto.Tags;
                 enteComercial.Telefonos = dto.Telefonos;
                 enteComercial.WebAddress = dto.WebAddress;
-                enteComercial.ImagenUrl = dto.ToImagenFileName();
-                enteComercial.LogoUrl = dto.ToLogoFileName();
+                enteComercial.ImagenUrl = dto.ImagenURL.image.ToFileName();
+                enteComercial.LogoUrl = dto.LogoURL.logo.ToFileName();
                 enteComercial.RamoComercial = ramoComercial;
             }
             db.Entry(ramoComercial).State = System.Data.Entity.EntityState.Unchanged;
@@ -145,6 +145,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                     Codigo = dto.Codigo,
                     Descripcion = dto.Descripcion,
                     Detalles = dto.Detalles,
+                    DetallesBig = dto.DetallesBig,
+                    Condiciones = dto.Condiciones,
                     IsActivo = true
                 };
                 newPromocion.FechaInicio = DateTime.Parse(dto.Inicio);
@@ -166,6 +168,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             {
                 promocion.Descripcion = dto.Descripcion;
                 promocion.Detalles = dto.Detalles;
+                promocion.DetallesBig = dto.DetallesBig;
+                promocion.Condiciones = dto.Condiciones;
                 promocion.FechaInicio = DateTime.Parse(dto.Inicio);
                 promocion.FechaFin = DateTime.Parse(dto.Fin);
 

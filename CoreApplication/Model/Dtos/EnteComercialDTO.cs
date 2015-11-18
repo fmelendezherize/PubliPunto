@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.Collections.Generic;
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
 {
@@ -20,28 +19,6 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
 
         //Codigo Ramo Comercial
         public string Categoria { get; set; }
-
-        public string ToImagenFileName()
-        {
-            if (ImagenURL.image.url == null) return null;
-            Uri webpath = new Uri("file://localhost" + ImagenURL.image.url);
-            if (webpath.IsFile)
-            {
-                return System.IO.Path.GetFileName(webpath.LocalPath);
-            }
-            return null;
-        }
-
-        public string ToLogoFileName()
-        {
-            if (LogoURL.logo.url == null) return null;
-            Uri webpath = new Uri("file://localhost" + LogoURL.logo.url);
-            if (webpath.IsFile)
-            {
-                return System.IO.Path.GetFileName(webpath.LocalPath);
-            }
-            return null;
-        }
     }
 
     public class ListOfEnteComercialDTO

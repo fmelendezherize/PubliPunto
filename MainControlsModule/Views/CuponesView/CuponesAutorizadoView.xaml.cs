@@ -69,5 +69,10 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 GlobalCommands.GoToHomeCommand.Execute(null);
             }
         }
+
+        private void ButtonCerrar_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            GlobalCommands.GoToHomeCommand.Execute(null);
+        }
     }
 }

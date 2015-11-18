@@ -9,7 +9,7 @@
       <Value Profile="(Default)">a891326000dd8f9db94092c898e54aa7</Value>
     </Setting>
     <Setting Name="SMS_MensajePie" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Gracias por usar CUPONEXPRESS.</Value>
+      <Value Profile="(Default)">Ver condiciones en http://www.cuponexpress.com.ve Gracias por usar CUPONEXPRESS</Value>
     </Setting>
     <Setting Name="EnvioSMS_ON" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

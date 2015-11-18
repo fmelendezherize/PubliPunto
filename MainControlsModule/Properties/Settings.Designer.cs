@@ -49,7 +49,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Gracias por usar CUPONEXPRESS.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ver condiciones en http://www.cuponexpress.com.ve Gracias por usar CUPONEXPRESS")]
         public string SMS_MensajePie {
             get {
                 return ((string)(this["SMS_MensajePie"]));

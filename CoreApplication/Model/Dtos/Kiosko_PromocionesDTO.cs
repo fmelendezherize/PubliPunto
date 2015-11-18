@@ -31,8 +31,9 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
         public string Detalles { get; set; }
         public string DetallesBig { get; set; }
         public string Condiciones { get; set; }
-        public string ImagenUrl { get; set; }
-        public string ImagenSmallUrl { get; set; }
+
+        public ImagenBannerUrlDTO ImagenUrl { get; set; }
+        public ImagenUrlDTO ImagenSmallUrl { get; set; }
 
         public string Fin { get; set; }
         public string Inicio { get; set; }

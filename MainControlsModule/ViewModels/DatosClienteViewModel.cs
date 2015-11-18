@@ -127,12 +127,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                         return;
                     }
 
-                    EnviarSmsToCliente(PromocionCupon.CodigoCanjeo, UsuarioValidado.Movil).ContinueWith((t) =>
+                    EnviarSmsToCliente(PromocionCupon.CodigoCanjeo, UsuarioValidado.Movil, PromocionSelected.Descripcion).
+                        ContinueWith((t) =>
                     {
                         if (t.Result)
                         {
-                            repository.UpdatePromocionCuponBySmsSent(PromocionCupon.Id);
-                            this.MensajeMovil = "Tu cupón fue enviado a tu móvil con éxito.";
+                            using (var repositoryPostSms = new EnteComercialRepository())
+                            {
+                                repositoryPostSms.UpdatePromocionCuponBySmsSent(PromocionCupon.Id);
+                                this.MensajeMovil = "Tu cupón fue enviado a tu móvil con éxito.";
+                            }
                         }
                         else
                         {
@@ -144,7 +148,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             }
         }
 
-        private async Task<bool> EnviarSmsToCliente(string codigoCupon, string phoneNumber)
+        private async Task<bool> EnviarSmsToCliente(string codigoCupon, string phoneNumber, string descripcionPromocion)
         {
             if ((string.IsNullOrEmpty(codigoCupon)) || (string.IsNullOrEmpty(phoneNumber))) return false;
             if (Properties.Settings.Default.EnvioSMS_ON == false) return false;
@@ -153,7 +157,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             {
                 string smsUserName = Properties.Settings.Default.SMS_UserName;
                 string smsPwd = Properties.Settings.Default.SMS_Pwd;
-                string mensajeEnvio = String.Format("Su numero de cupón es: {0}. ", codigoCupon) + Properties.Settings.Default.SMS_MensajePie;
+                string mensajeEnvio = String.Format("Cupón: {0}. ", codigoCupon) +
+                    String.Format("Promo: {0}. ", descripcionPromocion) +
+                    Properties.Settings.Default.SMS_MensajePie;
 
                 string uriStr = string.Format("secure/insert.php?uname={0}&pass={1}&num={2}&msg={3}",
                     smsUserName, smsPwd, phoneNumber, Uri.EscapeUriString(mensajeEnvio));
