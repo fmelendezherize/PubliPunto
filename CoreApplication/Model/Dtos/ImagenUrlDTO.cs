@@ -12,6 +12,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
         public ImageDTO banner { get; set; }
     }
 
+    public class ImagenCardUrlDTO
+    {
+        public ImageDTO card { get; set; }
+    }
+
     public class ImageDTO
     {
         public string url { get; set; }

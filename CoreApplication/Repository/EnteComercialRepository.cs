@@ -132,6 +132,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public void AddOrUpdatePromocion(Kiosko_Promocion_Detalle dto)
         {
+            if (dto == null) return;
+
             var enteComercial = (from q in db.EnteComercials.Include("ListOfPromocions.ListOfPromocionCupons")
                                  where (q.Codigo == dto.ClienteCodigo)
                                  select q).FirstOrDefault();
@@ -151,6 +153,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 };
                 newPromocion.FechaInicio = DateTime.Parse(dto.Inicio);
                 newPromocion.FechaFin = DateTime.Parse(dto.Fin);
+                newPromocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
+                newPromocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
                 newPromocion.ListOfPromocionCupons = new List<PromocionCupon>();
 
                 foreach (var item in dto.Kiosko_Promociones)
@@ -172,6 +176,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 promocion.Condiciones = dto.Condiciones;
                 promocion.FechaInicio = DateTime.Parse(dto.Inicio);
                 promocion.FechaFin = DateTime.Parse(dto.Fin);
+                promocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
+                promocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
 
                 if (promocion.ListOfPromocionCupons != null)
                 {

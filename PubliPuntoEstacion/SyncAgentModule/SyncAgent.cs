@@ -27,8 +27,8 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
         public ILoggerFacade Logger { get; set; }
 
         private Timer TimerItem;
-
         private int _idSync = 0;
+        private string _apipwd = String.Format("{0}:{1}", "francisco", "cocuyH)$hfy63(");
 
         public SyncAgent()
         {
@@ -55,6 +55,8 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                     UpdateEntesComerciales(t2.Result);
                     RetrieveKioskoPromociones().ContinueWith((t3) =>
                     {
+                        if (t3.Result == null) return;
+
                         List<Task<Kiosko_Promocion_Detalle>> listOfTaskKioskoPromocionDetalle = new List<Task<Kiosko_Promocion_Detalle>>();
                         foreach (var item in t3.Result.Kiosko_Promociones)
                         {
@@ -177,8 +179,9 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                 client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(_apipwd)));
 
-                // New code:
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync("api/kiosko_promociones.json");
@@ -208,8 +211,8 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                 client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                // New code:
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(_apipwd)));
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(string.Format("api/kiosko_promociones/{0}.json", codigoPromocion));
