@@ -155,8 +155,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 newPromocion.FechaFin = DateTime.Parse(dto.Fin);
                 newPromocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 newPromocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
-                newPromocion.ListOfPromocionCupons = new List<PromocionCupon>();
+                if (dto.Limite != null)
+                {
+                    newPromocion.CuponesPorUsuario = int.Parse(dto.Limite);
+                }
 
+                newPromocion.ListOfPromocionCupons = new List<PromocionCupon>();
                 foreach (var item in dto.Kiosko_Promociones)
                 {
                     var newCupon = new PromocionCupon()
@@ -178,6 +182,10 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 promocion.FechaFin = DateTime.Parse(dto.Fin);
                 promocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 promocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
+                if (dto.Limite != null)
+                {
+                    promocion.CuponesPorUsuario = int.Parse(dto.Limite);
+                }
 
                 if (promocion.ListOfPromocionCupons != null)
                 {

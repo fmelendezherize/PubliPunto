@@ -22,6 +22,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public string Detalles { get; set; }
         public string DetallesBig { get; set; }
         public string Condiciones { get; set; }
+        public int CuponesPorUsuario { get; set; }
 
         public string ImagenUrl { get; set; }
         public string ImagenSmallUrl { get; set; }
@@ -46,7 +47,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         {
             this.FechaFin = System.DateTime.Now.AddDays(7);
             this.FechaInicio = System.DateTime.Now;
-            //this.EnteComercial = new EnteComercial { Nombre = Descripcion };
+            this.CuponesPorUsuario = 1;
         }
 
         private bool CheckHasCuponesDisponibles()
@@ -56,10 +57,21 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public PromocionCupon ObtenerCupon(Usuario usuarioSelected)
         {
-            var promocionCupon = (from q in this.ListOfPromocionCupons
-                                  where (q.UsuarioAsignadoId == usuarioSelected.Id)
-                                  select q).FirstOrDefault();
-            if (promocionCupon != null) return promocionCupon;
+            var cuponesAsignadosToUsuario = (from q in this.ListOfPromocionCupons
+                                             where (q.UsuarioAsignadoId == usuarioSelected.Id)
+                                             select q).ToList();
+
+            if (cuponesAsignadosToUsuario.Count == this.CuponesPorUsuario)
+            {
+                if (cuponesAsignadosToUsuario.Count == 1)
+                {
+                    return cuponesAsignadosToUsuario.FirstOrDefault();
+                }
+                if (cuponesAsignadosToUsuario.Count != 0)
+                {
+                    return null;
+                }
+            }
 
             //nuevo Cupon
             var newPromocionCupon = (from q in this.ListOfPromocionCupons

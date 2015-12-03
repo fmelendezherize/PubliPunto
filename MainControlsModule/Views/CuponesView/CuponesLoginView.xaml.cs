@@ -190,7 +190,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 errorWnd.OnNavigatedTo("ErrorPromocion");
                 errorWnd.Owner = Application.Current.MainWindow;
                 errorWnd.Show();
-                return;
             }
             else
             {
@@ -212,7 +211,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 errorWnd.OnNavigatedTo("ErrorLogin");
                 errorWnd.Owner = Application.Current.MainWindow;
                 errorWnd.Show();
-                return;
             }
         }
 
