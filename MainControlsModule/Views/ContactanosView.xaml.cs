@@ -92,6 +92,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
                         Telefono = this.TextBoxTelefono.Text
                     };
                     repository.Add(newContacto);
+                    Container.Resolve<MailService>().SendMailFromContactanos(
+                        newContacto.Email, newContacto.Destinatario, newContacto.Nombre, newContacto.Telefono, newContacto.Comentario);
                 }
 
                 this.FormularioPanel.Visibility = System.Windows.Visibility.Collapsed;

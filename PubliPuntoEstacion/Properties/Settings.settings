@@ -5,11 +5,17 @@
     <Setting Name="WebSyncServerAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://cuponexpress.com.ve</Value>
     </Setting>
-    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="VideosPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Programas\PubliPunto\Models\videos</Value>
+    </Setting>
+    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="KioskoID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Kiosko Desarrollo</Value>
+    </Setting>
+    <Setting Name="MailPwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cupon123*</Value>
     </Setting>
   </Settings>
 </SettingsFile>

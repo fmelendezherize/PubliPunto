@@ -34,6 +34,10 @@ namespace Decktra.PubliPuntoEstacion
                 SyncAgent syncAgentObj = bootStrapper.Container.Resolve<SyncAgent>();
                 syncAgentObj.StartService();
             }
+
+            bootStrapper.Container.RegisterType<MailService>(new InjectionConstructor(
+                PubliPuntoEstacion.Properties.Settings.Default.KioskoID,
+                PubliPuntoEstacion.Properties.Settings.Default.MailPwd));
         }
 
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)

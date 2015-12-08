@@ -37,7 +37,19 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Programas\\PubliPunto\\Models\\videos")]
+        public string VideosPath {
+            get {
+                return ((string)(this["VideosPath"]));
+            }
+            set {
+                this["VideosPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool WebSyncOn {
             get {
                 return ((bool)(this["WebSyncOn"]));
@@ -49,13 +61,25 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Programas\\PubliPunto\\Models\\videos")]
-        public string VideosPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("Kiosko Desarrollo")]
+        public string KioskoID {
             get {
-                return ((string)(this["VideosPath"]));
+                return ((string)(this["KioskoID"]));
             }
             set {
-                this["VideosPath"] = value;
+                this["KioskoID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cupon123*")]
+        public string MailPwd {
+            get {
+                return ((string)(this["MailPwd"]));
+            }
+            set {
+                this["MailPwd"] = value;
             }
         }
     }
