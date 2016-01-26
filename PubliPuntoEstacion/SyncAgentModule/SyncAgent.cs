@@ -64,12 +64,9 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                         }
                         Task.WhenAll(listOfTaskKioskoPromocionDetalle).ContinueWith((t4) =>
                         {
-                            using (var repository = new EnteComercialRepository())
+                            foreach (var itemTask in listOfTaskKioskoPromocionDetalle)
                             {
-                                foreach (var itemTask in listOfTaskKioskoPromocionDetalle)
-                                {
-                                    repository.AddOrUpdatePromocion(itemTask.Result);
-                                }
+                                UpdatePromocionComercial(itemTask.Result);
                             }
                             Logger.Log(string.Format("Finalizando Agente de Sincronizacion (Id:{0})", _idSync), Category.Info, Priority.Low);
                         }, TaskContinuationOptions.NotOnFaulted);
@@ -339,6 +336,48 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                         {
                             System.IO.File.Copy(path, inputfilepath);
                         }
+                    }
+                }
+            }
+        }
+
+        private void UpdatePromocionComercial(Kiosko_Promocion_Detalle promocion)
+        {
+            using (var repository = new EnteComercialRepository())
+            {
+                repository.AddOrUpdatePromocion(promocion);
+            }
+
+            Uri webpath;
+
+            //Imagen Small
+            if (!String.IsNullOrEmpty(promocion.ImagenSmallUrl.card.url))
+            {
+                webpath = new Uri("file://localhost" + promocion.ImagenSmallUrl.card.url);
+                if (webpath.IsFile)
+                {
+                    string filename = System.IO.Path.GetFileName(webpath.LocalPath);
+                    string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "media\\" + filename;
+                    if (!System.IO.File.Exists(inputfilepath))
+                    {
+                        //descargo                    
+                        DownloadFileFTP(promocion.ImagenSmallUrl.card.url, inputfilepath);
+                    }
+                }
+            }
+
+            //Imagen
+            if (!String.IsNullOrEmpty(promocion.ImagenUrl.banner.url))
+            {
+                webpath = new Uri("file://localhost" + promocion.ImagenUrl.banner.url);
+                if (webpath.IsFile)
+                {
+                    string filename = System.IO.Path.GetFileName(webpath.LocalPath);
+                    string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "media\\" + filename;
+                    if (!System.IO.File.Exists(inputfilepath))
+                    {
+                        //descargo                    
+                        DownloadFileFTP(promocion.ImagenUrl.banner.url, inputfilepath);
                     }
                 }
             }
