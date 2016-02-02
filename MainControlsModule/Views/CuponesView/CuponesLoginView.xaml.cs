@@ -136,7 +136,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private bool IsDatosUsuarioValidos()
         {
-            const string patronMovil = "(0412|0424|0416|0414)";
+            const string patronMovil = "(0412|0424|0416|0414|0426)";
 
             if (this.TextBoxCedulaIdentidad.Text.Length < 7) return false;
             if (this.TextBoxNombreApellido.Text.Length < 7) return false;

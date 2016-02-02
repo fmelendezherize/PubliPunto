@@ -27,7 +27,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 
         private void ShowEnteComercials(object obj)
         {
-            var result = (from q in _enteComercialRepository.GetPromocionesActivas() select q).ToList();
+            var result = (from q in _enteComercialRepository.GetPromocionesVigentes() select q).ToList();
 
             EnteComercial0 = result.ElementAtOrDefault<Promocion>(0) ?? new Promocion() { EnteComercial = new EnteComercial() { Nombre = "Disponible" } };
             EnteComercial1 = result.ElementAtOrDefault<Promocion>(1) ?? new Promocion() { EnteComercial = new EnteComercial() { Nombre = "Disponible" } };

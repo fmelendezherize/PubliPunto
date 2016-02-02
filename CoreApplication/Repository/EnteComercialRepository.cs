@@ -51,25 +51,32 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public IEnumerable<EnteComercial> GetEnteComercialesWithPromocionActiva()
         {
-            var result = from q in this.GetPromocionesActivas().GroupBy(grp => grp.EnteComercialId)
+            var result = from q in this.GetPromocionesVigentes().GroupBy(grp => grp.EnteComercialId)
                          select q.FirstOrDefault();
 
             return (from q in result select q.EnteComercial).ToList();
         }
 
-        public IEnumerable<Promocion> GetPromocionesActivas()
+        public IEnumerable<Promocion> GetPromocionesVigentes()
         {
-            var result = (from q in db.Promociones
-                          where ((q.IsActivo) && (q.EnteComercial.IsActivo) &&
-                          (q.FechaInicio <= System.DateTime.Now) && (q.FechaFin >= System.DateTime.Now))
-                          orderby q.FechaInicio descending, q.Id descending
-                          select q).ToList();
+            //var result = (from q in db.Promociones
+            //              where ((q.IsActivo) && (q.EnteComercial.IsActivo) &&
+            //              (q.FechaInicio <= System.DateTime.Now) && (q.FechaFin >= System.DateTime.Now))
+            //              orderby q.FechaInicio descending, q.Id descending
+            //              select q).ToList();
+
+            var result = db.Promociones.
+                OrderByDescending(q => q.FechaInicio).
+                OrderByDescending(q => q.Id).
+                ToList().
+                Where(q => q.IsVigente);
+
             return result;
         }
 
         public IEnumerable<Promocion> GetPromocionesActivasBy(int idEnteComercial)
         {
-            return this.GetPromocionesActivas().Where(q => q.EnteComercialId == idEnteComercial).ToList();
+            return this.GetPromocionesVigentes().Where(q => q.EnteComercialId == idEnteComercial).ToList();
         }
 
         public IEnumerable<string> GetAutoCompleteTags()

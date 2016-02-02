@@ -43,8 +43,15 @@ namespace Decktra.PubliPuntoEstacion
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
 #if (!DEBUG)
-            ExceptionPolicy.HandleException(e.ExceptionObject as Exception, "Policy");
-            Environment.Exit(1);
+            try
+            {
+                ExceptionPolicy.HandleException(e.ExceptionObject as Exception, "Policy");
+            }
+            finally
+            {
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Environment.Exit(1);
+            }
 #endif
         }
     }

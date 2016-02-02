@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
@@ -34,7 +35,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public virtual IList<PromocionCupon> ListOfPromocionCupons { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        [NotMapped]
         public bool HasCuponesDisponibles
         {
             get
@@ -43,11 +44,29 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
             }
         }
 
+        [NotMapped]
+        public bool IsVigente
+        {
+            get
+            {
+                return CheckIsPromocionVigente();
+            }
+        }
+
         public Promocion()
         {
             this.FechaFin = System.DateTime.Now.AddDays(7);
             this.FechaInicio = System.DateTime.Now;
             this.CuponesPorUsuario = 1;
+        }
+
+        private bool CheckIsPromocionVigente()
+        {
+            if (IsActivo &&
+                EnteComercial.IsActivo &&
+                HasCuponesDisponibles &&
+                (FechaInicio <= System.DateTime.Now) && (FechaFin >= System.DateTime.Now)) return true;
+            return false;
         }
 
         private bool CheckHasCuponesDisponibles()

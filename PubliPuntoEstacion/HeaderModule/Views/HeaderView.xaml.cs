@@ -18,6 +18,7 @@ namespace Decktra.PubliPuntoEstacion.HeaderModule.Views
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
             GlobalCommands.GoToHomeCommand.Execute(null);
+            //throw new System.Exception("Error intencional.");
         }
 
         private void ButtonBusquedaCategoria_Click(object sender, RoutedEventArgs e)

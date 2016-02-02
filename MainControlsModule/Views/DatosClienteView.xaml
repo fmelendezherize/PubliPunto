@@ -44,7 +44,7 @@
 
         <Style x:Key="H1Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
-            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontSize" Value="40"/>
         </Style>
         <Style x:Key="H2Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{DynamicResource CaviarFontStyle}" />
@@ -144,7 +144,8 @@
                     <!--<Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/logo_pizzahut.jpg" Stretch="None" HorizontalAlignment="Left"></Image>-->
                     <Image Source="{Binding EnteComercial.LogoUrl, Converter={StaticResource RutaImagenConverter}}"
                            Style="{StaticResource LogoStyle}"/>
-                    <TextBlock Name="TextBlockNombreEnteComercial" Text="{Binding EnteComercial.Nombre}" Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
+                    <TextBlock Name="TextBlockNombreEnteComercial" Text="{Binding EnteComercial.Nombre}" 
+                               Style="{StaticResource H1Style}" Margin="0,20,0,0"></TextBlock>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Rif:" Style="{StaticResource H2Style}" Margin="0,0,10,10"></TextBlock>
                         <TextBlock Text="{Binding EnteComercial.Rif}" Style="{StaticResource H2Style}" Width="602"></TextBlock>
