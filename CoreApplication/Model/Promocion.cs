@@ -55,7 +55,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public Promocion()
         {
-            this.FechaFin = System.DateTime.Now.AddDays(7);
+            this.FechaFin = System.DateTime.Now;
             this.FechaInicio = System.DateTime.Now;
             this.CuponesPorUsuario = 1;
         }

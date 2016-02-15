@@ -158,8 +158,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                     Condiciones = dto.Condiciones,
                     IsActivo = true
                 };
-                newPromocion.FechaInicio = DateTime.Parse(dto.Inicio);
-                newPromocion.FechaFin = DateTime.Parse(dto.Fin);
+
+                DateTime outDate;
+                if (DateTime.TryParse(dto.Inicio, out outDate)) newPromocion.FechaInicio = outDate;
+                if (DateTime.TryParse(dto.Fin, out outDate)) newPromocion.FechaFin = outDate;
+
                 newPromocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 newPromocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
                 if (dto.Limite != null)
@@ -185,8 +188,11 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 promocion.Detalles = dto.Detalles;
                 promocion.DetallesBig = dto.DetallesBig;
                 promocion.Condiciones = dto.Condiciones;
-                promocion.FechaInicio = DateTime.Parse(dto.Inicio);
-                promocion.FechaFin = DateTime.Parse(dto.Fin);
+
+                DateTime outDate;
+                if (DateTime.TryParse(dto.Inicio, out outDate)) promocion.FechaInicio = outDate;
+                if (DateTime.TryParse(dto.Fin, out outDate)) promocion.FechaFin = outDate;
+
                 promocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 promocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
                 if (dto.Limite != null)
