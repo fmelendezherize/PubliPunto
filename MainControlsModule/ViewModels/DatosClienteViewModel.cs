@@ -63,8 +63,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             set { SetProperty(ref this._mensajeMovil, value); }
         }
 
-        public event EventHandler<bool> OnUsuarioAprobado;
-        public event EventHandler<bool> OnPromocionAprobada;
+        public event EventHandler<object> OnPromocionAprobada;
+        public event EventHandler<string> OnPromocionNoAprobada;
 
         [Dependency]
         public ILoggerFacade Logger { get; set; }
@@ -96,56 +96,52 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             //Validar Usuario
             using (var usuarioRepository = new UsuariosRepository())
             {
-                if (usuarioKiosko.IsValido())
-                {
-                    //chance de registro
-                    usuarioRepository.AddOrUpdate(usuarioKiosko);
-                    UsuarioValidado = usuarioKiosko;
-                }
-                else
-                {
-                    if (OnUsuarioAprobado != null) { OnUsuarioAprobado(this, false); }
-                    return;
-                }
+                usuarioRepository.AddOrUpdate(usuarioKiosko);
+                UsuarioValidado = usuarioKiosko;
             };
 
             ///Promocion
-            PromocionCupon = null;
             using (var repository = new EnteComercialRepository())
             {
-                PromocionCupon = repository.UpdatePromocionCupon(PromocionSelected, UsuarioValidado);
-                if (PromocionCupon == null)
+                try
                 {
-                    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, false); }
+                    PromocionCupon = null;
+                    PromocionCupon = repository.ProcesarPromocionCupon(PromocionSelected, UsuarioValidado);
+                    DoOnPromocionAprobada();
                 }
-                else
+                catch (InvalidOperationException ex)
                 {
-                    if (PromocionCupon.SmsSent)
-                    {
-                        this.MensajeMovil = "Tu cupón ya fue enviado a tu móvil.";
-                        if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
-                        return;
-                    }
-
-                    EnviarSmsToCliente(PromocionCupon.CodigoCanjeo, UsuarioValidado.Movil, PromocionSelected.Descripcion).
-                        ContinueWith((t) =>
-                    {
-                        if (t.Result)
-                        {
-                            using (var repositoryPostSms = new EnteComercialRepository())
-                            {
-                                repositoryPostSms.UpdatePromocionCuponBySmsSent(PromocionCupon.Id);
-                                this.MensajeMovil = "Tu cupón fue enviado a tu móvil con éxito.";
-                            }
-                        }
-                        else
-                        {
-                            this.MensajeMovil = "Tu cupón no pudo ser enviado a tu móvil.";
-                        }
-                    }, CancellationToken.None, TaskContinuationOptions.NotOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
-                    if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+                    if (OnPromocionNoAprobada != null) { OnPromocionNoAprobada(this, ex.Message); }
                 }
             }
+        }
+
+        private void DoOnPromocionAprobada()
+        {
+            if (PromocionCupon.SmsSent)
+            {
+                this.MensajeMovil = "Tu cupón ya fue enviado a tu móvil.";
+                if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
+                return;
+            }
+
+            EnviarSmsToCliente(PromocionCupon.CodigoCanjeo, UsuarioValidado.Movil, PromocionSelected.Descripcion).
+                ContinueWith((t) =>
+                {
+                    if (t.Result)
+                    {
+                        using (var repositoryPostSms = new EnteComercialRepository())
+                        {
+                            repositoryPostSms.UpdatePromocionCuponBySmsSent(PromocionCupon.Id);
+                            this.MensajeMovil = "Tu cupón fue enviado a tu móvil con éxito.";
+                        }
+                    }
+                    else
+                    {
+                        this.MensajeMovil = "Tu cupón no pudo ser enviado a tu móvil.";
+                    }
+                }, CancellationToken.None, TaskContinuationOptions.NotOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
+            if (OnPromocionAprobada != null) { OnPromocionAprobada(this, true); }
         }
 
         private async Task<bool> EnviarSmsToCliente(string codigoCupon, string phoneNumber, string descripcionPromocion)

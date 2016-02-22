@@ -49,6 +49,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
 
         public void AddOrUpdate(Usuario newUsuario)
         {
+            if (!newUsuario.IsValido()) { throw new InvalidOperationException("Datos Usuarios Invalidos."); }
+
             var usuario = db.Usuarios.Where(q => q.Cedula == newUsuario.Cedula).FirstOrDefault();
             if (usuario == null)
             {

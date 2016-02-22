@@ -5,7 +5,6 @@ using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -77,76 +76,60 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 this.DataContext = navigationContext.NavigationService.Region.Context;
                 DatosClienteViewModel viewModel = (DatosClienteViewModel)this.DataContext;
                 viewModel.PropertyChanged += OnPropertyChanged;
-                viewModel.OnUsuarioAprobado += CuponesLoginView_OnUsuarioAprobado;
                 viewModel.OnPromocionAprobada += CuponesLoginView_OnPromocionAprobada;
+                viewModel.OnPromocionNoAprobada += CuponesLoginView_OnPromocionNoAprobada;
             }
             this.InitControls();
         }
 
         private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
         {
-            if (IsDatosUsuarioValidos())
+            string cedula = this.TextBoxCedulaIdentidad.Text;
+            if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
             {
-                string cedula = this.TextBoxCedulaIdentidad.Text;
-                if (this.RadioButtonCedulaFirstLetter.IsChecked.Value)
-                {
-                    cedula = "V" + this.TextBoxCedulaIdentidad.Text;
-                }
-                else
-                {
-                    cedula = "E" + this.TextBoxCedulaIdentidad.Text;
-                };
+                cedula = "V" + this.TextBoxCedulaIdentidad.Text;
+            }
+            else
+            {
+                cedula = "E" + this.TextBoxCedulaIdentidad.Text;
+            };
+            Usuario newUsuario = new Usuario
+            {
+                Cedula = cedula,
+                Nombre = this.TextBoxNombreApellido.Text,
+                Movil = this.TextBoxCodigoMovil.Text + this.TextBoxNumeroMovil.Text
+            };
 
-                var wndConfirmacion = new CuponConfirmacionWindow();
-                wndConfirmacion.Owner = Application.Current.MainWindow;
-                wndConfirmacion.TextNombreUsuario.Text = this.TextBoxNombreApellido.Text;
-                wndConfirmacion.TextBoxCedula.Text = cedula;
-                if (!string.IsNullOrEmpty(this.TextBoxCodigoMovil.Text))
-                {
-                    wndConfirmacion.TextBoxMovil.Text = String.Format("{0}.{1}.{2}.{3}",
-                        this.TextBoxCodigoMovil.Text,
-                        this.TextBoxNumeroMovil.Text.Substring(0, 3),
-                        this.TextBoxNumeroMovil.Text.Substring(3, 2),
-                        this.TextBoxNumeroMovil.Text.Substring(5, 2));
-                }
-
-                if (wndConfirmacion.ShowDialog() == true)
-                {
-                    var wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
-                    wndConfirmacionCondiciones.Owner = Application.Current.MainWindow;
-                    if (wndConfirmacionCondiciones.ShowDialog() == true)
-                    {
-                        Usuario newUsuario = new Usuario
-                        {
-                            Cedula = cedula,
-                            Nombre = this.TextBoxNombreApellido.Text,
-                            Movil = this.TextBoxCodigoMovil.Text + this.TextBoxNumeroMovil.Text
-                        };
-                        ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
-                    }
-                }
+            if (!newUsuario.IsValido())
+            {
+                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd.ShowErrorDatosUsuario();
                 return;
             }
 
-            var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-            errorWnd.OnNavigatedTo("ErrorLogin");
-            errorWnd.Owner = Application.Current.MainWindow;
-            errorWnd.Show();
-        }
+            var wndConfirmacion = new CuponConfirmacionWindow();
+            wndConfirmacion.Owner = Application.Current.MainWindow;
+            wndConfirmacion.TextNombreUsuario.Text = this.TextBoxNombreApellido.Text;
+            wndConfirmacion.TextBoxCedula.Text = cedula;
+            if (!string.IsNullOrEmpty(this.TextBoxCodigoMovil.Text))
+            {
+                wndConfirmacion.TextBoxMovil.Text = String.Format("{0}.{1}.{2}.{3}",
+                    this.TextBoxCodigoMovil.Text,
+                    this.TextBoxNumeroMovil.Text.Substring(0, 3),
+                    this.TextBoxNumeroMovil.Text.Substring(3, 2),
+                    this.TextBoxNumeroMovil.Text.Substring(5, 2));
+            }
 
-        private bool IsDatosUsuarioValidos()
-        {
-            const string patronMovil = "(0412|0424|0416|0414|0426)";
+            if (wndConfirmacion.ShowDialog() == true)
+            {
+                var wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
+                wndConfirmacionCondiciones.Owner = Application.Current.MainWindow;
+                if (wndConfirmacionCondiciones.ShowDialog() == true)
+                {
+                    ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
+                }
+            }
 
-            if (this.TextBoxCedulaIdentidad.Text.Length < 7) return false;
-            if (this.TextBoxNombreApellido.Text.Length < 7) return false;
-
-            if (!String.IsNullOrEmpty(this.TextBoxCodigoMovil.Text) &&
-                (!Regex.IsMatch(this.TextBoxCodigoMovil.Text, patronMovil) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
-            if (!String.IsNullOrEmpty(this.TextBoxNumeroMovil.Text) &&
-                (!Regex.IsMatch(this.TextBoxCodigoMovil.Text, patronMovil) || (this.TextBoxNumeroMovil.Text.Length != 7))) return false;
-
-            return true;
         }
 
         private void InitControls()
@@ -181,37 +164,22 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
         }
 
-        void CuponesLoginView_OnPromocionAprobada(object sender, bool e)
+        void CuponesLoginView_OnPromocionAprobada(object sender, object e)
         {
-            if (!e)
-            {
-                //no aceptado
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-                errorWnd.OnNavigatedTo("ErrorPromocion");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.Show();
-            }
-            else
-            {
-                //Ya no quieren ver esta linda ventanita de espera
-                //var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
-                //processWnd.Owner = Application.Current.MainWindow;
-                //processWnd.ShowDialog();
+            //Ya no quieren ver esta linda ventanita de espera
+            //var processWnd = this.Container.Resolve<Views.CuponesView.CuponSuccessWindow>();
+            //processWnd.Owner = Application.Current.MainWindow;
+            //processWnd.ShowDialog();
 
-                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                    new Uri("CuponesAutorizadoView", UriKind.Relative));
-            }
+            this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+                new Uri("CuponesAutorizadoView", UriKind.Relative));
         }
 
-        void CuponesLoginView_OnUsuarioAprobado(object sender, bool e)
+        void CuponesLoginView_OnPromocionNoAprobada(object sender, string e)
         {
-            if (!e)
-            {
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-                errorWnd.OnNavigatedTo("ErrorLogin");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.Show();
-            }
+            //no aceptado
+            var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+            errorWnd.ShowErrorPromocion(e);
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)

@@ -84,11 +84,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
             {
                 if (cuponesAsignadosToUsuario.Count == 1)
                 {
-                    return cuponesAsignadosToUsuario.FirstOrDefault();
+                    //return cuponesAsignadosToUsuario.FirstOrDefault();
+                    throw new System.InvalidOperationException("Máximo un cupón (1) por persona para esta promoción.");
                 }
                 if (cuponesAsignadosToUsuario.Count != 0)
                 {
-                    return null;
+                    throw new System.InvalidOperationException("Maximo número de cupones alcanzados para esta promoción.");
                 }
             }
 

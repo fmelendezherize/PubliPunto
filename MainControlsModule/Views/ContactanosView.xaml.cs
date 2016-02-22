@@ -103,10 +103,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             else
             {
                 var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-                errorWnd.OnNavigatedTo("ErrorFormularioLibre");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.MouseDown += errorWnd_MouseDown;
-                errorWnd.ShowDialog();
+                errorWnd.ShowErrorFormulario();
             }
         }
 

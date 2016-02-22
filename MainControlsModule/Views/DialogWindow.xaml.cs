@@ -29,23 +29,35 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.Close();
         }
 
-        public void OnNavigatedTo(string accion)
+        public void ShowErrorFormulario()
         {
-            if (accion == "ErrorFormularioLibre")
+            this.TextBlockTitulo.Text = "Error !";
+            this.TextBlockMensaje.Text = "Debe llenar por completo el formulario. Por favor revise los campos solicitados.";
+            this.Owner = Application.Current.MainWindow;
+            this.Show();
+        }
+
+        public void ShowErrorDatosUsuario()
+        {
+            this.TextBlockTitulo.Text = "Error !";
+            this.TextBlockMensaje.Text = "Sus datos de identificación no son correctos. Por favor revise los campos solicitados.";
+            this.Owner = Application.Current.MainWindow;
+            this.Show();
+        }
+
+        public void ShowErrorPromocion(string msg)
+        {
+            this.TextBlockTitulo.Text = "Disculpe !";
+            if (string.IsNullOrEmpty(msg))
             {
-                this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Debe llenar por completo el formulario. Por favor revise los campos solicitados.";
-            }
-            else if (accion == "ErrorLogin")
-            {
-                this.TextBlockTitulo.Text = "Error !";
-                this.TextBlockMensaje.Text = "Sus datos de identificación no son correctos. Por favor revise los campos solicitados.";
-            }
-            else if (accion == "ErrorPromocion")
-            {
-                this.TextBlockTitulo.Text = "Disculpe !";
                 this.TextBlockMensaje.Text = "Promoción no disponible o terminada.";
             }
+            else
+            {
+                this.TextBlockMensaje.Text = msg;
+            }
+            this.Owner = Application.Current.MainWindow;
+            this.Show();
         }
     }
 }

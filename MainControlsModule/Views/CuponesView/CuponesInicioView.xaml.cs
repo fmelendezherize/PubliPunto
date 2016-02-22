@@ -52,25 +52,23 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 new Uri("CuponesLoginView", UriKind.Relative));
         }
 
-        private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
-            ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
+        //private void TextBlockReclamarCupon_MouseUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    Promocion promocion = ((TextBlock)sender).DataContext as Promocion;
+        //    ((DatosClienteViewModel)this.DataContext).PromocionSelected = promocion;
 
-            if (!promocion.HasCuponesDisponibles)
-            {
-                //no aceptado
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-                errorWnd.OnNavigatedTo("ErrorPromocion");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.Show();
-            }
-            else
-            {
-                this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
-                    new Uri("CuponesLoginView", UriKind.Relative));
-            }
-        }
+        //    if (!promocion.HasCuponesDisponibles)
+        //    {
+        //        //no aceptado
+        //        var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+        //        errorWnd.ShowErrorPromocion(string.Empty);
+        //    }
+        //    else
+        //    {
+        //        this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
+        //            new Uri("CuponesLoginView", UriKind.Relative));
+        //    }
+        //}
 
         private void TextBlockVerCondiciones_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -98,9 +96,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             {
                 //no aceptado
                 var errorWnd = this.Container.Resolve<Views.DialogWindow>();
-                errorWnd.OnNavigatedTo("ErrorPromocion");
-                errorWnd.Owner = Application.Current.MainWindow;
-                errorWnd.Show();
+                errorWnd.ShowErrorPromocion(string.Empty);
             }
             else
             {

@@ -220,10 +220,10 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
             db.SaveChanges();
         }
 
-        public PromocionCupon UpdatePromocionCupon(Promocion promocionSelected, Usuario usuarioSelected)
+        public PromocionCupon ProcesarPromocionCupon(Promocion promocionSelected, Usuario usuarioSelected)
         {
             var promocion = db.Promociones.Where(q => q.Id == promocionSelected.Id).FirstOrDefault();
-            if (promocion == null) return null;
+            if (promocion == null) { throw new InvalidOperationException(); }
 
             var cupon = promocion.ObtenerCupon(usuarioSelected);
             db.SaveChanges();
