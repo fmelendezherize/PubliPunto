@@ -49,18 +49,6 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool WebSyncOn {
-            get {
-                return ((bool)(this["WebSyncOn"]));
-            }
-            set {
-                this["WebSyncOn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Kiosko Desarrollo")]
         public string KioskoID {
             get {
@@ -80,6 +68,30 @@ namespace Decktra.PubliPuntoEstacion.Properties {
             }
             set {
                 this["MailPwd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WebSyncOn {
+            get {
+                return ((bool)(this["WebSyncOn"]));
+            }
+            set {
+                this["WebSyncOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int TimerInactividad {
+            get {
+                return ((int)(this["TimerInactividad"]));
+            }
+            set {
+                this["TimerInactividad"] = value;
             }
         }
     }

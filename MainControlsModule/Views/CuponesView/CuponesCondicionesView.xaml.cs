@@ -18,6 +18,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         [Dependency]
         public IRegionManager RegionManager { get; set; }
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         public CuponesCondicionesView()
         {
             InitializeComponent();
@@ -25,21 +28,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            //if (navigationContext.NavigationService.Journal.CurrentEntry.Uri.OriginalString != "CuponesInicioView")
-            //{
-            //    return false;
-            //}
-
             return true;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //if (navigationContext.Uri.OriginalString != "CuponesInicioView")
-            //{
-            //    navigationContext.NavigationService.Region.Context = null;
-            //    return;
-            //}
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -49,6 +43,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             {
                 this.DataContext = navigationContext.NavigationService.Region.Context;
             }
+            TimerService.Start();
         }
 
         private void ButtonBack_Click(object sender, System.Windows.RoutedEventArgs e)

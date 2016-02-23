@@ -38,6 +38,10 @@ namespace Decktra.PubliPuntoEstacion
             bootStrapper.Container.RegisterType<MailService>(new InjectionConstructor(
                 PubliPuntoEstacion.Properties.Settings.Default.KioskoID,
                 PubliPuntoEstacion.Properties.Settings.Default.MailPwd));
+
+            bootStrapper.Container.RegisterType<Services.GotoHomeTimerService>(
+                new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(PubliPuntoEstacion.Properties.Settings.Default.TimerInactividad));
         }
 
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)

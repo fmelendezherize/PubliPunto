@@ -165,6 +165,8 @@
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[0]}"/>
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[1]}"/>
                     <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[2]}"/>
+                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[3]}"/>
+                    <ContentControl Template="{StaticResource PromocionRowTemplate}" DataContext="{Binding PromocionesActivas[4]}"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

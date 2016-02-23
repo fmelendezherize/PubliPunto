@@ -18,11 +18,16 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         [Dependency]
         public IUnityContainer Container { get; set; }
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         private TextBox PreviousTextBox;
 
         public ContactanosView()
         {
             InitializeComponent();
+
+            this.touchKeyboard.OnButtonClick += TouchKeyboard_OnButtonClick;
         }
 
         private void TextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -36,11 +41,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.touchKeyboard.SetControlToWriteAlphaNumeric(this.PreviousTextBox);
         }
 
-        private void TextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -48,7 +48,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //nada
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -63,6 +63,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.touchKeyboard.Visibility = System.Windows.Visibility.Visible;
 
             this.TextBoxNombre_GotFocus(this.TextBoxNombre, null);
+
+            TimerService.Start();
         }
 
         private bool IsDatosContactanosValidos()
@@ -140,6 +142,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             var caret = this.TextBoxNombre.CaretIndex;
             this.TextBoxNombre.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.TextBoxNombre.Text.ToLower());
             this.TextBoxNombre.CaretIndex = caret;
+        }
+
+        void TouchKeyboard_OnButtonClick(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            TimerService.Start();
         }
     }
 }

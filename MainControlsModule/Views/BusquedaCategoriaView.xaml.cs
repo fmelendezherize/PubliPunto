@@ -24,6 +24,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private IRegionNavigationService navigationService;
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         public BusquedaCategoriaView()
         {
             this.InitializeComponent();
@@ -36,11 +39,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //nada
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            TimerService.Start();
+
             this.navigationService = navigationContext.NavigationService;
 
             if ((navigationContext.Parameters["subCategoria"] != null) &&

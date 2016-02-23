@@ -8,14 +8,17 @@
     <Setting Name="VideosPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Programas\PubliPunto\Models\videos</Value>
     </Setting>
-    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="KioskoID" Type="System.String" Scope="User">
       <Value Profile="(Default)">Kiosko Desarrollo</Value>
     </Setting>
     <Setting Name="MailPwd" Type="System.String" Scope="User">
       <Value Profile="(Default)">cupon123*</Value>
+    </Setting>
+    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TimerInactividad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -18,9 +18,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
         private bool IsShiftEnabled { get; set; }
         private bool IsSymbEnabled { get; set; }
 
+        private System.Windows.Input.KeyConverter keyConverter;
+
         public TouchKeyboardControl()
         {
             this.InitializeComponent();
+            keyConverter = new System.Windows.Input.KeyConverter();
         }
 
         public void SetControlToWriteAlphaNumeric(Control control)
@@ -132,6 +135,14 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
             var textEvent = new TextCompositionEventArgs(Keyboard.PrimaryDevice,
                 new TextComposition(InputManager.Current, Keyboard.FocusedElement, key)) { RoutedEvent = TextInputEvent };
             InputManager.Current.ProcessInput(textEvent);
+
+            Key theKey = (Key)keyConverter.ConvertFromString(key);
+            if (Keyboard.PrimaryDevice.ActiveSource == null) return;
+            var keyEvent = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, theKey)
+            {
+                RoutedEvent = Keyboard.KeyDownEvent
+            };
+            if (OnButtonClick != null) OnButtonClick(this, keyEvent);
         }
 
         private void ButtonSymb_Click(object sender, RoutedEventArgs e)

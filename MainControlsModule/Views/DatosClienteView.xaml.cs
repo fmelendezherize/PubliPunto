@@ -16,6 +16,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         [Dependency]
         public IRegionManager RegionManager { get; set; }
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         private IRegionNavigationService navigationService;
 
         public DatosClienteView(ILoggerFacade logger)
@@ -33,11 +36,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //if (navigationContext.Uri.OriginalString != "CuponesInicioView")
-            //{
-            //    navigationContext.NavigationService.Region.Context = null;
-            //    return;
-            //}
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -46,6 +45,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             ((DatosClienteViewModel)DataContext).ShowEnteComercialCommand.Execute(ID);
             this.navigationService = navigationContext.NavigationService;
             navigationContext.NavigationService.Region.Context = this.DataContext;
+
+            TimerService.Start();
         }
 
         private void ButtonReclamarCupon_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -76,5 +77,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.RegionManager.RequestNavigate(RegionNames.REGION_WORK_AREA,
                 new Uri("ContactanosClientesView?NombreEnteComercial=" + this.TextBlockNombreEnteComercial.Text, UriKind.Relative));
         }
+
     }
 }

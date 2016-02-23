@@ -15,7 +15,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public IUnityContainer Container { get; set; }
 
         private static System.Windows.Threading.DispatcherTimer dispatcherTimer;
-        private int Counter;
+        private int _counter;
 
         public CuponesAutorizadoView()
         {
@@ -43,6 +43,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             navigationContext.NavigationService.Region.Context = null;
+            StopHomeTimer();
+        }
+
+        private static void StopHomeTimer()
+        {
             dispatcherTimer.Stop();
             dispatcherTimer = null;
         }
@@ -50,8 +55,13 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             if (this.DataContext == null) this.DataContext = navigationContext.NavigationService.Region.Context;
-            Counter = 60;
-            this.TextBlockTiempoRestante.Text = Counter.ToString();
+            StartHomeTimer();
+        }
+
+        private void StartHomeTimer()
+        {
+            _counter = 60;
+            this.TextBlockTiempoRestante.Text = _counter.ToString();
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -62,9 +72,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             System.Windows.Threading.DispatcherTimer dispatcherTimer = sender as System.Windows.Threading.DispatcherTimer;
-            Counter -= 1;
-            this.TextBlockTiempoRestante.Text = Counter.ToString();
-            if (Counter == 0)
+            _counter -= 1;
+            this.TextBlockTiempoRestante.Text = _counter.ToString();
+            if (_counter == 0)
             {
                 GlobalCommands.GoToHomeCommand.Execute(null);
             }

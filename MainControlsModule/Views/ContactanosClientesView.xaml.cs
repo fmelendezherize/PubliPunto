@@ -23,9 +23,18 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private string NombreEnteComercial;
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         public ContactanosClientesView()
         {
             InitializeComponent();
+            this.touchKeyboard.OnButtonClick += TouchKeyboard_OnButtonClick;
+        }
+
+        private void TouchKeyboard_OnButtonClick(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            TimerService.Start();
         }
 
         private void TextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -50,11 +59,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.touchKeyboard.SetControlToWriteNumeric(this.PreviousTextBox);
         }
 
-        private void TextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -62,7 +66,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //nada
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -81,6 +85,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             this.touchKeyboard.Visibility = System.Windows.Visibility.Visible;
 
             this.TextBoxNombre_GotFocus(this.TextBoxNombre, null);
+
+            TimerService.Start();
         }
 
         private bool IsDatosContactanosValidos()
