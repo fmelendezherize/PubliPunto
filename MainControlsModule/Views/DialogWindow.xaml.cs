@@ -26,7 +26,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         void DialogWindow_Deactivated(object sender, System.EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         public void ShowErrorFormulario()

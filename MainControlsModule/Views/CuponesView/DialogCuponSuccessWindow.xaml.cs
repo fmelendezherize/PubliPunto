@@ -7,9 +7,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
     /// <summary>
     /// Interaction logic for CuponSuccessWindow.xaml
     /// </summary>
-    public partial class CuponSuccessWindow : Window
+    public partial class DialogCuponSuccessWindow : Window
     {
-        public CuponSuccessWindow()
+        public DialogCuponSuccessWindow()
         {
             InitializeComponent();
         }

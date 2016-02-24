@@ -26,9 +26,22 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private Control PreviousTextBox;
 
+        CuponConfirmacionWindow wndConfirmacion;
+        CuponCondicionesUsoWindow wndConfirmacionCondiciones;
+        Views.DialogWindow errorWnd;
+
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         public CuponesLoginView()
         {
             InitializeComponent();
+            this.touchKeyboard.OnButtonClick += touchKeyboard_OnButtonClick;
+        }
+
+        void touchKeyboard_OnButtonClick(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            TimerService.Start();
         }
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -57,6 +70,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            if (wndConfirmacion != null) { wndConfirmacion.Hide(); }
+            if (wndConfirmacionCondiciones != null) { wndConfirmacionCondiciones.Close(); }
+            if (errorWnd != null) { errorWnd.Close(); }
+
+            TimerService.Stop();
             if ((navigationContext.Uri.OriginalString != "CuponesAutorizadoView") &
                 (navigationContext.Uri.OriginalString != "CuponesLoginView") &
                 (navigationContext.Uri.OriginalString != "CuponesInicioView") &
@@ -80,6 +98,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 viewModel.OnPromocionNoAprobada += CuponesLoginView_OnPromocionNoAprobada;
             }
             this.InitControls();
+            TimerService.Start();
         }
 
         private void ButtonReclamarCupon_Click(object sender, RoutedEventArgs e)
@@ -102,12 +121,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
             if (!newUsuario.IsValido())
             {
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.ShowErrorDatosUsuario();
                 return;
             }
 
-            var wndConfirmacion = new CuponConfirmacionWindow();
+            wndConfirmacion = new CuponConfirmacionWindow();
             wndConfirmacion.Owner = Application.Current.MainWindow;
             wndConfirmacion.TextNombreUsuario.Text = this.TextBoxNombreApellido.Text;
             wndConfirmacion.TextBoxCedula.Text = cedula;
@@ -119,11 +138,12 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                     this.TextBoxNumeroMovil.Text.Substring(3, 2),
                     this.TextBoxNumeroMovil.Text.Substring(5, 2));
             }
-
+            TimerService.Start();
             if (wndConfirmacion.ShowDialog() == true)
             {
-                var wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
+                wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
                 wndConfirmacionCondiciones.Owner = Application.Current.MainWindow;
+                TimerService.Start();
                 if (wndConfirmacionCondiciones.ShowDialog() == true)
                 {
                     ((DatosClienteViewModel)this.DataContext).ReclamarCuponCommand.Execute(newUsuario);
@@ -178,7 +198,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         void CuponesLoginView_OnPromocionNoAprobada(object sender, string e)
         {
             //no aceptado
-            var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+            errorWnd = this.Container.Resolve<Views.DialogWindow>();
             errorWnd.ShowErrorPromocion(e);
         }
 

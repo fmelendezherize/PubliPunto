@@ -23,6 +23,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private TextBox PreviousTextBox;
 
+        Views.DialogWindow errorWnd;
+
         public ContactanosView()
         {
             InitializeComponent();
@@ -48,6 +50,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            if (errorWnd != null) { errorWnd.Close(); }
             TimerService.Stop();
         }
 
@@ -104,7 +107,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             }
             else
             {
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.ShowErrorFormulario();
             }
         }

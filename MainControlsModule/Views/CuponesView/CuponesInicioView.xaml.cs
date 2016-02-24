@@ -23,6 +23,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         private IRegionNavigationService navigationService;
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
+        Views.DialogWindow errorWnd;
+
         public CuponesInicioView()
         {
             InitializeComponent();
@@ -35,6 +40,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            if (errorWnd != null) { errorWnd.Close(); }
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -44,6 +51,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
                 this.DataContext = navigationContext.NavigationService.Region.Context;
             }
             this.navigationService = navigationContext.NavigationService;
+            TimerService.Start();
         }
 
         private void ImageFacebook_MouseUp(object sender, MouseButtonEventArgs e)
@@ -95,7 +103,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             if (!promocion.HasCuponesDisponibles)
             {
                 //no aceptado
-                var errorWnd = this.Container.Resolve<Views.DialogWindow>();
+                errorWnd = this.Container.Resolve<Views.DialogWindow>();
                 errorWnd.ShowErrorPromocion(string.Empty);
             }
             else

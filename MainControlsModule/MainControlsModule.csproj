@@ -169,8 +169,8 @@
     <Compile Include="Views\CuponesView\CuponConfirmacionWindow.xaml.cs">
       <DependentUpon>CuponConfirmacionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CuponesView\CuponSuccessWindow.xaml.cs">
-      <DependentUpon>CuponSuccessWindow.xaml</DependentUpon>
+    <Compile Include="Views\CuponesView\DialogCuponSuccessWindow.xaml.cs">
+      <DependentUpon>DialogCuponSuccessWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
@@ -284,7 +284,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CuponesView\CuponSuccessWindow.xaml">
+    <Page Include="Views\CuponesView\DialogCuponSuccessWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
