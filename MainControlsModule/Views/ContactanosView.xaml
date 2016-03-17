@@ -79,8 +79,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="StackPanelHeader" Orientation="Horizontal" Grid.Row="0" Style="{DynamicResource ContentHeaderContactanos}">
-            <Image Width="35" Stretch="UniformToFill" Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_contactanos.png" Height="35" Margin="6">
-            </Image>
+            <Image Width="35" Stretch="UniformToFill" Height="35" Margin="6"
+                   Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/ico_contactanos.png"/>
             <TextBlock Margin="10,10,0,0" Style="{DynamicResource PubliPuntoContentHeaderText}" Text="Publica con nosotros"/>
         </StackPanel>
         <DockPanel x:Name="StackPanelContent" Background="White" Grid.Row="1" HorizontalAlignment="Left">
@@ -115,12 +115,12 @@
                                     Click="ButtonEnviar_Click"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" Height="692" Name="FormularioEnviadoPanel" Visibility="Collapsed">
-                <TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviados, pronto nos comunicaremos contigo. Gracias.</TextBlock>
-                <WrapPanel HorizontalAlignment="Center">
-                    <Image Width="343" Height="343" Source="pack://application:,,,/Resources/logo.png" 
-                                   Stretch="UniformToFill" Margin="0,300"/>
-                </WrapPanel>
+            <StackPanel DockPanel.Dock="Top" Height="1100" Name="FormularioEnviadoPanel" Visibility="Collapsed">
+                <!--<TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviados, pronto nos comunicaremos contigo. Gracias.</TextBlock>-->
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1100">
+                    <Image Width="900" Height="700" Stretch="UniformToFill"
+                           Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/contactanos_msj_enviado_2.png"/>
+                </Grid>
             </StackPanel>
             <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>
         </DockPanel>

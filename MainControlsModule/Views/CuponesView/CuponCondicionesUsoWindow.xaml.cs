@@ -9,9 +9,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
     /// </summary>
     public partial class CuponCondicionesUsoWindow : Window
     {
-        public CuponCondicionesUsoWindow()
+        public CuponCondicionesUsoWindow(string condicionesUso)
         {
             InitializeComponent();
+
+            this.TextBlockCondiciones.Text = condicionesUso;
             ReadContrato();
         }
 
@@ -32,7 +34,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             string nombreContrato = "contrato.txt";
             if (File.Exists(nombreContrato))
             {
-                this.TextBlockMensaje.Text = File.ReadAllText(nombreContrato);
+                this.TextBlockPoliticas.Text = File.ReadAllText(nombreContrato);
             }
         }
 

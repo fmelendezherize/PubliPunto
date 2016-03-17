@@ -141,7 +141,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
             TimerService.Start();
             if (wndConfirmacion.ShowDialog() == true)
             {
-                wndConfirmacionCondiciones = new CuponCondicionesUsoWindow();
+                wndConfirmacionCondiciones = new CuponCondicionesUsoWindow(
+                    ((DatosClienteViewModel)this.DataContext).PromocionSelected.Condiciones);
                 wndConfirmacionCondiciones.Owner = Application.Current.MainWindow;
                 TimerService.Start();
                 if (wndConfirmacionCondiciones.ShowDialog() == true)

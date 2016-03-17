@@ -19,10 +19,17 @@ namespace Decktra.PubliPuntoEstacion
             App.Current.MainWindow.Show();
         }
 
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+        }
+
         protected override void ConfigureModuleCatalog()
         {
             base.ConfigureModuleCatalog();
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
+
+            moduleCatalog.AddModule(typeof(CuponServicesModule.CuponServicesModule));
             moduleCatalog.AddModule(typeof(HeaderModule.HeaderModule));
             moduleCatalog.AddModule(typeof(MainControlsModule.MainControlsModule));
             moduleCatalog.AddModule(typeof(FooterModule.FooterModule));

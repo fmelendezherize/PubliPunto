@@ -33,8 +33,17 @@
                                   TouchUp="ScrollViewer_TouchUp"
                                   TouchDown="ScrollViewer_TouchDown"
                                   TouchMove="ScrollViewer_TouchMove">
-                        <TextBlock Name="TextBlockMensaje" Style="{StaticResource H2Style}" 
-                               Margin="0,20" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        <TextBlock Name="TextBlockCondiciones" Style="{StaticResource H2Style}" 
+                                   Margin="0,20" Grid.Row="0" />
+
+                        <TextBlock Name="TextBlockPoliticas" Style="{StaticResource H2Style}" 
+                                   Margin="0,20" Grid.Row="1"/>
+                        </Grid>
                     </ScrollViewer>
                 </StackPanel>
             </StackPanel>

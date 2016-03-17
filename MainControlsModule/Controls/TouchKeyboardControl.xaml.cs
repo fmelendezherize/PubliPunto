@@ -136,13 +136,20 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Controls
                 new TextComposition(InputManager.Current, Keyboard.FocusedElement, key)) { RoutedEvent = TextInputEvent };
             InputManager.Current.ProcessInput(textEvent);
 
-            Key theKey = (Key)keyConverter.ConvertFromString(key);
-            if (Keyboard.PrimaryDevice.ActiveSource == null) return;
-            var keyEvent = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, theKey)
+            try
             {
-                RoutedEvent = Keyboard.KeyDownEvent
-            };
-            if (OnButtonClick != null) OnButtonClick(this, keyEvent);
+                Key theKey = (Key)keyConverter.ConvertFromString(key);
+                if (Keyboard.PrimaryDevice.ActiveSource == null) return;
+                var keyEvent = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, theKey)
+                {
+                    RoutedEvent = Keyboard.KeyDownEvent
+                };
+                if (OnButtonClick != null) OnButtonClick(this, keyEvent);
+            }
+            catch (System.ArgumentException ex)
+            {
+                //Hay caracteres que no corresponden a teclado no se
+            }
         }
 
         private void ButtonSymb_Click(object sender, RoutedEventArgs e)

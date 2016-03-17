@@ -14,6 +14,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         [Dependency]
         public IRegionManager RegionManager { get; set; }
 
+        [Dependency]
+        public Services.GotoHomeTimerService TimerService { get; set; }
+
         public HomeControlsView()
         {
             this.InitializeComponent();
@@ -26,7 +29,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            //nada
+            TimerService.Stop();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -37,6 +40,8 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
             OfertasView ofvm = this.RegionManager.Regions[RegionNames.REGION_OFERTAS_AREA].ActiveViews.
                 FirstOrDefault() as OfertasView;
             if (ofvm != null) ofvm.ShowOfertas();
+
+            TimerService.Start();
         }
     }
 }
