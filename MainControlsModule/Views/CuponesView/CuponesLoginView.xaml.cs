@@ -1,5 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.Interfaces;
+using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
@@ -31,7 +32,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views.CuponesView
         Views.DialogWindow errorWnd;
 
         [Dependency]
-        public Services.GotoHomeTimerService TimerService { get; set; }
+        public GotoHomeTimerService TimerService { get; set; }
 
         public CuponesLoginView()
         {

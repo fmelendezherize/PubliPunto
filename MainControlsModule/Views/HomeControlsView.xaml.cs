@@ -1,4 +1,5 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
+using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public IRegionManager RegionManager { get; set; }
 
         [Dependency]
-        public Services.GotoHomeTimerService TimerService { get; set; }
+        public GotoHomeTimerService TimerService { get; set; }
 
         public HomeControlsView()
         {

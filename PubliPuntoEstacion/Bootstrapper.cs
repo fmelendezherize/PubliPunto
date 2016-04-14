@@ -29,7 +29,7 @@ namespace Decktra.PubliPuntoEstacion
             base.ConfigureModuleCatalog();
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
 
-            moduleCatalog.AddModule(typeof(CuponServicesModule.CuponServicesModule));
+            moduleCatalog.AddModule(typeof(KioskoServicesModule.CuponServicesModule));
             moduleCatalog.AddModule(typeof(HeaderModule.HeaderModule));
             moduleCatalog.AddModule(typeof(MainControlsModule.MainControlsModule));
             moduleCatalog.AddModule(typeof(FooterModule.FooterModule));
@@ -38,6 +38,11 @@ namespace Decktra.PubliPuntoEstacion
         protected override Microsoft.Practices.Prism.Logging.ILoggerFacade CreateLogger()
         {
             return new Logger();
+        }
+
+        protected override void InitializeModules()
+        {
+            base.InitializeModules();
         }
     }
 }

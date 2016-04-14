@@ -1,7 +1,9 @@
 ﻿
 using System.Net;
 using System.Net.Mail;
-namespace Decktra.PubliPuntoEstacion
+using System.Threading;
+using System.Threading.Tasks;
+namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 {
     public class MailService
     {
@@ -29,7 +31,10 @@ namespace Decktra.PubliPuntoEstacion
             };
 
             var subject = "Contacto desde " + _kioskoID;
-            client.Send("info@cuponexpress.com.ve", "info@cuponexpress.com.ve", subject, msg);
+            Task.Run(() =>
+            {
+                client.Send("info@cuponexpress.com.ve", "info@cuponexpress.com.ve", subject, msg);
+            }, CancellationToken.None);
         }
     }
 }

@@ -171,8 +171,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CuponServicesModule\CuponServicesModule.cs" />
-    <Compile Include="SyncAgentModule\SyncAgent.cs" />
     <Page Include="HeaderModule\Views\HeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +271,10 @@
       <Project>{6bf3eac9-e8eb-466b-92f9-d4a42c0ab026}</Project>
       <Name>FooterModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KioskoServicesModule\KioskoServicesModule.csproj">
+      <Project>{60ca76c4-eb8c-4097-a650-bbff06208ffd}</Project>
+      <Name>KioskoServicesModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MainControlsModule\MainControlsModule.csproj">
       <Project>{ac688132-04ab-496d-86cc-3067a379dd06}</Project>
       <Name>MainControlsModule</Name>
@@ -295,6 +297,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bot_inicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CuponServicesModule\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
+using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System.Globalization;
@@ -19,7 +20,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         public IUnityContainer Container { get; set; }
 
         [Dependency]
-        public Services.GotoHomeTimerService TimerService { get; set; }
+        public GotoHomeTimerService TimerService { get; set; }
 
         private TextBox PreviousTextBox;
 

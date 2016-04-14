@@ -1,7 +1,7 @@
 ﻿
 using Decktra.PubliPuntoEstacion.Library;
 using System;
-namespace Decktra.PubliPuntoEstacion.Services
+namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 {
     public class GotoHomeTimerService
     {

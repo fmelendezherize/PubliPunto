@@ -1,4 +1,5 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
+using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
 using Microsoft.Practices.Prism.Regions;
@@ -20,7 +21,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
         private IRegionNavigationService navigationService;
 
         [Dependency]
-        public Services.GotoHomeTimerService TimerService { get; set; }
+        public GotoHomeTimerService TimerService { get; set; }
 
         public BusquedaTecladoView()
         {

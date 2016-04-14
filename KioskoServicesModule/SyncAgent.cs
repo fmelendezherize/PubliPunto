@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Decktra.PubliPuntoEstacion.SyncAgentModule
+namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 {
     public class StateObjClass
     {
@@ -28,7 +28,10 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
 
         private Timer TimerItem;
         private int _idSync = 0;
+
         private string _apipwd = String.Format("{0}:{1}", "francisco", "cocuyH)$hfy63(");
+        private string _webSyncServerAddress;
+        private string _videosPath;
 
         public SyncAgent()
         {
@@ -80,7 +83,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Usuarios (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
+                client.BaseAddress = new Uri(_webSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -111,7 +114,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Ramos Comerciales (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
+                client.BaseAddress = new Uri(_webSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -142,7 +145,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Entes Comerciales (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
+                client.BaseAddress = new Uri(_webSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -173,7 +176,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Kiosko Promociones (Id:{0})", _idSync), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
+                client.BaseAddress = new Uri(_webSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
@@ -205,7 +208,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
             Logger.Log(string.Format("Descargando Kiosko Promociones Detalle (Id:{0})(CodigoPromocion:{1})", _idSync, codigoPromocion), Category.Info, Priority.Low);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Properties.Settings.Default.WebSyncServerAddress);
+                client.BaseAddress = new Uri(_webSyncServerAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
@@ -328,7 +331,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
                 //Video
                 if (!String.IsNullOrEmpty(item.VideoUrl))
                 {
-                    var path = Properties.Settings.Default.VideosPath + "\\" + item.VideoUrl;
+                    var path = _videosPath + "\\" + item.VideoUrl;
                     if (System.IO.File.Exists(path))
                     {
                         string inputfilepath = AppDomain.CurrentDomain.BaseDirectory + "videos\\" + item.VideoUrl;
@@ -385,7 +388,7 @@ namespace Decktra.PubliPuntoEstacion.SyncAgentModule
 
         private void DownloadFileFTP(string ftpfilepath, string inputfilepath)
         {
-            string ftpfullpath = Properties.Settings.Default.WebSyncServerAddress + ftpfilepath;
+            string ftpfullpath = _webSyncServerAddress + ftpfilepath;
             if (CheckFileExists(ftpfullpath))
             {
                 Logger.Log(string.Format("Descargando Recurso de ftp (Id:{0}) {1}", _idSync, ftpfullpath), Category.Info, Priority.Low);

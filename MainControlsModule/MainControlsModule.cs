@@ -50,10 +50,6 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule
                 new ContainerControlledLifetimeManager());
             this._container.RegisterType<Object, Views.CuponesView.CuponesCondicionesView>("CuponesCondicionesView",
                 new ContainerControlledLifetimeManager());
-
-            this._regionManager.RequestNavigate(RegionNames.REGION_WORK_AREA, new Uri("HomeControlsView", UriKind.Relative));
-            this._regionManager.AddToRegion(RegionNames.REGION_NUESTROSCLIENTES_AREA, this._container.Resolve<NuestrosClientesView>());
-            this._regionManager.AddToRegion(RegionNames.REGION_OFERTAS_AREA, this._container.Resolve<OfertasView>());
         }
     }
 }
