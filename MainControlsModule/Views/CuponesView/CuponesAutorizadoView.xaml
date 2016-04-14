@@ -9,6 +9,7 @@
 			 d:DesignWidth="970" d:DesignHeight="1200">
     <UserControl.Resources>
         <local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <local:FechaConverter x:Key="FechaConverter" />
         <Style x:Key="CuponesHeaderStyle" TargetType="StackPanel">
             <Setter Property="Margin" Value="-1,0"/>
             <Setter Property="Height" Value="47"/>
@@ -161,9 +162,10 @@
                 </TextBlock>
                 <TextBlock Style="{StaticResource H2Style}" Width="112" 
                            Background="Transparent" Foreground="#fea900"
-                           TextWrapping="NoWrap" 
+                           TextWrapping="NoWrap" FontSize="19"
                            Canvas.Top="134" Canvas.Left="620">
-                    <Run Text=""/>
+                    <Run Text="{Binding PromocionCupon.FechaVigencia, Converter={StaticResource FechaConverter}}"/>
+                    <!--<Run Text="14/12/2016"/>-->
                 </TextBlock>
             </Canvas>
             <StackPanel Grid.Row="4" Margin="0,0" HorizontalAlignment="Center">

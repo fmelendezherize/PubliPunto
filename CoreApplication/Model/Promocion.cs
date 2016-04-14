@@ -30,6 +30,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
 
         public System.DateTime FechaInicio { get; set; }
         public System.DateTime FechaFin { get; set; }
+        public int Vigencia { get; set; }
 
         public bool IsActivo { get; set; }
 
@@ -100,6 +101,16 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
             if (newPromocionCupon != null)
             {
                 newPromocionCupon.UsuarioAsignadoId = usuarioSelected.Id;
+                newPromocionCupon.FechaReclamo = System.DateTime.Now;
+
+                if (this.Vigencia == 0)
+                {
+                    newPromocionCupon.FechaVigencia = this.FechaFin;
+                }
+                else
+                {
+                    newPromocionCupon.FechaVigencia = System.DateTime.Now.AddDays(this.Vigencia);
+                }
             }
 
             return newPromocionCupon;
@@ -120,5 +131,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model
         public virtual Usuario UsuarioAsignado { get; set; }
 
         public bool SmsSent { get; set; }
+
+        public System.DateTime? FechaReclamo { get; set; }
+        public System.DateTime? FechaVigencia { get; set; }
     }
 }

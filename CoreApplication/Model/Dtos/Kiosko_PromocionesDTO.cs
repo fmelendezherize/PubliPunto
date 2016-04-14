@@ -38,6 +38,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos
 
         public string Fin { get; set; }
         public string Inicio { get; set; }
+        public string Vigencia { get; set; }
 
         public List<Kiosko_Promocion_Cupon> Kiosko_Promociones { get; set; }
     }

@@ -9,7 +9,7 @@
 			 d:DesignHeight="300" d:DesignWidth="300"
 			 Width="960" Height="900">
 	<UserControl.Resources>
-		<local:RutaImagenConverter x:Key="RutaImagenConverter" />
+        <local:RutaImagenConverter x:Key="RutaImagenConverter" />
 		<Style x:Key="FocusVisual">
 			<Setter Property="Control.Template">
 				<Setter.Value>

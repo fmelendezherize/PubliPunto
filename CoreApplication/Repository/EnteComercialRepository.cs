@@ -162,6 +162,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 DateTime outDate;
                 if (DateTime.TryParse(dto.Inicio, out outDate)) newPromocion.FechaInicio = outDate;
                 if (DateTime.TryParse(dto.Fin, out outDate)) newPromocion.FechaFin = outDate;
+                newPromocion.Vigencia = Int32.Parse(dto.Vigencia);
 
                 newPromocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 newPromocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
@@ -192,6 +193,7 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Repository
                 DateTime outDate;
                 if (DateTime.TryParse(dto.Inicio, out outDate)) promocion.FechaInicio = outDate;
                 if (DateTime.TryParse(dto.Fin, out outDate)) promocion.FechaFin = outDate;
+                promocion.Vigencia = Int32.Parse(dto.Vigencia);
 
                 promocion.ImagenSmallUrl = dto.ImagenSmallUrl.card.ToFileName();
                 promocion.ImagenUrl = dto.ImagenUrl.banner.ToFileName();
