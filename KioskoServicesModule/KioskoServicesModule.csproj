@@ -95,6 +95,7 @@
     <Compile Include="GotoHomeService.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmsMessageService.cs" />
     <Compile Include="SyncAgent.cs" />
   </ItemGroup>
   <ItemGroup>

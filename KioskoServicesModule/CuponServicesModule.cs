@@ -17,29 +17,10 @@ namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 
         public void Initialize()
         {
-        }
-
-        public void StartSyncAgentService()
-        {
-            //if (Decktra.PubliPuntoEstacion.Properties.Settings.Default.WebSyncOn)
-            //{
-            //    SyncAgent syncAgentObj = this._container.Resolve<SyncAgent>();
-            //    syncAgentObj.StartService();
-            //}
-        }
-
-        public void StartMailService()
-        {
-            //this._container.RegisterType<MailService>(new InjectionConstructor(
-            //    PubliPuntoEstacion.Properties.Settings.Default.KioskoID,
-            //    PubliPuntoEstacion.Properties.Settings.Default.MailPwd));
-        }
-
-        public void StartGoToHomeService()
-        {
-            //this._container.RegisterType<GotoHomeTimerService>(
-            //    new ContainerControlledLifetimeManager(),
-            //    new InjectionConstructor(PubliPuntoEstacion.Properties.Settings.Default.TimerInactividad));
+            this._container.RegisterType<GotoHomeTimerService>(new ContainerControlledLifetimeManager());
+            this._container.RegisterType<MailService>(new ContainerControlledLifetimeManager());
+            this._container.RegisterType<SyncAgent>(new ContainerControlledLifetimeManager());
+            this._container.RegisterType<SmsMessageService>(new ContainerControlledLifetimeManager());
         }
     }
 }

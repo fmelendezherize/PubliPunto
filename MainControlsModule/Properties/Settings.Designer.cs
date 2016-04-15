@@ -22,53 +22,5 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("siescom")]
-        public string SMS_UserName {
-            get {
-                return ((string)(this["SMS_UserName"]));
-            }
-            set {
-                this["SMS_UserName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("a891326000dd8f9db94092c898e54aa7")]
-        public string SMS_Pwd {
-            get {
-                return ((string)(this["SMS_Pwd"]));
-            }
-            set {
-                this["SMS_Pwd"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ver condiciones en http://www.cuponexpress.com.ve Gracias por usar CUPONEXPRESS")]
-        public string SMS_MensajePie {
-            get {
-                return ((string)(this["SMS_MensajePie"]));
-            }
-            set {
-                this["SMS_MensajePie"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EnvioSMS_ON {
-            get {
-                return ((bool)(this["EnvioSMS_ON"]));
-            }
-            set {
-                this["EnvioSMS_ON"] = value;
-            }
-        }
     }
 }

@@ -14,11 +14,20 @@
     <Setting Name="MailPwd" Type="System.String" Scope="User">
       <Value Profile="(Default)">cupon123*</Value>
     </Setting>
-    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="TimerInactividad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="WebSyncOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SMS_UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">siescom</Value>
+    </Setting>
+    <Setting Name="SMS_Pwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">a891326000dd8f9db94092c898e54aa7</Value>
+    </Setting>
+    <Setting Name="EnvioSMS_ON" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,7 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
-using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
@@ -22,12 +21,11 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
 
         private IRegionNavigationService navigationService;
 
-        public DatosClienteView(ILoggerFacade logger)
+        public DatosClienteView(IUnityContainer container)
         {
             this.InitializeComponent();
 
-            // Insert code required on object creation below this point.
-            ((DatosClienteViewModel)this.DataContext).Logger = logger;
+            container.BuildUp((DatosClienteViewModel)this.DataContext);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

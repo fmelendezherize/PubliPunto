@@ -33,12 +33,11 @@ namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
         private string _webSyncServerAddress;
         private string _videosPath;
 
-        public SyncAgent()
+        public SyncAgent(string webSyncServerAddress, string videosPath)
         {
-        }
+            _webSyncServerAddress = webSyncServerAddress;
+            _videosPath = videosPath;
 
-        public void StartService()
-        {
             StateObjClass stateObj = new StateObjClass();
             TimerCallback timerDelegate = new TimerCallback(StartWebConnection);
             TimerItem = new Timer(timerDelegate, stateObj, 10000, 300000);

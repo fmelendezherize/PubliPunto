@@ -73,7 +73,19 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int TimerInactividad {
+            get {
+                return ((int)(this["TimerInactividad"]));
+            }
+            set {
+                this["TimerInactividad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool WebSyncOn {
             get {
                 return ((bool)(this["WebSyncOn"]));
@@ -85,13 +97,37 @@ namespace Decktra.PubliPuntoEstacion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public int TimerInactividad {
+        [global::System.Configuration.DefaultSettingValueAttribute("siescom")]
+        public string SMS_UserName {
             get {
-                return ((int)(this["TimerInactividad"]));
+                return ((string)(this["SMS_UserName"]));
             }
             set {
-                this["TimerInactividad"] = value;
+                this["SMS_UserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("a891326000dd8f9db94092c898e54aa7")]
+        public string SMS_Pwd {
+            get {
+                return ((string)(this["SMS_Pwd"]));
+            }
+            set {
+                this["SMS_Pwd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnvioSMS_ON {
+            get {
+                return ((bool)(this["EnvioSMS_ON"]));
+            }
+            set {
+                this["EnvioSMS_ON"] = value;
             }
         }
     }
