@@ -16,12 +16,12 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
 
         public PubliPuntoContext()
         {
-            Database.SetInitializer<PubliPuntoContext>(new PubliPuntoContextInitializer());
-            //Database.SetInitializer<PubliPuntoContext>(null);
+            //Database.SetInitializer<PubliPuntoContext>(new PubliPuntoContextInitializer());
+            Database.SetInitializer<PubliPuntoContext>(null);
         }
     }
 
-    class PubliPuntoContextInitializer : DropCreateDatabaseIfModelChanges<PubliPuntoContext>
+    class PubliPuntoContextInitializer : CreateDatabaseIfNotExists<PubliPuntoContext>
     {
         public PubliPuntoContextInitializer()
         {
