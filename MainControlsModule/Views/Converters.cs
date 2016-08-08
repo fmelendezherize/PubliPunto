@@ -13,7 +13,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views
                 string path = AppDomain.CurrentDomain.BaseDirectory + "media\\" + obj;
                 if (System.IO.File.Exists(path)) return path;
             }
-            return AppDomain.CurrentDomain.BaseDirectory + "media\\logo.png";
+            return AppDomain.CurrentDomain.BaseDirectory + "media\\logoV2.png";
         }
 
         public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)

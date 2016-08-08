@@ -13,7 +13,8 @@
         <!--<Border BorderBrush="Black" BorderThickness="0">-->
         <StackPanel>
             <Canvas Height="282">
-                <Image Width="229" Height="229" Canvas.Left="0" Canvas.Top="0" Source="pack://application:,,,/Resources/logo.png" 
+                <Image Width="229" Height="229" Canvas.Left="0" Canvas.Top="0" 
+                       Source="pack://application:,,,/Resources/logoV2.png" 
                        Stretch="UniformToFill"  MouseDown="Image_MouseDown"/>
                 <!--<DockPanel Width="155" Height="110" Canvas.Right="0" Canvas.Top="0">
                     <Rectangle Width="155" Height="80" Fill="#3bd1c6" DockPanel.Dock="Top"></Rectangle>

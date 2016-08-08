@@ -16,8 +16,8 @@ namespace Decktra.PubliPuntoEstacion.CoreApplication.Context
 
         public PubliPuntoContext()
         {
-            //Database.SetInitializer<PubliPuntoContext>(new PubliPuntoContextInitializer());
-            Database.SetInitializer<PubliPuntoContext>(null);
+            Database.SetInitializer<PubliPuntoContext>(new PubliPuntoContextInitializer());
+            //Database.SetInitializer<PubliPuntoContext>(null);
         }
     }
 
