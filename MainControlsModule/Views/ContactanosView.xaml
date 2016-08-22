@@ -119,7 +119,7 @@
                 <!--<TextBlock Style="{StaticResource TextBlockMensaje}">Tus datos fueron enviados, pronto nos comunicaremos contigo. Gracias.</TextBlock>-->
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1100">
                     <Image Width="900" Height="700" Stretch="UniformToFill"
-                           Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/contactanos_msj_enviado_2.png"/>
+                           Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/contactanos_msj_enviado_3.png"/>
                 </Grid>
             </StackPanel>
             <controls:TouchKeyboardControl x:Name="touchKeyboard" DockPanel.Dock="Bottom" BorderThickness="0"/>

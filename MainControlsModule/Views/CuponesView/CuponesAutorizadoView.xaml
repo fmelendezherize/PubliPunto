@@ -140,11 +140,11 @@
             <Canvas Grid.Row="3" Height="270" Margin="0,10">
                 <StackPanel HorizontalAlignment="Center" Width="890">
                     <!--<Rectangle  Fill="Red"/>-->
-                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/cupon_generico_3_base.png" 
+                    <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/cupon_generico_5_base.png" 
                            Stretch="UniformToFill" Width="585"/>
                 </StackPanel>
                 <TextBlock Background="Transparent" Foreground="#fea900" 
-                           Canvas.Left="309" Canvas.Top="114" TextAlignment="Center" 
+                           Canvas.Left="309" Canvas.Top="97" TextAlignment="Center" 
                            Style="{StaticResource H1Style}" FontSize="56" Height="66" Width="297">
                     <Run Text="{Binding PromocionCupon.CodigoCanjeo}"/>
                 </TextBlock>
@@ -163,7 +163,7 @@
                 <TextBlock Style="{StaticResource H2Style}" Width="112" 
                            Background="Transparent" Foreground="#fea900"
                            TextWrapping="NoWrap" FontSize="19"
-                           Canvas.Top="134" Canvas.Left="620">
+                           Canvas.Top="40" Canvas.Left="620">
                     <Run Text="{Binding PromocionCupon.FechaVigencia, Converter={StaticResource FechaConverter}}"/>
                     <!--<Run Text="14/12/2016"/>-->
                 </TextBlock>
@@ -188,7 +188,7 @@
                 </TextBlock>-->
             </StackPanel>
         </Grid>
-        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/banner_cedula.png" 
+        <Image Source="/Decktra.PubliPuntoEstacion.MainControlsModule;component/Resources/banner_cedula3.png" 
                Stretch="UniformToFill" Grid.Row="2"/>
     </Grid>
 </UserControl>
