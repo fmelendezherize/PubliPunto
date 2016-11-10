@@ -1,7 +1,7 @@
 ﻿
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

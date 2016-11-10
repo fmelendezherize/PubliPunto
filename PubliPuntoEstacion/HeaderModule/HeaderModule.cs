@@ -1,10 +1,10 @@
 ﻿using Decktra.PubliPuntoEstacion.HeaderModule.Views;
 using Decktra.PubliPuntoEstacion.Interfaces;
 using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Modularity;
+using Prism.Regions;
 using System;
 using System.Timers;
 

@@ -1,8 +1,7 @@
-﻿using Decktra.PubliPuntoEstacion.Interfaces;
-using Decktra.PubliPuntoEstacion.MainControlsModule.Views;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
+﻿using Decktra.PubliPuntoEstacion.MainControlsModule.Views;
 using Microsoft.Practices.Unity;
+using Prism.Modularity;
+using Prism.Regions;
 using System;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule

@@ -1,8 +1,8 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.KioskoServicesModule;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Regions;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;

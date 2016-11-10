@@ -1,14 +1,14 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Linq;
 using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
-    public class OfertasViewModel : NotificationObject
+    public class OfertasViewModel : BindableBase
     {
         private readonly EnteComercialRepository _enteComercialRepository;
         private Random _randomObj;
@@ -33,9 +33,9 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             EnteComercial1 = result.ElementAtOrDefault<Promocion>(1) ?? new Promocion() { EnteComercial = new EnteComercial() { Nombre = "Disponible" } };
             EnteComercial2 = result.ElementAtOrDefault<Promocion>(2) ?? new Promocion() { EnteComercial = new EnteComercial() { Nombre = "Disponible" } };
 
-            this.RaisePropertyChanged(() => this.EnteComercial0);
-            this.RaisePropertyChanged(() => this.EnteComercial1);
-            this.RaisePropertyChanged(() => this.EnteComercial2);
+            this.OnPropertyChanged(() => this.EnteComercial0);
+            this.OnPropertyChanged(() => this.EnteComercial1);
+            this.OnPropertyChanged(() => this.EnteComercial2);
         }
 
         //private int GetIndex(int?[] indexEnteComercials, IList listEnteComercials)

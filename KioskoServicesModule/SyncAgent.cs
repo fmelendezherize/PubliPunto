@@ -1,7 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model.Dtos;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
-using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Unity;
+using Prism.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -387,6 +387,11 @@ namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 
         private void DownloadFileFTP(string ftpfilepath, string inputfilepath)
         {
+            if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(inputfilepath)))
+            {
+                System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(inputfilepath));
+            }
+
             string ftpfullpath = _webSyncServerAddress + ftpfilepath;
             if (CheckFileExists(ftpfullpath))
             {

@@ -1,7 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Regions;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;

@@ -1,6 +1,6 @@
 ﻿using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Regions;
 using System;
 using System.Windows.Controls;
 

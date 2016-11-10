@@ -1,5 +1,6 @@
-﻿using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.UnityExtensions;
+﻿using Prism.Logging;
+using Prism.Modularity;
+using Prism.Unity;
 using System.Windows;
 
 namespace Decktra.PubliPuntoEstacion
@@ -35,7 +36,7 @@ namespace Decktra.PubliPuntoEstacion
             moduleCatalog.AddModule(typeof(FooterModule.FooterModule));
         }
 
-        protected override Microsoft.Practices.Prism.Logging.ILoggerFacade CreateLogger()
+        protected override ILoggerFacade CreateLogger()
         {
             return new Logger();
         }

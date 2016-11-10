@@ -2,10 +2,10 @@
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
 using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Decktra.PubliPuntoEstacion.Library;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Logging;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Threading;

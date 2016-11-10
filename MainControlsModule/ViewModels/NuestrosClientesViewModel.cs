@@ -1,7 +1,7 @@
 ﻿using Decktra.PubliPuntoEstacion.CoreApplication.Model;
 using Decktra.PubliPuntoEstacion.CoreApplication.Repository;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
 {
-    public class NuestrosClientesViewModel : NotificationObject
+    public class NuestrosClientesViewModel : BindableBase
     {
         private readonly EnteComercialRepository _enteComercialRepository;
         public ICommand ShowEnteComercialsCommand { get; set; }
@@ -49,7 +49,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
             }
 
             this.ListOfPromocionesActivas.AddRange(listOfResult);
-            RaisePropertyChanged(() => this.ListOfPromocionesActivas);
+            this.OnPropertyChanged(() => this.ListOfPromocionesActivas);
         }
 
         private void ShowRandomEnteComercials(IList listOfResults)
@@ -61,7 +61,7 @@ namespace Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels
                 indexEnteComercials[i] = GetIndex(indexEnteComercials, listOfResults);
                 ListOfPromocionesActivas.Add((Promocion)listOfResults[indexEnteComercials[i].Value]);
             }
-            RaisePropertyChanged(() => this.ListOfPromocionesActivas);
+            this.OnPropertyChanged(() => this.ListOfPromocionesActivas);
         }
 
         private int GetIndex(int?[] indexEnteComercials, IList listEnteComercials)

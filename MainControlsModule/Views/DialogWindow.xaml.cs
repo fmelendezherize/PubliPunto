@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Regions;
 using System.Windows;
 
 namespace Decktra.PubliPuntoEstacion.MainControlsModule.Views

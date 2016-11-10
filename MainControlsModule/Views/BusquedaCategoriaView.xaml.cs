@@ -2,9 +2,9 @@
 using Decktra.PubliPuntoEstacion.KioskoServicesModule;
 using Decktra.PubliPuntoEstacion.MainControlsModule.Models;
 using Decktra.PubliPuntoEstacion.MainControlsModule.ViewModels;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Logging;
+using Prism.Regions;
 using System;
 using System.Windows;
 using System.Windows.Controls;

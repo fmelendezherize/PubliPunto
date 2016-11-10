@@ -1,11 +1,12 @@
 ﻿
 using Decktra.PubliPuntoEstacion.CoreApplication.Model;
-using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Unity;
+using Prism.Logging;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+
 namespace Decktra.PubliPuntoEstacion.KioskoServicesModule
 {
     public class SmsMessageService
